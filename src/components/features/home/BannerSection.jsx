@@ -83,7 +83,10 @@ export default function BannerSection() {
                     )}
                     priority={index === 0}
                   />
-                  <h2 className="text-[150px] font-regular uppercase text-center absolute top-1/2 left-0 right-0 m-auto">
+                  <h2 className="text-[150px] font-regular uppercase text-center font-base1 absolute top-1/2 left-0 right-0 m-auto">
+                    {slide.title}
+                  </h2>
+                  <h2 className="text-[150px] font-regular uppercase text-center font-base2 absolute top-1/3 left-0 right-0 m-auto">
                     {slide.title}
                   </h2>
                 </div>

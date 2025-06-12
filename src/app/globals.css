@@ -7,7 +7,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --font-fordAntenna: var(--font-fordAntenna);
+  --font-base1: var(--font-barlow);
+  --font-base2: var(--font-stretchPro);
 
   --color-base1: #f1d1a8;
   --color-base2: #cdcdcd;
@@ -154,7 +155,7 @@
 }
 
 body {
-  font-family: var(--font-fordAntenna), Arial, sans-serif;
+  font-family: var(--font-base1), Arial, sans-serif;
 }
 
 @layer components {
@@ -212,6 +213,7 @@ body {
   }
 
 }
+
 
 :root {
   --radius: 0.625rem;

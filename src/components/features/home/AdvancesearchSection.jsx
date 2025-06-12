@@ -1,20 +1,34 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+
 import { Button } from "@/components/ui/button";
 import {
     Form,
     FormField,
     FormItem,
-    FormLabel,
     FormControl,
     FormMessage,
 } from "@/components/ui/form";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
+import {
+    Select,
+    SelectTrigger,
+    SelectValue,
+    SelectContent,
+    SelectItem,
+} from "@/components/ui/select";
+import {
+    Accordion,
+    AccordionItem,
+    AccordionTrigger,
+    AccordionContent,
+} from "@/components/ui/accordion";
 
+// Form validation schema
 const formSchema = z.object({
     make: z.string().nonempty("Select make"),
     model: z.string().nonempty("Select model"),
@@ -25,6 +39,8 @@ const formSchema = z.object({
 });
 
 export default function CarSearchForm() {
+    const [isExpanded, setIsExpanded] = useState(false);
+
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -38,30 +54,41 @@ export default function CarSearchForm() {
     });
 
     const onSubmit = (values) => {
-        console.log("Search data:", values);
+        console.log("Search values:", values);
     };
 
-    const menuLinkClass = "!text-[11px] md:!text-[12px] 2xl:!text-[14px] max-w-full min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px] !w-full px-6 border border-[#CCCCCC] text-[#000000] w-[150px] lg:w-[200px] bg-[#F8F9FD] rounded-[5px] font-medium outline-none shadow-none focus:outline-none focus:ring-0 focus:border-[#CCCCCC] focus:shadow-none data-[state=open]:border-[#00095b] data-[state=open]:shadow-none"
+    const menuLinkClass =
+        "!text-[11px] md:!text-[12px] 2xl:!text-[14px] max-w-full min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px] !w-full px-6 border border-[rgba(46, 76, 153, 0.44)] bg-[#F8F9FD] rounded-[5px] font-medium outline-none shadow-none focus:outline-none focus:ring-0 focus:border-[#CCCCCC] focus:shadow-none data-[state=open]:border-[#00095b] data-[state=open]:shadow-none";
+
+    const contentClass =
+        "3xl:text-[18px] 2xl:text-[16px] md:text-[12px] text-[10px] bg-white border border-[#CCCCCC] rounded-md shadow-md font-medium text-black";
+
+    const itemClass =
+        "py-[10px] px-4 hover:bg-[#00095b] focus:bg-[#1D0A44] focus:text-white cursor-pointer";
 
     return (
         <div className="w-full relative">
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-wrap tems-center justify-between bg-[#031640] overflow-hidden rounded-[10px] p-[30px]">
-                    <div className="w-1/5 px-[10px]">
+                <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="flex flex-wrap items-center justify-between bg-[#031640] overflow-hidden rounded-[10px] p-[30px]"
+                >
+                    {/* Make */}
+                    <div className="w-[calc(100%/5)] px-[10px]">
                         <FormField
                             control={form.control}
                             name="make"
                             render={({ field }) => (
-                                <FormItem className="w-full">
+                                <FormItem>
                                     <FormControl>
                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                            <SelectTrigger className={`${menuLinkClass}`}>
-                                                <SelectValue placeholder="MAKE" />
+                                            <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
+                                                <SelectValue placeholder="MAKE" className="text-black" />
                                             </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="toyota">Toyota</SelectItem>
-                                                <SelectItem value="bmw">BMW</SelectItem>
-                                                <SelectItem value="audi">Audi</SelectItem>
+                                            <SelectContent className={contentClass}>
+                                                <SelectItem value="toyota" className={itemClass}>Toyota</SelectItem>
+                                                <SelectItem value="bmw" className={itemClass}>BMW</SelectItem>
+                                                <SelectItem value="audi" className={itemClass}>Audi</SelectItem>
                                             </SelectContent>
                                         </Select>
                                     </FormControl>
@@ -70,22 +97,23 @@ export default function CarSearchForm() {
                             )}
                         />
                     </div>
-                    <div className="w-1/5 px-[10px]">
 
+                    {/* Model */}
+                    <div className="w-[calc(100%/5)] px-[10px]">
                         <FormField
                             control={form.control}
                             name="model"
                             render={({ field }) => (
-                                <FormItem className="w-full">
+                                <FormItem>
                                     <FormControl>
                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                            <SelectTrigger className={`${menuLinkClass}`}>
-                                                <SelectValue placeholder="MODEL" />
+                                            <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
+                                                <SelectValue placeholder="MODEL" className="text-black" />
                                             </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="corolla">Corolla</SelectItem>
-                                                <SelectItem value="3series">3 Series</SelectItem>
-                                                <SelectItem value="a4">A4</SelectItem>
+                                            <SelectContent className={contentClass}>
+                                                <SelectItem value="corolla" className={itemClass}>Corolla</SelectItem>
+                                                <SelectItem value="3series" className={itemClass}>3 Series</SelectItem>
+                                                <SelectItem value="a4" className={itemClass}>A4</SelectItem>
                                             </SelectContent>
                                         </Select>
                                     </FormControl>
@@ -94,21 +122,23 @@ export default function CarSearchForm() {
                             )}
                         />
                     </div>
-                    <div className="w-1/5 px-[10px]">
+
+                    {/* Fuel */}
+                    <div className="w-[calc(100%/5)] px-[10px]">
                         <FormField
                             control={form.control}
                             name="fuel"
                             render={({ field }) => (
-                                <FormItem className="w-full">
+                                <FormItem>
                                     <FormControl>
                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                            <SelectTrigger className={`${menuLinkClass}`}>
-                                                <SelectValue placeholder="FUEL" />
+                                            <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
+                                                <SelectValue placeholder="FUEL" className="text-black" />
                                             </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="petrol">Petrol</SelectItem>
-                                                <SelectItem value="diesel">Diesel</SelectItem>
-                                                <SelectItem value="electric">Electric</SelectItem>
+                                            <SelectContent className={contentClass}>
+                                                <SelectItem value="petrol" className={itemClass}>Petrol</SelectItem>
+                                                <SelectItem value="diesel" className={itemClass}>Diesel</SelectItem>
+                                                <SelectItem value="electric" className={itemClass}>Electric</SelectItem>
                                             </SelectContent>
                                         </Select>
                                     </FormControl>
@@ -117,20 +147,22 @@ export default function CarSearchForm() {
                             )}
                         />
                     </div>
-                    <div className="w-1/5 px-[10px]">
+
+                    {/* Gearbox */}
+                    <div className="w-[calc(100%/5)] px-[10px]">
                         <FormField
                             control={form.control}
                             name="gearbox"
                             render={({ field }) => (
-                                <FormItem className="w-full">
+                                <FormItem>
                                     <FormControl>
                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                            <SelectTrigger className={`${menuLinkClass}`}>
-                                                <SelectValue placeholder="GEARBOX" />
+                                            <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
+                                                <SelectValue placeholder="GEARBOX" className="text-black" />
                                             </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="manual">Manual</SelectItem>
-                                                <SelectItem value="automatic">Automatic</SelectItem>
+                                            <SelectContent className={contentClass}>
+                                                <SelectItem value="automatic" className={itemClass}>Automatic</SelectItem>
+                                                <SelectItem value="manual" className={itemClass}>Manual</SelectItem>
                                             </SelectContent>
                                         </Select>
                                     </FormControl>
@@ -139,36 +171,61 @@ export default function CarSearchForm() {
                             )}
                         />
                     </div>
+
+                    {/* Search Button */}
                     <div className="w-1/5 px-[10px]">
-                        <Button type="submit" className="bg-[#BD1F2D] min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px] cursor-pointer  hover:bg-[#a81b26] text-white w-full">
-                            SEARCH
-                        </Button>
+                        <div className="flex flex-wrap -m-[5px]">
+                            <div className="flex-grow p-[5px]">
+                                <Button type="submit" className="bg-[#BD1F2D] min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px] text-white w-full hover:bg-[#a81b27d3]">
+                                    SEARCH
+                                </Button>
+                            </div>
+                            <div className={`relative flex-grow p-[5px] ${isExpanded ? 'block' : 'hidden'}`}>
+                                <Button type="submit" className="bg-[#C4C4C4] min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px] text-white w-full hover:bg-[#a81b26]">
+                                    CLEAR
+                                </Button>
+                            </div>
+                        </div>
                     </div>
                 </form>
 
-                <Accordion type="single" collapsible className="relative shadow-2xs pb-[35px]">
+                {/* Advanced Search Accordion */}
+                <Accordion
+                    type="single"
+                    collapsible
+                    onValueChange={(value) => setIsExpanded(!!value)}
+                    className={`relative ${isExpanded ? "shadow-2xl" : "pb-[35px]"}`}
+                >
                     <AccordionItem value="advanced-search">
-                        <AccordionTrigger className="text-[16px] text-black bg-[#E5F0FF] uppercase w-[300px] rounded-[0px]
-                             absolute bottom-0 left-0 h-[35px] flex items-center justify-center after:top-0 after:absolute after:left-0 after:w-[80px] after:h-full after:bg-[']">
-                            <span> + ADVANCED SEARCH</span>
+                        <AccordionTrigger className="text-[16px] text-black  uppercase w-[300px] rounded-[0px]
+                         absolute bottom-0 left-0 h-[35px] flex items-center justify-center realtive z-0 [&>svg]:hidden">
+                            <Image
+                                src="/images/buttonBg.png"
+                                alt="buttonBg"
+                                width="300"
+                                height="33" 
+                                 className={`absolute top-0 left-0 w-full h-full object-cover -z-10 ${isExpanded ? "scale-y-[-1]" : " "}`}
+                            />
+                            {isExpanded ? "- LESS OPTIONS" : "+ ADVANCED SEARCH"}
                         </AccordionTrigger>
-                        <AccordionContent className="p-[30px]">
-                            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-wrap ">
-                                <div className="w-1/5 px-[10px]">
+                        <AccordionContent className="p-[30px] pb-[100px]">
+                            <div className="flex flex-wrap -m-[10px]">
+                                {/* Regional spec */}
+                                <div className="w-[calc(100%/5)] p-[10px]">
                                     <FormField
                                         control={form.control}
-                                        name="make"
+                                        name="Regional spec"
                                         render={({ field }) => (
-                                            <FormItem className="w-full">
+                                            <FormItem>
                                                 <FormControl>
                                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                                        <SelectTrigger className={`${menuLinkClass}`}>
-                                                            <SelectValue placeholder="MAKE" />
+                                                        <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
+                                                            <SelectValue placeholder="YEAR" className="text-black" />
                                                         </SelectTrigger>
-                                                        <SelectContent>
-                                                            <SelectItem value="toyota">Toyota</SelectItem>
-                                                            <SelectItem value="bmw">BMW</SelectItem>
-                                                            <SelectItem value="audi">Audi</SelectItem>
+                                                        <SelectContent className={contentClass}>
+                                                            <SelectItem value="Regional spec" className={itemClass}>Regional spec</SelectItem>
+                                                            <SelectItem value="Regional spec" className={itemClass}>Regional spec</SelectItem>
+                                                            <SelectItem value="Regional spec" className={itemClass}>Regional spec</SelectItem>
                                                         </SelectContent>
                                                     </Select>
                                                 </FormControl>
@@ -177,22 +234,71 @@ export default function CarSearchForm() {
                                         )}
                                     />
                                 </div>
-                                <div className="w-1/5 px-[10px]">
+                                {/* Year From */}
+                                <div className="w-[calc(100%/5)] p-[10px]">
+                                    <FormField
+                                        control={form.control}
+                                        name="Year From"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormControl>
+                                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                        <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
+                                                            <SelectValue placeholder="YEAR" className="text-black" />
+                                                        </SelectTrigger>
+                                                        <SelectContent className={contentClass}>
+                                                            <SelectItem value="2020" className={itemClass}>2020</SelectItem>
+                                                            <SelectItem value="2021" className={itemClass}>2021</SelectItem>
+                                                            <SelectItem value="2022" className={itemClass}>2022</SelectItem>
+                                                        </SelectContent>
+                                                    </Select>
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+                                {/* Year To */}
+                                <div className="w-[calc(100%/5)] p-[10px]">
+                                    <FormField
+                                        control={form.control}
+                                        name="year"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormControl>
+                                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                        <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
+                                                            <SelectValue placeholder="Year To" className="text-black" />
+                                                        </SelectTrigger>
+                                                        <SelectContent className={contentClass}>
+                                                            <SelectItem value="2020" className={itemClass}>2020</SelectItem>
+                                                            <SelectItem value="2021" className={itemClass}>2021</SelectItem>
+                                                            <SelectItem value="2022" className={itemClass}>2022</SelectItem>
+                                                        </SelectContent>
+                                                    </Select>
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
 
+                                {/* Steering side */}
+                                <div className="w-[calc(100%/5)] p-[10px]">
                                     <FormField
                                         control={form.control}
-                                        name="model"
+                                        name="body"
                                         render={({ field }) => (
-                                            <FormItem className="w-full">
+                                            <FormItem>
                                                 <FormControl>
                                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                                        <SelectTrigger className={`${menuLinkClass}`}>
-                                                            <SelectValue placeholder="MODEL" />
+                                                        <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
+                                                            <SelectValue placeholder="Steering side" className="text-black uppercase" />
                                                         </SelectTrigger>
-                                                        <SelectContent>
-                                                            <SelectItem value="corolla">Corolla</SelectItem>
-                                                            <SelectItem value="3series">3 Series</SelectItem>
-                                                            <SelectItem value="a4">A4</SelectItem>
+                                                        <SelectContent className={contentClass}>
+                                                            <SelectItem value="sedan" className={itemClass}>Sedan</SelectItem>
+                                                            <SelectItem value="suv" className={itemClass}>SUV</SelectItem>
+                                                            <SelectItem value="hatchback" className={itemClass}>Hatchback</SelectItem>
                                                         </SelectContent>
                                                     </Select>
                                                 </FormControl>
@@ -201,54 +307,80 @@ export default function CarSearchForm() {
                                         )}
                                     />
                                 </div>
-                                <div className="w-1/5 px-[10px]">
-                                    <FormField
-                                        control={form.control}
-                                        name="fuel"
-                                        render={({ field }) => (
-                                            <FormItem className="w-full">
-                                                <FormControl>
-                                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                                        <SelectTrigger className={`${menuLinkClass}`}>
-                                                            <SelectValue placeholder="FUEL" />
-                                                        </SelectTrigger>
-                                                        <SelectContent>
-                                                            <SelectItem value="petrol">Petrol</SelectItem>
-                                                            <SelectItem value="diesel">Diesel</SelectItem>
-                                                            <SelectItem value="electric">Electric</SelectItem>
-                                                        </SelectContent>
-                                                    </Select>
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                </div>
-                                <div className="w-1/5 px-[10px]">
-                                    <FormField
-                                        control={form.control}
-                                        name="gearbox"
-                                        render={({ field }) => (
-                                            <FormItem className="w-full">
-                                                <FormControl>
-                                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                                        <SelectTrigger className={`${menuLinkClass}`}>
-                                                            <SelectValue placeholder="GEARBOX" />
-                                                        </SelectTrigger>
-                                                        <SelectContent>
-                                                            <SelectItem value="manual">Manual</SelectItem>
-                                                            <SelectItem value="automatic">Automatic</SelectItem>
-                                                        </SelectContent>
-                                                    </Select>
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                </div>
-                               
-                            </form>
 
+                                {/* Car Type   */}
+                                <div className="w-[calc(100%/5)] p-[10px]">
+                                    <FormField
+                                        control={form.control}
+                                        name="body"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormControl>
+                                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                        <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
+                                                            <SelectValue placeholder="CAR TYPE" className="text-black" />
+                                                        </SelectTrigger>
+                                                        <SelectContent className={contentClass}>
+                                                            <SelectItem value="sedan" className={itemClass}>Sedan</SelectItem>
+                                                            <SelectItem value="suv" className={itemClass}>SUV</SelectItem>
+                                                            <SelectItem value="hatchback" className={itemClass}>Hatchback</SelectItem>
+                                                        </SelectContent>
+                                                    </Select>
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+                                {/*CYLINDERS  */}
+                                <div className="w-[calc(100%/5)] p-[10px]">
+                                    <FormField
+                                        control={form.control}
+                                        name="body"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormControl>
+                                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                        <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
+                                                            <SelectValue placeholder="CYLINDERS" className="text-black" />
+                                                        </SelectTrigger>
+                                                        <SelectContent className={contentClass}>
+                                                            <SelectItem value="sedan" className={itemClass}>Sedan</SelectItem>
+                                                            <SelectItem value="suv" className={itemClass}>SUV</SelectItem>
+                                                            <SelectItem value="hatchback" className={itemClass}>Hatchback</SelectItem>
+                                                        </SelectContent>
+                                                    </Select>
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+                                {/*NUMBER OF SEATS  */}
+                                <div className="w-[calc(100%/5)] p-[10px]">
+                                    <FormField
+                                        control={form.control}
+                                        name="body"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormControl>
+                                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                        <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
+                                                            <SelectValue placeholder="NUMBER OF SEATS" className="text-black" />
+                                                        </SelectTrigger>
+                                                        <SelectContent className={contentClass}>
+                                                            <SelectItem value="sedan" className={itemClass}>Sedan</SelectItem>
+                                                            <SelectItem value="suv" className={itemClass}>SUV</SelectItem>
+                                                            <SelectItem value="hatchback" className={itemClass}>Hatchback</SelectItem>
+                                                        </SelectContent>
+                                                    </Select>
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                </div>
+                            </div>
                         </AccordionContent>
                     </AccordionItem>
                 </Accordion>
