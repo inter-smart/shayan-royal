@@ -17,7 +17,7 @@ const textVariants = {
       duration: 0.8,
     },
   },
-};
+}; 
 
 const sizes = {
   heading1:
@@ -26,6 +26,8 @@ const sizes = {
     "text-[14px] lg:text-[16px] xl:text-[18px] 2xl:text-[20px] 3xl:text-[24px] font-medium leading-[1.5]",
   heading3:
     "text-[18px] sm:text-[20px] lg:text-[25px] xl:text-[30px] 2xl:text-[35px] 3xl:text-[46px] font-medium leading-[1.5]",
+  heading4:
+    "text-[18px] sm:text-[20px] lg:text-[25px] xl:text-[34px] 2xl:text-[42px] 3xl:text-[50px] font-bold leading-[1.5]",
   heading5:
     "text-[12px] sm:text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[26px] 3xl:text-[30px] font-medium leading-[1.5]",
   heading6:
