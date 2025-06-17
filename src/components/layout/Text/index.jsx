@@ -19,7 +19,7 @@ const textVariants = {
 
 const sizes = {
   text1:
-    "3xl:text-[20px] 2xl:text-[17px] xl:text-[13px] lg:text-[12px] text-[12px] font-normal leading-[1.5]",
+    "3xl:text-[20px] 2xl:text-[17px] xl:text-[13px] lg:text-[12px] text-[12px] font-normal leading-[1.5] font-base",
   text2:
     "2xl:text-[16px] xl:text-[13px] lg:text-[12px] text-[11px] font-normal leading-[1.5]",
   text3:
