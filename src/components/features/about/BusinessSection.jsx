@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
-import { Heading } from "@/components/layout/Heading";
-import { Text } from "@/components/layout/Text";
-import { useInView } from "react-intersection-observer";
 import CountUp from "react-countup";
 import { motion } from "framer-motion";
+import { Text } from "@/components/layout/Text";
+import { Heading } from "@/components/layout/Heading";
+import { useInView } from "react-intersection-observer";
 
 const item = {
     years: 30,
@@ -20,7 +20,7 @@ export default function BusinessSection() {
 
     return (
         <section className="w-full h-auto 3xl:pb-[175px] 2xl:pb-[140px] xl:pb-[110px] md:pb-[70px] sm:pb-[50px] pb-[40px] block relative z-0">
-            <div className="absolute -z-1 left-0 top-0 bottom-0 lg:w-[70%] w-full h-full m-auto">
+            <div className="absolute -z-1 left-0 top-0 bottom-0 lg:w-[70%] w-full h-full m-auto pointer-events-none">
                 <Image 
                     src="/images/business_section_bg.png"
                     alt="Business background"
