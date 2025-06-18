@@ -11,7 +11,7 @@ const textVariants = {
     opacity: 1,
     transition: {
       type: "easeOuteaseOut",
-      bounce: 0.4,
+      bounce: 0.4, 
       duration: 0.8,
     },
   },
@@ -19,13 +19,13 @@ const textVariants = {
 
 const sizes = {
   text1:
-    "3xl:text-[20px] 2xl:text-[17px] xl:text-[13px] lg:text-[12px] text-[12px] font-normal leading-[1.5]",
+    "3xl:text-[20px] 2xl:text-[17px] xl:text-[13px] lg:text-[12px] text-[12px] font-normal leading-[1.4] font-base1",
   text2:
-    "2xl:text-[16px] xl:text-[13px] lg:text-[12px] text-[11px] font-normal leading-[1.5]",
+    "2xl:text-[16px] xl:text-[13px] lg:text-[12px] text-[11px] font-normal leading-[1.5] font-base1",
   text3:
-    "3xl:text-[25px] 2xl:text-[21px] xl:text-[16px] lg:text-[14px] text-[12px] font-normal leading-normal",
+    "3xl:text-[25px] 2xl:text-[21px] xl:text-[16px] lg:text-[14px] text-[12px] font-normal leading-normal font-base1",
   text4:
-    "3xl:text-[18px] 2xl:text-[16px] xl:text-[12px] text-[12px] font-normal leading-normal",
+    "3xl:text-[18px] 2xl:text-[16px] xl:text-[12px] text-[12px] font-normal leading-normal font-base1",
 };
 
 const Text = ({ children, className = "", as, size, ...restProps }) => {

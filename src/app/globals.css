@@ -7,7 +7,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --font-fordAntenna: var(--font-fordAntenna);
+  --font-base1: var(--font-barlow);
+  --font-base2: var(--font-stretchPro);
 
   --color-base1: #f1d1a8;
   --color-base2: #cdcdcd;
@@ -31,7 +32,7 @@
   /* 1280px */
   --breakpoint-2xl: 96rem;
   /* 1536px */
-  --breakpoint-3xl: 120rem;
+  --breakpoint-3xl: 115rem;
   /* 1920px */
 
   --breakpoint-gap: 15px;
@@ -62,6 +63,7 @@
   --animate-right: bounce 1s ease-in-out infinite;
 
   @keyframes bounce {
+
     0%,
     100% {
       transform: translateX(25%);
@@ -154,7 +156,7 @@
 }
 
 body {
-  font-family: var(--font-fordAntenna), Arial, sans-serif;
+  font-family: var(--font-base1), Arial, sans-serif;
 }
 
 @layer components {
@@ -167,7 +169,7 @@ body {
   }
 
   .typography {
-    & > * {
+    &>* {
       @apply my-[10px] lg:my-[15px];
     }
 
@@ -201,17 +203,18 @@ body {
       @apply pl-[20px] lg:pl-[30px];
     }
 
-    ul > li,
-    ol > li {
+    ul>li,
+    ol>li {
       @apply 3xl:text-[20px] 2xl:text-[16px] xl:text-[13px] lg:text-[12px] text-[12px] font-normal leading-normal text-[#2d2929] my-[10px] lg:my-[15px];
     }
 
-    ul > li {
+    ul>li {
       @apply list-disc;
     }
   }
 
 }
+
 
 :root {
   --radius: 0.625rem;
@@ -286,8 +289,67 @@ body {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-base1;
+
   }
 }
  
+/* 
+@keyframes carInRight {
+  from { 
+    transform: translateX(50%);
+  }
+  to { 
+    transform: translateX(-100%);
+    opacity: 0;
+     
+  }
+}
+
+@keyframes carOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(50%);
+  }
+}
+
+@keyframes carInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes carOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+}
+
+.animate-car-in-right {
+  animation: carInRight 6s ease-in-out;
+}
+.animate-car-out-left {
+  animation: carOutLeft 0.6s ease-in-out;
+}
+.animate-car-in-left {
+  animation: carInLeft 0.6s ease-in-out;
+}
+.animate-car-out-right {
+  animation: carOutRight 0.6s ease-in-out;
+} */

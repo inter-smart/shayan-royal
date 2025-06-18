@@ -2,11 +2,27 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Barlow } from 'next/font/google';
+import localFont from 'next/font/local';
+
+
+const stretchPro = localFont({
+  src: [
+    {
+      path: "../../public/fonts/StretchProRegular.woff2",
+      weight: "100",
+      style: "normal",
+    }, 
+  ],
+  variable: "--font-stretchPro",
+  preload: true,
+  display: "swap",
+});
 
 const barlow = Barlow({
   subsets: ['latin'],
   weight: ['100' , '200','300','400', '600', '700', '800', '900'],
   display: 'swap',
+  variable: "--font-barlow",
 });
 
 export const metadata = {
@@ -21,7 +37,7 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en" >
-      <body className={barlow.className}> 
+      <body className={`font-base1 ${barlow.variable} ${stretchPro.variable}`}> 
         <Header />
         <main className="flex-grow">{children}</main>
         <Footer />
