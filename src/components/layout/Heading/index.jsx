@@ -22,9 +22,9 @@ const textVariants = {
 
 const sizes = {
   heading1:
-    "text-[20px] sm:text-[25px] md:text-30px] lg:text-[35px] xl:text-[45px] 2xl:text-[55px] 3xl:text-[60px] font-bold leading-[1.2] text-black font-base1",
+    "text-[20px] sm:text-[25px] md:text-30px] lg:text-[35px] xl:text-[45px] 2xl:text-[55px] 3xl:text-[60px] font-semibold leading-[1.2] text-black font-base1",
   heading2:
-    "text-[18px] sm:text-[22px] lg:text-[30px] xl:text-[40px] 2xl:text-[45px] 3xl:text-[50px] font-bold leading-[1.2] text-black fleading-[1.5] font-base1",
+    "text-[18px] sm:text-[22px] lg:text-[30px] xl:text-[40px] 2xl:text-[45px] 3xl:text-[50px] font-semibold leading-[1.2] text-black fleading-[1.5] font-base1",
   heading3:
     "text-[18px] sm:text-[20px] lg:text-[25px] xl:text-[30px] 2xl:text-[35px] 3xl:text-[46px] font-medium leading-[1.5] font-base1",
   heading5:

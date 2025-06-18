@@ -30,9 +30,9 @@
   /* 1024px */
   --breakpoint-xl: 80rem;
   /* 1280px */
-  --breakpoint-2xl: 102rem;
+  --breakpoint-2xl: 96rem;
   /* 1536px */
-  --breakpoint-3xl: 120rem;
+  --breakpoint-3xl: 115rem;
   /* 1920px */
 
   --breakpoint-gap: 15px;

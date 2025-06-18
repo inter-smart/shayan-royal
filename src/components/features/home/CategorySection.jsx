@@ -85,7 +85,7 @@ export default function AboutSection() {
                         className="px-10 overflow-hidden mb-3"
                     >
                         {carCategories.map((car, index) => (
-                            <SwiperSlide key={index} className="custom-slide">
+                            <SwiperSlide key={index} >
                                 <div
                                     className="flex flex-col items-center cursor-pointer group transition-all duration-300"
                                     onClick={() => setSelected(car.name)}

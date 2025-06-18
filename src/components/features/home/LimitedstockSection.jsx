@@ -3,9 +3,8 @@
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Grid } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/grid";
+import { Navigation } from "swiper/modules";
+import "swiper/css"; 
 import "swiper/css/navigation";
 import { Heading } from "@/components/layout/Heading";
 import { Text } from "@/components/layout/Text";
@@ -14,52 +13,25 @@ const carData = [
     {
         brand: "Toyota",
         logo: "/images/toyota.png",
-        image: "/images/NewArr1.png",
-        title: "Camry Hybrid",
+        image: "/images/ltd1.png",
+        title: "Land Cruiser",
         specs: ["GCC", "Petrol", "Auto", "2024"],
     },
     {
         brand: "Toyota",
         logo: "/images/toyota.png",
-        image: "/images/NewArr2.png",
-        title: "Corolla Cross",
+        image: "/images/ltd2.png",
+        title: "Urban Cruiser",
         specs: ["GCC", "Petrol", "Auto", "2024"],
     },
     {
         brand: "Lexus",
         logo: "/images/toyota.png",
-        image: "/images/NewArr3.png",
-        title: "RX 350h Luxury",
+        image: "/images/ltd3.png",
+        title: "Lexus LS",
         specs: ["GCC", "Petrol", "Auto", "2024"],
     },
-    {
-        brand: "Toyota",
-        logo: "/images/toyota.png",
-        image: "/images/NewArr4.png",
-        title: "Prado",
-        specs: ["GCC", "Petrol", "Auto", "2024"],
-    },
-    {
-        brand: "Lexus",
-        logo: "/images/toyota.png",
-        image: "/images/NewArr5.png",
-        title: "Lexus LC",
-        specs: ["GCC", "Petrol", "Auto", "2024"],
-    },
-    {
-        brand: "Lexus",
-        logo: "/images/toyota.png",
-        image: "/images/NewArr6.png",
-        title: "NX 350h F-Sport",
-        specs: ["GCC", "Petrol", "Auto", "2024"],
-    },
-    {
-        brand: "Lexus",
-        logo: "/images/toyota.png",
-        image: "/images/NewArr6.png",
-        title: "NX 350h F-Sport",
-        specs: ["GCC", "Petrol", "Auto", "2024"],
-    },
+    
     {
         brand: "Lexus",
         logo: "/images/toyota.png",
@@ -83,7 +55,7 @@ export default function NewarrivalSection() {
                         as="h2"
                         className="text-[#B4BACA] text-center uppercase mb-[10px]"
                     >
-                        New Arrivals
+                       Limited stock
                     </Heading>
                     <Text
                         size="text1"
@@ -99,8 +71,8 @@ export default function NewarrivalSection() {
 
                 <div className="relative z-1">
                     <Swiper
-                        modules={[Navigation, Grid]}
-                        spaceBetween={0}
+                        spaceBetween= {0}
+                        modules={[Navigation]}
                         autoplay={{
                             delay: 3000,
                             disableOnInteraction: false,
@@ -116,7 +88,6 @@ export default function NewarrivalSection() {
                         breakpoints={{
                             320: {
                                 slidesPerView: 1,
-                                
                             },
                             420: {
                                 slidesPerView: 1.3, 
@@ -125,27 +96,24 @@ export default function NewarrivalSection() {
                                 slidesPerView: 1.5, 
                             },
                             768: {
-                                slidesPerView: 2, 
-                                grid: { rows: 2, fill: "row" },
+                                slidesPerView: 2,
+                                spaceBetween: 10, 
                             },
                             1024: {
                                 slidesPerView: 2, 
-                                grid: { rows: 2, fill: "row" },
                             },
                             1280: {
-                                slidesPerView: 3, 
-                                grid: { rows: 2, fill: "row" },
+                                slidesPerView: 3,  
                             },
                             1661: {
-                                slidesPerView: 3, 
-                                grid: { rows: 2, fill: "row" },
+                                slidesPerView: 3,  
                             },
                         }}
                         className=""
                     >
                         {carData.map((car, index) => (
                             <SwiperSlide key={index}>
-                                <div className="w-full h-full px-[10px] 3xl:py-[25px] py-[15px]">
+                                <div className="w-full h-full px-[10px] py-[25px] ">
                                     <div className="w-full h-full rounded-[10px] bg-white overflow-hidden 3xl:py-[15px] py-[10px] 3xl:px-[20px] px-[15px] flex items-end shadow-xl">
                                         {/* Left Section - Car Info */}
                                         <div className="3xl:w-[calc(100%-65px)] w-[calc(100%-45px)] h-full min-h-[200px] 3xs:min-h-[230px] 3xl:min-h-[295px] mr-[20px] 
