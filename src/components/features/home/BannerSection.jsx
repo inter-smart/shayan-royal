@@ -90,7 +90,7 @@ export default function BannerSection() {
                   </h2>
                 </div>
               </SwiperSlide>
-            );
+            ); 
           })}
         </Swiper>
 

@@ -63,6 +63,7 @@
   --animate-right: bounce 1s ease-in-out infinite;
 
   @keyframes bounce {
+
     0%,
     100% {
       transform: translateX(25%);
@@ -168,7 +169,7 @@ body {
   }
 
   .typography {
-    & > * {
+    &>* {
       @apply my-[10px] lg:my-[15px];
     }
 
@@ -202,12 +203,12 @@ body {
       @apply pl-[20px] lg:pl-[30px];
     }
 
-    ul > li,
-    ol > li {
+    ul>li,
+    ol>li {
       @apply 3xl:text-[20px] 2xl:text-[16px] xl:text-[13px] lg:text-[12px] text-[12px] font-normal leading-normal text-[#2d2929] my-[10px] lg:my-[15px];
     }
 
-    ul > li {
+    ul>li {
       @apply list-disc;
     }
   }
@@ -288,6 +289,7 @@ body {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground font-base1;
 

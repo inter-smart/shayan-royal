@@ -8,6 +8,8 @@ import LogisticsSection from "@/components/features/home/LogisticsSection";
 import WhySection from "@/components/features/home/WhySection";
 import TestimonialSection from "@/components/features/home/TestimonialSection";
 import BlogSection from "@/components/features/home/BlogSection";
+import SocialSection from "@/components/features/home/SocialSection";
+import FaqSection from "@/components/features/home/FaqSection";
 
 export default function Home() {
   return (
@@ -22,6 +24,8 @@ export default function Home() {
       <LogisticsSection />
       <TestimonialSection />
       <BlogSection />
+      <SocialSection />
+      <FaqSection />
 
     </>
   );

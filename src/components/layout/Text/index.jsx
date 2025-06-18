@@ -11,7 +11,7 @@ const textVariants = {
     opacity: 1,
     transition: {
       type: "easeOuteaseOut",
-      bounce: 0.4,
+      bounce: 0.4, 
       duration: 0.8,
     },
   },
