@@ -2,6 +2,7 @@
 import React from "react";
 
 
+
 import { motion } from "framer-motion";
 
 const textVariants = {
@@ -18,11 +19,11 @@ const textVariants = {
       duration: 0.8,
     },
   },
-};
+}; 
 
 const sizes = {
   heading1:
-    "text-[20px] sm:text-[25px] md:text-30px] lg:text-[35px] xl:text-[45px] 2xl:text-[55px] 3xl:text-[60px] font-semibold leading-[1.2] text-black font-base1",
+    "text-[20px] sm:text-[25px] md:text-30px] lg:text-[35px] xl:text-[45px] 2xl:text-[55px] 3xl:text-[60px] font-semibold leading-[1.2] text-black font-base1", 
   heading2:
     "text-[18px] sm:text-[22px] lg:text-[30px] xl:text-[40px] 2xl:text-[45px] 3xl:text-[50px] font-semibold leading-[1.2] text-black fleading-[1.2] font-base1",
   heading3:
