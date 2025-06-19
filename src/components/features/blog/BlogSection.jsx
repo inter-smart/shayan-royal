@@ -1,5 +1,5 @@
 import BlogCard from "@/components/common/BlogCard";
-import BlogPagination from "./BlogPagination";
+import PaginationNavigator from "../../common/PaginationNavigator";
 
 const items = [
     {
@@ -73,8 +73,8 @@ const items = [
         title: "Lorem ipsum dolor sit amet, consectetur",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Illa enim, quae prosunt aut quae nocent, aut bona sunt aut mala, quae sint paria necesse est.",
         date: "29.11.2024"
-    }\
-    
+    }
+
 ];
 
 export default function BlogSection() {
@@ -90,7 +90,7 @@ export default function BlogSection() {
                         ))}
                     </div>
                 </div>
-                <BlogPagination totalPages={10} />
+                <PaginationNavigator totalPages={10} />
             </div>
         </section>
     );

@@ -15,9 +15,9 @@ export default function InnerBanner({ title, image, alt = "InnerBanner" }) {
             <div className="container w-full h-full">
                 <div className="w-full h-full flex items-end">
                     <Heading
-                        size="heading4"
+                        size="heading2"
                         as="h1"
-                        className="uppercase text-white"
+                        className="!font-bold uppercase text-white"
                     >
                         {title}
                     </Heading>

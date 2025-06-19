@@ -4,15 +4,17 @@ import ContactSection from "@/components/features/about/ContactSection";
 import CorevalueSection from "@/components/features/about/CorevalueSection";
 import ExpertiseSection from "@/components/features/about/ExpertiseSection";
 import MarketSection from "@/components/features/about/MarketSection";
+import AboutSection from "@/components/features/home/AboutSection";
 
 export default function Page() {
     return (
         <>
             <InnerBanner title="About us" image="/images/about_banner.webp" alt="about-banner" />
             <BusinessSection />
+            <AboutSection />
             <CorevalueSection />
             <ExpertiseSection />
-            < MarketSection />
+            <MarketSection />
             <ContactSection />
         </>
     );
