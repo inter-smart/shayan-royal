@@ -9,7 +9,7 @@ const textVariants = {
     opacity: 0,
   },
   onscreen: {
-    y: 0,
+    y: 0, 
     opacity: 1,
     transition: {
       type: "easeOuteaseOut",

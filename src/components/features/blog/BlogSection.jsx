@@ -73,7 +73,8 @@ const items = [
         title: "Lorem ipsum dolor sit amet, consectetur",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Illa enim, quae prosunt aut quae nocent, aut bona sunt aut mala, quae sint paria necesse est.",
         date: "29.11.2024"
-    }
+    }\
+    
 ];
 
 export default function BlogSection() {
