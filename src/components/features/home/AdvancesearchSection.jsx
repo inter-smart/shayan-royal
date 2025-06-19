@@ -199,7 +199,7 @@ export default function CarSearchForm() {
                     className={`relative ${isExpanded ? "shadow-2xl pb-[50px]" : ""}`}
                 >
                     <AccordionItem value="advanced-search">
-                        <AccordionTrigger className={`text-[12px] lg:text-[14px] xl:text-[16px] text-black uppercase w-[280px]
+                        <AccordionTrigger className={`text-[12px] lg:text-[14px] 3xl:text-[16px] text-black uppercase w-[280px]
                          md:w-[300px] max-sm:m-auto rounded-[0px]
                          absolute left-0 max-sm:right-0 h-[35px]  flex items-center justify-center realtive z-0 cursor-pointer [&>svg]:hidden
                            ${isExpanded ? "bottom-0" : "top-[100%]"}`}>

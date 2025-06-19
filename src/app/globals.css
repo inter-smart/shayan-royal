@@ -295,7 +295,13 @@ body {
 
   }
 }
- 
+
+.swiper-pagination-bullet-active {
+  width: 45px !important;
+  border-radius: 8px !important;
+  background-color: #2E4C99 !important;
+}
+
 /* 
 @keyframes carInRight {
   from { 

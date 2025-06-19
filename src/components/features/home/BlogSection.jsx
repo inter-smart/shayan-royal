@@ -54,12 +54,12 @@ export default function BlogSection() {
 
                 <div className="flex flex-wrap">
                     {/* Left Column */}
-                    <div className="3xl:w-[calc(100%-625px)] 2xl:w-[calc(100%-470px)] lg:w-[calc(100%-400px)] w-full max-sm:mb-[5px] ">
+                    <div className="3xl:w-[calc(100%-625px)] 2xl:w-[calc(100%-470px)] lg:w-[calc(100%-400px)] w-full 2xs:mb-[15px] mb-[5px] ">
                         <div className="flex flex-wrap -m-[8px]">
                             {leftItems.map((item, index) => (
                                 <div key={index} className="2xs:w-1/2 w-full lg:p-[8px] p-[5px]">
                                     <div className="w-full h-full bg-white lg:p-[18px] md:p-[10px] p-[5px] rounded-[6px] max-2xs:flex">
-                                        <div className="w-full sm:aspect-[265/140] overflow-hidden rounded-[10px] 2xs:mb-[10px] max-sm:w-[100px]">
+                                        <div className="w-full sm:aspect-[265/140] overflow-hidden rounded-[10px] 2xs:mb-[10px] max-2xs:w-[100px]">
                                             <Image
                                                 src={item.image}
                                                 alt={item.title}
@@ -68,7 +68,7 @@ export default function BlogSection() {
                                                 className="w-full h-full object-cover"
                                             />
                                         </div>
-                                        <div className="w-full max-sm:w-[calc(100%-100px)] max-sm:pl-[25px]">
+                                        <div className="w-full max-2xs:w-[calc(100%-100px)] max-2xs:pl-[25px]">
                                             <div className="flex items-center mb-[8px]">
                                                 <div className="w-[15px] h-[15px] flex">
                                                     <Image
