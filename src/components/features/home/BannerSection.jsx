@@ -6,8 +6,8 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
-import clsx from "clsx"; 
-import AdvancesearchSection from "@/components/features/home/AdvancesearchSection"; 
+import clsx from "clsx";
+import AdvancesearchSection from "@/components/features/home/AdvancesearchSection";
 
 const slides = [
   { img: "/images/banner1.png", title: "Lexus LFA" },
@@ -37,7 +37,7 @@ export default function BannerSection() {
   };
 
   return (
-    <section className="h-dvh py-[40px]">
+    <section className="min-h-[100dvh] py-[40px]">
       <div className="container h-full relative ">
         <Swiper
           modules={[Navigation]}
@@ -61,29 +61,31 @@ export default function BannerSection() {
                 ? "animate-car-in-right"
                 : "animate-car-in-left"
               : isPrevious
-              ? direction === "next"
-                ? "animate-car-out-left"
-                : "animate-car-out-right"
-              : "";
+                ? direction === "next"
+                  ? "animate-car-out-left"
+                  : "animate-car-out-right"
+                : "";
 
             return (
               <SwiperSlide
                 key={index}
                 className="flex justify-center items-center h-full"
               >
-                <div className="relative w-full max-w-[1000px] m-auto h-full flex flex-col justify-end">
-                  <Image
-                    src={slide.img}
-                    alt={slide.title}
-                    width={1000}
-                    height={500}
-                    className={clsx(
-                      "w-full h-auto object-contain",
-                      animationClass
-                    )}
-                    priority={index === 0}
-                  />
-                  <h2 className="text-[150px] font-regular uppercase text-center absolute top-1/2 left-0 right-0 m-auto">
+                <div className="w-full h-full relative">
+                  <div className="relative w-full max-w-[1000px] m-auto h-full flex flex-col justify-end">
+                    <Image
+                      src={slide.img}
+                      alt={slide.title}
+                      width={1000}
+                      height={500}
+                      className={clsx(
+                        "w-full h-auto object-contain",
+                        animationClass
+                      )}
+                      priority={index === 0}
+                    />
+                  </div>
+                  <h2 className="text-[150px] font-normal uppercase text-center font-base2 absolute top-1/3 left-0 right-0 m-auto">
                     {slide.title}
                   </h2>
                 </div>
