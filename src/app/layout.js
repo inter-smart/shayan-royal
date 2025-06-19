@@ -3,6 +3,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Barlow } from 'next/font/google';
 import localFont from 'next/font/local';
+import WidgetSection from "@/components/common/WidgetSection";
 
 
 const stretchPro = localFont({
@@ -40,6 +41,7 @@ export default async function RootLayout({ children }) {
       <body className={`font-base1 ${barlow.variable} ${stretchPro.variable}`}> 
         <Header />
         <main className="flex-grow">{children}</main>
+        <WidgetSection />
         <Footer />
       </body>
     </html>
