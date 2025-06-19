@@ -1,19 +1,19 @@
 import Image from "next/image";
 
-const menuLinkClass = "lg:w-[24px] lg:h-[24px] w-[20px] h-[20px] rounded-full flex items-center justify-center transition-all hover:lg:scale-130";
+const menuLinkClass = "3xl:w-[32px] 3xl:h-[32px] lg:w-[24px] lg:h-[24px] w-[20px] h-[20px] rounded-full flex items-center justify-center transition-all hover:lg:scale-130";
 
 export default function WidgetSection() {
     return (
         <section>
-            <div className="fixed right-[-2px] top-1/3 z-50 3xl:w-[60px] lg:w-[50px] w-[30px] 3xl:min-h-[260px] min-h-[240px] flex items-center justify-center py-[70px]">
+            <div className="fixed right-[-2px] top-1/3 z-50 3xl:w-[65px] lg:w-[50px] w-[30px] 3xl:min-h-[260px] min-h-[240px] flex items-center justify-center py-[85px] max-md:px-[15px]">
                 <Image
                     src="/images/widgetBg.png"
                     alt="buttonBg"
                     width="47"
                     height="230"
-                    className={`absolute top-0 left-0 w-full object-cover h-full -z-10 `}
+                    className={`absolute top-0 left-0 w-full object-fill h-full -z-10 `}
                 />
-                <div className="relative w-full h-full flex flex-col items-center justify-center gap-4  ">
+                <div className="relative w-full h-full flex flex-col items-center justify-center gap-3">
                     <a
                         href="tel:+971123456789"
                         className={`${menuLinkClass} bg-[#24408A] cursor-pointer`}

@@ -9,7 +9,7 @@ export default function FabricationSection() {
             <div className="container">
                 <div className="relative text-white">
 
-                    <Heading size="heading2" as="h2" className="text-black uppercase font-normal mb-[10px]" >
+                    <Heading size="heading2" as="h2" className="text-black uppercase font-normal mb-[40px]" >
                         fabrication
                     </Heading>
 
