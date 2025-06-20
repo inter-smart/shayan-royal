@@ -1,5 +1,6 @@
 import InnerBanner from "@/components/common/InnerBanner"; 
 import CategorySection from "@/components/features/fabrication/CategorySection";
+import CustomerrequirementForm from "@/components/features/fabrication/CustomerrequirementForm";
 import FabricationSection from "@/components/features/fabrication/FabricationSection";
 import ClientSection from "@/components/features/fabrication/OurClientSection";
 import WhychooseUsSection from "@/components/features/fabrication/WhychooseUsSection";
@@ -10,8 +11,8 @@ export default function Page() {
             <FabricationSection />
             <WhychooseUsSection />
             <CategorySection />
+            <CustomerrequirementForm />
             <ClientSection />
-
         </>
     );
 }
