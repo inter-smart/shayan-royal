@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationEllipsis, } from '@/components/ui/pagination';
 
-export default function BlogPagination() {
+export default function PaginationNavigator() {
     const items = [1, 2, 3, 4, '…', 7, 8, 9, 10];
 
     return (

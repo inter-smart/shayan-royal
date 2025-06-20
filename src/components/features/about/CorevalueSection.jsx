@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-import { Heading } from "@/components/layout/Heading";
 import { Text } from "@/components/layout/Text";
+import { Heading } from "@/components/layout/Heading";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
