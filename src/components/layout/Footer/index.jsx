@@ -135,7 +135,7 @@ export default function footer() {
         <div className="bg-[#0E1D44] lg:pt-[20px] lg:pr-[50px] lg:pb-[20px] lg:pl-[30px] pt-[20px] pr-[20px] pb-[20px] pl-[20px] rounded-[10px] sm:mb-[45px] mb-[20px]">
           <div className='flex flex-wrap items-center'>
             <div className='flex flex-wrap items-center'>
-              <div className='3xl:text-[50px] 2xl:text-[40px] lg:text-[30px] lg:text-[25px] md:text-[20px] sm:text-[16px] text-[14px] font-semibold text-white sm:mb-[0px] mb-[10px]'>
+              <div className='3xl:text-[50px] 2xl:text-[35px] lg:text-[25px] lg:text-[25px] md:text-[20px] sm:text-[15px] text-[14px] font-semibold text-white sm:mb-[0px] mb-[10px]'>
                 CONNECT WITH US
               </div>
               <div className='lg:pl-[40px] md:pl-[30px] pl-[20px] sm:mb-[0px] mb-[10px]'>
@@ -149,20 +149,20 @@ export default function footer() {
               </div>
             </div>
             <div className='flex flex-wrap items-center sm:w-auto w-full'>
-              <div className='3xl:pl-[60px] 2xl:pl-[40px] md:pl-[30px] sm:pl-[20px] 2xs:w-auto w-full 2xs:mb-[0px] mb-[10px]'>
+              <div className='3xl:pl-[60px] 2xl:pl-[40px] md:pl-[25px] sm:pl-[20px] 2xs:w-auto w-full 2xs:mb-[0px] mb-[10px]'>
                 <div className='3xl:text-[20px] lg:text-[18px] text-[14px] font-medium text-white'>EMAIL</div>
                 <a href="mailto:sales@shayan.ae" className='block text-white 3xl:text-[20px] lg:text-[18px] text-[14px] hover:text-[#BE1E2D]'>sales@shayan.ae</a>
               </div>
-              <div className='3xl:pl-[60px] 2xl:pl-[40px] md:pl-[30px] sm:pl-[20px] 2xs:pl-[30px] 2xs:w-auto w-full 2xs:mb-[0px] mb-[10px]'>
+              <div className='3xl:pl-[60px] 2xl:pl-[40px] md:pl-[25px] sm:pl-[20px] 2xs:pl-[25px] 2xs:w-auto w-full 2xs:mb-[0px] mb-[10px]'>
                 <div className='3xl:text-[20px] lg:text-[18px] text-[14px] font-medium text-white'>TELEPHONE</div>
                 <a href="tel:+97142728150" className='block text-white 3xl:text-[20px] lg:text-[18px] text-[14px] hover:text-[#BE1E2D]'>+971 4 272 8150</a>
               </div>
-              <div className='3xl:pl-[60px] 2xl:pl-[40px] md:pl-[30px] sm:pl-[20px] 2xs:pl-[30px] 2xs:w-auto w-full'>
+              <div className='3xl:pl-[60px] 2xl:pl-[40px] md:pl-[25px] sm:pl-[20px] 2xs:pl-[25px] 2xs:w-auto w-full'>
                 <div className='3xl:text-[20px] lg:text-[18px] text-[14px] font-medium text-white'>WHATSAPP</div>
                 <a href="https://wa.me/971505286045" target="_blank" className='block text-white 3xl:text-[20px] lg:text-[18px] text-[14px] hover:text-[#BE1E2D]'>+971 50 528 6045</a>
               </div>
             </div>
-            <div className='flex flex-wrap items-center lg:justify-start sm:justify-center justify-start 2xl:pl-[90px] xl:pl-[50px] xl:mt-[0px] mt-[20px] lg:w-auto w-full xl:mx-0 mx-auto'>
+            <div className='flex flex-wrap items-center lg:justify-start sm:justify-center justify-start 2xl:pl-[90px] xl:pl-[45px] xl:mt-[0px] mt-[20px] lg:w-auto w-full xl:mx-0 mx-auto'>
               <a href="" className='2xl:pr-[25px] xl:pr-[15px] pr-[10px] transition-all duration-500 hover:scale-110'>
                 <Image
                   src="/images/insta.webp"
