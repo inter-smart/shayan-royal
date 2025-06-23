@@ -1,6 +1,6 @@
-import { Heading } from "@/components/layout/Heading";
-import { Text } from "@/components/layout/Text";
 import Image from "next/image";
+import { Text } from "@/components/layout/Text";
+import { Heading } from "@/components/layout/Heading";
 export default function MarketSection() {
     return (
         <section className="w-full h-auto 2xl:py-[120px] xl:py-[75px] md:py-[50px] py-[40px] block">
