@@ -1,6 +1,7 @@
 import InnerBanner from "@/components/common/InnerBanner";
 import { BreadCrumb } from "@/components/common/BreadCrumb"; 
 import InventoryDetailSection from "@/components/features/inventory/InventoryDetailSection";
+import ColorSection from "@/components/features/inventory/ColorSection";
 
 export default function page() {
     return (
@@ -14,6 +15,7 @@ export default function page() {
                 ]}
             /> 
             <InventoryDetailSection />
+            <ColorSection />
         </>
     );
 } 

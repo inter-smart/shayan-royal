@@ -11,6 +11,7 @@ import BlogSection from "@/components/features/home/BlogSection";
 import SocialSection from "@/components/features/home/SocialSection";
 import FaqSection from "@/components/features/home/FaqSection";
 
+
 export default function Home() {
   return (
     <>
@@ -26,6 +27,7 @@ export default function Home() {
       <BlogSection />
       <SocialSection />
       <FaqSection />
+  
 
     </>
   );
