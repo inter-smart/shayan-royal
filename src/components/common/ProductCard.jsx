@@ -1,7 +1,5 @@
-import Link from 'next/link';
 import Image from 'next/image';
-import { Text } from "@/components/layout/Text";
-import { Heading } from "@/components/layout/Heading";
+
 export default function ProductCard({ car }) {
     return (
         <div className="w-full h-full px-[10px] 3xl:py-[25px] py-[15px]">

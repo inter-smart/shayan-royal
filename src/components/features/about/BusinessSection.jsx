@@ -2,10 +2,10 @@
 import Image from "next/image";
 import CountUp from "react-countup";
 import { motion } from "framer-motion";
-import { BreadCrumb } from "@/components/common/BreadCrumb";
 import { Text } from "@/components/layout/Text";
 import { Heading } from "@/components/layout/Heading";
 import { useInView } from "react-intersection-observer";
+import { BreadCrumb } from "@/components/common/BreadCrumb";
 
 const item = {
     years: 30,
