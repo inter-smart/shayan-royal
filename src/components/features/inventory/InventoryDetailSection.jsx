@@ -127,9 +127,8 @@ export default function InventoryDetailSection() {
                                         {specIcons.map((feature, idx) => (
                                             <SwiperSlide key={idx}>
                                                 <div className="text-center w-full h-full rounded-[10px] overflow-hidden bg-[#F5F9FF] flex items-center justify-center flex-col">
-
                                                     <div className="w-full">
-                                                        <div className="3xl:w-[40px] w-[40px] m-auto mb-[3px] flex">
+                                                        <div className="3xl:w-[35px] w-[35px] m-auto mb-[3px] flex">
                                                             <Image
                                                                 src={feature.icon}
                                                                 alt={feature.label}
