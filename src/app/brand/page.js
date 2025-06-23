@@ -16,7 +16,8 @@ export default function Page() {
             />
             <PartnershipSection />
             <PremiumBrandsSection />
-            <FormSection />
+            <FormSection image="/images/brand-form.webp"
+            Formtitle="Enquiry Form" />
         </>
     );
 }

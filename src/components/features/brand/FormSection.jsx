@@ -12,7 +12,7 @@ const items = [
   { id: "phone", label: "Phone Number*", type: "text", required: true, placeholder: "Phone Number*" },
 ];
 
-export default function FormSection() {
+export default function FormSection({image,Formtitle}) {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -38,7 +38,7 @@ export default function FormSection() {
         <div className="w-full flex flex-wrap rounded-[10px] overflow-hidden">
           <div className="w-full lg:w-[55%]">
             <Image
-              src="/images/brand-form.webp"
+              src={image}
               alt="brand"
               width={915}
               height={567}
@@ -49,7 +49,7 @@ export default function FormSection() {
           <div className="w-full lg:w-[45%] bg-[#07163D] lg:rounded-r-[10px] 2xl:pt-[45px] xl:pt-[30px] 2xs:pt-[20px] pt-[15px] 2xl:pr-[75px] xl:pr-[55px] 2xs:pr-[35px] pr-[15px] 2xl:pb-[55px] xl:pb-[45px] 2xs:pb-[35px] pb-[25px] 2xl:pl-[75px] xl:pl-[55px] 2xs:pl-[35px] pl-[15px] relative after:content-[''] after:absolute after:top-0 after:right-0 after:bg-[url('/images/form-bg2.webp')] after:bg-no-repeat xl:after:w-[320px] after:w-[220px] xl:after:h-[185px] after:h-[135px] after:bg-contain
            before:content-[''] before:absolute before:bottom-0 before:left-0 before:bg-[url('/images/form-bg.webp')] before:bg-no-repeat xl:before:w-[330px] before:w-[240px] xl:before:h-[155px] before:h-[115px] before:bg-contain">
             <div className="text-white 2xl:text-[40px] text-[28px] font-medium 2xl:mb-[35px] 2xs:mb-[25px] mb-[15px]">
-              Enquiry Form
+              {Formtitle}
             </div>
             <form onSubmit={handleSubmit} autoComplete="off">
               {items.map((item) => (
