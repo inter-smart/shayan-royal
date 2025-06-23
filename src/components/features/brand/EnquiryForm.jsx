@@ -12,7 +12,7 @@ const items = [
   { id: "phone", label: "Phone Number*", type: "text", required: true, placeholder: "Phone Number*" },
 ];
 
-export default function FormSection({image,Formtitle}) {
+export default function EnquiryForm({image,Formtitle}) {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -33,9 +33,7 @@ export default function FormSection({image,Formtitle}) {
     "text-white w-full h-auto 2xl:p-[15px_0] p-[10px_0] bg-transparent border-0 border-b border-white rounded-none placeholder:2xl:text-[16px] placeholder:text-[12px] placeholder:leading-[1] placeholder:font-normal placeholder:text-white focus-visible:placeholder:text-[#BE1E2D] focus-visible:border-[#BE1E2D] focus-visible:ring-0 transition-colors duration-300 ease-in-out";
 
   return (
-    <section className="w-full h-auto lg:pt-[50px] pt-[30px] lg:pb-[140px] md:pb-[80px] pb-[40px]">
-      <div className="container mx-auto px-4">
-        <div className="w-full flex flex-wrap rounded-[10px] overflow-hidden">
+    <div className="w-full flex flex-wrap rounded-[10px] overflow-hidden">
           <div className="w-full lg:w-[55%]">
             <Image
               src={image}
@@ -90,7 +88,5 @@ export default function FormSection({image,Formtitle}) {
             </form>
           </div>
         </div>
-      </div>
-    </section>
   );
 }
