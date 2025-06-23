@@ -1,4 +1,4 @@
- "use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -7,7 +7,7 @@ import { Text } from "@/components/layout/Text";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/pagination"; 
+import "swiper/css/pagination";
 
 const testimonials = [
     {
