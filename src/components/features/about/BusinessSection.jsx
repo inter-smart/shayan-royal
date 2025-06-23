@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Text } from "@/components/layout/Text";
 import { Heading } from "@/components/layout/Heading";
 import { useInView } from "react-intersection-observer";
+import { BreadCrumb } from "@/components/common/BreadCrumb";
 
 const item = {
     years: 30,
@@ -21,7 +22,7 @@ export default function BusinessSection() {
     return (
         <section className="w-full h-auto 3xl:pb-[175px] 2xl:pb-[140px] xl:pb-[110px] md:pb-[70px] sm:pb-[50px] pb-[40px] block relative z-0">
             <div className="absolute -z-1 left-0 top-0 bottom-0 lg:w-[70%] w-full h-full m-auto pointer-events-none">
-                <Image 
+                <Image
                     src="/images/business_section_bg.png"
                     alt="Business background"
                     fill
@@ -30,6 +31,14 @@ export default function BusinessSection() {
                 />
             </div>
             <div className="container">
+                <div className="absolute z-2 top-0 left-0 w-full h-full">
+                    <BreadCrumb
+                        items={[
+                            { label: "HOME", href: "/" },
+                            { label: "ABOUT US", isCurrent: true }
+                        ]}
+                    />
+                </div>
                 <div className="flex flex-wrap">
                     <div className="3xl:w-[955px] 2xl:w-[740px] xl:w-[620px] lg:w-[520px] w-full 3xl:pt-[210px] xl:pt-[140px] md:pt-[100px] pt-[70px] overflow-hidden relative z-0">
                         <motion.div
@@ -78,7 +87,7 @@ export default function BusinessSection() {
                         </Text>
                         <Text
                             size="text1"
-                            as="p"
+                            as="p" 
                             className="text-black"
                         >
                             {item.description2}

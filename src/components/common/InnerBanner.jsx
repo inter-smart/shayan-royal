@@ -17,7 +17,7 @@ export default function InnerBanner({ title, image, alt = "InnerBanner" }) {
                     <Heading
                         size="heading2"
                         as="h1"
-                        className="uppercase text-white font-semibold"
+                        className="!font-bold uppercase text-white"
                     >
                         {title}
                     </Heading>
