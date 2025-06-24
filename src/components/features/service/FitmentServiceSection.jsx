@@ -29,12 +29,12 @@ const items = {
 
 export default function FitmentServiceSection() {
     return (
-        <section className="w-full h-auto block p-[80px_0_40px]">
+        <section className="w-full h-auto block 3xl:p-[80px_0_40px] 2xl:p-[60px_0_30px]  md:p-[50px_0_30px] sm:p-[40px_0_30px] p-[20px_0_30px]">
             <div className="container">
                 <Heading
                     size={"heading2"}
                     as="h2"
-                    className="leading-[1] font-semibold uppercase text-center text-black mb-[35px]"
+                    className="leading-[1] font-semibold uppercase text-center text-black 2xl:mb-[35px] lg:mb-[25px] mb-[15px]"
                 >
                     {items.title}
                 </Heading>
@@ -44,18 +44,19 @@ export default function FitmentServiceSection() {
                             key={index}
                             size="text1"
                             as="p"
-                            className="leading-[1.5] font-normal font-base1 text-[#4B4B4B] mb-[20px]"
+                            className="leading-[1.5] font-normal font-base1 text-[#4B4B4B] 2xl:mb-[20px] sm:mb-[15px] mb-[10px]"
                         >
                             {item.description}
                         </Text>
                     ))}
                 </div>
-                <div className="w-[950px] h-auto aspect-[950/545] m-auto flex items-center justify-center">
+                <div className="3xl:w-[950px] 2xl:w-[715px] lg:w-[640px] md:w-[520px] sm:w-[480px] w-[280px] h-auto aspect-[950/545] m-auto flex items-center justify-center">
                     <Image
                         src={items.image}
                         alt="Fitment"
                         width={950}
                         height={545}
+                        className="object-contain"
                     />
                 </div>
             </div>
