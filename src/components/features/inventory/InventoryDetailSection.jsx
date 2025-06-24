@@ -71,7 +71,7 @@ export default function InventoryDetailSection() {
     }, []);
 
     return (
-        <section className="w-full h-auto block 3xl:py-[90px_130px] lg:py-[60px_90px] sm:py-[50px_70px] py-[40px_50px]">
+        <section className="w-full h-auto block 3xl:py-[90px_130px] xl:py-[60px_90px] sm:py-[50px_70px] py-[40px_50px]">
             <div className="container">
                 <Heading size="heading2" as="h2" className="text-black uppercase font-normal 3xl:mb-[40px] 2xl:mb-[25px] md:mb-[15px] mb-[10px]">
                     {carDetails[0].carName}
@@ -103,7 +103,7 @@ export default function InventoryDetailSection() {
                                 >
                                     {carImages.map((img, index) => (
                                         <SwiperSlide key={index}>
-                                            <div className="relative w-full 3xl:h-[590px] xl:h-[465px] sm:h-[370px] 3xs:h-[300px] h-[200px] bg-white">
+                                            <div className="relative w-full 3xl:h-[590px] 2xl:h-[465px] xl:h-[425px] sm:h-[370px] 3xs:h-[300px] h-[200px] bg-white">
                                                 <Image
                                                     src={img}
                                                     alt={`car-${index}`}
@@ -161,7 +161,7 @@ export default function InventoryDetailSection() {
 
                             {/* Vertical Icon Slider */}
                             <div className="w-full 3xl:w-[110px] 2xl:w-[80px] lg:w-[70px] flex justify-center max-lg:mt-[20px]">
-                                <div className="3xl:h-[590px] xl:h-[465px] lg:h-[370px] h-[120px] w-full 3xl:py-[40px] 2xl:py-[30px] py-[25px] relative">
+                                <div className="3xl:h-[590px] 2xl:h-[465px] xl:h-[425px] lg:h-[370px] h-[120px] w-full 3xl:py-[40px] 2xl:py-[30px] py-[25px] relative">
                                     <button ref={verticalPrevRef} className="absolute top-0 left-1/2 -translate-x-1/2 z-10 w-4 h-4 flex text-white text-sm rounded-full cursor-pointer group disabled:pointer-events-none disabled:opacity-[0.2]">
                                         <svg width="19" height="10" viewBox="0 0 19 10" fill="none" className="group-hover:fill-[#2E4C99] fill-[rgba(0,0,0,0.5)]">
                                             <path d="M9.50004 0C9.27916 0 9.05807 0.0814571 8.88945 0.244164L0.253099 8.57746C-0.0843663 8.90308 -0.0843663 9.43037 0.253099 9.75578C0.590564 10.0812 1.13703 10.0814 1.47428 9.75578L9.50004 2.01166L17.5258 9.75578C17.8633 10.0814 18.4097 10.0814 18.747 9.75578C19.0842 9.43016 19.0844 8.90287 18.747 8.57746L10.1106 0.244164C9.94201 0.0814571 9.72091 0 9.50004 0Z" />
@@ -200,7 +200,8 @@ export default function InventoryDetailSection() {
                                             },
                                             1024: {
                                                 direction: 'vertical',
-                                                spaceBetween: 15
+                                                spaceBetween: 15,
+                                                slidesPerView: 5,
                                             },
                                         }}
                                         className="h-full"
@@ -228,7 +229,7 @@ export default function InventoryDetailSection() {
                     {/* Right Section */}
                     <div className="3xl:w-[400px] 2xl:w-[300px] md:w-[245px]">
                         <div className="w-full h-full">
-                            <Heading size="heading3" as="h2" className="text-black font-semibold md:mb-[15px] mb-[10px]">
+                            <Heading size="heading3" as="div" className="text-black font-semibold md:mb-[15px] mb-[10px]">
                                 Ask for the price
                             </Heading>
                             <div className="w-full 3xl:mb-[35px] mb-[25px]">
@@ -236,12 +237,12 @@ export default function InventoryDetailSection() {
                                     {SocialLinks.map((item, index) => (
                                         <div className="3xl:mb-[15px] mb-[10px] last:mb-0" key={index}>
                                             <a href={item.link} target="_blank" rel="noopener noreferrer" className="block">
-                                                <div className="w-full 3xl:h-[55px] xl:h-[40px] h-[35px] flex items-center justify-center rounded-[10px]" style={{ backgroundColor: item.colorCode }}>
-                                                    <div className="3xl:w-[25px] 2xl:w-[20px] w-[15px]">
+                                                <div className="w-full 3xl:h-[55px] xl:h-[40px] h-[35px] flex items-center justify-center rounded-[10px] group" style={{ backgroundColor: item.colorCode }}>
+                                                    <div className="3xl:w-[25px] 2xl:w-[20px] w-[15px] transition-all group-hover:scale-105">
                                                         <Image src={item.icon} alt={item.name} width={25} height={25} className="w-full h-full object-contain" />
                                                     </div>
                                                     <div className="px-[10px]">
-                                                        <div className="3xl:text-[16px] text-[14px] text-white capitalize">
+                                                        <div className="3xl:text-[16px] text-[14px] text-white capitalize transition-all group-hover:tracking-widest">
                                                             {item.name}
                                                         </div>
                                                     </div>

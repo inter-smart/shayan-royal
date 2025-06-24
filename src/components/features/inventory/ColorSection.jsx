@@ -1,13 +1,13 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const colors = [
     { name: "Red", code: "#C6564A", image: "/images/carDetails1.png" },
     { name: "Platinum White", code: "#EDEDED", image: "/images/carColor1.png" },
-    { name: "Black", code: "#000000", image: "/images/carColor1.png" },
+    { name: "Black", code: "#000000", image: "/images/NewArr2.png" },
     { name: "Blue", code: "#3C44B1", image: "/images/carColor1.png" },
-    { name: "Green", code: "#295F29", image: "/images/carColor1.png" },
+    { name: "Green", code: "#295F29", image: "/images/whyCar.png" },
 ];
 
 const specIcons = [
@@ -20,28 +20,68 @@ const specIcons = [
 
 export default function CarColorSpecSection() {
     const [activeColor, setActiveColor] = useState(colors[1]);
-    const radius = 410; // distance from center
-    const center = 400; // half of 820px
+    const [radius, setRadius] = useState(300);
+    const [center, setCenter] = useState(350);
+    const circleRef = useRef(null);
+
+    useEffect(() => {
+        const updateRadius = () => {
+            const width = window.innerWidth;
+            if (width >= 1840) return 350;
+            if (width >= 1771) return 310;
+            if (width >= 1536) return 300;
+            if (width >= 1280) return 280;
+            if (width >= 576) return 200;
+            return 150;
+        };
+
+        const handleResize = () => {
+            setRadius(updateRadius());
+        };
+
+        handleResize();
+        window.addEventListener("resize", handleResize);
+
+        const resizeObserver = new ResizeObserver((entries) => {
+            for (let entry of entries) {
+                const size = entry.contentRect.width;
+                setCenter(size / 2);
+            }
+        });
+
+        if (circleRef.current) {
+            resizeObserver.observe(circleRef.current);
+        }
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+            resizeObserver.disconnect();
+        };
+    }, []);
 
     return (
-        <section className="relative w-full py-[40px_90px]">
-            <div className="container">
-                <div className="flex justify-between items-center">
-                    {/* Left Color Options */}
-                    <div className="w-[40%] ">
-                        <div className="w-full flex items-center justify-center text-center flex-col">
-                            <h4 className="3xl:text-[30px] 2xl:text-[25px] text-[20px] font-semibold text-black mb-5 uppercase w-full">Colors</h4>
-                            <ul className="flex flex-col">
+        <section className="relative w-full py-10 px-6">
+            <div className="container mx-auto">
+                <div className="flex flex-col lg:flex-row justify-between items-center gap-10">
+                    {/* Color Selection */}
+                    <div className="3xl:w-[500px] 2xl:w-[400px] xl:w-[300px] md:w-[250px] w-full flex justify-center">
+                        <div className="text-center">
+                            <h4 className="text-[18px] lg:text-[24px] font-semibold text-black mb-5 uppercase">
+                                Colors
+                            </h4>
+                            <ul className="flex lg:flex-col flex-wrap items-center">
                                 {colors.map((color, index) => {
                                     const isActive = activeColor.name === color.name;
                                     return (
                                         <li
                                             key={index}
-                                            className="flex items-center cursor-pointer relative last-of-type:mb-0 mb-[15px]"
+                                            className="relative lg:mb-4 max-lg:mr-3 cursor-pointer"
                                             onClick={() => setActiveColor(color)}
                                         >
                                             <div
-                                                className={`w-[42px] h-[42px] rounded relative flex items-center justify-center transition-all ${isActive ? "border border-[#D2D5DA]]" : ""
+                                                className={`2xl:w-[42px] w-[30px] 2xl:h-[42px] h-[30px] rounded flex items-center justify-center ${isActive
+                                                    ? "border border-[#D2D5DA] shadow-[0_0_0_2px_white] bg-white"
+                                                    : ""
                                                     }`}
                                                 style={{
                                                     backgroundColor: isActive ? "#ffffff" : color.code,
@@ -49,65 +89,69 @@ export default function CarColorSpecSection() {
                                             >
                                                 {isActive && (
                                                     <div
-                                                        className="w-[32px] h-[32px] rounded transition-all"
+                                                        className="2xl:w-[32px] w-[25px] 2xl:h-[32px] h-[25px] rounded"
                                                         style={{ backgroundColor: color.code }}
                                                     />
                                                 )}
                                             </div>
                                             {isActive && (
-                                                <span className="text-[20px] text-black font-medium absolute top-0 bottom-0 text-nowrap m-auto left-0 pl-[50px]">
+                                                <span className="absolute left-[55px] top-1/2 transform -translate-y-1/2 text-black text-lg font-medium whitespace-nowrap max-lg:hidden">
                                                     {color.name}
                                                 </span>
                                             )}
                                         </li>
                                     );
                                 })}
-                            </ul> 
+                            </ul>
                         </div>
                     </div>
 
-                    {/* Car Image and Circle */}
-                    <div className="relative w-[65%] flex justify-start items-center">
-                        <div className="relative w-[810px] h-[810px] border border-[#ccc] rounded-full">
+                    {/* Car + Circle Layout */}
+                    <div className="relative 3xl:w-[calc(100%-500px)] 2xl:w-[calc(100%-400px)] xl:w-[calc(100%-300px)] md:w-[calc(100%-250px)] max-sm:max-w-[300px] w-full 3xl:pl-[200px] 2xl:pl-[100px] md:pl-[75px]">
+                        <div
+                            ref={circleRef}
+                            className="relative w-[90vw] 3xl:max-w-[700px] 2xl:max-w-[600px] xl:max-w-[550px] lg::max-w-[450px] xs:max-w-[400px] max-w-[300px] aspect-square border border-gray-300 rounded-full z-0 max-md:m-auto"
+                        >
                             {/* Car Image */}
-                            <div className="absolute top-0 bottom-0 m-auto left-[-15%] flex items-center z-10">
+                            <div className="absolute top-0 bottom-0 m-auto left-[-15%] flex items-center -z-10">
                                 <Image
                                     src={activeColor.image}
                                     alt="Car"
                                     width={780}
                                     height={400}
-                                    className="object-contain bg-white p-5 max-w-[780px] w-full "
+                                    className="object-contain bg-white p-5 xl:max-w-[700px] sm:max-w-[580px] max-w-[300px] w-full"
                                 />
                             </div>
 
-                            {/* Circular Icons (Quarter Arc) */}
+                            {/* Circular Icons */}
                             {specIcons.map((item, index) => {
-                                const totalIcons = specIcons.length;
-                                const startAngle = -50; // top-right
-                                const endAngle = 50;    // bottom-right
-
+                                const total = specIcons.length;
+                                const startAngle = -50;
+                                const endAngle = 50;
                                 const angleDeg =
-                                    startAngle + (index * (endAngle - startAngle)) / (totalIcons - 1);
+                                    startAngle + (index * (endAngle - startAngle)) / (total - 1);
                                 const angleRad = (angleDeg * Math.PI) / 180;
 
-                                const x = center + radius * Math.cos(angleRad) - 45; // center X - half icon width
-                                const y = center + radius * Math.sin(angleRad) - 45; // center Y - half icon height
+                                const size = 70;
+                                const x = center + radius * Math.cos(angleRad) - size / 2;
+                                const y = center + radius * Math.sin(angleRad) - size / 2;
+
                                 return (
                                     <div
                                         key={index}
-                                        className="absolute flex flex-col items-center justify-center 3xl:w-[105px] w-[70px] 3xl:h-[105px] h-[70px] rounded-full bg-[#F1F5FF] text-center"
+                                        className="absolute flex flex-col items-center justify-center 2xl:w-[70px] sm:w-[60px] w-[50px] 2xl:h-[70px] sm:h-[60px] h-[50px] rounded-full bg-[#F1F5FF] text-center"
                                         style={{ top: `${y}px`, left: `${x}px` }}
                                     >
-                                        <div className="3xl:w-[40px] w-[25px] 3xl:h-[40px] h-[25px] mb-1">
+                                        <div className="2xl:w-6 sm:w-5 w-4 2xl:h-6 sm:h-5 h-4 mb-1">
                                             <Image
                                                 src={item.icon}
                                                 alt={item.label}
-                                                width={40}
-                                                height={40}
-                                                className="object-contain max-w-[40px] w-full"
+                                                width={24}
+                                                height={24}
+                                                className="object-contain w-full"
                                             />
                                         </div>
-                                        <span className="text-[24px] text-[#181818] font-regular">
+                                        <span className="text-xs text-[#181818] font-medium">
                                             {item.label}
                                         </span>
                                     </div>

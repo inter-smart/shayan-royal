@@ -49,7 +49,7 @@ export default function ReserveForm() {
     <div className="relative bg-[#F5F9FF] rounded-[10px] p-[20px] 3xl:px-[20px] px-[15px] shadow-2xl overflow-hidden">
       <Heading
         size="heading5"
-        as="h2"
+        as="div"
         className="text-black uppercase font-semibold md:mb-[10px]"
       >
         Reserve Your Ride
