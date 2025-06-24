@@ -12,7 +12,7 @@ const items = [
   { id: "phone", label: "Phone Number*", type: "text", required: true, placeholder: "Phone Number*" },
 ];
 
-export default function EnquiryForm({image,Formtitle}) {
+export default function EnquiryForm({image,Formtitle,Formsubtitle}) {
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -44,9 +44,13 @@ export default function EnquiryForm({image,Formtitle}) {
             />
           </div>
 
+
           <div className="w-full lg:w-[45%] bg-[#07163D] lg:rounded-r-[10px] 2xl:pt-[45px] xl:pt-[30px] 2xs:pt-[20px] pt-[15px] 2xl:pr-[75px] xl:pr-[55px] 2xs:pr-[35px] pr-[15px] 2xl:pb-[55px] xl:pb-[45px] 2xs:pb-[35px] pb-[25px] 2xl:pl-[75px] xl:pl-[55px] 2xs:pl-[35px] pl-[15px] relative after:content-[''] after:absolute after:top-0 after:right-0 after:bg-[url('/images/form-bg2.webp')] after:bg-no-repeat xl:after:w-[320px] after:w-[220px] xl:after:h-[185px] after:h-[135px] after:bg-contain
            before:content-[''] before:absolute before:bottom-0 before:left-0 before:bg-[url('/images/form-bg.webp')] before:bg-no-repeat xl:before:w-[330px] before:w-[240px] xl:before:h-[155px] before:h-[115px] before:bg-contain">
-            <div className="text-white 2xl:text-[40px] text-[28px] font-medium 2xl:mb-[35px] 2xs:mb-[25px] mb-[15px]">
+           <div className="text-white 2xl:text-[20px] text-[15px] font-base1 mb-[0px]">
+              {Formsubtitle}
+            </div>
+            <div className="text-white 3xl:text-[40px] 2xl:text-[30px] text-[22px] font-base1 font-medium 2xl:mb-[35px] 2xs:mb-[25px] mb-[15px]">
               {Formtitle}
             </div>
             <form onSubmit={handleSubmit} autoComplete="off">

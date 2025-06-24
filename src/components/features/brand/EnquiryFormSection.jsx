@@ -1,5 +1,5 @@
 'use client';
-import EnquiryForm from "./EnquiryForm";
+import EnquiryForm from "../../common/EnquiryForm";
 
 export default function EnquiryFormSection() {
   return (
