@@ -23,7 +23,7 @@ export default function Home() {
       <LimitedstockSection />
       <FeaturedSection />
       <LogisticsSection />
-      {/* <TestimonialSection /> */}
+      <TestimonialSection />
       <BlogSection />
       <SocialSection />
       <FaqSection />
