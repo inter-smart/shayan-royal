@@ -58,7 +58,7 @@ const carData = [
         image: "/images/NewArr6.png",
         title: "NX 350h F-Sport",
         specs: ["GCC", "Petrol", "Auto", "2024"],
-    },
+    }
 ];
 
 export default function InventorySection() {
