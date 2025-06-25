@@ -41,7 +41,7 @@ export default async function RootLayout({ children }) {
       <body className={`font-base1 ${barlow.variable} ${stretchPro.variable}`}> 
         <Header />
         <main className="flex-grow">{children}</main>
-        <WidgetSection />
+        {/* <WidgetSection /> */}
         <Footer />
       </body>
     </html>

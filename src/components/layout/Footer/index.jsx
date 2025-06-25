@@ -203,10 +203,10 @@ export default function footer() {
           </div>
         </div>
         <div className='flex flex-wrap justify-between items-center'>
-          <div className='text-white md:text-[16px] text-[14px] sm:mb-[0px] mb-[10px]'>
+          <div className='text-white md:text-[16px] sm:text-[14px] text-[13px] sm:mb-[0px] mb-[10px]'>
             © 2025 Shayan Royal Group. All rights reserved.
           </div>
-          <div className='text-white md:text-[16px] text-[14px] text-right'>
+          <div className='text-white md:text-[16px] sm:text-[14px] text-[13px] text-right'>
             <div className='flex flex-wrap'>
               Designed By:
               <a href="" className='block pl-[10px]'>
