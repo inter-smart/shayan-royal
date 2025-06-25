@@ -31,8 +31,8 @@ const items = [
 export default function ServiceSection() {
     const [hovered, setHovered] = useState(null);
     return (
-        <section className="w-full h-auto block 3xl:py-[95px_135px] 2xl:py-[70px_100px] sm:py-[50px_60px] py-[10px_20px] bg-[#F5F9FF]">
-            <div className="container p-[20px_0] overflow-hidden">
+        <section className="w-full h-auto block 3xl:py-[95px_135px] 2xl:py-[70px_100px] sm:py-[50px_60px] py-[10px_20px] 3xl:mb-[120px] 2xl:mb-[90px] lg:mb-[80px] sm:mb-[60px] mb-[40px] bg-[#F5F9FF]">
+            <div className="container overflow-hidden">
                 <Heading
                     as="h2"
                     className="3xl:text-[50px] 2xl:text-[38px] lg:text-[32px] md:text-[26px] sm:text-[22px] text-[18px] text-center uppercase font-semibold leading-none font-base1 text-black 3xl:mb-[40px] lg:mb-[30px] mb-[20px]"
