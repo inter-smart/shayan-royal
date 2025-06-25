@@ -23,9 +23,9 @@ const menuItems = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   { label: "Inventory", href: "/inventory" },
-  { label: "Brands", href: "/brands" },
+  { label: "Brands", href: "/brand" },
   { label: "Fabrication", href: "/fabrication" },
-  { label: "Services", href: "/services" },
+  { label: "Services", href: "/service" },
   { label: "Blog", href: "/blog" },
   { label: "Contact Us", href: "/contact" },
 ];

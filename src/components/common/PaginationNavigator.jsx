@@ -17,7 +17,7 @@ export default function PaginationNavigator() {
                         </svg>
                     </button>
                 </PaginationItem>
-                {items.map((item, index) => (
+                {items.map((item, index) => (   
                     <PaginationItem key={index}>
                         {item === '…' ? (
                             <PaginationEllipsis className="2xl:w-[60px] md:w-[40px] w-[30px] 2xl:h-[45px] md:h-[30px] h-[25px] border-r border-[#E7E7E7] flex items-center justify-center text-gray-500" />

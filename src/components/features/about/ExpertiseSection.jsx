@@ -46,8 +46,8 @@ export default function ExpertiseSection() {
             </div>
             <div className="container">
                 <Heading
-                    size={"heading4"}
-                    as="h2"
+                    size={"heading2"}
+                    as="div"
                     className="leading-none font-semibold text-center uppercase text-black 2xl:mb-[50px] lg:mb-[35px] sm:mb-[25px] mb-[20px]"
                 >
                     Our Expertise
@@ -62,7 +62,7 @@ export default function ExpertiseSection() {
                                         src={item.image}
                                         alt={item.title}
                                         width={100}
-                                        height={100}
+                                        height={100} 
                                     />
                                 </div>
                                 <div>

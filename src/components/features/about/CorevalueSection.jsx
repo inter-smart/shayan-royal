@@ -33,8 +33,8 @@ export default function CorevalueSection() {
                 <div className="flex flex-wrap items-center">
                     <div className="3xl:w-[370px] 2xl:w-[280px] xl:w-[250px] lg:w-[180px] w-full h-auto max-lg:mb-[30px] max-sm:mb-[20px]">
                         <Heading
-                            size={"heading4"}
-                            as="h2"
+                            size={"heading2"}
+                            as="div"
                             className=" text-black uppercase font-semibold leading-none 2xl:mb-[20px] lg:mb-[20px] mb-[15px]"
                         >
                             {item.title}

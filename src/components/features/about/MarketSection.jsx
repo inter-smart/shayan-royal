@@ -7,7 +7,7 @@ export default function MarketSection() {
             <div className="container">
                 <div className="mb-[10px]">
                     <Heading
-                        size={"heading4"}
+                        size={"heading2"}
                         as="h2"
                         className="leading-none font-semibold text-center uppercase text-black mb-[10px]"
                     >

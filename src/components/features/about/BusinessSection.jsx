@@ -31,7 +31,7 @@ export default function BusinessSection() {
                 />
             </div>
             <div className="container">
-                <div className="absolute z-2 top-0 left-0 w-full h-full">
+                <div className="absolute z-2 top-0 left-0 w-full">
                     <BreadCrumb
                         items={[
                             { label: "HOME", href: "/" },
@@ -45,7 +45,7 @@ export default function BusinessSection() {
                             initial={{ x: "-10%", opacity: 1 }}
                             animate={inView ? { x: "0%", opacity: 1 } : { x: "-10%", opacity: 1 }}
                             transition={{ duration: 1, ease: "easeOut" }}
-                            className="w-full h-full max-xl:flex max-xl:items-center"
+                            className="w-full h-full max-xl:flex max-xl:items-center max-w-[1270px]"
                         >
                             <Image
                                 src={item.image}
@@ -53,6 +53,7 @@ export default function BusinessSection() {
                                 width={1250}
                                 height={550}
                                 priority
+                                className="w-full object-fill"
                             />
                         </motion.div>
                         <motion.div
@@ -63,7 +64,7 @@ export default function BusinessSection() {
                             transition={{ duration: 0.8, ease: "easeOut" }}
                         >
                             <div className="w-full h-full lg:p-[30px_20px] sm:p-[20px] p-[15px]">
-                                <div className="3xl:text-[100px] 2xl:text-[74px] xl:text-[66px] lg:text-[54px] sm:text-[38px] text-[28px] leading-none font-bold text-white">
+                                <div className="3xl:text-[100px] 2xl:text-[74px] xl:text-[66px] lg:text-[54px] sm:text-[38px] text-[28px] leading-none font-bold text-white font-base1">
                                     <CountUp start={0} end={inView ? item.years : 0} duration={1.5} separator="," />
                                     <span className="leading-none font-bold text-[#BE1E2D]">+</span>
                                 </div>
@@ -73,7 +74,7 @@ export default function BusinessSection() {
                     </div>
                     <div className="3xl:w-[calc(100%-955px)] 2xl:w-[calc(100%-740px)] xl:w-[calc(100%-620px)] lg:w-[calc(100%-520px)] w-full 3xl:p-[90px_90px_0_90px] xl:p-[80px_20px_0_40px] lg:p-[50px_20px_0_20px] sm:pt-[20px]">
                         <Heading
-                            size={"heading4"}
+                            size={"heading2"}
                             as="h2"
                             className=" text-black uppercase font-semibold leading-none 2xl:mb-[35px] lg:mb-[20px] mb-[15px]"
                         >

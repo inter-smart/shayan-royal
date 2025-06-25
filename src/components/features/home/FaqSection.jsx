@@ -47,7 +47,7 @@ export default function FaqSection() {
   const rightInView = useInView(rightRef, { once: true, amount: 0.3 });
 
   return (
-    <section className="relative z-0 bg-white py-[40px] 2xl:py-[60px] 3xl:py-[100px]">
+    <section className="relative z-0 bg-white py-[40px] 2xl:py-[60px] 3xl:py-[100px] overflow-hidden">
       {/* Background Logo */}
       <div className="3xl:max-w-[690px] 2xl:max-w-[620px] xl:max-w-[520px] lg:max-w-[420px] md:max-w-[320px] max-w-[250px] w-full absolute top-[5%] right-0">
         <Image
