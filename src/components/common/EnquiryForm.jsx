@@ -50,7 +50,7 @@ export default function EnquiryForm({image,Formtitle,Formsubtitle}) {
            <div className="text-white 2xl:text-[20px] text-[15px] font-base1 mb-[0px]">
               {Formsubtitle}
             </div>
-            <div className="text-white 3xl:text-[40px] 2xl:text-[30px] text-[22px] font-base1 font-medium 2xl:mb-[35px] 2xs:mb-[25px] mb-[15px]">
+            <div className="text-white 3xl:text-[35px] 2xl:text-[30px] text-[22px] font-base1 font-medium uppercase 2xl:mb-[35px] 2xs:mb-[25px] mb-[15px]">
               {Formtitle}
             </div>
             <form onSubmit={handleSubmit} autoComplete="off">
