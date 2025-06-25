@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect  } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Thumbs, EffectFade } from "swiper/modules";
 import "swiper/css";
@@ -49,26 +49,26 @@ export default function BannerSection() {
   };
 
   /// Image animation variants
-const imageVariants = {
-  enter: (dir) => ({
-    x: dir === "next"
-      ? isMobile ? [100, -100, 0] : [-750, 350, 0]
-      : isMobile ? [100, -100, 0] : [750, -350, 0],
-    opacity: 0,
-  }),
-  center: {
-    x: 0,
-    opacity: 1,
-    transition: { duration: 1.5 },
-  },
-  exit: (dir) => ({
-    x: dir === "next"
-      ? isMobile ? [100, -100, 0] : [250, -150, 0]
-      : isMobile ? [-100, 100, 0] : [-250, 150, 0],
-    opacity: 0,
-    transition: { duration: 3.5 },
-  }),
-};
+  const imageVariants = {
+    enter: (dir) => ({
+      x: dir === "next"
+        ? isMobile ? [100, -100, 0] : [-750, 350, 0]
+        : isMobile ? [100, -100, 0] : [750, -350, 0],
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      transition: { duration: 1.5 },
+    },
+    exit: (dir) => ({
+      x: dir === "next"
+        ? isMobile ? [100, -100, 0] : [250, -150, 0]
+        : isMobile ? [-100, 100, 0] : [-250, 150, 0],
+      opacity: 0,
+      transition: { duration: 3.5 },
+    }),
+  };
 
   // Text animation variants
   const textVariants = {
@@ -149,7 +149,7 @@ const imageVariants = {
 
                   <AnimatePresence custom={direction} mode="wait">
                     {currentIndex === index && (
-                      <div className="h-[200px] overflow-hidden absolute left-0 right-0 xl:top-[20px] top-[100px] m-auto ">
+                      <div className="h-[200px] overflow-hidden absolute left-0 right-0 top-[150px] m-auto ">
                         <motion.h2
                           key={slide.title}
                           custom={direction}
