@@ -30,7 +30,9 @@ const whyData = [
 
 export default function WhySection() {
     return (
-        <section className="relative z-0 bg-[#F5F9FF] py-[40px] 2xl:py-[60px] 3xl:py-[90px]">
+        <section className="relative z-0 bg-[#F5F9FF] py-[40px] 2xl:py-[60px] 3xl:py-[90px] after:absolute after:content-[''] overflow-hidden
+            after:top-0 after:left-[25%]  after:m-auto after:h-full after:lg:w-[365px] after::w-[215px] after:skew-x-[16deg]
+            after:bg-[linear-gradient(180deg,_#C1C6D2_-13.07%,_rgba(209,212,220,0.38)_100%)] after:z-[-1] after:opacity-20">
             <div className="container">
                 <div className="text-center max-w-[85%] m-auto mb-[15px] 2xl:mb-[30px] 3xl:mb-[50px]">
                     <Heading

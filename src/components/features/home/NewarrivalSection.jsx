@@ -91,10 +91,14 @@ export default function NewarrivalSection() {
                         as="p"
                         className="text-[#4B4B4B] mb-[15px] text-center"
                     >
-                        Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry. Lorem Ipsum has been the industry's standard dummy text
-                        ever since the 1500s, when an unknown printer took a galley of type
-                        and scrambled it to make a type specimen book.
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                         Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                          when an unknown printer took a galley of type and scrambled it to make a type 
+                          specimen book. It has survived not only five centuries, but also the leap into electronic
+                           typesetting, remaining essentially unchanged. It was popularised in  Lorem Ipsum passages,
+                            and more recently with desktop publishing software like Aldus PageMaker including versions 
+                            of Lorem Ipsum.
+
                     </Text>
                 </div>
 
@@ -117,28 +121,28 @@ export default function NewarrivalSection() {
                         breakpoints={{
                             320: {
                                 slidesPerView: 1,
-                                
+
                             },
                             420: {
-                                slidesPerView: 1.3, 
+                                slidesPerView: 1.3,
                             },
                             5780: {
-                                slidesPerView: 1.5, 
+                                slidesPerView: 1.5,
                             },
                             768: {
-                                slidesPerView: 2, 
+                                slidesPerView: 2,
                                 grid: { rows: 2, fill: "row" },
                             },
                             1024: {
-                                slidesPerView: 2, 
+                                slidesPerView: 2,
                                 grid: { rows: 2, fill: "row" },
                             },
                             1280: {
-                                slidesPerView: 3, 
+                                slidesPerView: 3,
                                 grid: { rows: 2, fill: "row" },
                             },
                             1661: {
-                                slidesPerView: 3, 
+                                slidesPerView: 3,
                                 grid: { rows: 2, fill: "row" },
                             },
                         }}
@@ -146,7 +150,7 @@ export default function NewarrivalSection() {
                     >
                         {carData.map((car, index) => (
                             <SwiperSlide key={index}>
-                               <ProductCard car={car} />
+                                <ProductCard car={car} />
                             </SwiperSlide>
                         ))}
                     </Swiper>

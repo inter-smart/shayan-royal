@@ -5,7 +5,8 @@ import { Heading } from "@/components/layout/Heading";
 export default function BlogCard({ item }) {
     return (
         <div className="w-full h-full block group">
-            <div className="w-full h-auto aspect-[520/310] 2xl:mb-[25px] md:mb-[17px] mb-[10px] rounded-[10px] block overflow-hidden relative z-0">
+            <div className="w-full h-auto aspect-[520/310] 2xl:mb-[25px] md:mb-[17px] mb-[10px] rounded-[10px] 
+            block overflow-hidden relative z-0 group">
                 <Image
                     src={item.image}
                     alt={item.title}

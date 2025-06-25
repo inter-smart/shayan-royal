@@ -22,7 +22,7 @@ export default function AboutSection() {
                     <div className="text-[25px] md:text-[30px] lg:text-[40px] 2xl:text-[50px] text-[#B4BACA] uppercase font-base1 mb-[10px] 
                     leading-none">SINCE</div>
                     <div className="text-[70px] lg:text-[100px] 2xl:text-[130px] 3xl:text-[150px] font-bold font-base1 leading-none mb-[10px] ">1995</div>
-                    <Heading size="heading2" as="h2" className="text-white uppercase font-normal mb-[10px]" >
+                    <Heading size="heading2" as="h2" className="text-white uppercase !font-normal mb-[10px]" >
                         Shayan <span className="text-[#B6BCCB]"> Royal Group</span>
                     </Heading>
                     <Text size="text1" as="p" className="text-white mb-[15px]"

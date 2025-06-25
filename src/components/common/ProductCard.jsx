@@ -1,6 +1,6 @@
 
 import Image from 'next/image';
-
+import Link from 'next/link';
 const specIcons = [
     { label: "GCC", icon: "globe.svg" },
     { label: "Petrol", icon: "fuel.svg" },
@@ -10,7 +10,8 @@ const specIcons = [
 
 export default function ProductCard({ car }) {
     return (
-        <div className="w-full h-full px-[10px] 3xl:py-[25px] py-[15px]">
+        <Link  href="#"
+             aria-label="news" className="w-full h-full flex px-[10px] 3xl:py-[25px] py-[15px] cursor-pointer group">
             <div className="w-full h-full rounded-[10px] bg-white overflow-hidden 3xl:py-[15px] py-[10px] 3xl:px-[20px] px-[15px] flex items-end shadow-xl">
                 {/* Left Section */}
                 <div className="3xl:w-[calc(100%-65px)] w-[calc(100%-45px)] h-full min-h-[200px] 3xs:min-h-[230px] 3xl:min-h-[295px] mr-[20px] 
@@ -25,7 +26,7 @@ export default function ProductCard({ car }) {
                             alt={`${car.brand} Logo`}
                             width={350}
                             height={200}
-                            className="w-full h-full object-contain"
+                            className="w-full h-full object-contain "
                         />
                     </div>
                     {/* Image */}
@@ -35,7 +36,7 @@ export default function ProductCard({ car }) {
                             alt={car.title}
                             width={350}
                             height={200}
-                            className="w-full h-full object-contain"
+                            className="w-full h-full object-contain  transition-transform duration-500  group-hover:scale-110"
                         />
                     </div>
                     {/* Title */}
@@ -76,6 +77,6 @@ export default function ProductCard({ car }) {
                     </div>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 }

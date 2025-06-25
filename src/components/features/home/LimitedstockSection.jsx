@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import "swiper/css"; 
+import "swiper/css";
 import "swiper/css/navigation";
 import { Heading } from "@/components/layout/Heading";
 import { Text } from "@/components/layout/Text";
@@ -32,7 +32,7 @@ const carData = [
         title: "Lexus LS",
         specs: ["GCC", "Petrol", "Auto", "2024"],
     },
-    
+
     {
         brand: "Lexus",
         logo: "/images/toyota.png",
@@ -46,7 +46,7 @@ export default function NewarrivalSection() {
     const [activeIndex, setActiveIndex] = useState(0);
     return (
         <section className="relative z-0 py-[40px] 2xl:py-[60px] 3xl:py-[105px_130px] after:absolute after:content-[''] overflow-hidden
-            after:top-0 after:left-0 after:right-0 after:m-auto after:h-full after:w-[220px] after:skew-x-[-16deg]
+            after:top-0 after:left-[25%]  after:m-auto after:h-full after:w-[365px] after:skew-x-[-16deg]
             after:bg-[linear-gradient(180deg,_#C1C6D2_-13.07%,_rgba(209,212,220,0.38)_100%)] after:z-[-1] after:opacity-20">
 
             <div className="container">
@@ -56,23 +56,24 @@ export default function NewarrivalSection() {
                         as="h2"
                         className="text-[#B4BACA] text-center uppercase mb-[10px]"
                     >
-                       Limited stock
+                        Limited stock
                     </Heading>
                     <Text
                         size="text1"
                         as="p"
                         className="text-[#4B4B4B] mb-[15px] text-center"
                     >
-                        Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry. Lorem Ipsum has been the industry's standard dummy text
-                        ever since the 1500s, when an unknown printer took a galley of type
-                        and scrambled it to make a type specimen book.
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has 
+                        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a 
+                        galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, 
+                        but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in  
+                        Lorem Ipsum passages, and more recently with desktop.
                     </Text>
                 </div>
 
                 <div className="relative z-1">
                     <Swiper
-                        spaceBetween= {0}
+                        spaceBetween={0}
                         modules={[Navigation]}
                         autoplay={{
                             delay: 3000,
@@ -91,30 +92,30 @@ export default function NewarrivalSection() {
                                 slidesPerView: 1,
                             },
                             420: {
-                                slidesPerView: 1.3, 
+                                slidesPerView: 1.3,
                             },
                             5780: {
-                                slidesPerView: 1.5, 
+                                slidesPerView: 1.5,
                             },
                             768: {
                                 slidesPerView: 2,
-                                spaceBetween: 10, 
+                                spaceBetween: 10,
                             },
                             1024: {
-                                slidesPerView: 2, 
+                                slidesPerView: 2,
                             },
                             1280: {
-                                slidesPerView: 3,  
+                                slidesPerView: 3,
                             },
                             1661: {
-                                slidesPerView: 3,  
+                                slidesPerView: 3,
                             },
                         }}
                         className=""
                     >
                         {carData.map((car, index) => (
                             <SwiperSlide key={index}>
-                               <ProductCard car={car} />
+                                <ProductCard car={car} />
                             </SwiperSlide>
                         ))}
                     </Swiper>
