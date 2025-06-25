@@ -102,7 +102,7 @@ const imageVariants = {
   return (
     <section className="h-full  xl:py-[40px] py-[60px] overflow-hidden ">
       <div className="container">
-        <div className="3xl:h-[calc(100vh-450px)] lg:h-[calc(100vh-300px)] h-[250px] mb-[50px] relative">
+        <div className="lg:h-[calc(100vh-300px)] h-[250px] mb-[50px] relative">
           <Swiper
             modules={[Thumbs, EffectFade]}
             speed={900}
