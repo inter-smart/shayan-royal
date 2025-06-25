@@ -1,6 +1,6 @@
 import InnerBanner from "@/components/common/InnerBanner";
 import BusinessSection from "@/components/features/about/BusinessSection";
-import ContactSection from "@/components/features/about/ContactSection";
+import ContactSection from "@/components/common/ContactSection";
 import CorevalueSection from "@/components/features/about/CorevalueSection";
 import ExpertiseSection from "@/components/features/about/ExpertiseSection";
 import MarketSection from "@/components/features/about/MarketSection";
@@ -15,7 +15,7 @@ export default function Page() {
             <CorevalueSection />
             <ExpertiseSection />
             <MarketSection />
-            <ContactSection />
+            <ContactSection backgroundImage="/images/contact_section.webp" title="Contact Us Today!" description="Leadership & Team" />
         </>
     );
 }
