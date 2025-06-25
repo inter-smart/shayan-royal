@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Heading } from "@/components/layout/Heading";
 import { Text } from "@/components/layout/Text";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
@@ -169,8 +168,7 @@ export default function TestimonialSection() {
 
                 <Swiper
                     modules={[Pagination, Navigation]}
-                    // pagination={!isMobile ? { clickable: true } : false}
-                    pagination={false}
+                    pagination={!isMobile ? { clickable: true } : false}
                     spaceBetween={20}
                     breakpoints={{
                         320: { slidesPerView: 1 },
