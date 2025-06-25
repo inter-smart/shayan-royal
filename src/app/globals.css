@@ -175,27 +175,27 @@ body {
 
     p,
     & {
-      @apply 3xl:text-[20px] 2xl:text-[16px] xl:text-[13px] lg:text-[12px] text-[12px] font-normal leading-normal text-[#2d2929];
+      @apply 3xl:text-[20px] 2xl:text-[16px] xl:text-[13px] lg:text-[12px] text-[12px] xl:mb-[30px] mb-[25px] font-normal leading-normal text-[#4B4B4B];
     }
 
     h1 {
-      @apply text-[24px] lg:text-[36px] xl:text-[43px] 2xl:text-[48px] 3xl:text-[65px] font-semibold leading-tight text-black;
+      @apply text-[25px] lg:text-[25px] xl:text-[35px] 2xl:text-[42px] 3xl:text-[50px] xl:mt-[50px] mt-[30px] mb-[15px] font-semibold leading-tight text-black;
     }
 
     h2 {
-      @apply text-[20px] lg:text-[26px] xl:text-[32px] 2xl:text-[44px] 3xl:text-[54px] font-semibold leading-tight text-black;
+      @apply text-[18px] lg:text-[20px] xl:text-[22px] 2xl:text-[25px] 3xl:text-[30px] xl:mt-[50px] mt-[30px] mb-[15px] font-medium leading-tight text-black;
     }
 
     h3 {
-      @apply text-[14px] lg:text-[16px] xl:text-[20px] 2xl:text-[26px] 3xl:text-[30px] font-semibold leading-tight text-black;
+      @apply text-[18px] lg:text-[20px] xl:text-[22px] 2xl:text-[25px] 3xl:text-[30px] xl:mt-[50px] mt-[30px] mb-[15px] font-medium leading-tight text-black;
     }
 
     h5 {
-      @apply text-[13px] lg:text-[14px] xl:text-[16px] 2xl:text-[20px] 3xl:text-[25px] font-semibold leading-tight text-black;
+      @apply text-[13px] lg:text-[14px] xl:text-[16px] 2xl:text-[20px] 3xl:text-[25px] xl:mt-[50px] mt-[30px] mb-[15px] font-medium leading-tight text-black;
     }
 
     h6 {
-      @apply 3xl:text-[20px] 2xl:text-[16px] xl:text-[13px] lg:text-[12px] text-[12px] font-semibold leading-tight text-black;
+      @apply 3xl:text-[20px] 2xl:text-[16px] xl:text-[13px] lg:text-[12px] text-[12px] xl:mt-[50px] mt-[30px] mb-[15px] font-medium leading-tight text-black;
     }
 
     ul,
@@ -205,7 +205,7 @@ body {
 
     ul>li,
     ol>li {
-      @apply 3xl:text-[20px] 2xl:text-[16px] xl:text-[13px] lg:text-[12px] text-[12px] font-normal leading-normal text-[#2d2929] my-[10px] lg:my-[15px];
+      @apply 3xl:text-[20px] 2xl:text-[16px] xl:text-[13px] lg:text-[12px] text-[12px] font-normal leading-normal text-[#4B4B4B] my-[10px] lg:my-[15px] list-decimal;
     }
 
     ul>li {

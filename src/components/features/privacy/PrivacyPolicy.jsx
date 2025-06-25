@@ -1,6 +1,3 @@
-
-import Image from "next/image";
-
 export default function PrivacyPolicy() {
     return (
         <section className="w-full h-auto lg:pt-[40px] pt-[40px]  lg:pb-[130px] pb-[40px]">
@@ -47,6 +44,51 @@ export default function PrivacyPolicy() {
                         Pollicetur certe. Sed quid minus probandum quam esse aliquem beatum nec satis beatum? Si verbum sequimur, primum longius verbum praepositum quam bonum. Quis est enim aut quotus quisque, cui, mora cum adpropinquet, non refugiat timido sanguen átque exalbescát metu? De quibus cupio scire quid sentias.
                         Illud urgueam, non intellegere eum quid sibi dicendum sit, cum dolorem summum malum esse dixerit. Epicurei num desistunt de isdem, de quibus et ab Epicuro scriptum est et ab antiquis, ad arbitrium suum scribere? Sunt etiam turpitudines plurimae, quae, nisi honestas natura plurimum valeat, cur non cadant in sapientem non est facile defendere. Sed haec ab Antiocho, familiari nostro, dicuntur multo melius et fortius, quam a Stasea dicebantur. Igitur neque stultorum quisquam beatus neque sapientium non beatus. Sed ad haec, nisi molestum est, habeo quae velim. Neque enim civitas in seditione beata esse potest nec in discordia dominorum domus; Itaque primos congressus copulationesque et consuetudinum instituendarum voluntates fieri propter voluptatem
                     </p>
+                    <ul>
+                        <li>
+                            Pollicetur certe. Sed quid minus probandum quam esse aliquem beatum nec satis beatum? Si verbum sequimur, primum longius verbum praepositum quam bonum. Quis est enim aut quotus quisque, cui, mora cum adpropinquet, non refugiat timido sanguen átque exalbescát metu? De quibus cupio scire quid sentias.
+                            Illud urgueam, non intellegere
+                        </li>
+                        <li>
+                            Pollicetur certe. Sed quid minus probandum quam esse aliquem beatum nec satis beatum? Si verbum sequimur, primum longius verbum praepositum quam bonum. Quis est enim aut quotus quisque, cui, mora cum adpropinquet, non refugiat timido sanguen átque exalbescát metu? De quibus cupio scire quid sentias.
+                            Illud urgueam, non intellegere
+                        </li>
+                        <li>
+                            Pollicetur certe. Sed quid minus probandum quam esse aliquem beatum nec satis beatum? Si verbum sequimur, primum longius verbum praepositum quam bonum. Quis est enim aut quotus quisque, cui, mora cum adpropinquet, non refugiat timido sanguen átque exalbescát metu? De quibus cupio scire quid sentias.
+                            Illud urgueam, non intellegere
+                        </li>
+                        <li>
+                            Pollicetur certe. Sed quid minus probandum quam esse aliquem beatum nec satis beatum? Si verbum sequimur, primum longius verbum praepositum quam bonum. Quis est enim aut quotus quisque, cui, mora cum adpropinquet, non refugiat timido sanguen átque exalbescát metu? De quibus cupio scire quid sentias.
+                            Illud urgueam, non intellegere
+                        </li>
+                    </ul>
+                    <ol>
+                        <li>
+                            Pollicetur certe. Sed quid minus probandum quam esse aliquem beatum nec satis beatum? Si verbum sequimur, primum longius verbum praepositum quam bonum. Quis est enim aut quotus quisque, cui, mora cum adpropinquet, non refugiat timido sanguen átque exalbescát metu? De quibus cupio scire quid sentias.
+                            Illud urgueam, non intellegere
+                        </li>
+                        <li>
+                            Pollicetur certe. Sed quid minus probandum quam esse aliquem beatum nec satis beatum? Si verbum sequimur, primum longius verbum praepositum quam bonum. Quis est enim aut quotus quisque, cui, mora cum adpropinquet, non refugiat timido sanguen átque exalbescát metu? De quibus cupio scire quid sentias.
+                            Illud urgueam, non intellegere
+                        </li>
+                        <li>
+                            Pollicetur certe. Sed quid minus probandum quam esse aliquem beatum nec satis beatum? Si verbum sequimur, primum longius verbum praepositum quam bonum. Quis est enim aut quotus quisque, cui, mora cum adpropinquet, non refugiat timido sanguen átque exalbescát metu? De quibus cupio scire quid sentias.
+                            Illud urgueam, non intellegere
+                        </li>
+                        <li>
+                            Pollicetur certe. Sed quid minus probandum quam esse aliquem beatum nec satis beatum? Si verbum sequimur, primum longius verbum praepositum quam bonum. Quis est enim aut quotus quisque, cui, mora cum adpropinquet, non refugiat timido sanguen átque exalbescát metu? De quibus cupio scire quid sentias.
+                            Illud urgueam, non intellegere
+                        </li>
+                    </ol>
+                    <h4>
+                        Pollicetur certe. Sed quid minus probandum quam 
+                    </h4>
+                    <h5>
+                        Pollicetur certe. Sed quid minus probandum quam 
+                    </h5>
+                    <h6>
+                        Pollicetur certe. Sed quid minus probandum quam 
+                    </h6>
                 </div>
             </div>
         </section>

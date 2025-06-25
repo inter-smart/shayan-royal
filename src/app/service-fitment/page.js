@@ -1,7 +1,11 @@
 import { BreadCrumb } from "@/components/common/BreadCrumb";
 import InnerBanner from "@/components/common/InnerBanner";
+import FitmentAdditionalServicesSection from "@/components/features/service/FitmentAdditionalServicesSection";
+import FitmentEnquirySection from "@/components/features/service/FitmentEnquirySection";
 import FitmentServiceSection from "@/components/features/service/FitmentServiceSection";
 import FitmentTypeServiceSection from "@/components/features/service/FitmentTypeServiceSection";
+import WorkinActionSection from "@/components/features/service/WorkinActionSection";
+
 
 export default function page() {
     return (
@@ -16,6 +20,9 @@ export default function page() {
             />
             <FitmentServiceSection />
             <FitmentTypeServiceSection />
+            <FitmentAdditionalServicesSection />
+            <FitmentEnquirySection />
+            <WorkinActionSection />  
         </>
     );
 }
