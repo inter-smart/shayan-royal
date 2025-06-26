@@ -1,4 +1,5 @@
 "use client";
+
 import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -33,14 +34,18 @@ const menuItems = [
 export default function Header() {
   const pathname = usePathname();
   const isInnerPage = pathname !== "/";
+  const [isOpen, setIsOpen] = React.useState(false); // State for sheet
 
   return (
     <header>
       <div className="w-full absolute top-0 left-0 z-10 bg-transparent">
         <div className="container">
           <div
-            className={`w-full flex flex-wrap items-center justify-between py-[20px_0] ${isInnerPage ? "lg:border-b lg:border-[rgba(217,217,217,0.2)]" : ""
-              }`}
+            className={`w-full flex flex-wrap items-center justify-between py-[20px_0] ${
+              isInnerPage
+                ? "lg:border-b lg:border-[rgba(217,217,217,0.2)]"
+                : ""
+            }`}
           >
             {/* Logo */}
             <div className="3xl:w-[260px] 2xl:w-[195px] lg:w-[165px] w-[145px] flex items-center justify-center">
@@ -65,7 +70,11 @@ export default function Header() {
                     3xl:text-[18px] 2xl:text-[16px] xl:text-[14px] text-[12px] font-medium uppercase
                     ${isInnerPage ? "lg:text-white text-black" : "text-black"}
                     flex items-center justify-center 3xl:px-[25px] 2xl:px-[20px] px-[15px] py-[43px]
-                    ${isActive ? "after:absolute after:content-[''] after:bottom-0 after:left-0 after:right-0 after:m-auto  after:w-[70%] after:h-[3px] after:bg-white" : ""}
+                    ${
+                      isActive
+                        ? "after:absolute after:content-[''] after:bottom-0 after:left-0 after:right-0 after:m-auto after:w-[70%] after:h-[3px] after:bg-white"
+                        : ""
+                    }
                     hover:!text-[#BE1E2D] hover:bg-transparent
                   `;
 
@@ -74,10 +83,11 @@ export default function Header() {
                       <Link href={item.href} passHref>
                         <NavigationMenuLink asChild>
                           <span
-                            className={`${menuLinkClass} ${item.label === "Contact Us"
+                            className={`${menuLinkClass} ${
+                              item.label === "Contact Us"
                                 ? "text-white bg-[#2E4C99] h-[40px] !py-0 !rounded-[50px] after:hidden hover:!bg-[#BE1E2D] hover:!text-white"
                                 : ""
-                              }`}
+                            }`}
                           >
                             {item.label}
                           </span>
@@ -91,7 +101,7 @@ export default function Header() {
 
             {/* Mobile Hamburger & Sheet Menu */}
             <NavigationMenuItem className="lg:hidden list-none">
-              <Sheet>
+              <Sheet open={isOpen} onOpenChange={setIsOpen}>
                 <SheetTrigger className="text-white font-medium flex items-center cursor-pointer">
                   <svg
                     height="25"
@@ -120,6 +130,7 @@ export default function Header() {
                         >
                           <Link
                             href={item.href}
+                            onClick={() => setIsOpen(false)} // 👈 Close Sheet on click
                             className="relative block text-[16px] font-medium py-1 transition-all duration-300 group"
                           >
                             {item.label}

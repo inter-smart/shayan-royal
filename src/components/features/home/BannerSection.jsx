@@ -53,7 +53,7 @@ export default function BannerSection() {
     enter: (dir) => ({
       x: dir === "next"
         ? isMobile ? [100, -100, 0] : [-750, 350, 0]
-        : isMobile ? [100, -100, 0] : [750, -350, 0],
+        : isMobile ? [80, -100, 0] : [750, -350, 0],
       opacity: 0,
     }),
     center: {
@@ -64,7 +64,7 @@ export default function BannerSection() {
     exit: (dir) => ({
       x: dir === "next"
         ? isMobile ? [100, -100, 0] : [250, -150, 0]
-        : isMobile ? [-100, 100, 0] : [-250, 150, 0],
+        : isMobile ? [-80, 100, 0] : [-250, 150, 0],
       opacity: 0,
       transition: { duration: 3.5 },
     }),
@@ -122,7 +122,7 @@ export default function BannerSection() {
           >
             {slides.map((slide, index) => (
               <SwiperSlide key={index}>
-                <div className="w-full h-full relative flex justify-center items-center overflow-hidden">
+                <div className="w-full h-full relative flex justify-center items-center sm:overflow-hidden">
                   <AnimatePresence custom={direction}>
                     {currentIndex === index && (
                       <motion.div
@@ -149,7 +149,7 @@ export default function BannerSection() {
 
                   <AnimatePresence custom={direction} mode="wait">
                     {currentIndex === index && (
-                      <div className="h-[200px] overflow-hidden absolute left-0 right-0 top-[150px] m-auto ">
+                      <div className="lg:h-[200px] h-[60px] overflow-hidden absolute left-0 right-0 lg:top-[150px] sm:top-[50px] top-[90px] m-auto ">
                         <motion.h2
                           key={slide.title}
                           custom={direction}
