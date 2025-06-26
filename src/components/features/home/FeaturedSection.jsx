@@ -117,8 +117,8 @@ export default function NewarrivalSection() {
                         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
                         onBeforeInit={(swiper) => setActiveIndex(swiper.realIndex)}
                         navigation={{
-                            prevEl: ".btn-prev",
-                            nextEl: ".btn-next",
+                            prevEl: ".btn-prevs",
+                            nextEl: ".btn-nexts",
                         }}
 
                         breakpoints={{
@@ -159,7 +159,7 @@ export default function NewarrivalSection() {
                     </Swiper>
                     {/* Navigation Arrows */}
                     <div className="flex items-center justify-center lg:absolute lg:top-0 lg:bottom-0 lg:w-full">
-                        <button className="btn-prev relative lg:absolute left-0 lg:left-[-65px] lg:top-1/2 lg:-translate-y-1/2 z-10
+                        <button className="btn-prevs relative lg:absolute left-0 lg:left-[-65px] lg:top-1/2 lg:-translate-y-1/2 z-10
                        bg-[linear-gradient(270deg,_rgba(114,153,255,0.40)_-4.3%,_rgba(46,76,153,0.80)_100.24%)]
                         shadow w-[34px] h-[38px] flex items-center justify-center rounded-[30px_0px_0px_30px] cursor-pointer group
                          hover:bg-[linear-gradient(270deg, rgba(114, 153, 255, 0.40) -4.3%, rgba(46, 76, 153, 0.80) 100.24%)] disabled:pointer-events-none 
@@ -169,7 +169,7 @@ export default function NewarrivalSection() {
                                 <path d="M6.14364 0.699707L0.769531 6.12544L6.14364 12.1834" stroke="black" />
                             </svg>
                         </button>
-                        <button className="btn-next relative lg:absolute right-0 lg:right-[-65px] lg:top-1/2 lg:-translate-y-1/2 z-10 
+                        <button className="btn-nexts relative lg:absolute right-0 lg:right-[-65px] lg:top-1/2 lg:-translate-y-1/2 z-10 
                         bg-[linear-gradient(270deg,_rgba(114,153,255,0.40)_-4.3%,_rgba(46,76,153,0.80)_100.24%)]
                         shadow w-[34px] h-[38px] flex items-center justify-center rounded-[0px_30px_30px_0px] group cursor-pointer 
                         hover:bg-[linear-gradient(270deg, rgba(114, 153, 255, 0.40) -4.3%, rgba(46, 76, 153, 0.80) 100.24%)] 

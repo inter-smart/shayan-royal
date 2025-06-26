@@ -109,7 +109,7 @@ export default function ResponsiveTabsWithSwiper() {
               <SwiperSlide key={idx}>
                 <button
                   onClick={() => setActiveTab(tab)}
-                  className={`relative text-[14px] sm:text-[16px] xl:text-[18px] font-base1 w-full pb-2 whitespace-nowrap text-left
+                  className={`relative text-[14px] sm:text-[16px] xl:text-[18px] font-base1 w-full pb-2 whitespace-nowrap text-left cursor-pointer transition-all hover:text-[#2E4C99] hover:font-semibold
                     ${activeTab === tab ? "font-semibold text-black after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-1/2 after:bg-[#2E4C99]" : "text-[#4B4B4B]"}`}
                 >
                   {tab}

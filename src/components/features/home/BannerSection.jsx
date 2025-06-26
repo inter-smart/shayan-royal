@@ -20,14 +20,19 @@ export default function BannerSection() {
   const [direction, setDirection] = useState("next");
   const swiperRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 1200); // adjust breakpoint if needed
+      setIsMobile(window.innerWidth < 1200);
     };
-    handleResize(); // initial check
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    setHasLoaded(true);
   }, []);
 
   const handleSlideChange = (swiper) => {
@@ -35,8 +40,6 @@ export default function BannerSection() {
     setDirection(newIndex > currentIndex ? "next" : "prev");
     setCurrentIndex(newIndex);
   };
-
-
 
   const handlePrev = () => {
     setDirection("prev");
@@ -48,29 +51,37 @@ export default function BannerSection() {
     swiperRef.current?.slideNext();
   };
 
-  /// Image animation variants
   const imageVariants = {
     enter: (dir) => ({
-      x: dir === "next"
-        ? isMobile ? [100, -100, 0] : [-750, 350, 0]
-        : isMobile ? [80, -100, 0] : [750, -350, 0],
-      opacity: 0,
+      x:
+        dir === "next"
+          ? isMobile
+            ? [100, -100, 0]
+            : [-450, 450, 0]
+          : isMobile
+            ? [80, -100, 0]
+            : [450, -450, 0],
+      opacity: 0.5,
     }),
     center: {
       x: 0,
-      opacity: 1,
-      transition: { duration: 1.5 },
+      opacity: [0, 1],
+      transition: { duration: 3 },
     },
     exit: (dir) => ({
-      x: dir === "next"
-        ? isMobile ? [100, -100, 0] : [250, -150, 0]
-        : isMobile ? [-80, 100, 0] : [-250, 150, 0],
-      opacity: 0,
+      x:
+        dir === "next"
+          ? isMobile
+            ? [100, -100, 0]
+            : [450, -450, 0]
+          : isMobile
+            ? [-80, 100, 0]
+            : [-450, 450, 0],
+      opacity: [1, 0],
       transition: { duration: 3.5 },
     }),
   };
 
-  // Text animation variants
   const textVariants = {
     enter: (dir) => ({
       y: dir === "next" ? [1000, 1000] : [-1000, 1000],
@@ -98,11 +109,10 @@ export default function BannerSection() {
     }),
   };
 
-
   return (
-    <section className="h-full  xl:py-[40px] py-[60px] overflow-hidden ">
+    <section className="h-full xl:py-[40px] py-[60px] overflow-hidden ">
       <div className="container">
-        <div className="lg:h-[calc(100vh-300px)] h-[250px] mb-[50px] relative">
+        <div className="2xl:h-[calc(100vh-300px)] lg:h-[calc(100vh-175px)] h-[250px] mb-[50px] relative">
           <Swiper
             modules={[Thumbs, EffectFade]}
             speed={900}
@@ -113,8 +123,7 @@ export default function BannerSection() {
             }}
             breakpoints={{
               992: {
-                speed: 1500,
-
+                speed: 1800,
               },
             }}
             onSlideChange={handleSlideChange}
@@ -129,11 +138,12 @@ export default function BannerSection() {
                         key={slide.img}
                         custom={direction}
                         variants={imageVariants}
-                        initial="enter"
-                        animate="center"
-                        exit="exit"
-                        className="absolute bottom-0 w-full 3xl:max-w-[1000px] 2xl:max-w-[780px] 
-                        lg:max-w-[650px] max-w-[500px] m-auto flex flex-col justify-end z-1"
+                        initial={currentIndex === index && hasLoaded ? "enter" : false}
+                        animate={currentIndex === index && hasLoaded ? "center" : false}
+                        exit={currentIndex === index && hasLoaded ? "exit" : false}
+                        className={`absolute bottom-0 w-full 3xl:max-w-[1000px] 2xl:max-w-[780px] 
+                        lg:max-w-[650px] max-w-[500px] m-auto flex flex-col justify-end z-1 
+                        ${currentIndex !== index ? 'opacity-0 pointer-events-none' : ''}`}
                       >
                         <Image
                           src={slide.img}
@@ -154,13 +164,13 @@ export default function BannerSection() {
                           key={slide.title}
                           custom={direction}
                           variants={textVariants}
-                          initial="enter"
-                          animate="center"
-                          exit="exit"
+                          initial={currentIndex === 0 && !hasLoaded ? false : "enter"}
+                          animate={currentIndex === 0 && !hasLoaded ? false : "center"}
+                          exit={currentIndex === 0 && !hasLoaded ? false : "exit"}
                           className="3xl:text-[150px] 2xl:text-[110px] xl:text-[80px] lg:text-[60px] 
-                        sm:text-[40px] 2xs:text-[30px] text-[25px] font-normal uppercase  
-                        font-base2  text-center bg-clip-text text-transparent 
-                        [background-image:linear-gradient(0deg,rgba(180,186,202,0.20)_20.28%,#B4BACA_80.51%)]"
+                          sm:text-[40px] 2xs:text-[30px] text-[25px] font-normal uppercase  
+                          font-base2  text-center bg-clip-text text-transparent 
+                          [background-image:linear-gradient(0deg,rgba(180,186,202,0.20)_20.28%,#B4BACA_80.51%)]"
                         >
                           {slide.title}
                         </motion.h2>
@@ -172,7 +182,6 @@ export default function BannerSection() {
             ))}
           </Swiper>
 
-          {/* Navigation buttons */}
           <div className="flex items-center justify-center sm:absolute sm:top-0 sm:bottom-0 sm:w-full max-sm:pt-1">
             <button
               className="custom-prev xs:absolute top-1/2 xs:left-4 z-10 -translate-y-1/2 cursor-pointer
@@ -203,6 +212,6 @@ export default function BannerSection() {
           <AdvancesearchSection />
         </div>
       </div>
-    </section >
+    </section>
   );
 }
