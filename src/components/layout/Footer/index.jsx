@@ -150,15 +150,15 @@ export default function footer() {
             </div>
             <div className='flex flex-wrap items-center sm:w-auto w-full'>
               <div className='3xl:pl-[60px] 2xl:pl-[40px] md:pl-[25px] sm:pl-[20px] 2xs:w-auto w-full 2xs:mb-[0px] mb-[10px]'>
-                <div className='3xl:text-[20px] lg:text-[18px] text-[14px] font-medium text-white'>EMAIL</div>
+                <div className='3xl:text-[20px] 2xl:text-[18px] text-[14px] font-medium text-white'>EMAIL</div>
                 <a href="mailto:sales@shayan.ae" className='block text-white 3xl:text-[20px] lg:text-[18px] text-[14px] hover:text-[#BE1E2D]'>sales@shayan.ae</a>
               </div>
               <div className='3xl:pl-[60px] 2xl:pl-[40px] md:pl-[25px] sm:pl-[20px] 2xs:pl-[25px] 2xs:w-auto w-full 2xs:mb-[0px] mb-[10px]'>
-                <div className='3xl:text-[20px] lg:text-[18px] text-[14px] font-medium text-white'>TELEPHONE</div>
+                <div className='3xl:text-[20px] 2xl:text-[18px] text-[14px] font-medium text-white'>TELEPHONE</div>
                 <a href="tel:+97142728150" className='block text-white 3xl:text-[20px] lg:text-[18px] text-[14px] hover:text-[#BE1E2D]'>+971 4 272 8150</a>
               </div>
               <div className='3xl:pl-[60px] 2xl:pl-[40px] md:pl-[25px] sm:pl-[20px] 2xs:pl-[25px] 2xs:w-auto w-full'>
-                <div className='3xl:text-[20px] lg:text-[18px] text-[14px] font-medium text-white'>WHATSAPP</div>
+                <div className='3xl:text-[20px] 2xl:text-[18px] text-[14px] font-medium text-white'>WHATSAPP</div>
                 <a href="https://wa.me/971505286045" target="_blank" className='block text-white 3xl:text-[20px] lg:text-[18px] text-[14px] hover:text-[#BE1E2D]'>+971 50 528 6045</a>
               </div>
             </div>

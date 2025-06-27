@@ -52,7 +52,7 @@ export default function Header() {
               <Link href="/" className="block w-full h-full">
                 <Image
                   src="/images/logo.svg"
-                  alt="Uniwood Logo"
+                  alt="shayan Logo"
                   width={80}
                   height={40}
                   className="w-full h-full object-contain block hover:scale-105 transition-transform duration-300"
@@ -67,9 +67,9 @@ export default function Header() {
                   const isActive = pathname === item.href;
 
                   const menuLinkClass = `
-                    3xl:text-[18px] 2xl:text-[16px] xl:text-[14px] text-[12px] font-medium uppercase
+                    3xl:text-[18px] 2xl:text-[13px] xl:text-[11px] text-[12px] font-medium uppercase
                     ${isInnerPage ? "lg:text-white text-black" : "text-black"}
-                    flex items-center justify-center 3xl:px-[25px] 2xl:px-[20px] px-[15px] py-[43px]
+                    flex items-center justify-center 3xl:px-[25px] 2xl:px-[20px] px-[15px] 3xl:py-[43px] 2xl:py-[35px] py-[25px]
                     ${
                       isActive
                         ? "after:absolute after:content-[''] after:bottom-0 after:left-0 after:right-0 after:m-auto after:w-[70%] after:h-[3px] after:bg-white"
@@ -85,7 +85,7 @@ export default function Header() {
                           <span
                             className={`${menuLinkClass} ${
                               item.label === "Contact Us"
-                                ? "text-white bg-[#2E4C99] h-[40px] !py-0 !rounded-[50px] after:hidden hover:!bg-[#BE1E2D] hover:!text-white"
+                                ? "text-white bg-[#2E4C99] 3xl:h-[40px] 2xl:h-[30px] h-[25px] min-w-[90px] !py-0 !rounded-[50px] after:hidden hover:!bg-[#BE1E2D] hover:!text-white"
                                 : ""
                             }`}
                           >

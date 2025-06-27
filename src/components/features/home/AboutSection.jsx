@@ -4,10 +4,10 @@ import { Text } from "@/components/layout/Text";
 
 export default function AboutSection() {
     return (
-        <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[100px] after:absolute after:top-0 after:left-0 after:content:[''] after:bg-[rgba(0,0,0,0.1)]">
+        <section className="relative py-[50px] xl:py-[75px] 2xl:py-[80px] 3xl:py-[11 0px] after:absolute after:top-0 after:left-0 after:content:[''] after:bg-[rgba(0,0,0,0.1)]">
             <video
                 autoPlay
-                preload="auto"
+                preload="auto" 
                 width="1920"
                 height="1000"
                 muted
@@ -18,7 +18,7 @@ export default function AboutSection() {
                 Your browser does not support the video tag.
             </video>
             <div className="container">
-                <div className="max-w-[1200px] m-auto text-center relative text-white">
+                <div className="3xl:max-w-[1200px] 2xl:max-w-[900px] max-w-[750px] m-auto text-center relative text-white">
                     <div className="text-[25px] md:text-[30px] lg:text-[40px] 2xl:text-[50px] text-[#B4BACA] uppercase font-base1 mb-[10px] 
                     leading-none">SINCE</div>
                     <div className="text-[70px] lg:text-[100px] 2xl:text-[130px] 3xl:text-[150px] font-bold font-base1 leading-none mb-[10px] ">1995</div>
@@ -46,26 +46,26 @@ export default function AboutSection() {
 
 
 
-                    <div className="flex flex-wrap justify-between mt-[40px] lg:mt-[60px]">
+                    <div className="flex flex-wrap justify-between mt-[25px] 2xl:mt-[40px] 3xl:mt-[60px]">
                         <div className="w-1/3 p-[8px]">
                             <div className="w-full h-full">
-                                <div className="text-[30px] sm:text-[40px] md:text-[55px] xl:text-[60px] 2xl:text-[65px] 3xl:text-[80px] font-bold text-white 
+                                <div className="text-[30px] sm:text-[40px] md:text-[55px] xl:text-[50px] 2xl:text-[65px] 3xl:text-[80px] font-bold text-white  mb-[5px]
                                 font-base1 leading-none"><span>30</span>+</div>
-                                <div className="text-[18px] md:text-[20px] xl:text-[25px] 3xl:text-[30px] font-medium font-base1">Years</div>
+                                <div className="text-[18px] md:text-[20px] 2xl:text-[22px] 3xl:text-[30px] font-medium font-base1">Years</div>
                             </div>
                         </div>
                         <div className="w-1/3 p-[8px]">
                             <div className="w-full h-full">
-                                <div className="text-[30px] sm:text-[40px] md:text-[55px] xl:text-[60px] 2xl:text-[65px] 3xl:text-[80px] font-bold text-white 
+                                <div className="text-[30px] sm:text-[40px] md:text-[55px] xl:text-[50px] 2xl:text-[65px] 3xl:text-[80px] font-bold text-white mb-[5px]
                                 font-base1 leading-none"><span>80</span>+</div>
-                                <div className="text-[18px] md:text-[20px] xl:text-[25px] 3xl:text-[30px] font-medium font-base1">Countries</div>
+                                <div className="text-[18px] md:text-[20px] 2xl:text-[22px] 3xl:text-[30px] font-medium font-base1">Countries</div>
                             </div>
                         </div>
                         <div className="w-1/3 p-[8px]">
                             <div className="w-full h-full">
-                                <div className="text-[30px] sm:text-[40px] md:text-[55px] xl:text-[60px] 2xl:text-[65px] 3xl:text-[80px] font-bold text-white 
+                                <div className="text-[30px] sm:text-[40px] md:text-[55px] xl:text-[50px] 2xl:text-[65px] 3xl:text-[80px] font-bold text-white  mb-[5px]
                                 font-base1 leading-none"><span>40</span>K+</div>
-                                <div className="text-[18px] md:text-[20px] xl:text-[25px] 3xl:text-[30px] font-medium font-base1">Cars</div>
+                                <div className="text-[18px] md:text-[20px] 2xl:text-[22px] 3xl:text-[30px] font-medium font-base1">Cars</div>
                             </div>
                         </div>
                     </div>

@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Thumbs, EffectFade } from "swiper/modules";
+import { Thumbs, EffectFade, Autoplay  } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
@@ -87,7 +87,7 @@ export default function BannerSection() {
       y: dir === "next" ? [1000, 1000] : [-1000, 1000],
       opacity: [0, 1],
       transition: {
-        duration: 2.5,
+        duration: 1,
         ease: "easeOut",
       },
     }),
@@ -103,7 +103,7 @@ export default function BannerSection() {
       y: dir === "next" ? [-1000, -1000] : [1000, -1000],
       opacity: [1, 0],
       transition: {
-        duration: 0.5,
+        duration: 1,
         ease: "easeIn",
       },
     }),
@@ -114,12 +114,16 @@ export default function BannerSection() {
       <div className="container">
         <div className="2xl:h-[calc(100vh-300px)] lg:h-[calc(100vh-175px)] h-[250px] mb-[50px] relative">
           <Swiper
-            modules={[Thumbs, EffectFade]}
+            modules={[Thumbs, EffectFade, Autoplay]}
             speed={900}
             loop={false}
             navigation={{ nextEl: ".custom-next", prevEl: ".custom-prev" }}
             onBeforeInit={(swiper) => {
               swiperRef.current = swiper;
+            }}
+            autoplay={{
+              delay: 5000,  
+              disableOnInteraction: false,  
             }}
             breakpoints={{
               992: {
@@ -159,7 +163,7 @@ export default function BannerSection() {
 
                   <AnimatePresence custom={direction} mode="wait">
                     {currentIndex === index && (
-                      <div className="lg:h-[200px] h-[60px] overflow-hidden absolute left-0 right-0 lg:top-[150px] sm:top-[50px] top-[90px] m-auto ">
+                      <div className="3xl:h-[200px] 2xl:h-[180px] lg:h-[150px] h-[60px] overflow-hidden absolute left-0 right-0 lg:top-[150px] sm:top-[50px] top-[90px] m-auto ">
                         <motion.h2
                           key={slide.title}
                           custom={direction}

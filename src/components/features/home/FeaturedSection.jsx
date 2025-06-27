@@ -80,8 +80,8 @@ const carData = [
 export default function NewarrivalSection() {
     const [activeIndex, setActiveIndex] = useState(0);
     return (
-        <section className="relative z-0 bg-[#0E1D44]  py-[40px] 2xl:py-[60px] 3xl:py-[105px_130px] after:absolute after:content-[''] overflow-hidden
-            after:top-0 lg:after:left-[25%] after:left-0 max-lg:after:right-0 after:m-auto after:h-full lg:after:w-[365px] after:w-[165px] lg:after:skew-x-[30deg] after:skew-x-[20deg]
+        <section className="relative z-0 bg-[#0E1D44]  py-[40px] xl:py-[50px_75px] 2xl:py-[65px_95pxx] 3xl:py-[85px_125px] after:absolute after:content-[''] overflow-hidden
+            after:top-0 lg:after:left-[25%] after:left-0 max-lg:after:right-0 after:m-auto after:h-full after:3xl:w-[365px] after:2xl:w-[275px] after:w-[220px] lg:after:skew-x-[30deg] after:skew-x-[20deg]
             after:bg-[linear-gradient(180deg,_#C1C6D2_-13.07%,_rgba(209,212,220,0.38)_100%)] after:z-[-1] after:opacity-10">
 
             <div className="container">
@@ -159,23 +159,23 @@ export default function NewarrivalSection() {
                     </Swiper>
                     {/* Navigation Arrows */}
                     <div className="flex items-center justify-center lg:absolute lg:top-0 lg:bottom-0 lg:w-full">
-                        <button className="btn-prevs relative lg:absolute left-0 lg:left-[-65px] lg:top-1/2 lg:-translate-y-1/2 z-10
+                        <button className="btn-prevs relative lg:absolute left-0 lg:left-[-35px] lg:top-1/2 lg:-translate-y-1/2 z-10
                        bg-[linear-gradient(270deg,_rgba(114,153,255,0.40)_-4.3%,_rgba(46,76,153,0.80)_100.24%)]
-                        shadow w-[34px] h-[38px] flex items-center justify-center rounded-[30px_0px_0px_30px] cursor-pointer group
+                        shadow 3xl:w-[34px] 2xl:w-[25px] w-[20px] 3xl:h-[38px] 2xl:h-[30px] h-[25px] flex items-center justify-center rounded-[30px_0px_0px_30px] cursor-pointer group
                          hover:bg-[linear-gradient(270deg, rgba(114, 153, 255, 0.40) -4.3%, rgba(46, 76, 153, 0.80) 100.24%)] disabled:pointer-events-none 
                          disabled:opacity-[0.2]">
 
-                            <svg width="7" height="13" viewBox="0 0 7 13" fill="none" className="invert-100" >
+                            <svg viewBox="0 0 7 13" fill="none" className="invert-100 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]" >
                                 <path d="M6.14364 0.699707L0.769531 6.12544L6.14364 12.1834" stroke="black" />
                             </svg>
                         </button>
-                        <button className="btn-nexts relative lg:absolute right-0 lg:right-[-65px] lg:top-1/2 lg:-translate-y-1/2 z-10 
+                        <button className="btn-nexts relative lg:absolute right-0 lg:right-[-35px] lg:top-1/2 lg:-translate-y-1/2 z-10 
                         bg-[linear-gradient(270deg,_rgba(114,153,255,0.40)_-4.3%,_rgba(46,76,153,0.80)_100.24%)]
-                        shadow w-[34px] h-[38px] flex items-center justify-center rounded-[0px_30px_30px_0px] group cursor-pointer 
+                        shadow 3xl:w-[34px] 2xl:w-[25px] w-[20px] 3xl:h-[38px] 2xl:h-[30px] h-[25px] flex items-center justify-center rounded-[0px_30px_30px_0px] group cursor-pointer 
                         hover:bg-[linear-gradient(270deg, rgba(114, 153, 255, 0.40) -4.3%, rgba(46, 76, 153, 0.80) 100.24%)] 
                         disabled:pointer-events-none disabled:opacity-[0.2] ">
 
-                            <svg width="7" height="13" viewBox="0 0 7 13" fill="none" className="invert-100" >
+                            <svg  viewBox="0 0 7 13" fill="none" className="invert-100 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]" >
                                 <path d="M0.817302 0.699707L6.19141 6.12544L0.817302 12.1834" stroke="black" />
                             </svg>
                         </button>

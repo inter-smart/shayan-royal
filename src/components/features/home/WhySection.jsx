@@ -30,8 +30,8 @@ const whyData = [
 
 export default function WhySection() {
   return (
-    <section className="relative z-0 bg-[#F5F9FF] py-[40px] 2xl:py-[60px] 3xl:py-[90px] after:absolute after:content-[''] overflow-hidden
-        after:top-0 after:left-[25%] after:m-auto after:h-full after:lg:w-[365px] after:w-[215px] after:skew-x-[16deg]
+    <section className="relative z-0 bg-[#F5F9FF] py-[40px] xl:py-[55px_80px] 2xl:py-[65px_90px] 3xl:py-[90px_110px] after:absolute after:content-[''] overflow-hidden
+        after:top-0 after:left-[-10%] after:right-0 after:m-auto after:h-full after:3xl:w-[365px] after:2xl:w-[275px] after:w-[220px] after:skew-x-[16deg]
         after:bg-[linear-gradient(180deg,_#C1C6D2_-13.07%,_rgba(209,212,220,0.38)_100%)] after:z-[-1] after:opacity-20">
       <div className="container">
         {/* Section Title */}
@@ -62,7 +62,7 @@ export default function WhySection() {
                 transition={{ duration: 1.2, ease: "easeOut" }}
                 viewport={{ once: false, amount: 0.2 }}
                 className={`w-full h-full bg-white 3xl:p-[30px] 2xl:p-[20px] p-[15px] rounded-[10px] 
-                  3xl:max-w-[400px] xl:max-w-[345px] lg:max-w-[300px] md:max-w-[275px] 2xs:max-w-[250px] ${
+                  3xl:max-w-[400px] xl:max-w-[345px] lg:max-w-[285px] md:max-w-[275px] 2xs:max-w-[250px] ${
                     index % 2 !== 0 ? "ml-auto" : ""
                   }`}
               >

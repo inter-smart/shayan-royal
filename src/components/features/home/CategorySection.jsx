@@ -22,7 +22,7 @@ const carCategories = [
 export default function AboutSection() {
     const [activeIndex, setActiveIndex] = useState(0);
     return (
-        <section className="relative py-[30px] md:py-[40px_75px] 2xl:py-[50px_85px] 3xl:py-[60px_95px] bg-[#F5F9FF]">
+        <section className="relative py-[30px] md:py-[40px ] 2xl:py-[50px] 3xl:py-[60px_45px] bg-[#F5F9FF]">
             <div className="container">
                 <div className="max-w-[85%] m-auto">
                     <Heading size="heading2" as="h2" className="text-[#B4BACA] text-center uppercase mb-[10px]" >
@@ -108,25 +108,25 @@ export default function AboutSection() {
                         ))}
                     </Swiper>
                     {/* center Arrow */}
-                    <div className="realtive max-w-[20px] m-auto mb-[25px]">
-                        <svg width="21" height="18" viewBox="0 0 21 18" fill="none">
+                    <div className="realtive 3xl:max-w-[20px] 2xl:max-w-[15px] m-auto mb-[25px] flex justify-center">
+                        <svg className="3xl:-w-[20px] 2xl:w-[15px] w-[12px] h-[12px]" viewBox="0 0 21 18" fill="none">
                             <path d="M1 10.6404L11.3019 1.64038L20.5 10.6404" stroke="black" />
                             <path d="M1 16.6404L11.3019 7.64038L20.5 16.6404" stroke="black" />
                         </svg>
                     </div>
                     {/* Navigation Arrows */}
                     <div className="flex items-center justify-center max-md:top-[20px] md:absolute md:top-0 md:bottom-0 md:w-full  ">
-                        <button className="nav-prev relative md:absolute left-0 lg:left-[-45px] sm:top-1/2 sm:-translate-y-1/2 z-10 bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] 
-                        shadow w-[34px] h-[38px] flex items-center justify-center rounded-[30px_0px_0px_30px] cursor-pointer group hover:bg-[#2E4C99]">
+                        <button className="nav-prev relative md:absolute left-0 lg:left-[-35px] sm:top-1/2 sm:-translate-y-1/2 z-10 bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] 
+                        shadow 3xl:w-[34px] 2xl:w-[25px] w-[20px] 3xl:h-[38px] 2xl:h-[30px] h-[25px]  flex items-center justify-center rounded-[30px_0px_0px_30px] cursor-pointer group hover:bg-[#2E4C99]">
 
-                            <svg width="7" height="13" viewBox="0 0 7 13" fill="none" className="group-hover:invert-100" >
+                            <svg viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]" >
                                 <path d="M6.14364 0.699707L0.769531 6.12544L6.14364 12.1834" stroke="black" />
                             </svg>
                         </button>
-                        <button className=" nav-next relative md:absolute right-0 lg:right-[-45px] sm:top-1/2 sm:-translate-y-1/2 z-10 bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]
-                        shadow w-[34px] h-[38px] flex items-center justify-center rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99]">
+                        <button className=" nav-next relative md:absolute right-0 lg:right-[-35px] sm:top-1/2 sm:-translate-y-1/2 z-10 bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]
+                        shadow 3xl:w-[34px] 2xl:w-[25px] w-[20px] 3xl:h-[38px] 2xl:h-[30px] h-[25px]  flex items-center justify-center rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99]">
 
-                            <svg width="7" height="13" viewBox="0 0 7 13" fill="none" className="group-hover:invert-100" >
+                            <svg viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]" >
                                 <path d="M0.817302 0.699707L6.19141 6.12544L0.817302 12.1834" stroke="black" />
                             </svg>
                         </button>

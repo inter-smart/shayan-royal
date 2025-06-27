@@ -58,13 +58,13 @@ export default function CarSearchForm() {
     };
 
     const menuLinkClass =
-        "!text-[11px] md:!text-[12px] 2xl:!text-[14px] max-w-full min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px] !w-full md:px-6 px-[8px] border border-[rgba(46, 76, 153, 0.44)] bg-[#F8F9FD] rounded-[5px] font-medium outline-none shadow-none focus:outline-none focus:ring-0 focus:border-[#CCCCCC] focus:shadow-none data-[state=open]:border-[#00095b] data-[state=open]:shadow-none";
+        "!text-[11px] md:!text-[12px] 2xl:!text-[14px] text-black max-w-full min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px] font-normal placeholder:font-normal !w-full md:px-6 px-[8px] border border-[rgba(46, 76, 153, 0.44)] bg-white rounded-[5px] font-normal outline-none shadow-none focus:outline-none focus:ring-0 focus:border-[#CCCCCC] focus:shadow-none data-[state=open]:border-[#00095b] data-[state=open]:shadow-none";
 
     const contentClass =
-        "3xl:text-[18px] 2xl:text-[16px] md:text-[12px] text-[10px] bg-white border border-[#CCCCCC] rounded-md shadow-md font-medium text-black";
+        "3xl:text-[18px] 2xl:text-[16px] md:text-[12px] text-[10px] bg-white border border-[#CCCCCC] rounded-md shadow-md font-normal text-black uppercase";
 
     const itemClass =
-        "py-[10px] px-4 hover:bg-[#00095b] focus:bg-[#1D0A44] focus:text-white cursor-pointer";
+        "py-[10px] px-4 hover:bg-[#00095b] focus:bg-[#1D0A44] focus:text-white cursor-pointer font-normal !uppercase";
 
     return (
         <div className="w-full relative">
@@ -82,7 +82,7 @@ export default function CarSearchForm() {
                                 <FormItem>
                                     <FormControl>
                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                            <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
+                                            <SelectTrigger className={`${menuLinkClass} placeholder:!text-black placeholder:!font-regular text-black`}>
                                                 <SelectValue placeholder="MAKE" className="text-black" />
                                             </SelectTrigger>
                                             <SelectContent className={contentClass}>
@@ -201,7 +201,7 @@ export default function CarSearchForm() {
                     <AccordionItem value="advanced-search">
                         <AccordionTrigger className={`text-[12px] lg:text-[14px] 3xl:text-[16px] text-black uppercase w-[280px]
                          md:w-[300px] max-sm:m-auto rounded-[0px]
-                         absolute left-0 max-sm:right-0 h-[35px]  flex items-center justify-center realtive z-0 cursor-pointer [&>svg]:hidden
+                         absolute left-0 max-sm:right-0 h-[35px]  flex items-center justify-center realtive z-0 font-normal cursor-pointer [&>svg]:hidden
                            ${isExpanded ? "bottom-0" : "top-[100%]"}`}>
                             <Image
                                 src="/images/buttonBg.png"
@@ -284,7 +284,7 @@ export default function CarSearchForm() {
                                                 <FormControl>
                                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                         <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
-                                                            <SelectValue placeholder="Year To" className="text-black" />
+                                                            <SelectValue placeholder="YEAR TO" className="text-black uppercase placeholder:!uppercase" />
                                                         </SelectTrigger>
                                                         <SelectContent className={contentClass}>
                                                             <SelectItem value="2020" className={itemClass}>2020</SelectItem>
@@ -309,7 +309,7 @@ export default function CarSearchForm() {
                                                 <FormControl>
                                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                         <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
-                                                            <SelectValue placeholder="Steering side" className="text-black uppercase" />
+                                                            <SelectValue placeholder="STEERING SIDE" className="text-black uppercase" />
                                                         </SelectTrigger>
                                                         <SelectContent className={contentClass}>
                                                             <SelectItem value="sedan" className={itemClass}>Sedan</SelectItem>
