@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Text } from "@/components/layout/Text";
 import { Heading } from "@/components/layout/Heading";
-
+ 
 
 export default function OurServiceSection({image, title, description1, description2}) {
     return (
@@ -9,7 +9,7 @@ export default function OurServiceSection({image, title, description1, descripti
             <div className="container">
                 <div className="flex flex-wrap">
                     <div className="w-full md:w-[50%]">
-                        <div className="w-full md:h-full sm:h-[280px] h-[220px] max-md:mb-[25px] max-sm:mb-[20px] rounded-[10px] overflow-hidden block relative z-0">
+                        <div className="w-full md:h-auto sm:h-[280px] h-[220px] aspect-[810/470] max-md:mb-[25px] max-sm:mb-[20px] rounded-[10px] overflow-hidden block relative z-0">
                             <Image
                                 src={image}
                                 alt="Service"
@@ -28,13 +28,13 @@ export default function OurServiceSection({image, title, description1, descripti
                         </Heading>
                         <Text
                             as="p"
-                            className="3xl:text-[20px] 2xl:text-[16px] sm:text-[14px] text-[13px] leading-[1.3] font-normal text-[#4B4B4B] 2xl:mb-[30px] lg:mb-[15px] mb-[10px]"
+                            className="3xl:text-[20px] 2xl:text-[16px] sm:text-[13px] text-[13px] leading-[1.3] font-normal text-[#4B4B4B] 2xl:mb-[30px] lg:mb-[15px] mb-[10px]"
                         >
                             {description1}
                         </Text>
                         <Text
                             as="p"
-                            className="3xl:text-[20px] 2xl:text-[16px] sm:text-[14px] text-[13px] leading-[1.3] font-normal text-[#4B4B4B]"
+                            className="3xl:text-[20px] 2xl:text-[16px] sm:text-[13px] text-[13px] leading-[1.3] font-normal text-[#4B4B4B]"
                         >
                             {description2}
                         </Text>

@@ -106,12 +106,12 @@ export default function FitmentTypeServiceSection() {
                         prevEl: ".fitmentservice-prev",
                         nextEl: ".fitmentservice-next",
                     }}
-                    className="fitmentTypeSlider xs:!pb-[35px] [--swiper-pagination-bullet-width:11px] 
+                    className="fitmentTypeSlider 2xl:!pb-[90px] lg:!pb-[70px] sm:!pb-[50px] !pb-[20px] [--swiper-pagination-bullet-width:11px] 
                     [--swiper-pagination-bullet-height:11px] 
                     [--swiper-pagination-bullet-inactive-opacity:1] 
                    [--swiper-pagination-bullet-inactive-color:#D6E1FF] 
                    [--swiper-pagination-color:#2E4C99] 
-                    [--swiper-pagination-bullet-active-width:30px] mb-[40px]"
+                    [--swiper-pagination-bullet-active-width:30px]"
                 >
                     {items.map((item, index) => {
                         if (index % 3 === 0) {
@@ -177,7 +177,6 @@ export default function FitmentTypeServiceSection() {
                         }
                         return null;
                     })}
-                    <div className="swiper-pagination"></div>
                 </Swiper>
                 {/* Navigation Arrows */}
                 <div className="flex items-center justify-center lg:absolute lg:top-0 lg:bottom-0 lg:w-full xs:hidden">

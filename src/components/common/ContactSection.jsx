@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import Image from "next/image";
-import { Heading } from "@/components/layout/Heading";
 import { Text } from "@/components/layout/Text";
 
 export default function ContactSection({ backgroundImage, description, title }) {
@@ -33,13 +32,11 @@ export default function ContactSection({ backgroundImage, description, title }) 
                         >
                             {description}
                         </Text>
-                        <Heading
-                            size={"heading2"}
-                            as="div"
-                            className="leading-none font-semibold uppercase text-white mb-[10px]"
+                        <div
+                            className="text-[18px] sm:text-[22px] lg:text-[25px] xl:text-[30px] 2xl:text-[45px] 3xl:text-[50px] leading-none font-semibold font-base1 uppercase text-white mb-[10px]"
                         >
                             {title}
-                        </Heading>
+                        </div>
                         <Link
                             href="#"
                             aria-label="get in touch"
