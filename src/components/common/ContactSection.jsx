@@ -35,7 +35,7 @@ export default function ContactSection({ backgroundImage, description, title }) 
                         </Text>
                         <Heading
                             size={"heading4"}
-                            as="h2"
+                            as="div"
                             className="leading-none font-semibold uppercase text-white mb-[10px]"
                         >
                             {title}
