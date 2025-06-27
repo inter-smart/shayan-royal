@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Thumbs, EffectFade, Autoplay  } from "swiper/modules";
+import { Thumbs, EffectFade, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
@@ -20,11 +20,14 @@ export default function BannerSection() {
   const [direction, setDirection] = useState("next");
   const swiperRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [isMediumScreen, setIsMediumScreen] = useState(false);
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 1200);
+      const width = window.innerWidth;
+      setIsMobile(width < 1200);
+      setIsMediumScreen(width < 1441);
     };
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -55,12 +58,16 @@ export default function BannerSection() {
     enter: (dir) => ({
       x:
         dir === "next"
-          ? isMobile
-            ? [100, -100, 0]
-            : [-450, 450, 0]
-          : isMobile
-            ? [80, -100, 0]
-            : [450, -450, 0],
+        ? isMobile
+          ? [100, -100, 0]
+          : isMediumScreen
+          ? [-200, 200, 0]
+          : [-450, 450, 0]
+        : isMobile
+        ? [80, -100, 0]
+        : isMediumScreen
+        ? [200, -200, 0]
+        : [450, -450, 0],
       opacity: 0.5,
     }),
     center: {
@@ -70,21 +77,25 @@ export default function BannerSection() {
     },
     exit: (dir) => ({
       x:
-        dir === "next"
-          ? isMobile
-            ? [100, -100, 0]
-            : [450, -450, 0]
-          : isMobile
-            ? [-80, 100, 0]
-            : [-450, 450, 0],
-      opacity: [1, 0],
+      dir === "next"
+        ? isMobile
+          ? [100, -100, 0]
+          : isMediumScreen
+          ? [200, -200, 0]
+          : [450, -450, 0]
+        : isMobile
+        ? [-80, 100, 0]
+        : isMediumScreen
+        ? [-200, 200, 0]
+        : [-450, 450, 0],
+      opacity: [0],
       transition: { duration: 3.5 },
     }),
   };
 
   const textVariants = {
     enter: (dir) => ({
-      y: dir === "next" ? [1000, 1000] : [-1000, 1000],
+      y: (dir === "next" ? [1000, 1000] : [-1000, 1000]),
       opacity: [0, 1],
       transition: {
         duration: 1,
@@ -100,7 +111,7 @@ export default function BannerSection() {
       },
     },
     exit: (dir) => ({
-      y: dir === "next" ? [-1000, -1000] : [1000, -1000],
+      y: (dir === "next" ? [-1000, -1000] : [1000, -1000]),
       opacity: [1, 0],
       transition: {
         duration: 1,
@@ -112,7 +123,7 @@ export default function BannerSection() {
   return (
     <section className="h-full xl:py-[40px] py-[60px] overflow-hidden ">
       <div className="container">
-        <div className="2xl:h-[calc(100vh-300px)] lg:h-[calc(100vh-175px)] h-[250px] mb-[50px] relative">
+        <div className="2xl:h-[calc(100vh-300px)] lg:h-[calc(100vh-200px)] h-[250px] mb-[50px] relative">
           <Swiper
             modules={[Thumbs, EffectFade, Autoplay]}
             speed={900}
@@ -122,12 +133,12 @@ export default function BannerSection() {
               swiperRef.current = swiper;
             }}
             autoplay={{
-              delay: 5000,  
-              disableOnInteraction: false,  
+              delay: 5000,
+              disableOnInteraction: false,
             }}
             breakpoints={{
               992: {
-                speed: 1800,
+                speed: 1500,
               },
             }}
             onSlideChange={handleSlideChange}
@@ -146,8 +157,8 @@ export default function BannerSection() {
                         animate={currentIndex === index && hasLoaded ? "center" : false}
                         exit={currentIndex === index && hasLoaded ? "exit" : false}
                         className={`absolute bottom-0 w-full 3xl:max-w-[1000px] 2xl:max-w-[780px] 
-                        lg:max-w-[650px] max-w-[500px] m-auto flex flex-col justify-end z-1 
-                        ${currentIndex !== index ? 'opacity-0 pointer-events-none' : ''}`}
+                          lg:max-w-[650px] max-w-[500px] m-auto flex flex-col justify-end z-1 
+                          ${currentIndex !== index ? "opacity-0 pointer-events-none" : ""} bg-transparent`}
                       >
                         <Image
                           src={slide.img}
@@ -155,7 +166,6 @@ export default function BannerSection() {
                           width={1000}
                           height={500}
                           className="w-full h-auto object-contain"
-                          priority
                         />
                       </motion.div>
                     )}
@@ -163,7 +173,7 @@ export default function BannerSection() {
 
                   <AnimatePresence custom={direction} mode="wait">
                     {currentIndex === index && (
-                      <div className="3xl:h-[200px] 2xl:h-[180px] lg:h-[150px] h-[60px] overflow-hidden absolute left-0 right-0 lg:top-[150px] sm:top-[50px] top-[90px] m-auto ">
+                      <div className="3xl:h-[200px] 2xl:h-[180px] lg:h-[150px] h-[60px] overflow-hidden absolute left-0 right-0 2xl:top-[150px] top-[90px] m-auto ">
                         <motion.h2
                           key={slide.title}
                           custom={direction}
@@ -172,9 +182,9 @@ export default function BannerSection() {
                           animate={currentIndex === 0 && !hasLoaded ? false : "center"}
                           exit={currentIndex === 0 && !hasLoaded ? false : "exit"}
                           className="3xl:text-[150px] 2xl:text-[110px] xl:text-[80px] lg:text-[60px] 
-                          sm:text-[40px] 2xs:text-[30px] text-[25px] font-normal uppercase  
-                          font-base2  text-center bg-clip-text text-transparent 
-                          [background-image:linear-gradient(0deg,rgba(180,186,202,0.20)_20.28%,#B4BACA_80.51%)]"
+                            sm:text-[40px] 2xs:text-[30px] text-[25px] font-normal uppercase  
+                            font-base2  text-center bg-clip-text text-transparent 
+                            [background-image:linear-gradient(0deg,rgba(180,186,202,0.20)_20.28%,#B4BACA_80.51%)]"
                         >
                           {slide.title}
                         </motion.h2>
@@ -188,10 +198,10 @@ export default function BannerSection() {
 
           <div className="flex items-center justify-center sm:absolute sm:top-0 sm:bottom-0 sm:w-full max-sm:pt-1">
             <button
-              className="custom-prev xs:absolute top-1/2 xs:left-4 z-10 -translate-y-1/2 cursor-pointer
-              disabled:pointer-events-none disabled:opacity-[0.2] max-sm:shadow w-[30px] h-[30px] 
-              flex items-center justify-center max-sm:rounded-[30px_0px_0px_30px] 
-              max-sm:bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] "
+              className="custom-prev xs:absolute top-1/2 xs:left-0 z-10 -translate-y-1/2 cursor-pointer
+                disabled:pointer-events-none disabled:opacity-[0.2] max-sm:shadow w-[30px] h-[30px] 
+                flex items-center justify-center max-sm:rounded-[30px_0px_0px_30px] 
+                max-sm:bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]"
               onClick={handlePrev}
             >
               <svg className="xl:w-[18px] xl:h-[18px] w-[10px] h-[10px] flex" viewBox="0 0 10 18" fill="none">
@@ -199,10 +209,10 @@ export default function BannerSection() {
               </svg>
             </button>
             <button
-              className="custom-next xs:absolute top-1/2 xs:right-4 z-10 -translate-y-1/2 cursor-pointer 
+              className="custom-next xs:absolute top-1/2 xs:right-0 z-10 -translate-y-1/2 cursor-pointer 
                 disabled:pointer-events-none disabled:opacity-[0.2] max-sm:shadow w-[30px] h-[30px]
                 flex items-center justify-center max-sm:rounded-[0px_30px_30px_0px] 
-                max-sm:bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] "
+                max-sm:bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]"
               onClick={handleNext}
             >
               <svg className="xl:w-[18px] xl:h-[18px] w-[10px] h-[10px] flex" viewBox="0 0 10 18" fill="none">

@@ -100,7 +100,7 @@ export default function AboutSection() {
                                             className="w-full h-full object-contain"
                                         />
                                     </div>
-                                    <p className={`3xl:text-[25px] 2xl:text-[22px] text-[18px] font-base1 mt-1 md:mt-2 ${index === activeIndex ? "text-[#2E4C99] font-semibold" : "text-black font-normal"}`}
+                                    <p className={`3xl:text-[25px] 2xl:text-[18px] text-[16px] font-base1 mt-1 md:mt-1 ${index === activeIndex ? "text-[#2E4C99] font-semibold" : "text-black font-normal"}`}
                                     > {car.name}
                                     </p>
                                 </div>

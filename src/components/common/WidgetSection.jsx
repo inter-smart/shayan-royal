@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const menuLinkClass = "3xl:w-[32px] 3xl:h-[32px] lg:w-[24px] lg:h-[24px] w-[20px] h-[20px] rounded-full flex items-center justify-center transition-all hover:lg:scale-130";
+const menuLinkClass = "3xl:w-[32px] 3xl:h-[32px] 2x:w-[24px] 2xl:h-[24px] w-[20px] h-[20px] rounded-full flex items-center justify-center transition-all hover:lg:scale-130";
 
 export default function WidgetSection() {
     return (

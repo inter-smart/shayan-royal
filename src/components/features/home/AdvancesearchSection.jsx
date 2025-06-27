@@ -71,7 +71,7 @@ export default function CarSearchForm() {
             <Form {...form}>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}
-                    className="flex flex-wrap justify-between bg-[#031640] overflow-hidden rounded-[10px] xl:p-[30px] sm:p-[15px] p-[10px]"
+                    className="flex flex-wrap justify-between bg-[#031640] overflow-hidden rounded-[10px] 2xl:p-[30px] lg:p-[20px] sm:p-[15px] p-[10px]"
                 >
                     {/* Make */}
                     <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 xl:w-[calc(100%/5)] p-[5px] md:p-[10px]">
