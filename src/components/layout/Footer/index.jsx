@@ -40,37 +40,37 @@ export default function footer() {
             </Heading>
             <ul>
               <li className='mb-[10]'>
-                <Link href="#" className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] text-white mb-[15px] hover:text-[#BE1E2D]" >
+                <Link href="/about" className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] text-white mb-[15px] hover:text-[#BE1E2D]" >
                   About Us
                 </Link>
               </li>
               <li className='mb-[10]'>
-                <Link href="#" className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] text-white mb-[15px] hover:text-[#BE1E2D]" >
+                <Link href="/inventory" className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] text-white mb-[15px] hover:text-[#BE1E2D]" >
                   Inventory
                 </Link>
               </li>
               <li className='mb-[10]'>
-                <Link href="#" className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] text-white mb-[15px] hover:text-[#BE1E2D]" >
+                <Link href="/brand" className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] text-white mb-[15px] hover:text-[#BE1E2D]" >
                   Brands Specialized In
                 </Link>
               </li>
               <li className='mb-[10]'>
-                <Link href="#" className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] text-white mb-[15px] hover:text-[#BE1E2D]" >
+                <Link href="/service" className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] text-white mb-[15px] hover:text-[#BE1E2D]" >
                   Services
                 </Link>
               </li>
               <li className='mb-[10]'>
-                <Link href="#" className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] text-white mb-[15px] hover:text-[#BE1E2D]" >
+                <Link href="/privacy-policy" className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] text-white mb-[15px] hover:text-[#BE1E2D]" >
                   Privacy Policy
                 </Link>
               </li>
               <li className='mb-[10]'>
-                <Link href="#" className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] text-white mb-[15px] hover:text-[#BE1E2D]" >
+                <Link href="/terms-conditions" className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] text-white mb-[15px] hover:text-[#BE1E2D]" >
                   Terms & Condition
                 </Link>
               </li>
               <li className='mb-[10]'>
-                <Link href="#" className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] text-white mb-[15px] hover:text-[#BE1E2D]" >
+                <Link href="/contact" className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] text-white mb-[15px] hover:text-[#BE1E2D]" >
                   Contact Us
                 </Link>
               </li>

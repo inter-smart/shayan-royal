@@ -18,7 +18,7 @@ export default function ProductCard({ car, variant }) {
     const paddingClass = variant ? (variants[variant] || defaultPadding) : defaultPadding;
 
     return (
-        <Link href="#"
+        <Link href={car.link || "#"}
             aria-label="news" className={`w-full h-full flex cursor-pointer group ${paddingClass}`}>
             <div className="w-full h-full rounded-[10px] bg-white overflow-hidden 3xl:py-[15px] py-[10px] 3xl:px-[20px] px-[15px] flex items-end shadow-xl">
                 {/* Left Section */}

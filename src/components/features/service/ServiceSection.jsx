@@ -16,26 +16,19 @@ const items = [
         href: "/service-detail",
     },
     {
-        title: "Innovation",
+        title: "Additional Fitments",
         image: "/images/service_2.webp",
         description:
             "We provide extensive support for various logistics service and organize timely delivery of the consignment to the desired location with assurance at affordable price.",
-        href: "/service-detail",
+        href: "/service-fitment",
     },
     {
-        title: "Customer Focus",
+        title: "Procurement",
         image: "/images/service_3.webp",
         description:
             "We provide extensive support for various logistics service and organize timely delivery of the consignment to the desired location with assurance at affordable price.",
-        href: "/service-detail",
-    },
-    {
-        title: "Innovation",
-        image: "/images/service_2.webp",
-        description:
-            "We provide extensive support for various logistics service and organize timely delivery of the consignment to the desired location with assurance at affordable price.",
-        href: "/service-detail",
-    },
+        href: "/service",
+    }
 ];
 
 export default function ServiceSection() {
