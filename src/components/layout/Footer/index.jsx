@@ -132,10 +132,10 @@ export default function footer() {
             </div>
           </div>
         </div>
-        <div className="bg-[#0E1D44] lg:pt-[20px] lg:pr-[50px] lg:pb-[20px] lg:pl-[30px] pt-[20px] pr-[20px] pb-[20px] pl-[20px] rounded-[10px] sm:mb-[45px] mb-[20px]">
+        <div className="bg-[#0E1D44] lg:pt-[20px] lg:pr-[20px] lg:pb-[20px] lg:pl-[30px] pt-[20px] pr-[20px] pb-[20px] pl-[20px] rounded-[10px] sm:mb-[45px] mb-[20px]">
           <div className='flex flex-wrap items-center'>
             <div className='flex flex-wrap items-center'>
-              <div className='3xl:text-[50px] 2xl:text-[35px] lg:text-[25px] lg:text-[25px] md:text-[20px] sm:text-[15px] text-[14px] font-semibold text-white sm:mb-[0px] mb-[10px]'>
+              <div className='3xl:text-[50px] 2xl:text-[35px] xl:text-[20px] lg:text-[18px] md:text-[20px] sm:text-[15px] text-[14px] font-semibold text-white sm:mb-[0px] mb-[10px]'>
                 CONNECT WITH US
               </div>
               <div className='lg:pl-[40px] md:pl-[30px] pl-[20px] sm:mb-[0px] mb-[10px]'>

@@ -103,7 +103,7 @@ export default function FaqSection() {
                     >
                       {item.title}
                     </AccordionTrigger>
-                    <AccordionContent className="typography [&>p]:text-[#656565] text-[#656565] pb-[15px]">
+                    <AccordionContent className="typography [&>p]:text-[#656565] [&>p]:mb-[10px] text-[#656565 pb-[10px]]">
                       {item.description}
                     </AccordionContent>
                   </AccordionItem>
@@ -112,7 +112,7 @@ export default function FaqSection() {
             </div>
           </motion.div>
 
-          {/* Right Car Image */}
+          {/* Right Car Image */} 
           <motion.div
             ref={rightRef}
             initial={{ x: 150, opacity: 0 }}

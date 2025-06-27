@@ -177,13 +177,13 @@ export default function CarSearchForm() {
                         <div className="flex flex-wrap justify-end -m-[5px]">
                             <div className="flex-grow p-[5px]">
                                 <Button type="submit" className="bg-[#BD1F2D] min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px]
-                                 text-white w-full hover:bg-[#a81b27d3]">
+                                 text-white cursor-pointer w-full hover:bg-[#a81b27d3]">
                                     SEARCH
                                 </Button>
                             </div>
                             <div className={`relative flex-grow p-[5px] ${isExpanded ? 'block' : 'hidden'}`}>
                                 <Button type="submit" className="bg-[#C4C4C4] min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px]
-                                 text-white w-full hover:bg-[#a81b26]">
+                                 text-white cursor-pointer w-full hover:bg-[#a81b26]">
                                     CLEAR
                                 </Button>
                             </div>

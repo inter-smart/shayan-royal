@@ -5,7 +5,7 @@ const menuLinkClass = "3xl:w-[32px] 3xl:h-[32px] 2x:w-[24px] 2xl:h-[24px] w-[20p
 export default function WidgetSection() {
     return (
         <section>
-            <div className="fixed right-[-2px] top-1/3 z-50 3xl:w-[65px] lg:w-[50px] w-[30px] 3xl:min-h-[260px] min-h-[240px] flex items-center justify-center py-[85px] max-md:px-[15px]">
+            <div className="fixed right-[-2px] top-1/3 z-50 3xl:w-[65px] 2xl:w-[50px] lg:w-[40px] w-[30px] 3xl:min-h-[260px] min-h-[240px] flex items-center justify-center py-[85px] max-md:px-[15px]">
                 <Image
                     src="/images/widgetBg.png"
                     alt="buttonBg"

@@ -144,7 +144,7 @@ export default function ClientSection() {
 
                     {/* Navigation Arrows */}
                     <div className="flex items-center justify-center lg:absolute lg:top-0 lg:bottom-0 lg:w-full">
-                        <button className="btn-prev relative lg:absolute left-0 lg:left-[-65px] lg:top-1/2 lg:-translate-y-1/2 z-10
+                        <button className="btn-prev relative lg:absolute left-0 lg:left-[-45px] lg:top-1/2 lg:-translate-y-1/2 z-10
                             bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] 
                             shadow w-[34px] h-[38px] flex items-center justify-center rounded-[30px_0px_0px_30px] cursor-pointer group
                             hover:bg-[#2E4C99] disabled:pointer-events-none disabled:opacity-[0.2]">
@@ -152,7 +152,7 @@ export default function ClientSection() {
                                 <path d="M6.14364 0.699707L0.769531 6.12544L6.14364 12.1834" stroke="black" />
                             </svg>
                         </button>
-                        <button className="btn-next relative lg:absolute right-0 lg:right-[-65px] lg:top-1/2 lg:-translate-y-1/2 z-10 
+                        <button className="btn-next relative lg:absolute right-0 lg:right-[-45px] lg:top-1/2 lg:-translate-y-1/2 z-10 
                             bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]
                             shadow w-[34px] h-[38px] flex items-center justify-center rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99] 
                             disabled:pointer-events-none disabled:opacity-[0.2] ">

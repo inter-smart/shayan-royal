@@ -23,12 +23,12 @@ export default function MarketSection() {
                 </div>
                 <div className="2xl:w-[1225px] xl:w-[815px] md:w-[740px] sm:w-[580px] w-[280px] h-auto aspect-1225/750 m-auto block">
                     <Image
-                        src="/images/market_map_bg.svg"
+                        src="/images/market_map_bg1.svg"
                         alt="Market Map"
                         width={100}
                         height={100}
                         style={{ objectFit: "contain" }}
-                        className="w-full h-auto"
+                        className="w-full h-auto block"
                     />
                 </div>
             </div>
