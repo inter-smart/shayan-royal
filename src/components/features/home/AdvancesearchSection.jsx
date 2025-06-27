@@ -58,13 +58,13 @@ export default function CarSearchForm() {
     };
 
     const menuLinkClass =
-        "!text-[11px] md:!text-[12px] 2xl:!text-[14px] text-black max-w-full min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px] text-black font-normal placeholder:!text-black placeholder:font-normal !w-full px-[12px] border border-[rgba(46, 76, 153, 0.44)] bg-white rounded-[5px] font-normal outline-none shadow-none focus:outline-none focus:ring-0 focus:border-[#CCCCCC] focus:shadow-none data-[state=open]:border-[#00095b] data-[state=open]:shadow-none";
+        "!text-[11px] md:!text-[12px] 2xl:!text-[14px] text-black max-w-full min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px]  font-normal placeholder:!text-black placeholder:font-normal !w-full px-[12px] border border-[rgba(46, 76, 153, 0.44)] bg-white rounded-[5px] font-normal outline-none shadow-none focus:outline-none focus:ring-0 focus:border-[#CCCCCC] focus:shadow-none data-[state=open]:border-[#00095b] data-[state=open]:shadow-none";
 
     const contentClass =
-        "3xl:text-[18px] 2xl:text-[16px] md:text-[12px] text-[10px] bg-white border border-[#CCCCCC] rounded-md shadow-md font-normal !text-black uppercase placeholder:!text-black";
+        "3xl:text-[18px] 2xl:text-[16px] md:text-[12px] text-[10px] bg-white border border-[#CCCCCC] rounded-md shadow-md font-normal  uppercase placeholder:!text-black";
 
     const itemClass =
-        "3xl:py-[10px] 3xl:px-4 px-[7px] hover:bg-[#00095b] focus:bg-[#1D0A44] focus:text-white cursor-pointer font-normal !text-black !uppercase placeholder:!text-black";
+        "3xl:py-[10px] 3xl:px-4 px-[7px] hover:bg-[#00095b] focus:bg-[#1D0A44] focus:text-white cursor-pointer font-normal  !uppercase placeholder:!text-black";
 
     return (
         <div className="w-full relative">
@@ -108,7 +108,7 @@ export default function CarSearchForm() {
                                     <FormControl>
                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                                             <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
-                                                <SelectValue placeholder="MODEL" className="text-black" />
+                                                <SelectValue placeholder="MODEL" className="!text-black placeholder:!text-black" />
                                             </SelectTrigger>
                                             <SelectContent className={contentClass}>
                                                 <SelectItem value="corolla" className={itemClass}>Corolla</SelectItem>
