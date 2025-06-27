@@ -18,7 +18,7 @@ const items = [
 
 export default function BlogDetailSection() {
     return (
-        <section className="w-full h-auto 2xl:py-[50px_130px] lg:py-[30px_85px] sm:py-[30px_50px] py-[30px_40px] block">
+        <section className="w-full h-auto 2xl:py-[50px_130px] lg:py-[30px_85px] sm:py-[30px_50px] py-[20px_40px] block">
             <div className="container">
                 <div className="flex flex-wrap">
                     <div className="2xl:w-[calc(100%-525px)] xl:w-[calc(100%-350px)] lg:w-[calc(100%-280px)] w-full 2xl:pr-[30px] lg:p-[20px] max-lg:mb-[30px]">
@@ -41,7 +41,7 @@ export default function BlogDetailSection() {
                             <p>Unum nescio, quo modo possit, si luxuriosus sit, finitas cupiditates habere. Sed ego in hoc resisto; Satis est tibi in te, satis in legibus, satis in mediocribus amicitiis praesidii. Nihilo beatiorem esse Metellum quam Regulum. Animum autem reliquis rebus ita perfecit, ut corpus; Itaque eos id agere, ut a se dolores, morbos, debilitates repellant. Quid enim de amicitia statueris utilitatis causa expetenda vides. Quod si ita se habeat, non possit beatam praestare vitam sapientia. Oculorum, inquit Plato, est in nobis sensus acerrimus, quibus sapientiam non cernimus.</p>
                         </div>
                     </div>
-                    <div className="2xl:w-[525px] xl:w-[350px] lg:w-[280px] w-full">
+                    <div className="lg:sticky top-[10px] h-full 2xl:w-[525px] xl:w-[350px] lg:w-[280px] w-full">
                         <Heading
                             as="h3"
                             size="heading5"

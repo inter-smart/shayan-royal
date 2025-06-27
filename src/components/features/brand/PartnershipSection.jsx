@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function PartnershipSection() {
     return (
-        <section className="w-full h-auto xl::pt-[80px] lg:pt-[40px] pt-[20px]  lg:pb-[90px] pb-[20px]">
+        <section className="w-full h-auto xl:pt-[80px] lg:pt-[40px] pt-[20px] lg:pb-[90px] pb-[20px]">
             <div className="container">
                 <div className="relative w-full">
                     <div className="md:w-[50%] w-full md:float-left xl:mb-[20px] mb-[15px] 3xl:mr-[70px] xl:mr-[50px] mr-[30px]">

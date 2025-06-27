@@ -32,7 +32,7 @@ export default function BlogCard({ item }) {
             <div className="2xl:py-[20px] md:py-[15px] py-[10px] border-t border-b border-[#D9D9D9] flex justify-between">
                 <span className="3xl:text-[16px] 2xl:text-[14px] text-[11px] font-semibold text-[#262626]">{item.date}</span>
                 <Link
-                    href="/"
+                    href={item.link || "#"}
                     aria-label="news"
                     className="3xl:text-[16px] 2xl:text-[14px] text-[11px] font-semibold leading-normal uppercase text-[#2E4C99] transition-colors duration-300 hover:text-[#be1e2d]"
                 >

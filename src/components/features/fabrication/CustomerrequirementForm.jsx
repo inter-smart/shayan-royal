@@ -106,7 +106,7 @@ export default function CustomerrequirementForm() {
                             <div className="w-full lg:p-[15px] p-[8px]">
                                 <div className={`${mainText} mb-0`}>Personal Info</div>
                             </div>
-
+ 
                             <FormField name="company" control={form.control} render={({ field }) => (
                                 <FormItem className="w-full md:w-1/3 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
                                     <FormControl>
