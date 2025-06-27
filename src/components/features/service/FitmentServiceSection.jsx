@@ -44,7 +44,7 @@ export default function FitmentServiceSection() {
                             key={index}
                             size="text1"
                             as="p"
-                            className="leading-[1.5] font-normal font-base1 text-[#4B4B4B] 2xl:mb-[20px] sm:mb-[15px] mb-[10px]"
+                            className="leading-[1.5] font-medium font-base1 text-[#4B4B4B] 2xl:mb-[20px] sm:mb-[15px] mb-[10px]"
                         >
                             {item.description}
                         </Text>

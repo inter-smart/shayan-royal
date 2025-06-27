@@ -1,5 +1,5 @@
 import { BreadCrumb } from "@/components/common/BreadCrumb";
-import PrivacyPolicy from "@/components/features/Privacy/PrivacyPolicy";
+import TermsandConditions from "@/components/features/terms-conditions/TermsandConditions";
 
 export default function Page() {
     return (
@@ -7,10 +7,10 @@ export default function Page() {
             <BreadCrumb
                 items={[
                     { label: "HOME", href: "/" },
-                    { label: "Privacy Policy", isCurrent: true }
+                    { label: "Terms & Conditions", isCurrent: true }
                 ]}
             />
-            <PrivacyPolicy />
+            <TermsandConditions />
         </>
     );
 }

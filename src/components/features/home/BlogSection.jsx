@@ -37,8 +37,8 @@ export default function BlogSection() {
     const leftItems = blogs.slice(0, 2);
     const rightItems = blogs.slice(2);
     return (
-        <section className="relative z-0 bg-white py-[40px] 2xl:py-[60px] 3xl:py-[105px_130px] after:absolute after:content-[''] overflow-hidden
-        after:top-0 after:left-0 after:right-0 after:m-auto after:h-full lg:after:w-[365px] after:w-[210px] after:skew-x-[-15deg]
+        <section className="relative z-0 bg-white py-[45px] xl:py-[60px_115px] 2xl:py-[75px_135px] 3xl:py-[100px_180px] after:absolute after:content-[''] overflow-hidden
+        after:top-0 after:left-0 after:right-0 after:m-auto after:h-full after:3xl:w-[365px] after:2xl:w-[275px] after:w-[220px] after:skew-x-[-15deg]
         after:bg-[linear-gradient(180deg,_#C1C6D2_-13.07%,_rgba(209,212,220,0.38)_100%)] after:z-[-1] after:opacity-10">
             <div className="container">
                 <div className="max-w-[85%] m-auto text-center mb-[15px] 2xl:mb-[30px] 3xl:mb-[50px]">
@@ -46,9 +46,10 @@ export default function BlogSection() {
                         BLOG
                     </Heading>
                     <Text size="text1" as="p" className="text-black mb-[15px]">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
-                        type specimen book...
+                       Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy 
+                       text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                       It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                        It was popularised in  Lorem Ipsum passages, and more recently with desktop.
                     </Text>
                 </div>
 
@@ -113,7 +114,7 @@ export default function BlogSection() {
                                                 className="w-full h-full object-cover"
                                             />
                                         </div>
-                                        <div className="3xl:w-[calc(100%-200px)] 2xl:w-[calc(100%-150px)] sm:w-[calc(100%-130px)] w-[calc(100%-100px)]  pl-[25px]">
+                                        <div className="3xl:w-[calc(100%-200px)] 2xl:w-[calc(100%-150px)] sm:w-[calc(100%-130px)] w-[calc(100%-100px)] pl-[25px]">
                                             <div className="flex items-center mb-[5px]">
                                                 <div className="w-[15px] h-[15px] flex items-center justify-end ml-auto">
                                                     <Image

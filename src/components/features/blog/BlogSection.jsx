@@ -79,19 +79,18 @@ const items = [
 
 export default function BlogSection() {
     return (
-        <section className="w-full h-auto 3xl:p-[75px_0_130px] lg:p-[50px_0_90px] sm:p-[50px_0_70px] p-[40px_0_50px] block">
-            <div className="container">
-                <div className="3xl:mb-[125px] 2xl:mb-[100px] lg:mb-[85px] sm:mb-[50px] mb-[25px]">
-                    <div className="mx-[-17px] flex flex-wrap">
-                        {items.map((item, index) => (
-                            <div key={index} className="lg:w-[calc(100%/3)] sm:w-[calc(100%/2)] w-full 2xl:p-[25px_17px] lg:p-[15px_12px] sm:p-[10px_7px] p-[10px_0px]">
-                                <BlogCard item={item} />
-                            </div>
-                        ))}
-                    </div>
+        <section className="w-full h-auto 3xl:p-[75px_0_130px] lg:p-[50px_0_90px] sm:p-[50px_0_70px] p-[40px_0_50px] block">           
+         <div className="container"> 
+                <div className="flex flex-wrap">
+                    {items.map((item, index) => (
+                        <div key={index} className="lg:w-[calc(100%/3)] sm:w-[calc(100%/2)] w-full 2xl:p-[25px_17px] lg:p-[15px_12px] sm:p-[10px_7px] p-[10px_0px]">
+                            <BlogCard item={item} />
+                        </div>
+                    ))}
                 </div>
-                <PaginationNavigator totalPages={10} />
             </div>
+            <PaginationNavigator totalPages={10} />
+
         </section>
     );
 }

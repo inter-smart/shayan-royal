@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import "swiper/css"; 
+import "swiper/css";
 import "swiper/css/navigation";
 import { Heading } from "@/components/layout/Heading";
 import { Text } from "@/components/layout/Text";
@@ -36,18 +36,19 @@ const socialMedia = [
 export default function SocialSection() {
     const [activeIndex, setActiveIndex] = useState(0);
     return (
-        <section className="relative z-0 bg-[#F5F9FF] py-[40px] 2xl:py-[60px] 3xl:py-[105px_130px] after:absolute after:content-[''] overflow-hidden
-        after:top-0 after:left-0 after:right-0 after:m-auto after:h-full lg:after:w-[365px] after:w-[210px] after:skew-x-[15deg]
+        <section className="relative z-0 bg-[#F5F9FF] py-[40px] xl:py-[70px_95px] 2xl:py-[80px_115px] 3xl:py-[110px_150px] after:absolute after:content-[''] overflow-hidden
+        after:top-0 after:left-0 after:right-0 after:m-auto after:h-full after:3xl:w-[365px] after:2xl:w-[275px] after:w-[220px] after:skew-x-[15deg]
         after:bg-[linear-gradient(180deg,_#C1C6D2_-13.07%,_rgba(209,212,220,0.38)_100%)] after:z-[-1] after:opacity-10">
             <div className="container">
-                <div className="max-w-[85%] m-auto text-center mb-[15px] 2xl:mb-[30px] 3xl:mb-[50px]">
+                <div className="max-w-[85%] m-auto text-center mb-[25px] 2xl:mb-[30px] 3xl:mb-[50px]">
                     <Heading size="heading2" as="h2" className="text-black uppercase mb-[10px]">
                         SOCIAL MEDIA POSTS
                     </Heading>
                     <Text size="text1" as="p" className="text-black mb-[15px]">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-                        standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
-                        type specimen book...
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
+                         ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only 
+                         five centuries, but also the leap into electronic typesetting,
+                         remaining essentially unchanged. It was popularised in  Lorem Ipsum passages, and more recently with desktop.
                     </Text>
                 </div>
                 <Swiper
@@ -99,7 +100,7 @@ export default function SocialSection() {
                         <SwiperSlide key={keyindex} >
                             <a
                                 href="#"
-                                className="w-full h-full block overflow-hidden rounded-[10px] relative aspect-square 2xl:min-h-[350px] xl:min-h-[300px] sm:min-h-[250px] min-h-[220px]" >
+                                className="w-full h-full block overflow-hidden rounded-[10px] relative aspect-square 2xl:min-h-[350px] xl:min-h-[275px] sm:min-h-[250px] min-h-[220px]" >
                                 <video
                                     autoPlay
                                     preload="auto"
