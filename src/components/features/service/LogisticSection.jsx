@@ -1,6 +1,5 @@
 import EnquiryForm from "../../common/EnquiryForm";
 
-
 export default function LogisticSection () {
     return (
         <section className="w-full h-auto block 3xl:py-[130px] 2xl:py-[100px] lg:py-[80px] sm:py-[60px] py-[40px]">

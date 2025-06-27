@@ -41,14 +41,14 @@ export default function Header() {
       <div className="w-full absolute top-0 left-0 z-10 bg-transparent">
         <div className="container">
           <div
-            className={`w-full flex flex-wrap items-center justify-between py-[20px_0] ${
+            className={`w-full flex flex-wrap items-center justify-between py-[5px_0] ${
               isInnerPage
                 ? "lg:border-b lg:border-[rgba(217,217,217,0.2)]"
                 : ""
             }`}
           >
             {/* Logo */}
-            <div className="3xl:w-[260px] 2xl:w-[195px] lg:w-[165px] w-[145px] flex items-center justify-center">
+            <div className="3xl:w-[260px] 2xl:w-[195px] lg:w-[165px] w-[145px] flex items-center justify-center pb-[5px]">
               <Link href="/" className="block w-full h-full">
                 <Image
                   src="/images/logo.svg"
@@ -69,7 +69,7 @@ export default function Header() {
                   const menuLinkClass = `
                     3xl:text-[18px] 2xl:text-[13px] xl:text-[11px] text-[12px] font-medium uppercase
                     ${isInnerPage ? "lg:text-white text-black" : "text-black"}
-                    flex items-center justify-center 3xl:px-[25px] 2xl:px-[20px] px-[15px] 3xl:py-[43px] 2xl:py-[35px] py-[25px]
+                    flex items-center justify-center 3xl:px-[25px] 2xl:px-[20px] px-[15px] 3xl:py-[43px] 2xl:py-[35px] py-[30px]
                     ${
                       isActive
                         ? "after:absolute after:content-[''] after:bottom-0 after:left-0 after:right-0 after:m-auto after:w-[70%] after:h-[3px] after:bg-white"

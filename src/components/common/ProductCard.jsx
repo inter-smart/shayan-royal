@@ -8,7 +8,15 @@ const specIcons = [
     { label: "2024", icon: "year.svg" },
 ];
 
-export default function ProductCard({ car }) {
+const variants = {
+    inventory: "p-[0]",
+};
+
+export default function ProductCard({ car, variant }) {
+
+    const defaultPadding = "px-[10px] 3xl:py-[25px] py-[15px]";
+    const paddingClass = variant ? (variants[variant] || defaultPadding) : defaultPadding;
+
     return (
         <Link  href="#"
              aria-label="news" className="w-full h-full flex px-[10px] 3xl:py-[25px] py-[15px] cursor-pointer group">
@@ -22,7 +30,7 @@ export default function ProductCard({ car }) {
                     {/* Logo */}
                     <div className="w-full 3xl:max-w-[50px] max-w-[40px] absolute top-0 left-0">
                         <Image
-                            src={car.logo} 
+                            src={car.logo}
                             alt={`${car.brand} Logo`}
                             width={350}
                             height={200}
@@ -41,7 +49,7 @@ export default function ProductCard({ car }) {
                     </div>
                     {/* Title */}
                     <div className="py-2">
-                        <div className="3xl:text-[20px] 2xl:text-[18px] text-[14px] font-semibold font-base1 text-black capitalize">
+                        <div className="3xl:text-[20px] 2xl:text-[18px] text-[14px] font-semibold font-base1 text-black capitalize line-clamp-3">
                             {car.title}
                         </div>
                     </div>
