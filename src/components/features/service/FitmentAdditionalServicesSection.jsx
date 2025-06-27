@@ -36,18 +36,16 @@ const items = [
 
 export default function FitmentAdditionalServicesSection() {
   return (
-    <section className="w-full 2xl:pt-[90px] md:pt-[60px] pt-[40px] md:pb-[60px] pb-[20px]">
+    <section className="w-full h-auto block 3xl:py-[90px_120px] 2xl:py-[70px_90px] lg:py-[60px_80px] sm:py-[50px_60px] py-[40px_40px]">
       <div className="container">
         <Heading
           as="h2"
-          className="text-center 3xl:text-[50px] 2xl:text-[40px] xl:text-[32px] lg:text-[28px] 2xs:text-[24px] text-[18px] text-[#262626] uppercase font-semibold font-base1 mb-[30px] 3xl:max-w-[880px] 2xl:max-w-[650px] xl:max-w-[550px] max-w-[450px] mx-auto leading-[1.2]"
+          className="text-center 3xl:text-[50px] 2xl:text-[40px] xl:text-[32px] lg:text-[28px] 2xs:text-[24px] text-[18px] text-[#262626] uppercase font-semibold font-base1 2xl:mb-[45px] mb-[30px] 3xl:max-w-[880px] 2xl:max-w-[650px] xl:max-w-[550px] max-w-[450px] mx-auto leading-[1.2]"
         >
           {items[0].sectionTitle}
         </Heading>
 
         <Swiper
-          modules={[Pagination]}
-          pagination={{ clickable: true }}
           spaceBetween={0}
           breakpoints={{
             320: { slidesPerView: 1 },
@@ -56,12 +54,12 @@ export default function FitmentAdditionalServicesSection() {
             768: { slidesPerView: 4 },
             1024: { slidesPerView: 5 },
           }}
-          className="equal-height-swiper !pb-[45px]"
+          className="additional_fitment_Slider"
         >
           {items.slice(1).map((item, index) => (
-            <SwiperSlide key={index} className="flex">
+            <SwiperSlide key={index} className="flex !h-auto">
               <div
-                className={`w-full text-center 3xl:pt-[55px] 2xl:pt-[35px] xl:pt-[25px] pt-[20px] 3xl:pr-[50px] 2xl:pr-[40px] xl:pr-[30px] pr-[15px] 3xl:pb-[80px] 2xl:pb-[50px] xl:pb-[30px] pb-[20px] 3xl:pl-[50px] 2xl:pl-[40px] xl:pl-[30px] pl-[15px] flex flex-col items-center justify-start 3xl:min-h-[340px] 2xl:min-h-[265px] xl:min-h-[220px] min-h-[180px] transition-all duration-800 ease-in-out bg-[#F5F9FF] group hover:bg-gradient-to-b hover:from-[#2E4C99] hover:to-[#0E1D44] ${
+                className={`w-full h-full text-center 3xl:pt-[55px] 2xl:pt-[35px] xl:pt-[25px] pt-[20px] 3xl:pr-[50px] 2xl:pr-[40px] xl:pr-[30px] pr-[15px] 3xl:pb-[80px] 2xl:pb-[50px] xl:pb-[30px] pb-[20px] 3xl:pl-[50px] 2xl:pl-[40px] xl:pl-[30px] pl-[15px] flex flex-col items-center justify-start 3xl:min-h-[340px] 2xl:min-h-[265px] xl:min-h-[220px] min-h-[180px] transition-all duration-800 ease-in-out bg-[#F5F9FF] group hover:bg-gradient-to-b hover:from-[#2E4C99] hover:to-[#0E1D44] ${
                   index !== items.length - 2 ? 'border-r border-[#BAC6E1]' : ''
                 }`}
               >

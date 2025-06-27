@@ -98,7 +98,7 @@ export default function BannerSection() {
       y: (dir === "next" ? [1000, 1000] : [-1000, 1000]),
       opacity: [0, 1],
       transition: {
-        duration: 1,
+        duration: 0.8,
         ease: "easeOut",
       },
     }),
@@ -114,7 +114,7 @@ export default function BannerSection() {
       y: (dir === "next" ? [-1000, -1000] : [1000, -1000]),
       opacity: [1, 0],
       transition: {
-        duration: 1,
+        duration: 0.8,
         ease: "easeIn",
       },
     }),
@@ -222,7 +222,7 @@ export default function BannerSection() {
           </div>
         </div>
 
-        <div className="lg:min-h-[165px]">
+        <div className="2xl:min-h-[165px] min-h-[140px]">
           <AdvancesearchSection />
         </div>
       </div>

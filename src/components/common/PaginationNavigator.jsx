@@ -9,7 +9,7 @@ export default function PaginationNavigator() {
             <PaginationContent className="border border-[#E7E7E7] gap-0 flex">
                 <PaginationItem>
                     <button
-                        className="2xl:w-[60px] md:w-[40px] w-[30px] 2xl:h-[45px] md:h-[30px] h-[25px] md:p-[10px] p-[8px] border-r border-[#E7E7E7] flex items-center justify-center hover:bg-gray-50"
+                        className="2xl:w-[60px] md:w-[40px] w-[30px] 2xl:h-[45px] md:h-[30px] h-[25px] md:p-[10px] p-[8px] border-r border-[#E7E7E7] flex items-center justify-center hover:bg-gray-50 cursor-pointer"
                         aria-label="Previous page"
                     >
                         <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -18,7 +18,7 @@ export default function PaginationNavigator() {
                     </button>
                 </PaginationItem>
                 {items.map((item, index) => (   
-                    <PaginationItem key={index}>
+                    <PaginationItem key={index} className="cursor-pointer">
                         {item === '…' ? (
                             <PaginationEllipsis className="2xl:w-[60px] md:w-[40px] w-[30px] 2xl:h-[45px] md:h-[30px] h-[25px] border-r border-[#E7E7E7] flex items-center justify-center text-gray-500" />
                         ) : (
@@ -34,7 +34,7 @@ export default function PaginationNavigator() {
                 ))}
                 <PaginationItem>
                     <button
-                        className="2xl:w-[60px] md:w-[40px] w-[30px] 2xl:h-[45px] md:h-[30px] h-[25px] md:p-[10px] p-[8px] flex items-center justify-center hover:bg-gray-50"
+                        className="2xl:w-[60px] md:w-[40px] w-[30px] 2xl:h-[45px] md:h-[30px] h-[25px] md:p-[10px] p-[8px] flex items-center justify-center hover:bg-gray-50 cursor-pointer"
                         aria-label="Next page"
                     >
                         <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">

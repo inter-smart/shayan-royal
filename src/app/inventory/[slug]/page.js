@@ -21,7 +21,7 @@ export default function page() {
             <InventoryDetailSection />
             <ColorSection />
             <SpecificationSection />
-            <PDFViewerSection fileUrl="/images/policy.pdf" />
+            {/* <PDFViewerSection fileUrl="/images/policy.pdf" /> */}
             <FaqSection />
             <SimilarcarSection />
 

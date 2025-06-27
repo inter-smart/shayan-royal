@@ -58,20 +58,20 @@ export default function CarSearchForm() {
     };
 
     const menuLinkClass =
-        "!text-[11px] md:!text-[12px] 2xl:!text-[14px] text-black max-w-full min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px] font-normal placeholder:font-normal !w-full md:px-6 px-[8px] border border-[rgba(46, 76, 153, 0.44)] bg-white rounded-[5px] font-normal outline-none shadow-none focus:outline-none focus:ring-0 focus:border-[#CCCCCC] focus:shadow-none data-[state=open]:border-[#00095b] data-[state=open]:shadow-none";
+        "!text-[11px] md:!text-[12px] 2xl:!text-[14px] text-black max-w-full min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px] text-black font-normal placeholder:!text-black placeholder:font-normal !w-full px-[12px] border border-[rgba(46, 76, 153, 0.44)] bg-white rounded-[5px] font-normal outline-none shadow-none focus:outline-none focus:ring-0 focus:border-[#CCCCCC] focus:shadow-none data-[state=open]:border-[#00095b] data-[state=open]:shadow-none";
 
     const contentClass =
-        "3xl:text-[18px] 2xl:text-[16px] md:text-[12px] text-[10px] bg-white border border-[#CCCCCC] rounded-md shadow-md font-normal text-black uppercase";
+        "3xl:text-[18px] 2xl:text-[16px] md:text-[12px] text-[10px] bg-white border border-[#CCCCCC] rounded-md shadow-md font-normal !text-black uppercase placeholder:!text-black";
 
     const itemClass =
-        "py-[10px] px-4 hover:bg-[#00095b] focus:bg-[#1D0A44] focus:text-white cursor-pointer font-normal !uppercase";
+        "3xl:py-[10px] 3xl:px-4 px-[7px] hover:bg-[#00095b] focus:bg-[#1D0A44] focus:text-white cursor-pointer font-normal !text-black !uppercase placeholder:!text-black";
 
     return (
         <div className="w-full relative">
             <Form {...form}>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}
-                    className="flex flex-wrap justify-between bg-[#031640] overflow-hidden rounded-[10px] 2xl:p-[30px] lg:p-[20px] sm:p-[15px] p-[10px]"
+                    className="flex flex-wrap justify-between bg-[#031640] overflow-hidden rounded-[10px] 2xl:p-[30px] lg:p-[15px] sm:p-[15px] p-[10px]"
                 >
                     {/* Make */}
                     <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 xl:w-[calc(100%/5)] p-[5px] md:p-[10px]">
@@ -199,7 +199,7 @@ export default function CarSearchForm() {
                     className={`relative ${isExpanded ? "shadow-2xl pb-[50px]" : ""}`}
                 >
                     <AccordionItem value="advanced-search">
-                        <AccordionTrigger className={`text-[12px] lg:text-[14px] 3xl:text-[16px] text-black uppercase w-[280px]
+                        <AccordionTrigger className={`text-[10px] lg:text-[12px] 3xl:text-[16px] text-black uppercase w-[280px]
                          md:w-[300px] max-sm:m-auto rounded-[0px]
                          absolute left-0 max-sm:right-0 h-[35px]  flex items-center justify-center realtive z-0 font-normal cursor-pointer [&>svg]:hidden
                            ${isExpanded ? "bottom-0" : "top-[100%]"}`}>

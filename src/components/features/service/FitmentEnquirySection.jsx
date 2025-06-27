@@ -3,7 +3,7 @@ import EnquiryForm from "../../common/EnquiryForm";
 
 export default function FitmentEnquirySection() {
   return (
-    <section className="w-full h-auto lg:pt-[50px] pt-[30px] lg:pb-[140px] md:pb-[80px] pb-[40px]">
+    <section className="w-full h-auto block 3xl:pb-[130px] 2xl:pb-[100px] lg:pb-[80px] sm:pb-[60px] pb-[40px]">
       <div className="container">
         <EnquiryForm image="/images/fitment-enquiry.webp"
             Formtitle="One Click Away Send Your Enquiry" 
