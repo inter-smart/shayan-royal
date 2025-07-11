@@ -16,12 +16,13 @@ const carDetails = [
         carName: "Camry Hybrid",
         model: "2024",
         images: [
-            "/images/carDetails1.png",
-            "/images/carDetails2.png",
-            "/images/carDetails3.png",
-            "/images/carDetails4.png",
-            "/images/carDetails4.png",
-            "/images/carDetails4.png",
+            "/images/productImages/car1.jpeg",
+             "/images/productImages/car2.jpeg",
+            "/images/productImages/car3.jpeg",
+            "/images/productImages/car4.jpeg",
+             "/images/productImages/car5.jpeg",
+             "/images/productImages/car6.jpeg",
+             
         ],
     }
 ];

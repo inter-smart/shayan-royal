@@ -126,7 +126,7 @@ export default function NewarrivalSection() {
                             420: {
                                 slidesPerView: 1.3,
                             },
-                            5780: {
+                            578: {
                                 slidesPerView: 1.5,
                             },
                             768: {

@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 
 const colors = [
     { name: "Red", code: "#C6564A", image: "/images/carDetails1.png" },
-    { name: "Platinum White", code: "#EDEDED", image: "/images/carColor1.png" },
+    { name: "Platinum White", code: "#EDEDED", image: "/images/productImages/varient1.jpeg" },
     { name: "Black", code: "#000000", image: "/images/NewArr2.png" },
     { name: "Blue", code: "#3C44B1", image: "/images/carColor1.png" },
     { name: "Green", code: "#295F29", image: "/images/whyCar.png" },
