@@ -28,7 +28,7 @@ export default function ProductCard({ car, variant }) {
                     after:bg-[linear-gradient(90deg,_rgba(187,192,207,0.00)_0%,_#BBC0CF_100%)] after:w-full after:max-w-[150px] 
                     after:opacity-[0.22] after:h-full">
                     {/* Logo */}
-                    <div className="w-full 3xl:max-w-[50px] max-w-[40px] absolute top-0 left-0">
+                    <div className="w-full 3xl:max-w-[50px] max-w-[40px] absolute top-0 left-0 z-10">
                         <Image
                             src={car.logo}
                             alt={`${car.brand} Logo`}

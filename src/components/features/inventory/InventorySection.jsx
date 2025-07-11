@@ -15,7 +15,7 @@ const carData = [
     {
         brand: "Toyota",
         logo: "/images/toyota.png",
-        image: "/images/NewArr2.png",
+        image : "/images/productImages/car3.jpeg",
         title: "Corolla Cross - Corolla Cross Elegant is the hybrid (electric + petrol) variant . It gives a mileage of 25.49 kmpl ",
         specs: ["GCC", "Petrol", "Auto", "2024"],
         link:"/inventory/cars"
@@ -128,9 +128,9 @@ const carData = [
 
 export default function InventorySection() {
     return (
-        <section className="w-full h-auto block 3xl:py-[90px_130px] lg:py-[50px_90px] sm:py-[30px_70px] py-[20px_40px]">
+        <section className="w-full h-auto block 3xl:py-[60px_130px] lg:py-[30px_90px] sm:py-[20px_70px] py-[15px_40px]">
             <div className="container">
-                <div className="w-full h-auto 3xl:mb-[70px] 2xl:mb-[50px] mb-[40px]">
+                <div className="w-full h-auto 3xl:mb-[30px] 2xl:mb-[20px] mb-[15px] 3xl:p-[20px_15px] 2xl:p-[15px_12px] lg:p-[12px_10px] p-[8px_5px]">
                     <AdvancesearchSection />
                     <Link
                         href="/"
@@ -139,7 +139,7 @@ export default function InventorySection() {
                         *If The Cars Are Unavailable, Feel Free To Contact Us For Further Assistance
                     </Link>
                 </div>
-                <div className="w-full h-full 3xl:mb-[140px] 2xl:mb-[110px] lg:mb-[90px] sm:mb-[70px] mb-[40px] 3xl:mx-[-15px] 2xl:mx-[-12px] lg:mx-[-10px] mx-[-5px] flex flex-wrap">
+                <div className="w-full h-full 3xl:mb-[140px] 2xl:mb-[110px] lg:mb-[90px] sm:mb-[70px] mb-[40px] flex flex-wrap">
                     {carData.map((car, index) => (
                         <div key={index} className="xl:w-1/3 sm:w-1/2 w-full 3xl:p-[20px_15px] 2xl:p-[15px_12px] lg:p-[12px_10px] p-[8px_5px]">
                             <ProductCard car={car} variant="inventory" />

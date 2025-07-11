@@ -58,7 +58,7 @@ export default function CarSearchForm() {
     };
 
     const menuLinkClass =
-        "!text-[11px] md:!text-[12px] 2xl:!text-[14px] text-black max-w-full min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px]  font-normal placeholder:!text-black placeholder:font-normal !w-full px-[12px] border border-[rgba(46, 76, 153, 0.44)] bg-white rounded-[5px] font-normal outline-none shadow-none focus:outline-none focus:ring-0 focus:border-[#CCCCCC] focus:shadow-none data-[state=open]:border-[#00095b] data-[state=open]:shadow-none";
+        "!text-[10px] 2xl:!text-[12px] 3xl:!text-[14px] text-black max-w-full min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px] text-black uppercase font-normal placeholder:!text-black placeholder:font-normal !w-full px-[12px] border !border-[rgba(46,76,153,0.34)] bg-white rounded-[5px] font-normal outline-none shadow-none focus:outline-none focus:ring-0 focus:border-[#CCCCCC] focus:shadow-none data-[state=open]:border-[#00095b] data-[state=open]:shadow-none";
 
     const contentClass =
         "3xl:text-[18px] 2xl:text-[16px] md:text-[12px] text-[10px] bg-white border border-[#CCCCCC] rounded-md shadow-md font-normal  uppercase placeholder:!text-black";
@@ -82,7 +82,7 @@ export default function CarSearchForm() {
                                 <FormItem>
                                     <FormControl>
                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                            <SelectTrigger className={`${menuLinkClass} placeholder:!text-black placeholder:!font-regular text-black`}>
+                                            <SelectTrigger className={`${menuLinkClass} placeholder:!text-black placeholder:!font-regular !text-black uppercase`}>
                                                 <SelectValue placeholder="MAKE" className="text-black" />
                                             </SelectTrigger>
                                             <SelectContent className={contentClass}>
@@ -106,8 +106,8 @@ export default function CarSearchForm() {
                             render={({ field }) => (
                                 <FormItem>
                                     <FormControl>
-                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                            <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
+                                        <Select onValueChange={field.onChange} defaultValue={field.value} >
+                                            <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black `}>
                                                 <SelectValue placeholder="MODEL" className="!text-black placeholder:!text-black" />
                                             </SelectTrigger>
                                             <SelectContent className={contentClass}>
@@ -132,7 +132,7 @@ export default function CarSearchForm() {
                                 <FormItem>
                                     <FormControl>
                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                            <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
+                                            <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black`}>
                                                 <SelectValue placeholder="FUEL" className="text-black" />
                                             </SelectTrigger>
                                             <SelectContent className={contentClass}>
@@ -157,7 +157,7 @@ export default function CarSearchForm() {
                                 <FormItem>
                                     <FormControl>
                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                            <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
+                                            <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black`}>
                                                 <SelectValue placeholder="GEARBOX" className="text-black" />
                                             </SelectTrigger>
                                             <SelectContent className={contentClass}>
@@ -213,8 +213,8 @@ export default function CarSearchForm() {
                             {isExpanded ? "- LESS OPTIONS" : "+ ADVANCED SEARCH"}
                         </AccordionTrigger>
                         <div className={`absolute max-sm:hidden sm:bottom-[20px] right-[30px] 3xl:max-w-[250px] 2xl:max-w-[200px]
-                         lg:max-w-[150px] md:max-w-[100px]
-                         max-w-[75px] pointer-events-none  ${isExpanded ? "" : "hidden"}`}>
+                            lg:max-w-[150px] md:max-w-[100px]
+                            max-w-[75px] pointer-events-none  ${isExpanded ? "" : "hidden"}`}>
                             <Image
                                 src="/images/logo.svg"
                                 alt="buttonBg"
@@ -233,8 +233,8 @@ export default function CarSearchForm() {
                                         render={({ field }) => (
                                             <FormItem>
                                                 <FormControl>
-                                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                                        <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
+                                                    <Select onValueChange={field.onChange} defaultValue={field.value} >
+                                                        <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}>
                                                             <SelectValue placeholder="Regional Spec" className="text-black" />
                                                         </SelectTrigger>
                                                         <SelectContent className={contentClass}>
@@ -259,7 +259,7 @@ export default function CarSearchForm() {
                                             <FormItem>
                                                 <FormControl>
                                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                                        <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
+                                                        <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}>
                                                             <SelectValue placeholder="YEAR" className="text-black" />
                                                         </SelectTrigger>
                                                         <SelectContent className={contentClass}>
@@ -283,7 +283,7 @@ export default function CarSearchForm() {
                                             <FormItem>
                                                 <FormControl>
                                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                                        <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
+                                                        <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}>
                                                             <SelectValue placeholder="YEAR TO" className="text-black uppercase placeholder:!uppercase" />
                                                         </SelectTrigger>
                                                         <SelectContent className={contentClass}>
@@ -308,7 +308,7 @@ export default function CarSearchForm() {
                                             <FormItem>
                                                 <FormControl>
                                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                                        <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
+                                                        <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}>
                                                             <SelectValue placeholder="STEERING SIDE" className="text-black uppercase" />
                                                         </SelectTrigger>
                                                         <SelectContent className={contentClass}>
@@ -333,7 +333,7 @@ export default function CarSearchForm() {
                                             <FormItem>
                                                 <FormControl>
                                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                                        <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
+                                                        <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}>
                                                             <SelectValue placeholder="CAR TYPE" className="text-black" />
                                                         </SelectTrigger>
                                                         <SelectContent className={contentClass}>
@@ -357,7 +357,7 @@ export default function CarSearchForm() {
                                             <FormItem>
                                                 <FormControl>
                                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                                        <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
+                                                        <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}>
                                                             <SelectValue placeholder="CYLINDERS" className="text-black" />
                                                         </SelectTrigger>
                                                         <SelectContent className={contentClass}>
@@ -381,7 +381,7 @@ export default function CarSearchForm() {
                                             <FormItem>
                                                 <FormControl>
                                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                                        <SelectTrigger className={`${menuLinkClass} placeholder:!text-black text-black`}>
+                                                        <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}>
                                                             <SelectValue placeholder="NUMBER OF SEATS" className="text-black" />
                                                         </SelectTrigger>
                                                         <SelectContent className={contentClass}>

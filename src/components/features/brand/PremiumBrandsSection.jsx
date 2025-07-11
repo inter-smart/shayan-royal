@@ -7,7 +7,7 @@ export default function PremiumBrandsSection() {
         <section className="w-full h-auto 2xl:pt-[90px] md:pt-[40px] md:pt-[20px] sm:pt-[10px] pt-[5px] lg:pb-[50px] md:pb-[20px] sm:pb-[10px] pb-[5px]">
             <div className="container">
                 <div className="2xl:text-[50px] lg:text-[40px] md:text-[30px] text-[20px] text-center font-semibold uppercase 2xl:mb-[45px] lg:mb-[35px] md:mb-[25px] mb-[15px]">
-                    Premium Brands
+                    Suggested Brand 
                 </div>
                 <div className="w-full flex flex-wrap m-0 2xl:mx-[-20px] mx-[-10px]">
                     {brandLogos.map((src, index) => (

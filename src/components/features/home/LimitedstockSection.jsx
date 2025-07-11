@@ -123,7 +123,7 @@ export default function NewarrivalSection() {
                     <div className="flex items-center justify-center lg:absolute lg:top-0 lg:bottom-0 lg:w-full">
                         <button className="btn-prev relative lg:absolute left-0 lg:left-[-35px] lg:top-1/2 lg:-translate-y-1/2 z-10
                         bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] 
-                        shadow 3xl:w-[34px] 2xl:w-[25px] w-[20px] 3xl:h-[38px] 2xl:h-[30px] h-[25px] flex items-center justify-center rounded-[30px_0px_0px_30px] cursor-pointer group
+                        shadow 3xl:w-[34px] 2xl:w-[25px] w-[35px] 3xl:h-[38px] 2xl:h-[30px] h-[35px] flex items-center justify-center rounded-[30px_0px_0px_30px] cursor-pointer group
                          hover:bg-[#2E4C99] disabled:pointer-events-none disabled:opacity-[0.2]">
 
                             <svg viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]" >
@@ -132,7 +132,7 @@ export default function NewarrivalSection() {
                         </button>
                         <button className="btn-next relative lg:absolute right-0 lg:right-[-35px] lg:top-1/2 lg:-translate-y-1/2 z-10 
                         bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]
-                        shadow 3xl:w-[34px] 2xl:w-[25px] w-[20px] 3xl:h-[38px] 2xl:h-[30px] h-[25px] flex items-center justify-center rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99] 
+                        shadow 3xl:w-[34px] 2xl:w-[25px] w-[35px] 3xl:h-[38px] 2xl:h-[30px] h-[35px] flex items-center justify-center rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99] 
                         disabled:pointer-events-none disabled:opacity-[0.2] ">
 
                             <svg viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]" >

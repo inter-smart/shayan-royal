@@ -16,13 +16,13 @@ const carDetails = [
         carName: "Camry Hybrid",
         model: "2024",
         images: [
-            "/images/productImages/car1.jpeg",
-             "/images/productImages/car2.jpeg",
             "/images/productImages/car3.jpeg",
+            "/images/productImages/car2.jpeg",
+            "/images/productImages/car1.jpeg",
             "/images/productImages/car4.jpeg",
-             "/images/productImages/car5.jpeg",
-             "/images/productImages/car6.jpeg",
-             
+            "/images/productImages/car5.jpeg",
+            "/images/productImages/car6.jpeg",
+
         ],
     }
 ];
@@ -72,13 +72,13 @@ export default function InventoryDetailSection() {
     }, []);
 
     return (
-        <section className="w-full h-auto block 3xl:py-[90px_130px] xl:py-[60px_90px] sm:py-[50px_70px] py-[40px_50px]">
+        <section className="w-full h-auto block 3xl:py-[70px_130px] xl:py-[30px_90px] sm:py-[20px_70px] py-[15px_50px]">
             <div className="container">
                 <Heading size="heading2" as="h2" className="text-black uppercase font-normal 3xl:mb-[40px] 2xl:mb-[25px] md:mb-[15px] mb-[10px]">
                     {carDetails[0].carName}
                 </Heading>
                 <div className="flex flex-wrap w-full">
-                    <div className="3xl:w-[calc(100%-400px)] 2xl:w-[calc(100%-300px)] md:w-[calc(100%-245px)] w-full 3xl:pr-[50px] 2xl:pr-[40px] md:pr-[30px] max-md:mb-[25px]">
+                    <div className="3xl:w-[calc(100%-400px)] 2xl:w-[calc(100%-300px)] md:w-[calc(100%-245px)] w-full 3xl:pr-[50px] 2xl:pr-[40px] md:pr-[30px] max-md:mb-[15px]">
                         <div className="flex flex-col lg:flex-row w-full">
                             {/* Main Slider */}
                             <div className="w-full 3xl:w-[calc(100%-110px)] 2xl:w-[calc(100%-80px)] lg:w-[calc(100%-70px)] 3xl:mr-[50px] mr-[30px] overflow-hidden relative">
@@ -94,7 +94,7 @@ export default function InventoryDetailSection() {
                                     <span className="3xl:text-[20px] text-[15px] text-white w-[calc(100%-30px)] 3xl:px-[15px] 2xl:px-[10px] px-[5px]">{carDetails[0].model}</span>
                                 </div>
                                 <Swiper
-                                    modules={[Thumbs, EffectFade]}
+                                    modules={[Thumbs, EffectFade, Navigation]}
                                     spaceBetween={10}
                                     effect="fade"
                                     fadeEffect={{ crossFade: true }}
@@ -105,11 +105,17 @@ export default function InventoryDetailSection() {
                                     {carImages.map((img, index) => (
                                         <SwiperSlide key={index}>
                                             <div className="relative w-full 3xl:h-[590px] 2xl:h-[465px] xl:h-[425px] sm:h-[370px] 3xs:h-[300px] h-[200px] bg-white">
-                                                <Image
+                                                {/* <Image
                                                     src={img}
                                                     alt={`car-${index}`}
                                                     fill
                                                     className="2xl:max-w-[900px] lg:max-w-[650px] max-w-[300px] w-full h-full object-contain m-auto"
+                                                /> */}
+                                                <Image
+                                                    src={img}
+                                                    alt={`car-${index}`}
+                                                    fill
+                                                    className="max-w-full w-full h-full object-cover m-auto"
                                                 />
                                             </div>
                                         </SwiperSlide>
@@ -138,7 +144,7 @@ export default function InventoryDetailSection() {
                                         }}
                                         breakpoints={{
                                             0: { slidesPerView: 3.5 },
-                                            578: { slidesPerView: 5 },
+                                            578: { slidesPerView: 4 },
                                         }}
                                         className="!overflow-visible relative"
                                     >
@@ -149,7 +155,8 @@ export default function InventoryDetailSection() {
                                                         src={img}
                                                         alt={`thumb-${index}`}
                                                         fill
-                                                        className="3xl:max-w-[180px] 2xl:max-w-[135px] sm:max-w-[110px] max-w-[80px] m-auto object-contain"
+                                                        // className="3xl:max-w-[180px] 2xl:max-w-[135px] sm:max-w-[110px] max-w-[80px] m-auto object-contain"
+                                                        className="max-w-full m-auto object-cover"
                                                     />
                                                 </div>
                                             </SwiperSlide>
@@ -162,14 +169,14 @@ export default function InventoryDetailSection() {
 
                             {/* Vertical Icon Slider */}
                             <div className="w-full 3xl:w-[110px] 2xl:w-[80px] lg:w-[70px] flex justify-center max-lg:mt-[20px]">
-                                <div className="3xl:h-[590px] 2xl:h-[465px] xl:h-[425px] lg:h-[370px] h-[120px] w-full 3xl:py-[40px] 2xl:py-[30px] py-[25px] relative">
-                                    <button ref={verticalPrevRef} className="absolute top-0 left-1/2 -translate-x-1/2 z-10 w-4 h-4 flex text-white text-sm rounded-full cursor-pointer group disabled:pointer-events-none disabled:opacity-[0.2]">
-                                        <svg width="19" height="10" viewBox="0 0 19 10" fill="none" className="group-hover:fill-[#2E4C99] fill-[rgba(0,0,0,0.5)]">
+                                <div className="3xl:h-[590px] 2xl:h-[465px] xl:h-[425px] lg:h-[370px] h-[45px] w-full 3xl:py-[40px] 2xl:py-[30px] lg:py-[25px] relative">
+                                    <button ref={verticalPrevRef} className="absolute top-0 left-[-15px] max-lg:bottom-0 max-xl:m-auto lg:left-1/2 -translate-x-1/2 z-10 w-4 h-4 flex text-white text-sm rounded-full cursor-pointer group disabled:pointer-events-none disabled:opacity-[0.2]">
+                                        <svg width="19" height="10" viewBox="0 0 19 10" fill="none" className="group-hover:fill-[#2E4C99] fill-[rgba(0,0,0,0.5)] max-lg:rotate-[-90deg]">
                                             <path d="M9.50004 0C9.27916 0 9.05807 0.0814571 8.88945 0.244164L0.253099 8.57746C-0.0843663 8.90308 -0.0843663 9.43037 0.253099 9.75578C0.590564 10.0812 1.13703 10.0814 1.47428 9.75578L9.50004 2.01166L17.5258 9.75578C17.8633 10.0814 18.4097 10.0814 18.747 9.75578C19.0842 9.43016 19.0844 8.90287 18.747 8.57746L10.1106 0.244164C9.94201 0.0814571 9.72091 0 9.50004 0Z" />
                                         </svg>
                                     </button>
-                                    <button ref={verticalNextRef} className="absolute bottom-0 left-1/2 -translate-x-1/2 z-10 w-4 h-4 flex text-white text-sm rounded-full cursor-pointer group disabled:pointer-events-none disabled:opacity-[0.2]">
-                                        <svg width="19" height="10" viewBox="0 0 19 10" fill="none" className="group-hover:fill-[#2E4C99] fill-[rgba(0,0,0,0.5)]">
+                                    <button ref={verticalNextRef} className="absolute max-lg:top-0 max-lg:m-auto bottom-0 lg:left-1/2 max-lg:right-[-25px] lg:-translate-x-1/2 z-10 w-4 h-4 flex text-white text-sm rounded-full cursor-pointer group disabled:pointer-events-none disabled:opacity-[0.2]">
+                                        <svg width="19" height="10" viewBox="0 0 19 10" fill="none" className="group-hover:fill-[#2E4C99] fill-[rgba(0,0,0,0.5)] max-lg:rotate-[-90deg]">
                                             <path d="M9.50004 10C9.27916 10 9.05807 9.91854 8.88945 9.75584L0.253099 1.42254C-0.0843663 1.09692 -0.0843663 0.569632 0.253099 0.244218C0.590564 -0.0811975 1.13703 -0.0814058 1.47428 0.244218L9.50004 7.98834L17.5258 0.244218C17.8633 -0.0814058 18.4097 -0.0814058 18.747 0.244218C19.0842 0.569841 19.0844 1.09713 18.747 1.42254L10.1106 9.75584C9.94201 9.91854 9.72091 10 9.50004 10Z" />
                                         </svg>
                                     </button>
@@ -193,11 +200,13 @@ export default function InventoryDetailSection() {
                                         breakpoints={{
                                             0: {
                                                 direction: 'horizontal',
-                                                slidesPerView: 4,
+                                                slidesPerView: 6,
+                                                spaceBetween: 5
                                             },
                                             578: {
                                                 direction: 'horizontal',
-                                                slidesPerView: 5,
+                                                slidesPerView: 6,
+                                                spaceBetween: 10
                                             },
                                             1024: {
                                                 direction: 'vertical',
@@ -209,12 +218,12 @@ export default function InventoryDetailSection() {
                                     >
                                         {specIcons.map((feature, idx) => (
                                             <SwiperSlide key={idx}>
-                                                <div className="text-center w-full h-full rounded-[10px] overflow-hidden bg-[#F5F9FF] flex items-center justify-center flex-col">
+                                                <div className="text-center w-full h-full rounded-[5px] lg:rounded-[10px] overflow-hidden bg-[#F5F9FF] flex items-center justify-center flex-col">
                                                     <div className="w-full">
-                                                        <div className="3xl:w-[38px] 2xl:w-[25px] w-[20px] 3xl:h-[38px] 2xl::h-[25px] h-[20px] m-auto mb-[2px] flex">
+                                                        <div className="3xl:w-[38px] 2xl:w-[25px] lg:w-[20px] w-[15px] 3xl:h-[38px] 2xl::h-[25px] lg-h-[20px] h-[15px] m-auto mb-[2px] flex">
                                                             <Image src={feature.icon} alt={feature.label} width={25} height={25} className="w-full h-full object-contain" />
                                                         </div>
-                                                        <div className="3xl:text-[20px] 2xl:text-[17px] text-[14px] font-normal font-base1 text-black">
+                                                        <div className="3xl:text-[20px] 2xl:text-[17px] lg:text-[14px] text-[10px] font-normal font-base1 text-black">
                                                             {feature.label}
                                                         </div>
                                                     </div>

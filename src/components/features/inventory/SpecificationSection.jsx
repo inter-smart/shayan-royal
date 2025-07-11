@@ -92,7 +92,7 @@ export default function ResponsiveTabsWithSwiper() {
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
   return (
-    <section className="w-full px-4 py-10 bg-white">
+    <section className="w-full px-4 pt-6 pb-3 bg-white">
       <div className="container mx-auto">
         {/* Tab Header */}
         <div className="mb-6">

@@ -55,7 +55,9 @@ export default function WhySection() {
         {/* Boxes + Car + Logo */}
         <div className="flex flex-wrap relative">
           {whyData.map((item, index) => (
-            <div key={index} className="w-full 2xs:w-1/2 md:p-[32px] sm:p-[25px] p-[8px]">
+            <div key={index} className={`w-full 2xs:w-1/2 md:p-[32px] sm:p-[25px] p-[8px] ${
+                    index == 1 ? "max-2xs:mb-[150px]" : "mb-0"
+                  } `}>
               <motion.div
                 initial={{ opacity: 0, x: index % 2 === 0 ? 150 : -150 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -64,7 +66,7 @@ export default function WhySection() {
                 className={`w-full h-full bg-white 3xl:p-[30px] 2xl:p-[20px] p-[15px] rounded-[10px] 
                   3xl:max-w-[400px] xl:max-w-[345px] lg:max-w-[285px] md:max-w-[275px] 2xs:max-w-[250px] ${
                     index % 2 !== 0 ? "ml-auto" : ""
-                  }`}
+                  }  `}
               >
                 <div className="3xl:w-[65px] 2xl:w-[50px] w-[40px] 3xl:h-[55px] 2xl:h-[40px] h-[35px] flex items-center justify-center 3xl:mb-[20px] 2xl:mb-[15px] mb-[10px]">
                   <Image src={item.icon} width={65} height={55} alt={item.title} />
@@ -88,7 +90,8 @@ export default function WhySection() {
           ))}
 
           {/* Background Logo */}
-          <div className="absolute sm:top-0 top-[15%] sm:bottom-0 right-0 left-0 m-auto 3xl:max-w-[550px] 2xl:max-w-[400px] xl:max-w-[375px] lg:max-w-[275px] max-w-[200px] flex items-center justify-center">
+          <div className="absolute sm:top-0 top-[15%] sm:bottom-0 right-0 left-0 m-auto 3xl:max-w-[550px] 2xl:max-w-[400px] xl:max-w-[375px] lg:max-w-[275px] 
+          max-w-[200px] flex items-center justify-center pointer-events-none">
             <Image
               src="/images/whyLog.svg"
               width={550}
@@ -104,7 +107,8 @@ export default function WhySection() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
             viewport={{ once: false, amount: 0.2 }}
-            className="sm:absolute sm:top-0 bottom-0 right-0 left-0 m-auto 3xl:max-w-[850px] 2xl:max-w-[700px] lg:max-w-[450px] max-w-[250px] flex items-center justify-center"
+            className="max-2xs:absolute sm:absolute top-0 bottom-0 right-0 left-0 m-auto 3xl:max-w-[850px] 2xl:max-w-[700px] lg:max-w-[450px]
+             max-w-[250px] flex items-center justify-center pointer-events-none"
           >
             <Image
               src="/images/whyCar.png"

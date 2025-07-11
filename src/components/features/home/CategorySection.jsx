@@ -58,12 +58,12 @@ export default function AboutSection() {
                         }}
                         breakpoints={{
                             320: {
-                                slidesPerView: 1,
-                                spaceBetween: 15,
+                                slidesPerView: 3,
+                                spaceBetween: 8,
                             },
                             420: {
                                 slidesPerView: 3,
-                                spaceBetween: 15,
+                                spaceBetween: 10,
                             },
                             640: {
                                 slidesPerView: 3,
@@ -91,7 +91,7 @@ export default function AboutSection() {
                                     onClick={() => setSelected(car.name)}
                                 >
                                     <div className="w-full max-w-[180px] xs:max-w-[110px] md:max-w-[120px] lg:max-w-[145px] 2xl:max-w-[185px] 3xl:max-w-[250px] 
-                                    h-[100px] flex items-center justify-center">
+                                   h-[45px] xs:h-[100px] flex items-center justify-center">
                                         <Image
                                             src={car.img}
                                             alt={car.name}
@@ -100,7 +100,7 @@ export default function AboutSection() {
                                             className="w-full h-full object-contain"
                                         />
                                     </div>
-                                    <p className={`3xl:text-[25px] 2xl:text-[18px] text-[16px] font-base1 mt-1 md:mt-1 ${index === activeIndex ? "text-[#2E4C99] font-semibold" : "text-black font-normal"}`}
+                                    <p className={`3xl:text-[25px] 2xl:text-[18px] md:text-[16px] sm:text-[14px] text-[12px] font-base1 mt-1 md:mt-1 ${index === activeIndex ? "text-[#2E4C99] font-semibold" : "text-black font-normal"}`}
                                     > {car.name}
                                     </p>
                                 </div>
@@ -117,14 +117,14 @@ export default function AboutSection() {
                     {/* Navigation Arrows */}
                     <div className="flex items-center justify-center max-md:top-[20px] md:absolute md:top-0 md:bottom-0 md:w-full  ">
                         <button className="nav-prev relative md:absolute left-0 lg:left-[-35px] sm:top-1/2 sm:-translate-y-1/2 z-10 bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] 
-                        shadow 3xl:w-[34px] 2xl:w-[25px] w-[20px] 3xl:h-[38px] 2xl:h-[30px] h-[25px]  flex items-center justify-center rounded-[30px_0px_0px_30px] cursor-pointer group hover:bg-[#2E4C99]">
+                        shadow 3xl:w-[34px] 2xl:w-[25px] w-[35px] 3xl:h-[38px] h-[35px] flex items-center justify-center rounded-[30px_0px_0px_30px] cursor-pointer group hover:bg-[#2E4C99]">
 
                             <svg viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]" >
                                 <path d="M6.14364 0.699707L0.769531 6.12544L6.14364 12.1834" stroke="black" />
                             </svg>
                         </button>
                         <button className=" nav-next relative md:absolute right-0 lg:right-[-35px] sm:top-1/2 sm:-translate-y-1/2 z-10 bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]
-                        shadow 3xl:w-[34px] 2xl:w-[25px] w-[20px] 3xl:h-[38px] 2xl:h-[30px] h-[25px]  flex items-center justify-center rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99]">
+                        shadow 3xl:w-[34px] 2xl:w-[25px] w-[35px] 3xl:h-[38px]  h-[35px]   flex items-center justify-center rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99]">
 
                             <svg viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]" >
                                 <path d="M0.817302 0.699707L6.19141 6.12544L0.817302 12.1834" stroke="black" />
