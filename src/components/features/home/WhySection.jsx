@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Heading } from "@/components/layout/Heading";
 import { Text } from "@/components/layout/Text";
 import { motion } from "framer-motion";
+import parse  from "html-react-parser";
 
 const whyData = [
   {
@@ -28,77 +29,60 @@ const whyData = [
   },
 ];
 
-export default function WhySection() {
+export default function WhySection({ title, description, image, whyShayanItems }) {
   return (
-    <section className="relative z-0 bg-[#F5F9FF] py-[40px] xl:py-[55px_80px] 2xl:py-[65px_90px] 3xl:py-[90px_110px] after:absolute after:content-[''] overflow-hidden
+    <section
+      className="relative z-0 bg-[#F5F9FF] py-[40px] xl:py-[55px_80px] 2xl:py-[65px_90px] 3xl:py-[90px_110px] after:absolute after:content-[''] overflow-hidden
         after:top-0 after:left-[-10%] after:right-0 after:m-auto after:h-full after:3xl:w-[365px] after:2xl:w-[275px] after:w-[220px] after:skew-x-[16deg]
-        after:bg-[linear-gradient(180deg,_#C1C6D2_-13.07%,_rgba(209,212,220,0.38)_100%)] after:z-[-1] after:opacity-20">
+        after:bg-[linear-gradient(180deg,_#C1C6D2_-13.07%,_rgba(209,212,220,0.38)_100%)] after:z-[-1] after:opacity-20"
+    >
       <div className="container">
         {/* Section Title */}
         <div className="text-center max-w-[85%] m-auto mb-[15px] 2xl:mb-[30px] 3xl:mb-[50px]">
-          <Heading
-            size="heading2"
-            as="h2"
-            className="text-black uppercase mb-[10px]"
-          >
-            Why Shayan Royal
+          <Heading size="heading2" as="h2" className="text-black uppercase mb-[10px]">
+            {title ? title : "Why Shayan?"}
           </Heading>
           <Text size="text1" as="p" className="text-black mb-[15px]">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book also the leap into
-            electronic typesetting, remaining essentially unchanged.
+            {description ? parse(description) : "Lorem ipsum dolor sit amet consectetur adipiscing elit ut aliquam purus sit amet luctus venenatis"}
           </Text>
         </div>
 
         {/* Boxes + Car + Logo */}
         <div className="flex flex-wrap relative">
-          {whyData.map((item, index) => (
-            <div key={index} className={`w-full 2xs:w-1/2 md:p-[32px] sm:p-[25px] p-[8px] ${
-                    index == 1 ? "max-2xs:mb-[150px]" : "mb-0"
-                  } `}>
+          {whyShayanItems?.map((item, index) => (
+            <div key={index} className={`w-full 2xs:w-1/2 md:p-[32px] sm:p-[25px] p-[8px] ${index == 1 ? "max-2xs:mb-[150px]" : "mb-0"} `}>
               <motion.div
                 initial={{ opacity: 0, x: index % 2 === 0 ? 150 : -150 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1.2, ease: "easeOut" }}
                 viewport={{ once: false, amount: 0.2 }}
                 className={`w-full h-full bg-white 3xl:p-[30px] 2xl:p-[20px] p-[15px] rounded-[10px] 
-                  3xl:max-w-[400px] xl:max-w-[345px] lg:max-w-[285px] md:max-w-[275px] 2xs:max-w-[250px] ${
-                    index % 2 !== 0 ? "ml-auto" : ""
-                  }  `}
+                  3xl:max-w-[400px] xl:max-w-[345px] lg:max-w-[285px] md:max-w-[275px] 2xs:max-w-[250px] ${index % 2 !== 0 ? "ml-auto" : ""}  `}
               >
                 <div className="3xl:w-[65px] 2xl:w-[50px] w-[40px] 3xl:h-[55px] 2xl:h-[40px] h-[35px] flex items-center justify-center 3xl:mb-[20px] 2xl:mb-[15px] mb-[10px]">
-                  <Image src={item.icon} width={65} height={55} alt={item.title} />
+                  <Image
+                    src={item?.icon ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${item.icon}` : "/images/why_icon1.svg"}
+                    width={65}
+                    height={55}
+                    alt={item.title}
+                  />
                 </div>
-                <Heading
-                  size="heading5"
-                  as="h3"
-                  className="text-black font-semibold mb-[10px] line-clamp-2"
-                >
-                  {item.title}
+                <Heading size="heading5" as="h3" className="text-black font-semibold mb-[10px] line-clamp-2">
+                  {item?.title}
                 </Heading>
-                <Text
-                  size="text1"
-                  as="p"
-                  className="text-black font-semibold mb-[15px] line-clamp-3"
-                >
-                  {item.desc}
+                <Text size="text1" as="p" className="text-black font-semibold mb-[15px] line-clamp-3">
+                  {item?.description}
                 </Text>
               </motion.div>
             </div>
           ))}
 
           {/* Background Logo */}
-          <div className="absolute sm:top-0 top-[15%] sm:bottom-0 right-0 left-0 m-auto 3xl:max-w-[550px] 2xl:max-w-[400px] xl:max-w-[375px] lg:max-w-[275px] 
-          max-w-[200px] flex items-center justify-center pointer-events-none">
-            <Image
-              src="/images/whyLog.svg"
-              width={550}
-              height={670}
-              className="w-full object-cover"
-              alt=""
-            />
+          <div
+            className="absolute sm:top-0 top-[15%] sm:bottom-0 right-0 left-0 m-auto 3xl:max-w-[550px] 2xl:max-w-[400px] xl:max-w-[375px] lg:max-w-[275px] 
+          max-w-[200px] flex items-center justify-center pointer-events-none"
+          >
+            <Image src="/images/whyLog.svg" width={550} height={670} className="w-full object-cover" alt="" />
           </div>
 
           {/* Car Image with Animation */}
@@ -111,7 +95,7 @@ export default function WhySection() {
              max-w-[250px] flex items-center justify-center pointer-events-none"
           >
             <Image
-              src="/images/whyCar.png"
+              src={image ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${image}` : "/images/whyCar.png"}
               width={550}
               height={670}
               className="w-full object-cover"

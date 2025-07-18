@@ -5,6 +5,7 @@ import { Heading } from "@/components/layout/Heading";
 import { Text } from "@/components/layout/Text";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import parse from "html-react-parser";
 
 const servicesData = [
   {
@@ -16,8 +17,7 @@ const servicesData = [
   {
     title: "Air freight Service",
     image: "/images/log2.jpg",
-    description:
-      "Specialized Car Exporter From Dubai, UAE to Africa , Reach the World Faster,Auto Import and Export Africa and South America.",
+    description: "Specialized Car Exporter From Dubai, UAE to Africa , Reach the World Faster,Auto Import and Export Africa and South America.",
   },
   {
     title: "Marine Insurance",
@@ -33,7 +33,9 @@ const servicesData = [
   },
 ];
 
-export default function LogisticsSection() {
+export default function LogisticsSection({ title, description, image, logistics }) {
+
+console.log("Logistics Data:", description);  
   return (
     <section
       className="relative z-0 bg-white py-[40px] xl:py-[100px] 2xl:py-[130px] 3xl:py-[165px] after:absolute after:content-[''] overflow-hidden
@@ -45,17 +47,11 @@ export default function LogisticsSection() {
           {/* Left Column */}
           <div className="w-full lg:w-1/2">
             <div className="3xl:max-w-[600px] 2xl:max-w-[450px] xl:max-w-[370px] mb-[15px] 2xl:mb-[30px] 3xl:mb-[50px]">
-              <Heading
-                size="heading2"
-                as="h2"
-                className="text-black uppercase mb-[10px]"
-              >
-                Logistics & Transportation
+              <Heading size="heading2" as="h2" className="text-black uppercase mb-[10px]">
+                {title ? title : "Logistics"}
               </Heading>
               <Text size="text1" as="p" className="text-black mb-[15px]">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Polycratem
-                Samium felicem apparet. Maximas vero virtutes iacere omnis necesse est
-                voluptate dominante. Lorem Ipsum has been the industry's standard.
+                {description ? parse(description) : "Lorem ipsum dolor sit amet consectetur adipiscing elit ut aliquam purus sit amet luctus venenatis"}
               </Text>
             </div>
 
@@ -67,8 +63,8 @@ export default function LogisticsSection() {
               className="3xl:max-w-[800px] 2xl:max-w-[550px] xl:max-w-[500px] max-w-[350px] w-full"
             >
               <Image
-                src="/images/truck.png"
-                alt="Truck"
+                src={image ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${image}` : "/images/truck.jpg"}
+                alt={title ? title : "Logistics"}
                 width={1070}
                 height={500}
                 className="w-full h-auto object-contain"
@@ -79,7 +75,7 @@ export default function LogisticsSection() {
           {/* Right Column */}
           <div className="w-full lg:w-1/2">
             <div className="flex flex-wrap w-full h-full">
-              {servicesData.map((item, index) => {
+              {logistics?.map((item, index) => {
                 const [showDescription, setShowDescription] = useState(false);
                 const toggleDescription = () => setShowDescription((prev) => !prev);
 
@@ -91,14 +87,16 @@ export default function LogisticsSection() {
                         after:bg-[linear-gradient(180deg,_rgba(0,0,0,0)_0%,_#000_100%)] after:w-full after:h-full cursor-pointer"
                     >
                       <Image
-                        src={item.image}
+                        src={item.image ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${item.image}` : "/images/truck.jpg"}
                         alt={item.title}
                         fill
                         className="object-cover w-full h-full !relative duration-500 ease-in-out group-hover:scale-[1.2]"
                       />
                       <div className="w-full h-full absolute bottom-0 left-0 z-1 flex flex-col justify-end 3xl:p-[25px] p-[15px]">
-                        <div className="3xl:text-[30px] 2xl:text-[25px] xl:text-[20px] text-[18px] text-white font-semibold z-10 
-                          leading-tight transition-all duration-500 line-clamp-2 max-w-[70%]">
+                        <div
+                          className="3xl:text-[30px] 2xl:text-[25px] xl:text-[20px] text-[18px] text-white font-semibold z-10 
+                          leading-tight transition-all duration-500 line-clamp-2 max-w-[70%]"
+                        >
                           {item.title}
                         </div>
                         <div

@@ -15,7 +15,7 @@ const slides = [
   { img: "/images/banner3.png", title: "Nissan GTR" },
 ];
 
-export default function BannerSection() {
+export default function BannerSection({ homeBanners }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState("next");
   const swiperRef = useRef(null);
@@ -58,16 +58,16 @@ export default function BannerSection() {
     enter: (dir) => ({
       x:
         dir === "next"
-        ? isMobile
-          ? [100, -100, 0]
+          ? isMobile
+            ? [100, -100, 0]
+            : isMediumScreen
+            ? [-200, 200, 0]
+            : [-450, 450, 0]
+          : isMobile
+          ? [80, -100, 0]
           : isMediumScreen
-          ? [-200, 200, 0]
-          : [-450, 450, 0]
-        : isMobile
-        ? [80, -100, 0]
-        : isMediumScreen
-        ? [200, -200, 0]
-        : [450, -450, 0],
+          ? [200, -200, 0]
+          : [450, -450, 0],
       opacity: 0.5,
     }),
     center: {
@@ -77,17 +77,17 @@ export default function BannerSection() {
     },
     exit: (dir) => ({
       x:
-      dir === "next"
-        ? isMobile
-          ? [100, -100, 0]
+        dir === "next"
+          ? isMobile
+            ? [100, -100, 0]
+            : isMediumScreen
+            ? [200, -200, 0]
+            : [450, -450, 0]
+          : isMobile
+          ? [-80, 100, 0]
           : isMediumScreen
-          ? [200, -200, 0]
-          : [450, -450, 0]
-        : isMobile
-        ? [-80, 100, 0]
-        : isMediumScreen
-        ? [-200, 200, 0]
-        : [-450, 450, 0],
+          ? [-200, 200, 0]
+          : [-450, 450, 0],
       opacity: [0],
       transition: { duration: 3.5 },
     }),
@@ -95,7 +95,7 @@ export default function BannerSection() {
 
   const textVariants = {
     enter: (dir) => ({
-      y: (dir === "next" ? [1000, 1000] : [-1000, 1000]),
+      y: dir === "next" ? [1000, 1000] : [-1000, 1000],
       opacity: [0, 1],
       transition: {
         duration: 0.8,
@@ -111,7 +111,7 @@ export default function BannerSection() {
       },
     },
     exit: (dir) => ({
-      y: (dir === "next" ? [-1000, -1000] : [1000, -1000]),
+      y: dir === "next" ? [-1000, -1000] : [1000, -1000],
       opacity: [1, 0],
       transition: {
         duration: 0.8,
@@ -144,7 +144,7 @@ export default function BannerSection() {
             onSlideChange={handleSlideChange}
             className="w-full h-full mb-5 !overflow-visible"
           >
-            {slides.map((slide, index) => (
+            {homeBanners?.map((slide, index) => (
               <SwiperSlide key={index}>
                 <div className="w-full h-full relative flex justify-center items-center sm:overflow-hidden">
                   <AnimatePresence custom={direction}>
@@ -161,7 +161,7 @@ export default function BannerSection() {
                           ${currentIndex !== index ? "opacity-0 pointer-events-none" : ""} bg-transparent`}
                       >
                         <Image
-                          src={slide.img}
+                          src={slide.image ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${slide?.image}` : "/images/banner1.png"}
                           alt={slide.title}
                           width={1000}
                           height={500}
@@ -205,7 +205,12 @@ export default function BannerSection() {
               onClick={handlePrev}
             >
               <svg className="xl:w-[18px] xl:h-[18px] w-[10px] h-[10px] flex" viewBox="0 0 10 18" fill="none">
-                <path d="M9 17L1.41948 9.94278C0.860173 9.42208 0.860172 8.57786 1.41948 8.05716L9 0.999969" stroke="#0D0D0D" strokeWidth="1.5" strokeLinecap="round" />
+                <path
+                  d="M9 17L1.41948 9.94278C0.860173 9.42208 0.860172 8.57786 1.41948 8.05716L9 0.999969"
+                  stroke="#0D0D0D"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
               </svg>
             </button>
             <button
@@ -216,7 +221,12 @@ export default function BannerSection() {
               onClick={handleNext}
             >
               <svg className="xl:w-[18px] xl:h-[18px] w-[10px] h-[10px] flex" viewBox="0 0 10 18" fill="none">
-                <path d="M1 17L8.58052 9.94278C9.13983 9.42208 9.13983 8.57786 8.58052 8.05716L1 0.999969" stroke="#0D0D0D" strokeWidth="1.5" strokeLinecap="round" />
+                <path
+                  d="M1 17L8.58052 9.94278C9.13983 9.42208 9.13983 8.57786 8.58052 8.05716L1 0.999969"
+                  stroke="#0D0D0D"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
               </svg>
             </button>
           </div>
