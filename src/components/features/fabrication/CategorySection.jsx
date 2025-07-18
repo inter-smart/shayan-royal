@@ -1,81 +1,218 @@
-import { Heading } from "@/components/layout/Heading";
-import Image from "next/image";
+"use client";
 
-const categoryData = [
-    {
-        title: "Engine Parts",
-        icon: "/images/cat_icon1.png",
-    },
-    {
-        title: "Transmission Parts",
-        icon: "/images/cat_icon2.png",
-    },
-    {
-        title: "Suspension & Steering  ",
-        icon: "/images/cat_icon3.png",
-    },
-    {
-        title: "Body Parts",
-        icon: "/images/cat_icon4.png",
-    },
-    {
-        title: "Breaking System",
-        icon: "/images/cat_icon5.png",
-    },
-    {
-        title: "Electrical & Electronics",
-        icon: "/images/cat_icon6.png",
-    },
-    {
-        title: "Filters & Lubricants",
-        icon: "/images/cat_icon7.png",
-    },
-    {
-        title: "Cooling System",
-        icon: "/images/cat_icon8.png",
-    },
+import { useState } from "react";
+import { Heading } from "@/components/layout/Heading";
+import { Text } from "@/components/layout/Text";
+import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+
+const categories = [
+  {
+    title: "Security & Protection Mods",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Esse enim quam vellet iniquus iustus poterat inpune.",
+    features: [
+      {
+        title: "Armoring",
+        desc: "Reinforcing the vehicle’s body with ballistic steel or composite materials.",
+      },
+      {
+        title: "Bulletproofing",
+        desc: "Installing bullet-resistant glass and protective panels.",
+      },
+      {
+        title: "Run-Flat Tires",
+        desc: "Tires that function even after being punctured.",
+      },
+    ],
+    images: [
+      "/images/categories/cat1.jpg",
+      "/images/categories/cat2.jpg",
+      "/images/categories/cat3.jpg",
+    ],
+  },
+  {
+    title: "Off-Road & Adventure Mods",
+    description:
+      "Off-road upgrades to tackle any terrain. Better suspension, airflow, and tires.",
+    features: [
+      {
+        title: "Off-Road Suspension Kits",
+        desc: "Lift kits, upgraded shocks, and springs for better ground clearance and terrain handling.",
+      },
+      {
+        title: "Snorkels",
+        desc: "Allows the engine to breathe in water or dusty environments.",
+      },
+      {
+        title: "All-Terrain Tires",
+        desc: "Designed for dirt, rocks, mud, and other off-road surfaces.",
+      },
+    ],
+    images: [
+      "/images/categories/cat4.jpg",
+      "/images/categories/cat5.jpg",
+      "/images/categories/cat6.jpg",
+    ],
+  },
+  {
+    title: "Utility & Commercial Mods",
+    description:
+      "Convert vehicles for commercial use with specialized storage and utility features.",
+    features: [
+      { title: "Freezer Trucks", desc: "Refrigeration units for transporting perishable goods." },
+      { title: "Food Truck Conversions", desc: "Outfitting vans for food service." },
+      { title: "Workshop Vans", desc: "Mobile workspaces with built-in tools and storage." },
+      { title: "Towing & Recovery Kits", desc: "Winches, tow bars, and heavy-duty hooks." },
+      { title: "Tipper Modifications", desc: "Hydraulic tipping systems for easy unloading." },
+      { title: "Flatbed Conversions", desc: "Turning trucks into flatbeds for cargo." },
+    ],
+    images: [
+      "/images/categories/cat7.jpg",
+      "/images/categories/cat8.jpg",
+      "/images/categories/cat9.jpg",
+    ],
+  },
+  {
+    title: "Special Purpose Conversions",
+    description:
+      "Vehicles modified for emergency services and high-security transport.",
+    features: [
+      { title: "Ambulance Conversions", desc: "Fitting emergency medical equipment and stretchers." },
+      { title: "Fire/Rescue Vehicle Mods", desc: "Specialized compartments and gear." },
+      { title: "Police Vehicle Upgrades", desc: "Sirens, lights, communication devices." },
+      { title: "Cash-in-Transit Vans", desc: "Heavily armored and secured cargo areas." },
+    ],
+    images: [
+      "/images/categories/cat10.jpg",
+      "/images/categories/cat11.jpg",
+      "/images/categories/cat12.jpg",
+    ],
+  },
+  {
+    title: "Performance & Aesthetic Mods",
+    description:
+      "Enhance performance and appearance with premium customizations.",
+    features: [
+      { title: "Body Kits", desc: "Spoilers, bumpers, and side skirts for custom looks." },
+      { title: "Lighting Mods", desc: "LED bars, underglow, or projector headlights." },
+      { title: "Interior Customization", desc: "Leather seats, infotainment systems, ambient lighting." },
+    ],
+    images: [
+      "/images/categories/cat1.jpg",
+      "/images/categories/cat2.jpg",
+      "/images/categories/cat3.jpg",
+    ],
+  },
 ];
 
+
+
 export default function CategorySection() {
+    const [activeIndex, setActiveIndex] = useState(0);
     return (
-        <section className="relative 3xl:py-[120px_65px] 2xl:py-[80px_40px] xl:py-[40px] py-[30px]">
+        <section className="relative 3xl:py-[120px_65px] 2xl:py-[80px_40px] xl:py-[40px] py-[30px] overflow-hidden">
             <div className="container">
                 <div className="3xl:mb-[60px] 2xl:mb-[50px] xl:mb-[30px] mb-[20px] text-center">
                     <Heading
                         size="heading2"
                         as="h2"
-                        className="text-black uppercase font-normal 3xl:mb-[40px] 2xl:mb-[25px] mb-[15px]" >
+                        className="text-black uppercase font-normal mb-[15px]" >
                         Categories
                     </Heading>
+                    <Text size="Text1" as="p"
+                        className="max-w-[730px] m-auto" >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Esse enim quam vellet
+                        iniquus iustus poterat inpune. Naturales divitias dixit parabiles esse, </Text>
                 </div>
-                <div className="flex flex-wrap ">
-                    {categoryData.map((Item, index) => (
-                        <div className="lg:w-1/4  2xs:w-1/3 w-1/2 p-[5px]" key={index}>
-                            <div className="relative w-full h-full rounded-[10px] overflow-hidden bg-[#F5F9FF] 3xl:p-[20px] p-[15px] transition-all 
-                                group hover:bg-[linear-gradient(180deg,#2D4A95_0%,#0E1D44_100%)]">
-                                <div className="flex items-center flex-wrap">
-                                    <div className="3xl:w-[95px] 2xl:w-[75px] xl:w-[65px] w-[45px] 3xl:h-[95px] 2xl:h-[75px] xl:h-[65px] h-[45px] 
-                                        rounded-full flex items-center justify-center xl:p-[20px] p-[12px] max-sm:m-auto max-sm:mb-[15px]
-                                        overflow-hidden bg-[#E7F0FD] transition-all group-hover:bg-white">
-                                        <Image
-                                            src={Item.icon}
-                                            width={68}
-                                            height={68}
-                                            alt={Item.title}
-                                            className="w-full h-full object-contain transition-all group-hover:scale-75"
-                                        />
-                                    </div>
-                                    <div className="3xl:w-[calc(100%-95px)] 2xl:w-[calc(100%-75px)] xl:w-[calc(100%-65px)] sm:w-[calc(100%-45px)] w-full 3xl:pl-[25px] 2xl:pl-[15px] sm:pl-[10px]">
-                                        <div className="3xl:text-[25px] 2xl:text-[21px] xl:text-[16px] lg:text-[14px] text-[12px] font-medium font-base1 sm:max-w-[80%] max-sm:text-center text-black group-hover:text-white transition-all">
-                                            {Item.title}
+
+                <Swiper
+                    spaceBetween={15}
+                    modules={[Navigation]}
+                    slidesPerView={1}
+                    autoplay={{
+                        delay: 3000,
+                        disableOnInteraction: false,
+                    }}
+                    speed={1200}
+                    onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+                    onBeforeInit={(swiper) => setActiveIndex(swiper.realIndex)}
+                    navigation={{
+                        prevEl: ".btn-prev",
+                        nextEl: ".btn-next",
+                    }}
+                    className="relative" >
+
+                    {categories.map((category, index) => (
+                        <SwiperSlide key={index} className="!h-auto">
+                            <div className="flex flex-wrap">
+                                {/* Left Column - Text */}
+                                <div className="w-1/2 flex items-center">
+                                    <div className="w-full [&>p]:text-[#4B4B4B]">
+                                        <div className="text-[16px] sm:text-[20px] lg:text-[22px] xl:text-[25px] 2xl:text-[35px] 3xl:text-[40px] font-medium mb-[15px]">
+                                            {category.title}
                                         </div>
+                                        <p>{category.description}</p>
+                                        <ul className="my-[20px]">
+                                            {category.features.map((feature, idx) => (
+                                                <li
+                                                    key={idx}
+                                                    className="relative pl-[25px] before:absolute before:content-[''] before:top-[15px] before:left-0 before:w-[10px] before:h-[10px] 
+                                                      before:rounded-full before:bg-black [&>p]:text-[#4B4B4B] not-last-of-type:mb-[15px]"
+                                                >
+                                                    <div className="text-[12px] lg:text-[14px] xl:text-[16px] 2xl:text-[21px] 3xl:text-[25px] font-semibold leading-normal font-base1">
+                                                        {feature.title}
+                                                    </div>
+                                                    <p>{feature.desc}</p>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+                                {/* Right Column - Images */}
+                                <div className="w-1/2">
+                                    <div className="flex flex-wrap -m-[7px]">
+                                        {category.images.map((img, idx) => (
+                                            <div key={idx} className={`${idx === 0 ? "w-full" : "w-1/2"} p-[7px]`} >
+                                                <div className={`w-full h-full rounded-[10px] overflow-hidden ${idx === 0 ? "aspect-[720/340]" : "aspect-[410/340]"}`}  >
+                                                    <Image
+                                                        src={img}
+                                                        width={730}
+                                                        height={730}
+                                                        alt={`Category Image ${idx + 1}`}
+                                                        className="w-full h-full object-cover" />
+                                                </div>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
                             </div>
-
-                        </div>
+                        </SwiperSlide>
                     ))}
-                </div>
+
+                </Swiper>
+
+                {/* Navigation Arrows */}
+                <div className="flex items-center justify-center lg:absolute lg:top-0 lg:bottom-0 lg:w-full">
+                    <button className="btn-prev relative lg:absolute left-0 lg:left-[-45px] lg:top-1/2 lg:-translate-y-1/2 z-10
+                        bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]  shadow w-[34px] h-[38px] flex items-center justify-center
+                        rounded-[30px_0px_0px_30px] cursor-pointer group  hover:bg-[#2E4C99] disabled:pointer-events-none 
+                        disabled:opacity-[0.2]">
+                        <svg width="7" height="13" viewBox="0 0 7 13" fill="none" className="group-hover:invert-100" >
+                            <path d="M6.14364 0.699707L0.769531 6.12544L6.14364 12.1834" stroke="black" />
+                        </svg>
+                    </button>
+                    <button className="btn-next relative lg:absolute right-0 lg:right-[-45px] lg:top-1/2 lg:-translate-y-1/2 z-10 
+                        bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] shadow w-[34px] h-[38px] flex items-center 
+                        justify-center rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99] 
+                        disabled:pointer-events-none disabled:opacity-[0.2] ">
+                        <svg width="7" height="13" viewBox="0 0 7 13" fill="none" className="group-hover:invert-100" >
+                            <path d="M0.817302 0.699707L6.19141 6.12544L0.817302 12.1834" stroke="black" />
+                        </svg>
+                    </button>
+                </div> 
             </div>
         </section>
     );
