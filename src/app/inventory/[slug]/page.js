@@ -6,6 +6,7 @@ import FaqSection from "@/components/features/inventory/FaqSection";
 import SpecificationSection from "@/components/features/inventory/SpecificationSection";
 import SimilarcarSection from "@/components/features/inventory/SimilarcarSection";
 import PDFViewerSection from "@/components/features/inventory/PDFViewerSection";
+import LogoScrollSection from "@/components/features/inventory/LogoScrollSection";
 
 export default function page() {
     return (
@@ -19,11 +20,12 @@ export default function page() {
                 ]}
             />
             <InventoryDetailSection />
-            <ColorSection />
             <SpecificationSection />
-            {/* <PDFViewerSection fileUrl="/images/policy.pdf" /> */}
-            <FaqSection />
+            <ColorSection />
+            <PDFViewerSection fileUrl="/images/policy.pdf" />
             <SimilarcarSection />
+            <FaqSection />
+            <LogoScrollSection />
 
         </>
     );

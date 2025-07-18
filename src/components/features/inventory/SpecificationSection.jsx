@@ -97,10 +97,12 @@ export default function ResponsiveTabsWithSwiper() {
         {/* Tab Header */}
         <div className="mb-6">
           <Swiper
-            slidesPerView={2.5}
+            slidesPerView={2}
             spaceBetween={10}
             breakpoints={{
-              768: { slidesPerView: 3.5 },
+              420: { slidesPerView: 3 },
+              578: { slidesPerView: 3 },
+              768: { slidesPerView: 4 },
               1024: { slidesPerView: 5 },
             }}
             className="border-b border-[#D9D9D9]"
@@ -109,7 +111,7 @@ export default function ResponsiveTabsWithSwiper() {
               <SwiperSlide key={idx}>
                 <button
                   onClick={() => setActiveTab(tab)}
-                  className={`relative text-[14px] sm:text-[16px] xl:text-[18px] font-base1 w-full pb-2 whitespace-nowrap text-left cursor-pointer transition-all hover:text-[#2E4C99] hover:font-semibold
+                  className={`relative text-[14px] sm:text-[16px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[25px] font-base1 w-full pb-2 whitespace-nowrap text-left cursor-pointer transition-all hover:text-[#2E4C99] hover:font-semibold
                     ${activeTab === tab ? "font-semibold text-black after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-1/2 after:bg-[#2E4C99]" : "text-[#4B4B4B]"}`}
                 >
                   {tab}
@@ -123,32 +125,38 @@ export default function ResponsiveTabsWithSwiper() {
         <Tabs
           defaultValue={tabs[0]}
           value={activeTab}
-          className="w-full bg-[#F5F9FF] rounded-[15px] p-6 sm:p-10 overflow-hidden"
+          className="w-full bg-[#F5F9FF] rounded-[15px] p-[25px_10px] 3xl:p-[45px_20px] overflow-hidden relative
+           before:absolute after:content-[''] before:top-0 before:left-0 before:w-[20px] 2xl:before:w-[30px] 
+          before:h-full before:bg-[#F5F9FF]"
         >
           {tabs.map((tab, index) => (
             <TabsContent key={tab} value={tab} className="w-full h-full">
               {index === 0 ? (
                 // Specifications layout
-                <div className="grid xs:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-4">
+                <div className="flex flex-wrap">
                   {(detailsData[index] || []).map((item, idx) => (
-                    <div key={idx} className="flex items-start text-sm">
-                      <span className="block text-black font-medium min-w-[130px] mr-2">
-                        {item.label}
-                      </span>
-                      <span className="text-[#2E4C99]">{item.value}</span>
+                    <div className="w-full xs:w-1/2 lg:w-1/4  border-l border-[#D9D9D9] px-[15px] 2xl:px-[30px]">
+                      <div key={idx} className="flex items-start justify-between text-sm mb-3 border-b border-dashed border-[#2E4C99] pb-[10px] 2xl:pb-[15px]">
+                        <span className="text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[20px] block text-black font-medium mr-2">
+                          {item.label}
+                        </span>
+                        <span className="text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[20px] text-[#2E4C99]">{item.value}</span>
+                      </div>
                     </div>
                   ))}
                 </div>
               ) : index === 1 ? (
                 // Description layout
-                <p className="text-[14px] text-[#4B4B4B] font-base1 leading-relaxed">
+                <p className="text-[14px] text-[#4B4B4B] font-base1 leading-relaxed px-[30px]">
                   {detailsData[index]?.[0]?.value || "No description available."}
                 </p>
               ) : (
                 // Features grid layout
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-y-4 gap-x-6 text-[14px] text-[#1F1F1F] font-base1">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-y-4 gap-x-1 lg:gap-x-2 text-[14px] text-[#1F1F1F] font-base1">
                   {(detailsData[index] || []).map((item, i) => (
-                    <div key={i} className="whitespace-nowrap block text-black font-semibold mr-2 font-base1">{item.value}</div>
+                    <div key={i} className="text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[20px]
+                     whitespace-nowrap block text-black font-semibold mr-2 font-base1 mx-[10px] lg:mx-[20px] border-b 
+                    border-dashed border-[#2E4C99] pb-[10px] xl:pb-[15px]">{item.value}</div>
                   ))}
                 </div>
               )}
