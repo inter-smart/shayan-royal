@@ -35,7 +35,7 @@ const servicesData = [
 
 export default function LogisticsSection({ title, description, image, logistics }) {
 
-console.log("Logistics Data:", description);  
+
   return (
     <section
       className="relative z-0 bg-white py-[40px] xl:py-[100px] 2xl:py-[130px] 3xl:py-[165px] after:absolute after:content-[''] overflow-hidden

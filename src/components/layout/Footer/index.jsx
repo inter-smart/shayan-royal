@@ -14,7 +14,7 @@ export default async function footer() {
   const { data, error } = footerData;
   const { socialMediaLinks, footerContents } = data;
 
-  console.log(data);
+  
 
   if (error) {
     return <div>Something went wrong</div>;

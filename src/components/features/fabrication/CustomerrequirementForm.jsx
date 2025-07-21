@@ -89,7 +89,7 @@ export default function CustomerrequirementForm() {
     });
 
     const onSubmit = (values) => {
-        console.log("Search values:", values);
+        
     };
 
     return (

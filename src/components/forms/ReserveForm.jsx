@@ -42,7 +42,7 @@ export default function ReserveForm() {
   });
 
   const onSubmit = (values) => {
-    console.log("Form submitted:", values);
+    
   };
 
   return (

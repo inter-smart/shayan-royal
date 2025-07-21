@@ -54,7 +54,7 @@ export default function CarSearchForm() {
     });
 
     const onSubmit = (values) => {
-        console.log("Search values:", values);
+        
     };
 
     const menuLinkClass =

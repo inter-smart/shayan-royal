@@ -25,7 +25,7 @@ export default function EnquiryForm({ image, Formtitle, Formsubtitle }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle submission (e.g. API call)
-    console.log("Form submitted", form);
+    
   };
 
   const inputFormStyle =

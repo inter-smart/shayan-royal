@@ -1,6 +1,6 @@
 const API_BASE_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/web/` || "http://localhost:3001";
 export const MEDIA_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-console.log("MEDIA_URL", MEDIA_URL);
+
 
 
 
