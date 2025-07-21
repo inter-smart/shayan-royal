@@ -1,9 +1,6 @@
 const API_BASE_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/web/` || "http://localhost:3001";
 export const MEDIA_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-
-
-
 export class APIError extends Error {
   constructor(message, status) {
     super(message);
@@ -22,8 +19,7 @@ export async function fetchFromAPI(endpoint, options = {}) {
       "Content-Type": "application/json",
       ...options.headers,
     },
-    // cache: "force-cache",
-    // next: { revalidate: 3600 },
+    cache: "no-store",
     ...options,
   };
 
