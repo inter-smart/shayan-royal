@@ -94,7 +94,7 @@ export default function FitmentTypeServiceSection() {
                         },
                         1771: {
                             slidesPerView: 3,
-                            spaceBetween: 35,
+                            spaceBetween: 40,
                         }
                     }}
                     speed={800}
@@ -118,7 +118,7 @@ export default function FitmentTypeServiceSection() {
                             const nextItem = items[index + 1];
                             return (
                                 <SwiperSlide key={"row1-" + index}>
-                                    <div className="w-full 3xl:h-[750px] 2xl:h-[565px] lg:h-[500px] sm:h-[420px] h-[380px] flex flex-col gap-[15px]">
+                                    <div className="w-full 3xl:h-[750px] 2xl:h-[565px] lg:h-[500px] sm:h-[420px] h-[380px] flex flex-col gap-[33px]">
                                         <div className="w-full h-[50%] rounded-[10px] overflow-hidden relative group">
                                             <Image
                                                 src={item.image}
@@ -126,7 +126,7 @@ export default function FitmentTypeServiceSection() {
                                                 fill
                                                 className="object-cover group-hover:scale-110 transition-all duration-500"
                                             />
-                                            <div className="text-white font-semibold absolute left-0 bottom-0 p-[15px] rounded-tl-[10px] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
+                                            <div className="text-white font-semibold absolute right-[20px] bottom-0 p-[15px] rounded-tl-[10px] rounded-tr-[10px] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
                                                 <h2>{item.title}</h2>
                                             </div>
                                         </div>
@@ -139,7 +139,7 @@ export default function FitmentTypeServiceSection() {
                                                     fill
                                                     className="object-cover group-hover:scale-110 transition-all duration-500"
                                                 />
-                                                <div className="text-white font-semibold absolute left-0 bottom-0 p-[15px] rounded-tl-[10px] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
+                                                <div className="text-white font-semibold absolute right-[20px] bottom-0 p-[15px] rounded-tl-[10px] rounded-tr-[10px] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
                                                     <h2>{nextItem.title}</h2>
                                                 </div>
                                             </div>
@@ -161,7 +161,7 @@ export default function FitmentTypeServiceSection() {
                                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                                 className="object-cover group-hover:scale-110 transition-all duration-500"
                                             />
-                                            <div className="text-white font-semibold absolute left-0 bottom-0 p-[15px] rounded-tl-[10px] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
+                                            <div className="text-white font-semibold absolute right-[20px] bottom-0 p-[15px] rounded-tl-[10px] rounded-tr-[10px] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
                                                 <h2>{item.title}</h2>
                                             </div>
                                         </div>
@@ -174,7 +174,7 @@ export default function FitmentTypeServiceSection() {
                             const nextItem = items[index + 1];
                             return (
                                 <SwiperSlide key={"row3-" + index}>
-                                    <div className="w-full 3xl:h-[750px] 2xl:h-[565px] lg:h-[500px] sm:h-[420px] h-[380px] flex flex-col gap-[15px]">
+                                    <div className="w-full 3xl:h-[750px] 2xl:h-[565px] lg:h-[500px] sm:h-[420px] h-[380px] flex flex-col gap-[33px]">
                                         <div className="w-full h-[50%] rounded-[10px] overflow-hidden relative group">
                                             <Image
                                                 src={item.image}
@@ -182,7 +182,7 @@ export default function FitmentTypeServiceSection() {
                                                 fill
                                                 className="object-cover group-hover:scale-110 transition-all duration-500"
                                             />
-                                            <div className="text-white font-semibold absolute left-0 bottom-0 p-[15px] rounded-tl-[10px] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
+                                            <div className="text-white font-semibold absolute right-[20px] bottom-0 p-[15px] rounded-tl-[10px] rounded-tr-[10px] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
                                                 <h2>{item.title}</h2>
                                             </div>
                                         </div>
@@ -195,7 +195,7 @@ export default function FitmentTypeServiceSection() {
                                                     fill
                                                     className="object-cover group-hover:scale-110 transition-all duration-500"
                                                 />
-                                                <div className="text-white font-semibold absolute left-0 bottom-0 p-[15px] rounded-tl-[10px] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
+                                                <div className="text-white font-semibold absolute right-[20px] bottom-0 p-[15px] rounded-tl-[10px] rounded-tr-[10px] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
                                                     <h2>{nextItem.title}</h2>
                                                 </div>
                                             </div>

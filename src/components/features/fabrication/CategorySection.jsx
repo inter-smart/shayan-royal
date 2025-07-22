@@ -159,7 +159,7 @@ export default function CategorySection() {
                       {category.features.map((feature, idx) => (
                         <li
                           key={idx}
-                          className="relative pl-[25px] before:absolute before:content-[''] before:top-[15px] before:left-0 before:w-[10px] before:h-[10px] 
+                          className="relative pl-[25px] before:absolute before:content-[''] before:top-[10px] 3xl:before:top-[15px] before:left-0 before:w-[6px] before:h-[6px] 2xl:before:w-[8px] 2xl:before:h-[8px] 3xl:before:w-[10px] 3xl:before:h-[10px] 
                                                       before:rounded-full before:bg-black [&>p]:text-[#4B4B4B] not-last-of-type:mb-[15px]"
                         >
                           <div className="text-[12px] lg:text-[14px] xl:text-[16px] 2xl:text-[21px] 3xl:text-[25px] font-semibold leading-normal font-base1">
