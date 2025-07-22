@@ -30,10 +30,10 @@ const carDetails = [
 const specIcons = [
     { label: "GCC", icon: "/images/globe.svg" },
     { label: "Auto", icon: "/images/transmission.svg" },
-    { label: "Hybrid", icon: "/images/fuel.svg" }, 
+    { label: "Hybrid", icon: "/images/hybrid.svg" }, 
     { label: "2.5L", icon: "/images/liter.svg" }, 
-    { label: "2.5L", icon: "/images/liter.svg" }, 
-    { label: "2024", icon: "/images/km.svg" }, 
+    { label: "0Km", icon: "/images/km.svg" }, 
+    { label: "2024", icon: "/images/calender.svg" }, 
 ];
 
 const SocialLinks = [

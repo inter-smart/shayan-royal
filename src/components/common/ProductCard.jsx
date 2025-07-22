@@ -15,7 +15,7 @@ const variants = {
 export default function ProductCard({ car, variant }) {
 
     const defaultPadding = "px-[10px] 3xl:py-[25px] py-[15px]";
-    const paddingClass = variant ? (variants[variant] || defaultPadding) : defaultPadding;
+    const paddingClass = variant ? (variants[variant] || defaultPadding) : defaultPadding; 
 
     return (
         <Link href={car.link || "#"}
@@ -49,7 +49,7 @@ export default function ProductCard({ car, variant }) {
                     </div>
                     {/* Title */}
                     <div className="py-2">
-                        <div className="3xl:text-[20px] 2xl:text-[18px] text-[14px] font-semibold font-base1 text-black capitalize line-clamp-3">
+                        <div className="3xl:text-[20px] 2xl:text-[18px] text-[14px] font-semibold font-base1 uppercase text-black  line-clamp-3">
                             {car.title}
                         </div>
                     </div>
@@ -74,7 +74,7 @@ export default function ProductCard({ car, variant }) {
                                                     className="w-full h-full object-contain"
                                                 />
                                             </div>
-                                            <div className="3xl:text-[14px] text-[10px] font-normal font-base1 text-black">
+                                            <div className="3xl:text-[14px] text-[10px] font-normal  font-base1 text-black">
                                                 {spec}
                                             </div>
                                         </div>

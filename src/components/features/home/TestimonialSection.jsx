@@ -155,90 +155,59 @@ export default function TestimonialSection() {
     }
 
     return (
-        <section className="relative z-0 py-[40px] xl:py-[65px] 2xl:py-[80px] 3xl:py-[105px_130px] bg-[#F5F9FF]">
+        <section className="relative z-0 py-[30px] xl:py-[45px] 2xl:py-[50px] 3xl:py-[75px] bg-[#F5F9FF] overflow-hidden">
             <div className="container">
                 <div className="max-w-[85%] mx-auto text-center mb-[15px] 2xl:mb-[30px] 3xl:mb-[50px]">
                     <Heading size="heading2" as="h2" className="text-black uppercase mb-[10px]">
                         Testimonials
                     </Heading>
                     <Text size="text1" as="p" className="text-[#4B4B4B] mb-[15px]">
-                       Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard 
-                       dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                       It has survived not only five centuries, but also the leap into electronic typesetting, 
-                       remaining essentially unchanged. It was popularised in  Lorem Ipsum passages, and more recently with desktop.
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
+                        dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                        It has survived not only five centuries, but also the leap into electronic typesetting,
+                        remaining essentially unchanged. It was popularised in  Lorem Ipsum passages, and more recently with desktop.
                     </Text>
                 </div>
 
-                <Swiper
-                    modules={[Pagination, Navigation]}
-                    pagination={!isMobile ? { clickable: true } : false}
-                    spaceBetween={20}
-                    breakpoints={{
-                        320: { slidesPerView: 1 },
-                        768: { slidesPerView: 1 },
-                        678: { slidesPerView: 1 },
-                        1024: { slidesPerView: 2 },
+                <div className="relative">
+                    <Swiper
+                        modules={[Pagination, Navigation]}
+                        pagination={!isMobile ? { clickable: true } : false}
+                        spaceBetween={20}
+                        breakpoints={{
+                            320: { slidesPerView: 1 },
+                            768: { slidesPerView: 1 },
+                            678: { slidesPerView: 1 },
+                            1024: { slidesPerView: 2 },
 
-                    }}
-                    autoplay={{
-                        delay: 3000,
-                        disableOnInteraction: false,
-                    }}
-                    speed={800}
-                    onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-                    onBeforeInit={(swiper) => {
-                        swiper.params.navigation.prevEl = ".testmonial-prev";
-                        swiper.params.navigation.nextEl = ".testmonial-next";
-                    }}
-                    navigation={{
-                        prevEl: ".testmonial-prev",
-                        nextEl: ".testmonial-next",
-                    }}
-                    className="xs:!pb-[35px] [--swiper-pagination-bullet-width:11px] 
+                        }}
+                        autoplay={{
+                            delay: 3000,
+                            disableOnInteraction: false,
+                        }}
+                        speed={800}
+                        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+                        onBeforeInit={(swiper) => {
+                            swiper.params.navigation.prevEl = ".testmonial-prev";
+                            swiper.params.navigation.nextEl = ".testmonial-next";
+                        }}
+                        navigation={{
+                            prevEl: ".testmonial-prev",
+                            nextEl: ".testmonial-next",
+                        }}
+                        className="xs:!pb-[35px] [--swiper-pagination-bullet-width:11px] 
                     [--swiper-pagination-bullet-height:11px] 
                     [--swiper-pagination-bullet-inactive-opacity:1] 
                    [--swiper-pagination-bullet-inactive-color:#D6E1FF] 
                    [--swiper-pagination-color:#2E4C99] 
                     [--swiper-pagination-bullet-active-width:30px"
-                >
-                    {slides.map((slideGroup, index) => {
-                        if (isMobile) {
-                            return (
-                                <SwiperSlide key={index}>
-                                    {slideGroup.map((item, idx) => (
-                                        <div key={idx} className="p-[20px]">
-                                            <div className={`h-full p-[25px] w-full rounded-[12px] flex flex-col justify-between overflow-hidden ${item.bg}`}>
-                                                <Text size="text1" as="p" className="text-[#4B4B4B] mb-[20px] leading-[1.6]">
-                                                    {item.content}
-                                                </Text>
-                                                <div className="flex items-center gap-4">
-                                                    <div className="3xl:w-[65px] w-[45px] 3xl:h-[65px] h-[45px] rounded-full overflow-hidden">
-                                                        <Image src={item.image} alt={item.name} width={65} height={65} className="w-full h-full object-cover" />
-                                                    </div>
-                                                    <div className="xl:w-[calc(100%-65px)] w-[calc(100%-45px)] ">
-                                                        <div className="text-[12px] sm:text-[14px] lg:text-[16px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[25px] font-base1 text-black font-semibold capitalize mb-[5px]">
-                                                            {item.name}
-                                                        </div>
-                                                        <div className="3xl:text-[20px] 2xl:text-[17px] xl:text-[13px] lg:text-[12px] text-[12px] text-black text-sm">
-                                                            {item.location}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </SwiperSlide>
-                            );
-                        }
-
-                        const isLayoutA = index % 2 === 0;
-                        return (
-                            <SwiperSlide key={index} className="!h-auto">
-                                {isLayoutA ? (
-                                    // first slide
-                                    <div className="flex flex-wrap w-full h-full">
+                    >
+                        {slides.map((slideGroup, index) => {
+                            if (isMobile) {
+                                return (
+                                    <SwiperSlide key={index}>
                                         {slideGroup.map((item, idx) => (
-                                            <div key={idx} className={`3xl:p-[20px] 2xl:p-[15px] md:p-[10px] p-[5px] ${idx === 0 ? "w-full" : "w-1/2"} flex-grow`}>
+                                            <div key={idx} className="p-[20px]">
                                                 <div className={`h-full p-[25px] w-full rounded-[12px] flex flex-col justify-between overflow-hidden ${item.bg}`}>
                                                     <Text size="text1" as="p" className="text-[#4B4B4B] mb-[20px] leading-[1.6]">
                                                         {item.content}
@@ -259,41 +228,73 @@ export default function TestimonialSection() {
                                                 </div>
                                             </div>
                                         ))}
-                                    </div>
-                                ) : (
-                                    //    second Slide 
-                                    <div className="columns-2 max-lg:gap-2 w-full h-full">
-                                        {slideGroup.map((item, idx) => (
-                                            <div key={idx} className="3xl:p-[20px] 2xl:p-[15px] md:p-[10px] p-[5px]  break-inside-avoid w-full ">
-                                                <div className={`h-full p-[25px] w-full rounded-[12px] flex flex-col justify-between overflow-hidden ${item.bg}`}>
-                                                    <Text size="text1" as="p" className="text-[#4B4B4B] mb-[20px] leading-[1.6]">
-                                                        {item.content}
-                                                    </Text>
-                                                    <div className="flex items-center gap-4">
-                                                        <div className="3xl:w-[65px] w-[45px] 3xl:h-[65px] h-[45px] rounded-full overflow-hidden">
-                                                            <Image src={item.image} alt={item.name} width={65} height={65} className="w-full h-full object-cover" />
-                                                        </div>
-                                                        <div className="xl:w-[calc(100%-65px)] w-[calc(100%-45px)] ">
-                                                            <div className="text-[12px] sm:text-[14px] lg:text-[16px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[25px]  font-base1 text-black font-semibold capitalize mb-[5px]">
-                                                                {item.name}
+                                    </SwiperSlide>
+                                );
+                            }
+
+                            const isLayoutA = index % 2 === 0;
+                            return (
+                                <SwiperSlide key={index} className="!h-auto">
+                                    {isLayoutA ? (
+                                        // first slide
+                                        <div className="flex flex-wrap w-full h-full">
+                                            {slideGroup.map((item, idx) => (
+                                                <div key={idx} className={`3xl:p-[20px] 2xl:p-[15px] md:p-[10px] p-[5px] ${idx === 0 ? "w-full" : "w-1/2"} flex-grow`}>
+                                                    <div className={`h-full p-[25px] w-full rounded-[12px] flex flex-col justify-between overflow-hidden ${item.bg}`}>
+                                                        <Text size="text1" as="p" className="text-[#4B4B4B] mb-[20px] leading-[1.6]">
+                                                            {item.content}
+                                                        </Text>
+                                                        <div className="flex items-center gap-4">
+                                                            <div className="3xl:w-[65px] w-[45px] 3xl:h-[65px] h-[45px] rounded-full overflow-hidden">
+                                                                <Image src={item.image} alt={item.name} width={65} height={65} className="w-full h-full object-cover" />
                                                             </div>
-                                                            <div className="3xl:text-[20px] 2xl:text-[17px] xl:text-[13px] lg:text-[12px] text-[12px] text-black text-sm">
-                                                                {item.location}
+                                                            <div className="xl:w-[calc(100%-65px)] w-[calc(100%-45px)] ">
+                                                                <div className="text-[12px] sm:text-[14px] lg:text-[16px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[25px] font-base1 text-black font-semibold capitalize mb-[5px]">
+                                                                    {item.name}
+                                                                </div>
+                                                                <div className="3xl:text-[20px] 2xl:text-[17px] xl:text-[13px] lg:text-[12px] text-[12px] text-black text-sm">
+                                                                    {item.location}
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-                            </SwiperSlide>
-                        );
-                    })}
-                </Swiper>
-                {/* Navigation Arrows */}
-                <div className="flex items-center justify-center absolute top-0 bottom-0 w-full">
-                         <button className="nav-prev  absolute left-[-25px] lg:left-[-35px] -translate-y-1/2 z-10 sm:bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] 
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        //    second Slide 
+                                        <div className="columns-2 max-lg:gap-2 w-full h-full">
+                                            {slideGroup.map((item, idx) => (
+                                                <div key={idx} className="3xl:p-[20px] 2xl:p-[15px] md:p-[10px] p-[5px]  break-inside-avoid w-full ">
+                                                    <div className={`h-full p-[25px] w-full rounded-[12px] flex flex-col justify-between overflow-hidden ${item.bg}`}>
+                                                        <Text size="text1" as="p" className="text-[#4B4B4B] mb-[20px] leading-[1.6]">
+                                                            {item.content}
+                                                        </Text>
+                                                        <div className="flex items-center gap-4">
+                                                            <div className="3xl:w-[65px] w-[45px] 3xl:h-[65px] h-[45px] rounded-full overflow-hidden">
+                                                                <Image src={item.image} alt={item.name} width={65} height={65} className="w-full h-full object-cover" />
+                                                            </div>
+                                                            <div className="xl:w-[calc(100%-65px)] w-[calc(100%-45px)] ">
+                                                                <div className="text-[12px] sm:text-[14px] lg:text-[16px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[25px]  font-base1 text-black font-semibold capitalize mb-[5px]">
+                                                                    {item.name}
+                                                                </div>
+                                                                <div className="3xl:text-[20px] 2xl:text-[17px] xl:text-[13px] lg:text-[12px] text-[12px] text-black text-sm">
+                                                                    {item.location}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </SwiperSlide>
+                            );
+                        })}
+                    </Swiper>
+                    {/* Navigation Arrows */}
+                    <div className="flex items-center justify-center absolute top-0 bottom-0 w-full">
+                        <button className="nav-prev  absolute left-[-25px] lg:left-[-35px] -translate-y-1/2 z-10 sm:bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] 
                         sm:shadow 3xl:w-[34px] 2xl:w-[25px] w-[35px] 3xl:h-[38px] h-[35px] flex items-center justify-center sm:rounded-[30px_0px_0px_30px] cursor-pointer group hover:bg-[#2E4C99]">
 
                             <svg viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]" >
@@ -308,6 +309,7 @@ export default function TestimonialSection() {
                             </svg>
                         </button>
                     </div>
+                </div>
             </div>
         </section>
     );

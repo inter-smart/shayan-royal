@@ -22,7 +22,7 @@ const carCategories = [
 export default function AboutSection() {
     const [activeIndex, setActiveIndex] = useState(0);
     return (
-        <section className="relative py-[30px] md:py-[40px ] 2xl:py-[50px] 3xl:py-[60px_45px] bg-[#F5F9FF]">
+        <section className="relative py-[20px] md:py-[25px] 2xl:py-[30px] 3xl:py-[40px] bg-[#F5F9FF] overflow-hidden">
             <div className="container">
                 <div className="max-w-[85%] m-auto">
                     <Heading size="heading2" as="h2" className="text-[#B4BACA] text-center uppercase mb-[10px]" >
@@ -58,28 +58,34 @@ export default function AboutSection() {
                         }}
                         breakpoints={{
                             320: {
-                                slidesPerView: 3,
+                                slidesPerView: 2,
                                 spaceBetween: 8,
+                                centeredSlides: false,
                             },
                             420: {
                                 slidesPerView: 3,
                                 spaceBetween: 10,
+                                centeredSlides: true,
                             },
                             640: {
                                 slidesPerView: 3,
                                 spaceBetween: 20,
+                                centeredSlides: true,
                             },
                             768: {
                                 slidesPerView: 3,
                                 spaceBetween: 20,
+                                centeredSlides: true,
                             },
                             1024: {
                                 slidesPerView: 4,
                                 spaceBetween: 25,
+                                centeredSlides: true,
                             },
                             1280: {
                                 slidesPerView: 5,
                                 spaceBetween: 30,
+                                centeredSlides: true,
                             },
                         }}
                         className="px-10 overflow-hidden mb-3"
@@ -100,7 +106,7 @@ export default function AboutSection() {
                                             className="w-full h-full object-contain"
                                         />
                                     </div>
-                                    <p className={`3xl:text-[25px] 2xl:text-[18px] md:text-[16px] sm:text-[14px] text-[12px] font-base1 mt-1 md:mt-1 ${index === activeIndex ? "text-[#2E4C99] font-semibold" : "text-black font-normal"}`}
+                                    <p className={`3xl:text-[25px] 2xl:text-[18px] md:text-[16px] sm:text-[14px] text-[12px] font-base1 mt-1 md:mt-1 ${index === activeIndex ? "xs:text-[#2E4C99] xs:font-semibold" : "text-black font-normal"}`}
                                     > {car.name}
                                     </p>
                                 </div>
@@ -108,7 +114,7 @@ export default function AboutSection() {
                         ))}
                     </Swiper>
                     {/* center Arrow */}
-                    <div className="realtive 3xl:max-w-[20px] 2xl:max-w-[15px] m-auto mb-[25px] flex justify-center">
+                    <div className="realtive 3xl:max-w-[20px] 2xl:max-w-[15px] m-auto flex justify-center max-sm:hidden">
                         <svg className="3xl:-w-[20px] 2xl:w-[15px] w-[12px] h-[12px]" viewBox="0 0 21 18" fill="none">
                             <path d="M1 10.6404L11.3019 1.64038L20.5 10.6404" stroke="black" />
                             <path d="M1 16.6404L11.3019 7.64038L20.5 16.6404" stroke="black" />

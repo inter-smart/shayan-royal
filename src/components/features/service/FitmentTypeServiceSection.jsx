@@ -13,25 +13,32 @@ const items = [
         title: "AMBULANCE",
     },
     {
-        image: "/images/fitment_type_2.webp",
-        title: "OFF-ROADING VEHICLES"
-    },
-    {
-        image: "/images/fitment_type_3.webp",
+        image: "/images/fitment_type_33.jpg",
         title: "TRUCK FABRICATION"
     },
     {
-        image: "/images/fitment_type_1.webp",
-        title: "AMBULANCE",
-    },
-    {
-        image: "/images/fitment_type_2.webp",
+        image: "/images/fitment_type_333.jpg",
         title: "OFF-ROADING VEHICLES"
     },
     {
-        image: "/images/fitment_type_3.webp",
-        title: "TRUCK FABRICATION"
-    }
+        image: "/images/fitment_type_444.jpg",
+        title: "bullet proofing"
+    },
+
+    // {
+    //     image: "/images/fitment_type_33.jpg",
+    //     title: "TRUCK FABRICATION"
+    // },
+    // {
+    //     image: "/images/fitment_type_33.jpg",
+    //     title: "ARMORING"
+    // },
+    // {
+    //     image: "/images/fitment_type_1.webp",
+    //     title: "AMBULANCE",
+    // },
+
+
 ];
 
 export default function FitmentTypeServiceSection() {
@@ -210,20 +217,20 @@ export default function FitmentTypeServiceSection() {
                 </Swiper>
                 {/* Navigation Arrows */}
                 <div className="flex items-center justify-center absolute top-0 bottom-0 w-full xs:hidden">
-                     <button className="nav-prev  absolute left-[-25px] lg:left-[-35px] -translate-y-1/2 z-10 sm:bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] 
+                    <button className="nav-prev  absolute left-[-25px] lg:left-[-35px] -translate-y-1/2 z-10 sm:bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] 
                         sm:shadow 3xl:w-[34px] 2xl:w-[25px] w-[35px] 3xl:h-[38px] h-[35px] flex items-center justify-center sm:rounded-[30px_0px_0px_30px] cursor-pointer group hover:bg-[#2E4C99]">
 
-                            <svg viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]" >
-                                <path d="M6.14364 0.699707L0.769531 6.12544L6.14364 12.1834" stroke="black" />
-                            </svg>
-                        </button>
-                        <button className=" nav-next  absolute right-[-25px] lg:right-[-35px]  -translate-y-1/2 z-10 sm:bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]
+                        <svg viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]" >
+                            <path d="M6.14364 0.699707L0.769531 6.12544L6.14364 12.1834" stroke="black" />
+                        </svg>
+                    </button>
+                    <button className=" nav-next  absolute right-[-25px] lg:right-[-35px]  -translate-y-1/2 z-10 sm:bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]
                         sm:shadow 3xl:w-[34px] 2xl:w-[25px] w-[35px] 3xl:h-[38px]  h-[35px]   flex items-center justify-center sm:rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99]">
 
-                            <svg viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]" >
-                                <path d="M0.817302 0.699707L6.19141 6.12544L0.817302 12.1834" stroke="black" />
-                            </svg>
-                        </button>
+                        <svg viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]" >
+                            <path d="M0.817302 0.699707L6.19141 6.12544L0.817302 12.1834" stroke="black" />
+                        </svg>
+                    </button>
                 </div>
             </div >
         </section >

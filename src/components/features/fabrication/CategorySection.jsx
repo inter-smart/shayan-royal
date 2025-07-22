@@ -128,7 +128,8 @@ export default function CategorySection() {
             iniquus iustus poterat inpune. Naturales divitias dixit parabiles esse, </Text>
         </div>
 
-        <Swiper
+      <div className="relative">
+          <Swiper
           spaceBetween={15}
           modules={[Navigation]}
           slidesPerView={1}
@@ -196,31 +197,27 @@ export default function CategorySection() {
 
         {/* Navigation Arrows */}
         <div className="flex items-center justify-center absolute top-0 bottom-0 w-full mt-[-150px] 3xs:mt-[-90px] md:mt-0">
-          <button className="btn-prev absolute left-[-20px] sm:left-[-50px] -translate-y-1/2 z-10
+          <button className="btn-prev absolute left-[-20px] sm:left-[-45px] -translate-y-1/2 z-10
                         bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]   w-[34px] h-[38px] flex items-center justify-center
-                        rounded-[30px_0px_0px_30px] cursor-pointer group  hover:bg-[#2E4C99] disabled:pointer-events-none 
+                        rounded-[30px_0px_0px_30px] cursor-pointer group  disabled:pointer-events-none 
                         disabled:opacity-[1]">
-            {/* <svg width="7" height="13" viewBox="0 0 7 13" fill="none" className="group-hover:invert-100" >
-              <path d="M6.14364 0.699707L0.769531 6.12544L6.14364 12.1834" stroke="black" />
-            </svg> */}
+
             <svg width="16" height="31" viewBox="0 0 16 31" fill="none">
               <path d="M2.76145e-07 15.4999C2.91897e-07 15.8603 0.130332 16.221 0.390664 16.4962L13.7239 30.587C14.2449 31.1377 15.0886 31.1377 15.6093 30.587C16.1299 30.0364 16.1302 29.1448 15.6093 28.5946L3.21865 15.4999L15.6093 2.40527C16.1302 1.85467 16.1302 0.963068 15.6093 0.412819C15.0883 -0.13743 14.2446 -0.137783 13.7239 0.412819L0.390664 14.5037C0.130332 14.7788 2.60392e-07 15.1396 2.76145e-07 15.4999Z" fill="black" fill-opacity="0.4" />
             </svg>
 
           </button>
-          <button className="btn-next absolute right-[-25px] sm:right-[-50px] -translate-y-1/2 z-10 
+          <button className="btn-next absolute right-[-25px] sm:right-[-45px] -translate-y-1/2 z-10 
                         bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] w-[34px] h-[38px] flex items-center 
-                        justify-center rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99] 
+                        justify-center rounded-[0px_30px_30px_0px] group cursor-pointer  
                         disabled:pointer-events-none disabled:opacity-[0.2] ">
-            {/* <svg width="7" height="13" viewBox="0 0 7 13" fill="none" className="group-hover:invert-100" >
-              <path d="M0.817302 0.699707L6.19141 6.12544L0.817302 12.1834" stroke="black" />
-            </svg> */}
             <svg width="16" height="31" viewBox="0 0 16 31" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M16 15.4999C16 15.8603 15.8697 16.221 15.6093 16.4962L2.27607 30.587C1.75507 31.1377 0.911412 31.1377 0.390748 30.587C-0.129916 30.0364 -0.130249 29.1448 0.390748 28.5946L12.7813 15.4999L0.390749 2.40527C-0.130248 1.85467 -0.130248 0.963068 0.390749 0.412819C0.911747 -0.13743 1.75541 -0.137783 2.27607 0.412819L15.6093 14.5037C15.8697 14.7788 16 15.1396 16 15.4999Z" fill="black" fill-opacity="0.4" />
             </svg>
 
           </button>
         </div>
+      </div>
       </div>
     </section>
   );

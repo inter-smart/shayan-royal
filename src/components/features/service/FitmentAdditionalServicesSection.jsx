@@ -20,10 +20,7 @@ const items = [
     image: '/images/fitment2.webp',
     title: 'Fully Certified Conversions',
   },
-  {
-    image: '/images/fitment3.webp',
-    title: 'In-House Fitment Experts',
-  },
+  
   {
     image: '/images/fitment4.webp',
     title: 'Global Logistics Support',
@@ -51,8 +48,7 @@ export default function FitmentAdditionalServicesSection() {
             320: { slidesPerView: 1 },
             430: { slidesPerView: 2 },
             640: { slidesPerView: 3 },
-            768: { slidesPerView: 4 },
-            1024: { slidesPerView: 5 },
+            768: { slidesPerView: 4 }, 
           }}
           className="additional_fitment_Slider"
         >

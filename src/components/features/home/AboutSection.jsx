@@ -4,7 +4,7 @@ import { Text } from "@/components/layout/Text";
 
 export default function AboutSection() {
     return (
-        <section className="relative py-[50px] xl:py-[75px] 2xl:py-[80px] 3xl:py-[11 0px] after:absolute after:top-0 after:left-0 after:content:[''] after:bg-[rgba(0,0,0,0.1)]">
+        <section className="relative py-[30px] xl:py-[45px] 2xl:py-[50px] 3xl:py-[60px] overflow-hidden after:absolute after:top-0 after:left-0 after:content:[''] after:bg-[rgba(0,0,0,0.1)]">
             <video
                 autoPlay
                 preload="auto" 

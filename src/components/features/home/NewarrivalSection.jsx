@@ -73,7 +73,7 @@ const carData = [
 export default function NewarrivalSection() {
     const [activeIndex, setActiveIndex] = useState(0);
     return (
-        <section className="relative z-0 py-[40px] xl:py-[65px_80px] 2xl:py-[80px_100px] 3xl:py-[105px_130px] after:absolute after:content-[''] overflow-hidden
+        <section className="relative z-0 py-[30px] xl:py-[55px] 2xl:py-[65px] 3xl:py-[85px] after:absolute after:content-[''] overflow-hidden
             after:top-0 after:left-0 after:right-0 after:m-auto after:h-full after:w-[220px] after:skew-x-[-16deg]
             after:bg-[linear-gradient(180deg,_#C1C6D2_-13.07%,_rgba(209,212,220,0.38)_100%)] after:z-[-1] after:opacity-20">
 

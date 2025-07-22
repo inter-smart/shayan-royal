@@ -306,3 +306,7 @@ body {
 .outlined-text {
   -webkit-text-stroke: 1px rgba(74, 95, 112, 0.2);
 }
+
+ body[data-scroll-locked]{
+  overflow: auto !important;
+ }

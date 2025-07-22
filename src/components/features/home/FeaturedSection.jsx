@@ -80,7 +80,7 @@ const carData = [
 export default function NewarrivalSection() {
     const [activeIndex, setActiveIndex] = useState(0);
     return (
-        <section className="relative z-0 bg-[#0E1D44]  py-[40px] xl:py-[50px_75px] 2xl:py-[65px_95pxx] 3xl:py-[85px_125px] after:absolute after:content-[''] overflow-hidden
+        <section className="relative z-0 bg-[#0E1D44]  py-[30px] xl:py-[40px_55px]  3xl:py-[55px_75px] after:absolute after:content-[''] overflow-hidden
             after:top-0 lg:after:left-[25%] after:left-0 max-lg:after:right-0 after:m-auto after:h-full after:3xl:w-[365px] after:2xl:w-[275px] after:w-[220px] lg:after:skew-x-[30deg] after:skew-x-[20deg]
             after:bg-[linear-gradient(180deg,_#C1C6D2_-13.07%,_rgba(209,212,220,0.38)_100%)] after:z-[-1] after:opacity-10">
 
@@ -160,8 +160,9 @@ export default function NewarrivalSection() {
                     {/* Navigation Arrows */}
                     <div className="flex items-center justify-center absolute top-0 bottom-0 w-full">
                         <button className="btn-prevs absolute left-[-35px]  -translate-y-1/2 z-10
-                       bg-[linear-gradient(270deg,_rgba(114,153,255,0.40)_-4.3%,_rgba(46,76,153,0.80)_100.24%)]
-                        shadow 3xl:w-[34px] 2xl:w-[25px] w-[35px] 3xl:h-[38px] 2xl:h-[30px] h-[35px] flex items-center justify-center rounded-[30px_0px_0px_30px] cursor-pointer group
+                       sm:bg-[linear-gradient(270deg,_rgba(114,153,255,0.40)_-4.3%,_rgba(46,76,153,0.80)_100.24%)]
+                        sm:shadow 3xl:w-[34px] 2xl:w-[25px] w-[35px] 3xl:h-[38px] 2xl:h-[30px] h-[35px] flex items-center justify-center 
+                        sm:rounded-[30px_0px_0px_30px] cursor-pointer group
                          hover:bg-[linear-gradient(270deg, rgba(114, 153, 255, 0.40) -4.3%, rgba(46, 76, 153, 0.80) 100.24%)] disabled:pointer-events-none 
                          disabled:opacity-[0.2]">
 
@@ -170,8 +171,9 @@ export default function NewarrivalSection() {
                             </svg>
                         </button>
                         <button className="btn-nexts absolute right-[-35px] -translate-y-1/2 z-10 
-                        bg-[linear-gradient(270deg,_rgba(114,153,255,0.40)_-4.3%,_rgba(46,76,153,0.80)_100.24%)]
-                        shadow 3xl:w-[34px] 2xl:w-[25px] w-[35px] 3xl:h-[38px] 2xl:h-[30px] h-[35px] flex items-center justify-center rounded-[0px_30px_30px_0px] group cursor-pointer 
+                        sm:bg-[linear-gradient(270deg,_rgba(114,153,255,0.40)_-4.3%,_rgba(46,76,153,0.80)_100.24%)]
+                        sm:shadow 3xl:w-[34px] 2xl:w-[25px] w-[35px] 3xl:h-[38px] 2xl:h-[30px] h-[35px] flex items-center justify-center sm:rounded-[0px_30px_30px_0px] 
+                        group cursor-pointer 
                         hover:bg-[linear-gradient(270deg, rgba(114, 153, 255, 0.40) -4.3%, rgba(46, 76, 153, 0.80) 100.24%)] 
                         disabled:pointer-events-none disabled:opacity-[0.2] ">
 

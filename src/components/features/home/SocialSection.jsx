@@ -36,7 +36,7 @@ const socialMedia = [
 export default function SocialSection() {
     const [activeIndex, setActiveIndex] = useState(0);
     return (
-        <section className="relative z-0 bg-[#F5F9FF] py-[40px] xl:py-[70px_95px] 2xl:py-[80px_115px] 3xl:py-[110px_150px] after:absolute after:content-[''] overflow-hidden
+        <section className="relative z-0 bg-[#F5F9FF] py-[40px] xl:py-[70px_95px] 2xl:py-[40px] 3xl:py-[50px] after:absolute after:content-[''] overflow-hidden
         after:top-0 after:left-0 after:right-0 after:m-auto after:h-full after:3xl:w-[365px] after:2xl:w-[275px] after:w-[220px] after:skew-x-[15deg]
         after:bg-[linear-gradient(180deg,_#C1C6D2_-13.07%,_rgba(209,212,220,0.38)_100%)] after:z-[-1] after:opacity-10">
             <div className="container">
