@@ -40,7 +40,7 @@ export default function WorkinActionSection() {
             </div>
             <div className="container">
                 <h2 className="text-center 2xl:text-[50px] xl:text-[40px] lg:text-[30px] text-[24px] font-semibold font-base1 uppercase 2xl:mb-[50px] lg:mb-[30px] mb-[20px]">
-                    Work in Action
+                    GALLERY
                 </h2>
 
                 <div className="flex xs:flex-nowrap flex-wrap 3xl:gap-5 2xl:gap-4 xs:gap-2 gap-1 w-full relative">
