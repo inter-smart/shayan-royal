@@ -19,7 +19,8 @@ export async function fetchFromAPI(endpoint, options = {}) {
       "Content-Type": "application/json",
       ...options.headers,
     },
-    cache: "no-store",
+    cache: "force-cache",
+    next: { revalidate: 60 },
     ...options,
   };
 
