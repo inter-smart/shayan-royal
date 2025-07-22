@@ -112,108 +112,116 @@ const categories = [
 
 
 export default function CategorySection() {
-    const [activeIndex, setActiveIndex] = useState(0);
-    return (
-        <section className="relative 3xl:py-[120px_65px] 2xl:py-[80px_40px] xl:py-[40px] py-[30px] overflow-hidden">
-            <div className="container">
-                <div className="3xl:mb-[60px] 2xl:mb-[50px] xl:mb-[30px] mb-[20px] text-center">
-                    <Heading
-                        size="heading2"
-                        as="h2"
-                        className="text-black uppercase font-normal mb-[15px]" >
-                        Categories
-                    </Heading>
-                    <Text size="Text1" as="p"
-                        className="max-w-[730px] m-auto" >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Esse enim quam vellet
-                        iniquus iustus poterat inpune. Naturales divitias dixit parabiles esse, </Text>
-                </div>
+  const [activeIndex, setActiveIndex] = useState(0);
+  return (
+    <section className="relative 3xl:py-[120px_65px] 2xl:py-[80px_40px] xl:py-[40px] py-[30px] overflow-hidden">
+      <div className="container">
+        <div className="3xl:mb-[60px] 2xl:mb-[50px] xl:mb-[30px] mb-[20px] text-center">
+          <Heading
+            size="heading2"
+            as="h2"
+            className="text-black uppercase font-normal mb-[15px]" >
+            Categories
+          </Heading>
+          <Text size="Text1" as="p"
+            className="max-w-[730px] m-auto" >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Esse enim quam vellet
+            iniquus iustus poterat inpune. Naturales divitias dixit parabiles esse, </Text>
+        </div>
 
-                <Swiper
-                    spaceBetween={15}
-                    modules={[Navigation]}
-                    slidesPerView={1}
-                    autoplay={{
-                        delay: 3000,
-                        disableOnInteraction: false,
-                    }}
-                    speed={1200}
-                    onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-                    onBeforeInit={(swiper) => setActiveIndex(swiper.realIndex)}
-                    navigation={{
-                        prevEl: ".btn-prev",
-                        nextEl: ".btn-next",
-                    }}
-                    className="relative" >
+        <Swiper
+          spaceBetween={15}
+          modules={[Navigation]}
+          slidesPerView={1}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
+          speed={1200}
+          onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+          onBeforeInit={(swiper) => setActiveIndex(swiper.realIndex)}
+          navigation={{
+            prevEl: ".btn-prev",
+            nextEl: ".btn-next",
+          }}
+          className="relative" >
 
-                    {categories.map((category, index) => (
-                        <SwiperSlide key={index} className="!h-auto">
-                            <div className="flex flex-wrap">
-                                {/* Left Column - Text */}
-                                <div className="w-1/2 flex items-center">
-                                    <div className="w-full [&>p]:text-[#4B4B4B]">
-                                        <div className="text-[16px] sm:text-[20px] lg:text-[22px] xl:text-[25px] 2xl:text-[35px] 3xl:text-[40px] font-medium mb-[15px]">
-                                            {category.title}
-                                        </div>
-                                        <p>{category.description}</p>
-                                        <ul className="my-[20px]">
-                                            {category.features.map((feature, idx) => (
-                                                <li
-                                                    key={idx}
-                                                    className="relative pl-[25px] before:absolute before:content-[''] before:top-[15px] before:left-0 before:w-[10px] before:h-[10px] 
+          {categories.map((category, index) => (
+            <SwiperSlide key={index} className="!h-auto">
+              <div className="flex flex-wrap">
+                {/* Left Column - Text */}
+                <div className="w-full md:w-1/2 flex items-center">
+                  <div className="w-full [&>p]:text-[#4B4B4B]">
+                    <div className="text-[16px] sm:text-[20px] lg:text-[22px] xl:text-[25px] 2xl:text-[35px] 3xl:text-[40px] font-medium mb-[15px]">
+                      {category.title}
+                    </div>
+                    <p>{category.description}</p>
+                    <ul className="my-[20px]">
+                      {category.features.map((feature, idx) => (
+                        <li
+                          key={idx}
+                          className="relative pl-[25px] before:absolute before:content-[''] before:top-[15px] before:left-0 before:w-[10px] before:h-[10px] 
                                                       before:rounded-full before:bg-black [&>p]:text-[#4B4B4B] not-last-of-type:mb-[15px]"
-                                                >
-                                                    <div className="text-[12px] lg:text-[14px] xl:text-[16px] 2xl:text-[21px] 3xl:text-[25px] font-semibold leading-normal font-base1">
-                                                        {feature.title}
-                                                    </div>
-                                                    <p>{feature.desc}</p>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                                {/* Right Column - Images */}
-                                <div className="w-1/2">
-                                    <div className="flex flex-wrap -m-[7px]">
-                                        {category.images.map((img, idx) => (
-                                            <div key={idx} className={`${idx === 0 ? "w-full" : "w-1/2"} p-[7px]`} >
-                                                <div className={`w-full h-full rounded-[10px] overflow-hidden ${idx === 0 ? "aspect-[720/340]" : "aspect-[410/340]"}`}  >
-                                                    <Image
-                                                        src={img}
-                                                        width={730}
-                                                        height={730}
-                                                        alt={`Category Image ${idx + 1}`}
-                                                        className="w-full h-full object-cover" />
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </SwiperSlide>
+                        >
+                          <div className="text-[12px] lg:text-[14px] xl:text-[16px] 2xl:text-[21px] 3xl:text-[25px] font-semibold leading-normal font-base1">
+                            {feature.title}
+                          </div>
+                          <p>{feature.desc}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+                {/* Right Column - Images */}
+                <div className="w-full md:w-1/2">
+                  <div className="flex flex-wrap -m-[7px]">
+                    {category.images.map((img, idx) => (
+                      <div key={idx} className={`${idx === 0 ? "w-full" : "w-1/2"} p-[7px]`} >
+                        <div className={`w-full h-full rounded-[10px] overflow-hidden ${idx === 0 ? "aspect-[720/340]" : "aspect-[410/340]"}`}  >
+                          <Image
+                            src={img}
+                            width={730}
+                            height={730}
+                            alt={`Category Image ${idx + 1}`}
+                            className="w-full h-full object-cover" />
+                        </div>
+                      </div>
                     ))}
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
 
-                </Swiper>
+        </Swiper>
 
-                {/* Navigation Arrows */}
-                <div className="flex items-center justify-center lg:absolute lg:top-0 lg:bottom-0 lg:w-full">
-                    <button className="btn-prev relative lg:absolute left-0 lg:left-[-45px] lg:top-1/2 lg:-translate-y-1/2 z-10
-                        bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]  shadow w-[34px] h-[38px] flex items-center justify-center
+        {/* Navigation Arrows */}
+        <div className="flex items-center justify-center lg:absolute lg:top-0 lg:bottom-0 lg:w-full mt-[-150px] 3xs:mt-[-90px] md:mt-0">
+          <button className="btn-prev relative lg:absolute left-0 lg:left-[-50px] lg:top-1/2 lg:-translate-y-1/2 z-10
+                        bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]   w-[34px] h-[38px] flex items-center justify-center
                         rounded-[30px_0px_0px_30px] cursor-pointer group  hover:bg-[#2E4C99] disabled:pointer-events-none 
-                        disabled:opacity-[0.2]">
-                        <svg width="7" height="13" viewBox="0 0 7 13" fill="none" className="group-hover:invert-100" >
-                            <path d="M6.14364 0.699707L0.769531 6.12544L6.14364 12.1834" stroke="black" />
-                        </svg>
-                    </button>
-                    <button className="btn-next relative lg:absolute right-0 lg:right-[-45px] lg:top-1/2 lg:-translate-y-1/2 z-10 
-                        bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] shadow w-[34px] h-[38px] flex items-center 
+                        disabled:opacity-[1]">
+            {/* <svg width="7" height="13" viewBox="0 0 7 13" fill="none" className="group-hover:invert-100" >
+              <path d="M6.14364 0.699707L0.769531 6.12544L6.14364 12.1834" stroke="black" />
+            </svg> */}
+            <svg width="16" height="31" viewBox="0 0 16 31" fill="none">
+              <path d="M2.76145e-07 15.4999C2.91897e-07 15.8603 0.130332 16.221 0.390664 16.4962L13.7239 30.587C14.2449 31.1377 15.0886 31.1377 15.6093 30.587C16.1299 30.0364 16.1302 29.1448 15.6093 28.5946L3.21865 15.4999L15.6093 2.40527C16.1302 1.85467 16.1302 0.963068 15.6093 0.412819C15.0883 -0.13743 14.2446 -0.137783 13.7239 0.412819L0.390664 14.5037C0.130332 14.7788 2.60392e-07 15.1396 2.76145e-07 15.4999Z" fill="black" fill-opacity="0.4" />
+            </svg>
+
+          </button>
+          <button className="btn-next relative lg:absolute right-0 lg:right-[152px] lg:top-1/2 lg:-translate-y-1/2 z-10 
+                        bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] w-[34px] h-[38px] flex items-center 
                         justify-center rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99] 
                         disabled:pointer-events-none disabled:opacity-[0.2] ">
-                        <svg width="7" height="13" viewBox="0 0 7 13" fill="none" className="group-hover:invert-100" >
-                            <path d="M0.817302 0.699707L6.19141 6.12544L0.817302 12.1834" stroke="black" />
-                        </svg>
-                    </button>
-                </div> 
-            </div>
-        </section>
-    );
+            {/* <svg width="7" height="13" viewBox="0 0 7 13" fill="none" className="group-hover:invert-100" >
+              <path d="M0.817302 0.699707L6.19141 6.12544L0.817302 12.1834" stroke="black" />
+            </svg> */}
+            <svg width="16" height="31" viewBox="0 0 16 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 15.4999C16 15.8603 15.8697 16.221 15.6093 16.4962L2.27607 30.587C1.75507 31.1377 0.911412 31.1377 0.390748 30.587C-0.129916 30.0364 -0.130249 29.1448 0.390748 28.5946L12.7813 15.4999L0.390749 2.40527C-0.130248 1.85467 -0.130248 0.963068 0.390749 0.412819C0.911747 -0.13743 1.75541 -0.137783 2.27607 0.412819L15.6093 14.5037C15.8697 14.7788 16 15.1396 16 15.4999Z" fill="black" fill-opacity="0.4" />
+            </svg>
+
+          </button>
+        </div>
+      </div>
+    </section>
+  );
 }

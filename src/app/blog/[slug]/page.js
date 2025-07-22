@@ -1,6 +1,7 @@
 import InnerBanner from "@/components/common/InnerBanner";
 import { BreadCrumb } from "@/components/common/BreadCrumb";
 import BlogDetailSection from "@/components/features/blog/BlogDetailSection";
+import CommentSection from "@/components/features/blog/CommentSection";
 
 export default function Page() {
     return (
@@ -14,6 +15,7 @@ export default function Page() {
                 ]}
             />
             <BlogDetailSection />
+            <CommentSection />
         </>
     );
 } 

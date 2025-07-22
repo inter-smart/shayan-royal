@@ -1,3 +1,4 @@
+import { BreadCrumb } from "@/components/common/BreadCrumb";
 import InnerBanner from "@/components/common/InnerBanner"; 
 import CategorySection from "@/components/features/fabrication/CategorySection";
 import CustomerrequirementForm from "@/components/features/fabrication/CustomerrequirementForm";
@@ -8,6 +9,12 @@ export default function Page() {
     return (
         <>
             <InnerBanner title="fabrication" image="/images/fabricationBanner.jpg" alt="fabrication-banner" />
+            <BreadCrumb
+            items={[
+                    { label: "HOME", href: "/" },
+                    { label: "FABRICATION", isCurrent: true }
+                ]}
+             />
             <FabricationSection />
             <WhychooseUsSection />
             <CategorySection />

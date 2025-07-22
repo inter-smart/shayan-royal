@@ -85,15 +85,15 @@ export default function FitmentTypeServiceSection() {
                             spaceBetween: 20,
                         },
                         1280: {
-                            slidesPerView: 2,
+                            slidesPerView: 3,
                             spaceBetween: 25,
                         },
                         1536: {
-                            slidesPerView: 2,
+                            slidesPerView: 3,
                             spaceBetween: 30,
                         },
                         1771: {
-                            slidesPerView: 2,
+                            slidesPerView: 3,
                             spaceBetween: 35,
                         }
                     }}
@@ -115,58 +115,31 @@ export default function FitmentTypeServiceSection() {
                 >
                     {items.map((item, index) => {
                         if (index % 3 === 0) {
-                            return (
-                                <SwiperSlide key={"row1-" + index}>
-                                    <div className="w-full 3xl:h-[750px] 2xl:h-[565px] lg:h-[500px] sm:h-[420px] h-[380px]">
-                                        <div className="w-full h-full block group">
-                                            <div className="w-full h-full rounded-[10px] overflow-hidden block relative z-0">
-                                                <div className="w-full h-full">
-                                                    <Image
-                                                        src={item.image}
-                                                        alt={item.title}
-                                                        fill
-                                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                                        className="object-cover group-hover:scale-110 transition-all duration-500"
-                                                    />
-                                                </div>
-                                                <div className="3xl:text-[26px] 2xl:text-[20px] lg:text-[18px] sm:text-[16px] text-[14px] leading-[1] font-semibold text-white w-fit h-auto absolute z-1 left-0 bottom-0 3xl:p-[20px_40px] 2xl:p-[15px_30px] sm:p-[15px_25px] p-[15px] rounded-[0_10px_0_0] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
-                                                    <h2>{item.title}</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                            );
-                        }
-                        if (index % 3 === 1) {
                             const nextItem = items[index + 1];
                             return (
-                                <SwiperSlide key={"row2-" + index}>
-                                    <div className="w-full 3xl:h-[750px] 2xl:h-[565px] lg:h-[500px] sm:h-[420px] h-[380px] 3xl:gap-[40px] 2xl:gap-[30px] xl:gap-[25px] md:gap-[20px] sm:gap-[15px] gap-[10px] flex flex-col">
-                                        <div className="w-full h-[50%] rounded-[10px] overflow-hidden block relative z-0 group">
-                                            <div className="w-full h-full">
-                                                <Image
-                                                    src={item.image}
-                                                    alt={item.title}
-                                                    fill
-                                                    className="object-cover group-hover:scale-110 transition-all duration-500"
-                                                />
-                                            </div>
-                                            <div className="3xl:text-[26px] 2xl:text-[20px] lg:text-[18px] sm:text-[16px] text-[14px] leading-[1] font-semibold text-white w-fit h-auto absolute z-1 left-0 bottom-0 3xl:p-[20px_40px] 2xl:p-[15px_30px] sm:p-[15px_25px] p-[15px] rounded-[0_10px_0_0] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
+                                <SwiperSlide key={"row1-" + index}>
+                                    <div className="w-full 3xl:h-[750px] 2xl:h-[565px] lg:h-[500px] sm:h-[420px] h-[380px] flex flex-col gap-[15px]">
+                                        <div className="w-full h-[50%] rounded-[10px] overflow-hidden relative group">
+                                            <Image
+                                                src={item.image}
+                                                alt={item.title}
+                                                fill
+                                                className="object-cover group-hover:scale-110 transition-all duration-500"
+                                            />
+                                            <div className="text-white font-semibold absolute left-0 bottom-0 p-[15px] rounded-tl-[10px] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
                                                 <h2>{item.title}</h2>
                                             </div>
                                         </div>
+
                                         {nextItem && (
-                                            <div className="w-full h-[50%] rounded-[10px] overflow-hidden block relative z-0 group">
-                                                <div className="w-full h-full">
-                                                    <Image
-                                                        src={nextItem.image}
-                                                        alt={nextItem.title}
-                                                        fill
-                                                        className="object-cover group-hover:scale-110 transition-all duration-500"
-                                                    />
-                                                </div>
-                                                <div className="3xl:text-[26px] 2xl:text-[20px] lg:text-[18px] sm:text-[16px] text-[14px] leading-[1] font-semibold text-white w-fit h-auto absolute z-1 left-0 bottom-0 3xl:p-[20px_40px] 2xl:p-[15px_30px] sm:p-[15px_25px] p-[15px] rounded-[0_10px_0_0] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
+                                            <div className="w-full h-[50%] rounded-[10px] overflow-hidden relative group">
+                                                <Image
+                                                    src={nextItem.image}
+                                                    alt={nextItem.title}
+                                                    fill
+                                                    className="object-cover group-hover:scale-110 transition-all duration-500"
+                                                />
+                                                <div className="text-white font-semibold absolute left-0 bottom-0 p-[15px] rounded-tl-[10px] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
                                                     <h2>{nextItem.title}</h2>
                                                 </div>
                                             </div>
@@ -175,6 +148,63 @@ export default function FitmentTypeServiceSection() {
                                 </SwiperSlide>
                             );
                         }
+
+                        if (index % 3 === 1) {
+                            return (
+                                <SwiperSlide key={"row2-" + index}>
+                                    <div className="w-full 3xl:h-[750px] 2xl:h-[565px] lg:h-[500px] sm:h-[420px] h-[380px]">
+                                        <div className="w-full h-full rounded-[10px] overflow-hidden relative group">
+                                            <Image
+                                                src={item.image}
+                                                alt={item.title}
+                                                fill
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                className="object-cover group-hover:scale-110 transition-all duration-500"
+                                            />
+                                            <div className="text-white font-semibold absolute left-0 bottom-0 p-[15px] rounded-tl-[10px] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
+                                                <h2>{item.title}</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
+                            );
+                        }
+
+                        if (index % 3 === 2) {
+                            const nextItem = items[index + 1];
+                            return (
+                                <SwiperSlide key={"row3-" + index}>
+                                    <div className="w-full 3xl:h-[750px] 2xl:h-[565px] lg:h-[500px] sm:h-[420px] h-[380px] flex flex-col gap-[15px]">
+                                        <div className="w-full h-[50%] rounded-[10px] overflow-hidden relative group">
+                                            <Image
+                                                src={item.image}
+                                                alt={item.title}
+                                                fill
+                                                className="object-cover group-hover:scale-110 transition-all duration-500"
+                                            />
+                                            <div className="text-white font-semibold absolute left-0 bottom-0 p-[15px] rounded-tl-[10px] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
+                                                <h2>{item.title}</h2>
+                                            </div>
+                                        </div>
+
+                                        {nextItem && (
+                                            <div className="w-full h-[50%] rounded-[10px] overflow-hidden relative group">
+                                                <Image
+                                                    src={nextItem.image}
+                                                    alt={nextItem.title}
+                                                    fill
+                                                    className="object-cover group-hover:scale-110 transition-all duration-500"
+                                                />
+                                                <div className="text-white font-semibold absolute left-0 bottom-0 p-[15px] rounded-tl-[10px] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
+                                                    <h2>{nextItem.title}</h2>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </SwiperSlide>
+                            );
+                        }
+
                         return null;
                     })}
                 </Swiper>
