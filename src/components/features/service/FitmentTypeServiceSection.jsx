@@ -118,7 +118,7 @@ export default function FitmentTypeServiceSection() {
                             const nextItem = items[index + 1];
                             return (
                                 <SwiperSlide key={"row1-" + index}>
-                                    <div className="w-full 3xl:h-[750px] 2xl:h-[565px] lg:h-[500px] sm:h-[420px] h-[380px] flex flex-col gap-[33px]">
+                                    <div className="w-full 3xl:h-[750px] 2xl:h-[565px] lg:h-[500px] sm:h-[420px] h-[380px] flex flex-col gap-[20px] 2xl:gap-[33px]">
                                         <div className="w-full h-[50%] rounded-[10px] overflow-hidden relative group">
                                             <Image
                                                 src={item.image}
@@ -174,7 +174,7 @@ export default function FitmentTypeServiceSection() {
                             const nextItem = items[index + 1];
                             return (
                                 <SwiperSlide key={"row3-" + index}>
-                                    <div className="w-full 3xl:h-[750px] 2xl:h-[565px] lg:h-[500px] sm:h-[420px] h-[380px] flex flex-col gap-[33px]">
+                                    <div className="w-full 3xl:h-[750px] 2xl:h-[565px] lg:h-[500px] sm:h-[420px] h-[380px] flex flex-col gap-[20px] 2xl:gap-[33px]">
                                         <div className="w-full h-[50%] rounded-[10px] overflow-hidden relative group">
                                             <Image
                                                 src={item.image}
