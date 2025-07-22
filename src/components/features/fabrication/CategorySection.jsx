@@ -195,8 +195,8 @@ export default function CategorySection() {
         </Swiper>
 
         {/* Navigation Arrows */}
-        <div className="flex items-center justify-center lg:absolute lg:top-0 lg:bottom-0 lg:w-full mt-[-150px] 3xs:mt-[-90px] md:mt-0">
-          <button className="btn-prev relative lg:absolute left-0 lg:left-[-50px] lg:top-1/2 lg:-translate-y-1/2 z-10
+        <div className="flex items-center justify-center absolute top-0 bottom-0 w-full mt-[-150px] 3xs:mt-[-90px] md:mt-0">
+          <button className="btn-prev absolute left-[-20px] sm:left-[-50px] -translate-y-1/2 z-10
                         bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]   w-[34px] h-[38px] flex items-center justify-center
                         rounded-[30px_0px_0px_30px] cursor-pointer group  hover:bg-[#2E4C99] disabled:pointer-events-none 
                         disabled:opacity-[1]">
@@ -208,7 +208,7 @@ export default function CategorySection() {
             </svg>
 
           </button>
-          <button className="btn-next relative lg:absolute right-0 lg:right-[152px] lg:top-1/2 lg:-translate-y-1/2 z-10 
+          <button className="btn-next absolute right-[-25px] sm:right-[-50px] -translate-y-1/2 z-10 
                         bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] w-[34px] h-[38px] flex items-center 
                         justify-center rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99] 
                         disabled:pointer-events-none disabled:opacity-[0.2] ">

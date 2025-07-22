@@ -196,12 +196,12 @@ export default function BannerSection() {
             ))}
           </Swiper>
 
-          <div className="flex items-center justify-center sm:absolute sm:top-0 sm:bottom-0 sm:w-full max-sm:pt-1">
+          <div className="flex items-center justify-center absolute top-0 bottom-0 w-full ">
             <button
-              className="custom-prev xs:absolute top-1/2 xs:left-0 z-10 -translate-y-1/2 cursor-pointer
-                disabled:pointer-events-none disabled:opacity-[0.2] max-sm:shadow w-[30px] h-[30px] 
-                flex items-center justify-center max-sm:rounded-[30px_0px_0px_30px] 
-                max-sm:bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]"
+              className="custom-prev  absolute left-0 z-10 sm:-translate-y-1/2 cursor-pointer
+                disabled:pointer-events-none disabled:opacity-[0.2]   w-[30px] h-[30px] 
+                flex items-center justify-center 
+                 "
               onClick={handlePrev}
             >
               <svg className="xl:w-[18px] xl:h-[18px] w-[10px] h-[10px] flex" viewBox="0 0 10 18" fill="none">
@@ -209,10 +209,10 @@ export default function BannerSection() {
               </svg>
             </button>
             <button
-              className="custom-next xs:absolute top-1/2 xs:right-0 z-10 -translate-y-1/2 cursor-pointer 
-                disabled:pointer-events-none disabled:opacity-[0.2] max-sm:shadow w-[30px] h-[30px]
-                flex items-center justify-center max-sm:rounded-[0px_30px_30px_0px] 
-                max-sm:bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]"
+              className="custom-next  absolute top-1/2  right-0 z-10 -translate-y-1/2 cursor-pointer 
+                disabled:pointer-events-none disabled:opacity-[0.2]  w-[30px] h-[30px]
+                flex items-center justify-center  
+                 "
               onClick={handleNext}
             >
               <svg className="xl:w-[18px] xl:h-[18px] w-[10px] h-[10px] flex" viewBox="0 0 10 18" fill="none">
