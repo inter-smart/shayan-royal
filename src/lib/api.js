@@ -26,6 +26,7 @@ export async function fetchFromAPI(endpoint, options = {}) {
 
   try {
     const response = await fetch(url, defaultOptions);
+    console.log("API response status:", response.status);
 
     if (!response.ok) {
       return {

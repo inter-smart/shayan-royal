@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { mediaUrl } from "@/lib/constants";
 
 const items = [
   { id: "name", label: "Name*", type: "text", required: true, placeholder: "Name*" },
