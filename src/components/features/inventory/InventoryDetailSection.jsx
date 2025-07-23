@@ -72,7 +72,7 @@ export default function InventoryDetailSection() {
     }, []);
 
     return (
-        <section className="w-full h-auto block 3xl:py-[70px_100px] xl:py-[30px_50px] sm:py-[20px_30px] py-[15px_30px]">
+        <section className="w-full h-auto block 3xl:py-[40px_100px] xl:py-[30px_50px] sm:py-[20px_30px] py-[15px_30px]">
             <div className="container">
                 <Heading size="heading2" as="h2" className="text-black uppercase font-normal 3xl:mb-[40px] 2xl:mb-[25px] md:mb-[15px] mb-[10px]">
                     {carDetails[0].carName}
