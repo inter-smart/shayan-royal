@@ -179,7 +179,7 @@ export default function BlogDetailSection() {
                                 key={idx}
                                 className="pt-[15px] xl:pt-[25px] 2xl:pt-[35px] pb-[20px] xl:pb-[30px] 2xl:pb-[40px] border-b border-[#D0D0D0] flex"
                             >
-                                <div className="w-[22%] 3xs:w-[20%] 2xs:w-[15%] sm:w-[12%] md:w-[10%] lg:w-[12%] xl:w-[10%] 3xl:w-[6%]">
+                                {/* <div className="w-[22%] 3xs:w-[20%] 2xs:w-[15%] sm:w-[12%] md:w-[10%] lg:w-[12%] xl:w-[10%] 3xl:w-[6%]">
                                     <div className="w-[65px] h-[65px] rounded-full overflow-hidden block">
                                         <Image
                                             src={comment.image}
@@ -189,8 +189,8 @@ export default function BlogDetailSection() {
                                             className="object-cover w-full h-full"
                                         />
                                     </div>
-                                </div>
-                                <div className="pl-[15px] w-[78%] 3xs:w-[80%] 2xs:w-[85%] sm:w-[88%] md:w-[90%] lg:w-[88%] xl:w-[90%] 3xl:w-[94%]">
+                                </div> */}
+                                <div className="w-full">
                                     <h6 className="text-[16px] md:text-[18px] 3xl:text-[20px] font-medium text-[#262626] mb-[2px] xl:mb-[5px]">
                                         {comment.name}{" "}
                                         <span className="text-[#7E7E7E] text-[11px] md:text-[12px] 3xl:text-[14px] font-normal">

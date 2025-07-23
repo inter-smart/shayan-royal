@@ -131,13 +131,14 @@ export default function CategorySection() {
       <div className="relative">
           <Swiper
           spaceBetween={15}
-          modules={[Navigation]}
+          modules={[Navigation, Autoplay]}
           slidesPerView={1}
+          loop={true}
           autoplay={{
             delay: 3000,
             disableOnInteraction: false,
           }}
-          speed={1200}
+          speed={1000}
           onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
           onBeforeInit={(swiper) => setActiveIndex(swiper.realIndex)}
           navigation={{

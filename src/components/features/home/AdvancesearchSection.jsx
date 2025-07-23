@@ -30,10 +30,10 @@ import {
 
 // Form validation schema
 const formSchema = z.object({
-    make: z.string().nonempty("Select make"),
-    model: z.string().nonempty("Select model"),
-    fuel: z.string().nonempty("Select fuel"),
-    gearbox: z.string().nonempty("Select gearbox"),
+    make: z.string().nonempty(" "),
+    model: z.string().nonempty(" "),
+    fuel: z.string().nonempty(" "),
+    gearbox: z.string().nonempty(" "),
     year: z.string().optional(),
     body: z.string().optional(),
 });

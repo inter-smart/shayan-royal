@@ -22,7 +22,7 @@ const items = [
     },
     {
         image: "/images/fitment_type_444.jpg",
-        title: "bullet proofing"
+        title: "BULLETY PROOFING"
     },
 
     // {
