@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Heading } from "@/components/layout/Heading";
 import { Text } from "@/components/layout/Text";
 import parse from "html-react-parser";
-import { formatPostDate } from "@/lib/utils";
+import { formatPostDate, formatPostTime } from "@/lib/utils";
 import { mediaUrl } from "@/lib/constants";
 
 const blogs = [
@@ -77,7 +77,7 @@ export default function BlogSection({ title, description, blogs }) {
                           <Image src="/images/date.png" alt="date" width={10} height={10} className="w-full h-full object-cover" />
                         </div>
                         <span className="3xl:text-[16px] 2xl:text-[14px] text-[12px] text-[#BE1E2D] font-medium px-[10px]">
-                          {item?.published_at ? formatPostDate(item?.published_at) : ""}
+                          {item?.published_at ? formatPostTime(item?.published_at) : ""}
                         </span>
                       </div>
                       <Heading size="heading5" as="div" className="text-black line-clamp-2 font-semibold mb-[10px] max-w-[360px]">
@@ -100,7 +100,13 @@ export default function BlogSection({ title, description, blogs }) {
                 <div key={index} className="w-full 3xl:mb-[20px] last:mb-0">
                   <div className="w-full h-full bg-white lg:p-[12px] md:p-[10px] p-[5px]  rounded-[6px] flex">
                     <div className="3xl:w-[200px] 2xl:w-[150px] sm:w-[130px] w-[100px] overflow-hidden rounded-[10px]">
-                      <Image src={item.image ? `${mediaUrl}${item.image}` : "/images/blog1.jpg"} alt={item.title} width={1070} height={500} className="w-full h-full object-cover" />
+                      <Image
+                        src={item.image ? `${mediaUrl}${item.image}` : "/images/blog1.jpg"}
+                        alt={item.title}
+                        width={1070}
+                        height={500}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div className="3xl:w-[calc(100%-200px)] 2xl:w-[calc(100%-150px)] sm:w-[calc(100%-130px)] w-[calc(100%-100px)] pl-[25px]">
                       <div className="flex items-center mb-[5px]">
@@ -109,7 +115,7 @@ export default function BlogSection({ title, description, blogs }) {
                         </div>
                         <span className="3xl:text-[16px] 2xl:text-[14px] text-[12px]  text-[#BE1E2D] font-medium px-[10px]">
                           {" "}
-                          {item?.published_at ? formatPostDate(item?.published_at) : ""}
+                          {item?.published_at ? formatPostTime(item?.published_at) : ""}
                         </span>
                       </div>
                       <Heading size="heading5" as="div" className="text-black line-clamp-2 font-semibold mb-[10px] max-w-[360px]">
