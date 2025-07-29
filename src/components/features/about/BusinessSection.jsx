@@ -41,6 +41,17 @@ export default function BusinessSection() {
                 </div>
                 <div className="flex flex-wrap">
                     <div className="3xl:w-[955px] 2xl:w-[740px] xl:w-[620px] lg:w-[520px] w-full 3xl:pt-[210px] xl:pt-[140px] md:pt-[100px] pt-[70px] overflow-hidden relative z-0">
+                        <div className="absolute top-[10%] right-[15%]  m-auto max-w-[150px] 2xl:max-w-[250px] 3xl:max-w-[300px] w-full h-fit">
+                            <Image
+                                src="/images/aboutLogo.png"
+                                alt="Business logo"
+                                width={1250}
+                                height={550}
+                                priority
+                                className="w-full object-cover"
+                            />
+                        </div>
+
                         <motion.div
                             initial={{ x: "-10%", opacity: 1 }}
                             animate={inView ? { x: "0%", opacity: 1 } : { x: "-10%", opacity: 1 }}
@@ -88,7 +99,7 @@ export default function BusinessSection() {
                         </Text>
                         <Text
                             size="text1"
-                            as="p" 
+                            as="p"
                             className="text-black"
                         >
                             {item.description2}

@@ -63,7 +63,7 @@ export default function LogisticsSection() {
               initial={{ x: -300, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 1.2, ease: "easeOut" }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.1 }}
               className="3xl:max-w-[800px] 2xl:max-w-[550px] xl:max-w-[500px] max-w-[350px] w-full"
             >
               <Image

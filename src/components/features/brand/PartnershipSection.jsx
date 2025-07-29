@@ -28,9 +28,9 @@ export default function PartnershipSection() {
                         </div>
                     </div>
                     <div>
-                        <div className="3xl:text-[50px] 2xl:text-[40px] xl:text-[30px] lg:text-[25px] 3xs:text-[20px] text-[18px] 3xl:mb-[30px] 2xl:mb-[20px] 3xs:mb-[15px] mb-[10px] uppercase font-semibold font-barlow">
+                        <h2 className="3xl:text-[50px] 2xl:text-[40px] xl:text-[30px] lg:text-[25px] 3xs:text-[20px] text-[18px] 3xl:mb-[30px] 2xl:mb-[20px] 3xs:mb-[15px] mb-[10px] uppercase font-semibold font-barlow">
                             Trusted Brand Partnership
-                        </div>
+                        </h2>
                         <p className="3xl:text-[20px] 2xl:text-[18px] lg:text-[16px] text-[14px] text-[#4B4B4B] lg:mb-[30px] mb-[20px]">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Esse enim quam vellet iniquus iustus poterat inpune. Naturales divitias dixit parabiles esse, quod parvo esset natura contenta. Paulum, cum regem Persem captum adduceret, eodem flumine invectio? Duo Reges: constructio interrete. Que Manilium, ab iisque M. Quo studio Aristophanem putamus aetatem in litteris duxisse Cum autem in quo sapienter dicimus, id a primo rectissime dicitur. Conferam tecum, quam cuique verso rem subicias; Sed haec nihil sane ad rem.
                         </p>

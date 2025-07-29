@@ -1,9 +1,9 @@
 export default function PrivacyPolicy() {
     return (
-        <section className="w-full h-auto lg:pt-[40px] pt-[40px]  lg:pb-[130px] pb-[40px]">
+        <section className="w-full h-auto  lg:pb-[130px] pb-[40px]">
             <div className="container">
                 <div className="typography">
-                    <h1>
+                    <h1 className="m-0">
                         Privacy Policy
                     </h1>
                     <p>

@@ -46,9 +46,9 @@ export default function SocialSection() {
                     </Heading>
                     <Text size="text1" as="p" className="text-black mb-[15px]">
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-                         ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only 
-                         five centuries, but also the leap into electronic typesetting,
-                         remaining essentially unchanged. It was popularised in  Lorem Ipsum passages, and more recently with desktop.
+                        ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only
+                        five centuries, but also the leap into electronic typesetting,
+                        remaining essentially unchanged. It was popularised in  Lorem Ipsum passages, and more recently with desktop.
                     </Text>
                 </div>
                 <Swiper
@@ -103,12 +103,13 @@ export default function SocialSection() {
                                 className="w-full h-full block overflow-hidden rounded-[10px] relative aspect-square 2xl:min-h-[350px] xl:min-h-[275px] sm:min-h-[250px] min-h-[220px]" >
                                 <video
                                     autoPlay
-                                    preload="auto"
                                     muted
                                     playsInline
+                                    preload="metadata"
                                     loop
                                     width={390}
                                     height={390}
+                                    loading="lazy"
                                     className="w-full h-full object-cover"
                                 >
                                     <source src={item.video} type="video/mp4" />

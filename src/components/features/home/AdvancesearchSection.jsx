@@ -260,7 +260,7 @@ export default function CarSearchForm() {
                                                 <FormControl>
                                                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                         <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}>
-                                                            <SelectValue placeholder="YEAR" className="text-black" />
+                                                            <SelectValue placeholder="YEAR FROM" className="text-black" />
                                                         </SelectTrigger>
                                                         <SelectContent className={contentClass}>
                                                             <SelectItem value="2020" className={itemClass}>2020</SelectItem>

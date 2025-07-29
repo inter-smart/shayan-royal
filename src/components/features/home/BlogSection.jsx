@@ -116,7 +116,7 @@ export default function BlogSection() {
                                         </div>
                                         <div className="3xl:w-[calc(100%-200px)] 2xl:w-[calc(100%-150px)] sm:w-[calc(100%-130px)] w-[calc(100%-100px)] pl-[25px]">
                                             <div className="flex items-center mb-[5px]">
-                                                <div className="w-[15px] h-[15px] flex items-center justify-end ml-auto">
+                                                <div className="w-[15px] h-[15px] flex items-center lg:justify-end lg:ml-auto">
                                                     <Image
                                                         src="/images/date.png"
                                                         alt="date"

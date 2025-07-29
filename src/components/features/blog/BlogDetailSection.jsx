@@ -95,10 +95,12 @@ export default function BlogDetailSection() {
                                 </div>
                             </div>
 
-                            <span className="2xl:text-[20px] md:text-[14px] leading-1 font-medium text-[#262626] w-full max-lg:mb-[15px] relative z-0 2xl:top-[30px] lg:top-[20px] lg:flex lg:justify-end">
-                                29.11.2024
-                            </span>
-                            <h3>LOREM IPSUM DOLOR SIT AMET, CONSECTETUR</h3>
+                            <div className="flex flex-wrap items-center justify-between py-[20px] gap-1">
+                                <h2 className="m-0">LOREM IPSUM DOLOR SIT AMET, CONSECTETUR</h2>
+                                <div className="2xl:text-[20px] md:text-[14px] font-medium text-[#262626]  relative z-0 ">
+                                    29.11.2024
+                                </div>
+                            </div>
 
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Esse enim quam vellet iniquus iustus poterat inpune. Naturales divitias dixit parabiles esse, quod parvo esset natura contenta. Paulum, cum regem Persem captum adduceret, eodem flumine invectio? Duo Reges: constructio interrete. Que Manilium, ab iisque M. Quo studio Aristophanem putamus aetatem in litteris duxisse? Cum autem in quo sapienter dicimus, id a primo rectissime dicitur. Conferam tecum, quam cuique verso rem subicias; Sed haec nihil sane ad rem; Tum Torquatus: Prorsus, inquit, assentior; Ut id aliis narrare gestiant? Quodcumque in mentem incideret, et quodcumque tamquam occurreret.</p>
                             <p>Unum nescio, quo modo possit, si luxuriosus sit, finitas cupiditates habere. Sed ego in hoc resisto; Satis est tibi in te, satis in legibus, satis in mediocribus amicitiis praesidii. Nihilo beatiorem esse Metellum quam Regulum. Animum autem reliquis rebus ita perfecit, ut corpus; Itaque eos id agere, ut a se dolores, morbos, debilitates repellant. Quid enim de amicitia statueris utilitatis causa expetenda vides. Quod si ita se habeat, non possit beatam praestare vitam sapientia. Oculorum, inquit Plato, est in nobis sensus acerrimus, quibus sapientiam non cernimus.</p>

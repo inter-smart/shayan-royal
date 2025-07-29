@@ -81,7 +81,7 @@ export default function EnquiryForm({ image, Formtitle, Formsubtitle }) {
           <div className="flex justify-end">
             <Button
               type="submit"
-              className="2xl:text-[16px] text-[12px] leading-[1] font-medium text-[#2E4C99] w-full sm:w-fit 2xl:h-[40px] h-[28px] 2xl:p-[10px_45px] p-[5px_30px] bg-[#FFFFFF] rounded-[50px] cursor-pointer hover:bg-[#BE1E2D]/80 transition-colors duration-300 ease-in-out hover:text-white"
+              className="2xl:text-[16px] text-[12px] leading-[1] font-medium text-[#2E4C99] w-full sm:w-fit 2xl:h-[40px] h-[35px] 2xl:p-[10px_45px] p-[5px_30px] bg-[#FFFFFF] rounded-[50px] cursor-pointer hover:bg-[#BE1E2D]/80 transition-colors duration-300 ease-in-out hover:text-white"
             >
               SUBMIT
             </Button>

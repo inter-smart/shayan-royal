@@ -15,7 +15,7 @@ export default function Page() {
                 ]}
             />
             <BlogDetailSection />
-            <CommentSection />
+            {/* <CommentSection /> */}
         </>
     );
 } 

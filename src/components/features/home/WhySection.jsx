@@ -97,7 +97,7 @@ export default function WhySection() {
               width={550}
               height={670}
               className="w-full object-cover"
-              alt=""
+              alt="whyLog"
             />
           </div>
 

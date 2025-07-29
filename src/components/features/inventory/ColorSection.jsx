@@ -60,7 +60,7 @@ export default function CarColorSpecSection() {
     }, []);
 
     return (
-        <section className="relative w-full pt-[70px] py-3 px-6">
+        <section className="relative w-full pt-[30px] 3xl:pt-[70px] pb-[40px]">
             <div className="container mx-auto">
                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10">
                     {/* Color Selection */}
@@ -89,7 +89,7 @@ export default function CarColorSpecSection() {
                                             >
                                                 {isActive && (
                                                     <div
-                                                        className="2xl:w-[32px] w-[25px] 2xl:h-[32px] h-[25px] rounded"
+                                                        className="2xl:w-[32px] w-[22px] 2xl:h-[32px] h-[22px] rounded"
                                                         style={{ backgroundColor: color.code }}
                                                     />
                                                 )}

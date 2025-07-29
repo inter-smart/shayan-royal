@@ -7,12 +7,11 @@ export default function AboutSection() {
         <section className="relative py-[30px] xl:py-[45px] 2xl:py-[50px] 3xl:py-[60px] overflow-hidden after:absolute after:top-0 after:left-0 after:content:[''] after:bg-[rgba(0,0,0,0.1)]">
             <video
                 autoPlay
-                preload="auto" 
-                width="1920"
-                height="1000"
                 muted
                 playsInline
-                className="w-full h-full object-cover absolute top-0 left-0 "
+                loop
+                preload="auto"
+                className="w-full h-full object-cover absolute top-0 left-0"
             >
                 <source src="/videos/about.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
@@ -22,7 +21,7 @@ export default function AboutSection() {
                     <div className="text-[25px] md:text-[30px] lg:text-[40px] 2xl:text-[50px] text-[#B4BACA] uppercase font-base1 mb-[10px] 
                     leading-none">SINCE</div>
                     <div className="text-[70px] lg:text-[100px] 2xl:text-[130px] 3xl:text-[150px] font-bold font-base1 leading-none mb-[10px] ">1995</div>
-                    <Heading size="heading2" as="h2" className="text-white uppercase !font-normal mb-[10px]" >
+                    <Heading size="heading1" as="h2" className="text-white uppercase !font-normal mb-[10px]" >
                         Shayan <span className="text-[#B6BCCB]"> Royal Group</span>
                     </Heading>
                     <Text size="text1" as="p" className="text-white mb-[15px]"
