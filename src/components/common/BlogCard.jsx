@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Text } from "@/components/layout/Text";
 import { Heading } from "@/components/layout/Heading";
 import { mediaUrl } from "@/lib/constants";
+import { formatPostTime } from "@/lib/utils";
 export default function BlogCard({ item }) {
   return (
     <div className="w-full h-full block group">
@@ -25,13 +26,15 @@ export default function BlogCard({ item }) {
           {item.title}
         </Heading>
         <Text size="text1" as="p" className="mb-[0]">
-          {item.description}
+          {item.description ? item.description : item?.short_content}
         </Text>
       </div>
       <div className="2xl:py-[20px] md:py-[15px] py-[10px] border-t border-b border-[#D9D9D9] flex justify-between">
-        <span className="3xl:text-[16px] 2xl:text-[14px] text-[11px] font-semibold text-[#262626]">{item.date}</span>
+        <span className="3xl:text-[16px] 2xl:text-[14px] text-[11px] font-semibold text-[#262626]">
+          {item.date ? item.date : formatPostTime(item.published_at)}
+        </span>
         <Link
-          href={item.link || "#"}
+          href={item.link || `/blog/${item.slug}`}
           aria-label="news"
           className="3xl:text-[16px] 2xl:text-[14px] text-[11px] font-semibold leading-normal uppercase text-[#2E4C99] transition-colors duration-300 hover:text-[#be1e2d]"
         >

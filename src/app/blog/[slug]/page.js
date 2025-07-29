@@ -1,19 +1,41 @@
 import InnerBanner from "@/components/common/InnerBanner";
 import { BreadCrumb } from "@/components/common/BreadCrumb";
 import BlogDetailSection from "@/components/features/blog/BlogDetailSection";
+import { fetchFromAPI } from "@/lib/api";
+import { mediaUrl } from "@/lib/constants";
 
-export default function Page() {
-    return (
-        <>
-            <InnerBanner title="Blogs" image="/images/blog_banner.webp" alt="about-banner" />
-            <BreadCrumb
-                items={[
-                    { label: "HOME", href: "/" },
-                    { label: "BLOGS", href: "/blog" },
-                    { label: "BLOGS DETAIL", isCurrent: true }
-                ]}
-            />
-            <BlogDetailSection />
-        </>
-    );
-} 
+export default async function Page({ params }) {
+  const resolvedParamms = await params;
+  const { slug } = resolvedParamms;
+
+  const { data, error } = await fetchFromAPI(`blog?slug=${slug}`);
+  console.log(error);
+
+  if (error) {
+    return <div>Something went wrong</div>;
+  }
+
+  if (!data) {
+    return <div>No data</div>;
+  }
+
+  const { banner, blog, recentBlogs } = data;
+
+  return (
+    <>
+      <InnerBanner
+        title={banner?.title ? banner?.title : "Blogs"}
+        image={banner?.image ? `${mediaUrl}${banner?.image}` : "/images/blog_banner.webp"}
+        alt={banner?.title ? banner?.title : "blog-banner"}
+      />
+      <BreadCrumb
+        items={[
+          { label: "HOME", href: "/" },
+          { label: "BLOGS", href: "/blog" },
+          { label: "BLOGS DETAIL", isCurrent: true },
+        ]}
+      />
+      <BlogDetailSection blog={blog} recentBlogs={recentBlogs} />
+    </>
+  );
+}
