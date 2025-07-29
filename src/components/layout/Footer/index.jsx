@@ -12,6 +12,7 @@ const footerHeading = "lg:text-[11px] text-[10px] uppercase text-white/40 font-m
 export default async function footer() {
   const footerData = await fetchFromAPI("footer");
   const { data, error } = footerData;
+  console.log(data);
   const { socialMediaLinks, footerContents } = data;
 
   
@@ -60,7 +61,7 @@ export default async function footer() {
               </li>
               <li className="mb-[10]">
                 <Link
-                  href="/inventory"
+                  href="/inventory?"
                   className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] text-white mb-[15px] hover:text-[#BE1E2D]"
                 >
                   Inventory

@@ -10,6 +10,8 @@ export default function ProductCard({ car, variant }) {
   const defaultPadding = "px-[10px] 3xl:py-[25px] py-[15px]";
   const paddingClass = variant ? variants[variant] || defaultPadding : defaultPadding;
 
+  const specs = ["GCC", car.fueltype, car.year, car.gearbox]
+
   return (
     <Link href={car.link || "#"} aria-label="news" className={`w-full h-full flex cursor-pointer group ${paddingClass}`}>
       <div className="w-full h-full rounded-[10px] bg-white overflow-hidden 3xl:py-[15px] py-[10px] 3xl:px-[20px] px-[15px] flex items-end shadow-xl">
@@ -34,7 +36,7 @@ export default function ProductCard({ car, variant }) {
           {/* Image */}
           <div className="w-full 3xl:max-w-[340px] 2xl:max-w-[290px] 3xs:max-w-[200px] max-w-[150px] 3xl:min-h-[250px] 2xl:min-h-[170px] min-h-[140px] flex items-center justify-center m-auto relative">
             <Image
-              src={car.image ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${car.image}` : "/images/NewArr1.png"}
+              src={car.main_image ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${car.main_image}` : "/images/NewArr1.png"}
               alt={car.title}
               width={350}
               height={200}
@@ -43,14 +45,14 @@ export default function ProductCard({ car, variant }) {
           </div>
           {/* Title */}
           <div className="py-2">
-            <div className="3xl:text-[20px] 2xl:text-[18px] text-[14px] font-semibold font-base1 text-black capitalize line-clamp-3">{car.title}</div>
+            <div className="3xl:text-[20px] 2xl:text-[18px] text-[14px] font-semibold font-base1 text-black capitalize line-clamp-3">{car.title} - {car.description}</div>
           </div>
         </div>
 
         {/* Right Section - Specs */}
         <div className="3xl:w-[65px] w-[45px]">
           <div className="flex flex-col 3xl:max-h-[265px] max-h-[200px] h-full">
-            {car.specs.map((spec, i) => {
+            {specs.map((spec, i) => {
               return (
                 <div key={i} className="3xl:mb-[15px] mb-[10px] last:mb-0">
                   <div className="text-center w-full h-full rounded-[10px] overflow-hidden bg-[#F5F9FF] 3xl:min-h-[55px] min-h-[40px] flex items-center justify-center flex-col">
