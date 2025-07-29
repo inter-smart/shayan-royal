@@ -47,7 +47,7 @@ const faqContents = [
 
 export default function FaqSection() {
     return (
-        <section className="relative z-0 bg-white py-[30px] 2xl:py-[40px] 3xl:py-[70px]">
+        <section className="relative z-0 bg-white py-[60px] 2xl:py-[60px_120px] 3xl:py-[115px_70px]">
             <div className="container">
                 <div className="bg-[#F5F9FF] 3xl:p-[50px] xl:p-[30px] p-[20px]">
                     <div className="mb-[15px]">
@@ -85,6 +85,7 @@ export default function FaqSection() {
                     </Accordion>
                 </div>
             </div>
+
         </section>
     );
 }

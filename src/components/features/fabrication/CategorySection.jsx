@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { Heading } from "@/components/layout/Heading";
 import { mediaUrl } from "@/lib/constants";
 import Image from "next/image";
@@ -36,6 +39,8 @@ const categoryData = [
     icon: "/images/cat_icon8.png",
   },
 ];
+
+
 
 export default function CategorySection({ title, categoryData = categoryData }) {
   return (

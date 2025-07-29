@@ -59,7 +59,7 @@
       transform: translateY(0);
     }
   }
-  
+
 
   --animate-right: bounce 1s ease-in-out infinite;
 
@@ -302,4 +302,11 @@ body {
   border-radius: 8px !important;
   background-color: #2E4C99 !important;
 }
- 
+
+.outlined-text {
+  -webkit-text-stroke: 1px rgba(74, 95, 112, 0.2);
+}
+
+ body[data-scroll-locked]{
+  overflow: auto !important;
+ }

@@ -5,9 +5,9 @@ import AdvancesearchSection from "@/components/features/home/AdvancesearchSectio
 
 export default function InventorySection({data}) {
     return (
-        <section className="w-full h-auto block 3xl:py-[60px_130px] lg:py-[30px_90px] sm:py-[20px_70px] py-[15px_40px]">
+        <section className="w-full h-auto block 3xl:py-[0px_130px] lg:py-[10px_90px] sm:py-[10px_70px] py-[10px_40px]">
             <div className="container">
-                <div className="w-full h-auto 3xl:mb-[30px] 2xl:mb-[20px] mb-[15px] 3xl:p-[20px_15px] 2xl:p-[15px_12px] lg:p-[12px_10px] p-[8px_5px]">
+                <div className="w-full h-auto mb-[10px] 3xl:p-[20px_15px] 2xl:p-[15px_12px] lg:p-[12px_10px] p-[8px_5px]">
                     <AdvancesearchSection />
                     <Link
                         href="/"

@@ -21,8 +21,8 @@ export default function page() {
             <FitmentServiceSection />
             <FitmentTypeServiceSection />
             <FitmentAdditionalServicesSection />
-            <FitmentEnquirySection />
             <WorkinActionSection />  
+            <FitmentEnquirySection />
         </>
     );
 }

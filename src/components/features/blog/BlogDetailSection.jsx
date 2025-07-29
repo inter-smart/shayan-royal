@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import BlogCard from "@/components/common/BlogCard";
 import { Heading } from "@/components/layout/Heading";

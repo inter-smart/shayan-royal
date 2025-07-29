@@ -171,31 +171,32 @@ export default function TestimonialSection({ title, description, testimonials })
           </Text>
         </div>
 
-        <Swiper
-          modules={[Pagination, Navigation]}
-          pagination={!isMobile ? { clickable: true } : false}
-          spaceBetween={20}
-          breakpoints={{
-            320: { slidesPerView: 1 },
-            768: { slidesPerView: 1 },
-            678: { slidesPerView: 1 },
-            1024: { slidesPerView: 2 },
-          }}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false,
-          }}
-          speed={800}
-          onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-          onBeforeInit={(swiper) => {
-            swiper.params.navigation.prevEl = ".testmonial-prev";
-            swiper.params.navigation.nextEl = ".testmonial-next";
-          }}
-          navigation={{
-            prevEl: ".testmonial-prev",
-            nextEl: ".testmonial-next",
-          }}
-          className="xs:!pb-[35px] [--swiper-pagination-bullet-width:11px] 
+                <Swiper
+                    modules={[Pagination, Navigation]}
+                    pagination={!isMobile ? { clickable: true } : false}
+                    spaceBetween={20}
+                    breakpoints={{
+                        320: { slidesPerView: 1 },
+                        768: { slidesPerView: 1 },
+                        678: { slidesPerView: 1 },
+                        1024: { slidesPerView: 2 },
+
+                    }}
+                    autoplay={{
+                        delay: 3000,
+                        disableOnInteraction: false,
+                    }}
+                    speed={800}
+                    onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+                    onBeforeInit={(swiper) => {
+                        swiper.params.navigation.prevEl = ".testmonial-prev";
+                        swiper.params.navigation.nextEl = ".testmonial-next";
+                    }}
+                    navigation={{
+                        prevEl: ".testmonial-prev",
+                        nextEl: ".testmonial-next",
+                    }}
+                    className="xs:!pb-[35px] [--swiper-pagination-bullet-width:11px] 
                     [--swiper-pagination-bullet-height:11px] 
                     [--swiper-pagination-bullet-inactive-opacity:1] 
                    [--swiper-pagination-bullet-inactive-color:#D6E1FF] 

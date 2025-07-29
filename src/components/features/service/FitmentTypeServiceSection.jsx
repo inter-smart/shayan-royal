@@ -13,25 +13,32 @@ const items = [
         title: "AMBULANCE",
     },
     {
-        image: "/images/fitment_type_2.webp",
-        title: "OFF-ROADING VEHICLES"
-    },
-    {
-        image: "/images/fitment_type_3.webp",
+        image: "/images/fitment_type_33.jpg",
         title: "TRUCK FABRICATION"
     },
     {
-        image: "/images/fitment_type_1.webp",
-        title: "AMBULANCE",
-    },
-    {
-        image: "/images/fitment_type_2.webp",
+        image: "/images/fitment_type_333.jpg",
         title: "OFF-ROADING VEHICLES"
     },
     {
-        image: "/images/fitment_type_3.webp",
-        title: "TRUCK FABRICATION"
-    }
+        image: "/images/fitment_type_444.jpg",
+        title: "BULLETY PROOFING"
+    },
+
+    // {
+    //     image: "/images/fitment_type_33.jpg",
+    //     title: "TRUCK FABRICATION"
+    // },
+    // {
+    //     image: "/images/fitment_type_33.jpg",
+    //     title: "ARMORING"
+    // },
+    // {
+    //     image: "/images/fitment_type_1.webp",
+    //     title: "AMBULANCE",
+    // },
+
+
 ];
 
 export default function FitmentTypeServiceSection() {
@@ -85,16 +92,16 @@ export default function FitmentTypeServiceSection() {
                             spaceBetween: 20,
                         },
                         1280: {
-                            slidesPerView: 2,
+                            slidesPerView: 3,
                             spaceBetween: 25,
                         },
                         1536: {
-                            slidesPerView: 2,
+                            slidesPerView: 3,
                             spaceBetween: 30,
                         },
                         1771: {
-                            slidesPerView: 2,
-                            spaceBetween: 35,
+                            slidesPerView: 3,
+                            spaceBetween: 40,
                         }
                     }}
                     speed={800}
@@ -115,58 +122,31 @@ export default function FitmentTypeServiceSection() {
                 >
                     {items.map((item, index) => {
                         if (index % 3 === 0) {
-                            return (
-                                <SwiperSlide key={"row1-" + index}>
-                                    <div className="w-full 3xl:h-[750px] 2xl:h-[565px] lg:h-[500px] sm:h-[420px] h-[380px]">
-                                        <div className="w-full h-full block group">
-                                            <div className="w-full h-full rounded-[10px] overflow-hidden block relative z-0">
-                                                <div className="w-full h-full">
-                                                    <Image
-                                                        src={item.image}
-                                                        alt={item.title}
-                                                        fill
-                                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                                        className="object-cover group-hover:scale-110 transition-all duration-500"
-                                                    />
-                                                </div>
-                                                <div className="3xl:text-[26px] 2xl:text-[20px] lg:text-[18px] sm:text-[16px] text-[14px] leading-[1] font-semibold text-white w-fit h-auto absolute z-1 left-0 bottom-0 3xl:p-[20px_40px] 2xl:p-[15px_30px] sm:p-[15px_25px] p-[15px] rounded-[0_10px_0_0] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
-                                                    <h2>{item.title}</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                            );
-                        }
-                        if (index % 3 === 1) {
                             const nextItem = items[index + 1];
                             return (
-                                <SwiperSlide key={"row2-" + index}>
-                                    <div className="w-full 3xl:h-[750px] 2xl:h-[565px] lg:h-[500px] sm:h-[420px] h-[380px] 3xl:gap-[40px] 2xl:gap-[30px] xl:gap-[25px] md:gap-[20px] sm:gap-[15px] gap-[10px] flex flex-col">
-                                        <div className="w-full h-[50%] rounded-[10px] overflow-hidden block relative z-0 group">
-                                            <div className="w-full h-full">
-                                                <Image
-                                                    src={item.image}
-                                                    alt={item.title}
-                                                    fill
-                                                    className="object-cover group-hover:scale-110 transition-all duration-500"
-                                                />
-                                            </div>
-                                            <div className="3xl:text-[26px] 2xl:text-[20px] lg:text-[18px] sm:text-[16px] text-[14px] leading-[1] font-semibold text-white w-fit h-auto absolute z-1 left-0 bottom-0 3xl:p-[20px_40px] 2xl:p-[15px_30px] sm:p-[15px_25px] p-[15px] rounded-[0_10px_0_0] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
+                                <SwiperSlide key={"row1-" + index}>
+                                    <div className="w-full 3xl:h-[750px] 2xl:h-[565px] lg:h-[500px] sm:h-[420px] h-[380px] flex flex-col gap-[20px] 2xl:gap-[33px]">
+                                        <div className="w-full h-[50%] rounded-[10px] overflow-hidden relative group">
+                                            <Image
+                                                src={item.image}
+                                                alt={item.title}
+                                                fill
+                                                className="object-cover group-hover:scale-110 transition-all duration-500"
+                                            />
+                                            <div className="text-white font-semibold absolute right-[20px] bottom-0 p-[15px] rounded-tl-[10px] rounded-tr-[10px] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
                                                 <h2>{item.title}</h2>
                                             </div>
                                         </div>
+
                                         {nextItem && (
-                                            <div className="w-full h-[50%] rounded-[10px] overflow-hidden block relative z-0 group">
-                                                <div className="w-full h-full">
-                                                    <Image
-                                                        src={nextItem.image}
-                                                        alt={nextItem.title}
-                                                        fill
-                                                        className="object-cover group-hover:scale-110 transition-all duration-500"
-                                                    />
-                                                </div>
-                                                <div className="3xl:text-[26px] 2xl:text-[20px] lg:text-[18px] sm:text-[16px] text-[14px] leading-[1] font-semibold text-white w-fit h-auto absolute z-1 left-0 bottom-0 3xl:p-[20px_40px] 2xl:p-[15px_30px] sm:p-[15px_25px] p-[15px] rounded-[0_10px_0_0] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
+                                            <div className="w-full h-[50%] rounded-[10px] overflow-hidden relative group">
+                                                <Image
+                                                    src={nextItem.image}
+                                                    alt={nextItem.title}
+                                                    fill
+                                                    className="object-cover group-hover:scale-110 transition-all duration-500"
+                                                />
+                                                <div className="text-white font-semibold absolute right-[20px] bottom-0 p-[15px] rounded-tl-[10px] rounded-tr-[10px] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
                                                     <h2>{nextItem.title}</h2>
                                                 </div>
                                             </div>
@@ -175,26 +155,79 @@ export default function FitmentTypeServiceSection() {
                                 </SwiperSlide>
                             );
                         }
+
+                        if (index % 3 === 1) {
+                            return (
+                                <SwiperSlide key={"row2-" + index}>
+                                    <div className="w-full 3xl:h-[750px] 2xl:h-[565px] lg:h-[500px] sm:h-[420px] h-[380px]">
+                                        <div className="w-full h-full rounded-[10px] overflow-hidden relative group">
+                                            <Image
+                                                src={item.image}
+                                                alt={item.title}
+                                                fill
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                                className="object-cover group-hover:scale-110 transition-all duration-500"
+                                            />
+                                            <div className="text-white font-semibold absolute right-[20px] bottom-0 p-[15px] rounded-tl-[10px] rounded-tr-[10px] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
+                                                <h2>{item.title}</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
+                            );
+                        }
+
+                        if (index % 3 === 2) {
+                            const nextItem = items[index + 1];
+                            return (
+                                <SwiperSlide key={"row3-" + index}>
+                                    <div className="w-full 3xl:h-[750px] 2xl:h-[565px] lg:h-[500px] sm:h-[420px] h-[380px] flex flex-col gap-[20px] 2xl:gap-[33px]">
+                                        <div className="w-full h-[50%] rounded-[10px] overflow-hidden relative group">
+                                            <Image
+                                                src={item.image}
+                                                alt={item.title}
+                                                fill
+                                                className="object-cover group-hover:scale-110 transition-all duration-500"
+                                            />
+                                            <div className="text-white font-semibold absolute right-[20px] bottom-0 p-[15px] rounded-tl-[10px] rounded-tr-[10px] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
+                                                <h2>{item.title}</h2>
+                                            </div>
+                                        </div>
+
+                                        {nextItem && (
+                                            <div className="w-full h-[50%] rounded-[10px] overflow-hidden relative group">
+                                                <Image
+                                                    src={nextItem.image}
+                                                    alt={nextItem.title}
+                                                    fill
+                                                    className="object-cover group-hover:scale-110 transition-all duration-500"
+                                                />
+                                                <div className="text-white font-semibold absolute right-[20px] bottom-0 p-[15px] rounded-tl-[10px] rounded-tr-[10px] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]">
+                                                    <h2>{nextItem.title}</h2>
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </SwiperSlide>
+                            );
+                        }
+
                         return null;
                     })}
                 </Swiper>
                 {/* Navigation Arrows */}
-                <div className="flex items-center justify-center lg:absolute lg:top-0 lg:bottom-0 lg:w-full xs:hidden">
-                    <button className="fitmentservice-prev relative lg:absolute left-0 lg:left-[-65px] lg:top-1/2 lg:-translate-y-1/2 z-10
-                        bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] 
-                        shadow w-[34px] h-[38px] flex items-center justify-center rounded-[30px_0px_0px_30px] cursor-pointer group
-                         hover:bg-[#2E4C99] disabled:pointer-events-none disabled:opacity-[0.2]">
+                <div className="flex items-center justify-center absolute top-0 bottom-0 w-full xs:hidden">
+                    <button className="nav-prev  absolute left-[-25px] lg:left-[-35px] -translate-y-1/2 z-10 sm:bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] 
+                        sm:shadow 3xl:w-[34px] 2xl:w-[25px] w-[35px] 3xl:h-[38px] h-[35px] flex items-center justify-center sm:rounded-[30px_0px_0px_30px] cursor-pointer group hover:bg-[#2E4C99]">
 
-                        <svg width="7" height="13" viewBox="0 0 7 13" fill="none" className="group-hover:invert-100" >
+                        <svg viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]" >
                             <path d="M6.14364 0.699707L0.769531 6.12544L6.14364 12.1834" stroke="black" />
                         </svg>
                     </button>
-                    <button className="fitmentservice-next relative lg:absolute right-0 lg:right-[-65px] lg:top-1/2 lg:-translate-y-1/2 z-10 
-                        bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]
-                        shadow w-[34px] h-[38px] flex items-center justify-center rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99] 
-                        disabled:pointer-events-none disabled:opacity-[0.2] ">
+                    <button className=" nav-next  absolute right-[-25px] lg:right-[-35px]  -translate-y-1/2 z-10 sm:bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]
+                        sm:shadow 3xl:w-[34px] 2xl:w-[25px] w-[35px] 3xl:h-[38px]  h-[35px]   flex items-center justify-center sm:rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99]">
 
-                        <svg width="7" height="13" viewBox="0 0 7 13" fill="none" className="group-hover:invert-100" >
+                        <svg viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]" >
                             <path d="M0.817302 0.699707L6.19141 6.12544L0.817302 12.1834" stroke="black" />
                         </svg>
                     </button>
