@@ -17,44 +17,49 @@ const menuItems = [
   { label: "Contact Us", href: "/contact" },
 ];
 
-function NavMenus({ pathname, isInnerPage,data }) {
+function NavMenus({ pathname, isInnerPage, isPrivacyPage }) {
   const [isOpen, setIsOpen] = useState(false); // State for sheet
-   const isPrivacyPage = ["/privacy-policy", "/terms-conditions"].includes(pathname);
+
   return (
     <>
-     <NavigationMenu className="max-lg:hidden">
-              <NavigationMenuList className="flex items-center gap-0">
-                {menuItems.map((item) => {
-                  const isActive = pathname === item.href;
+      <NavigationMenu className="max-lg:hidden">
+        <NavigationMenuList className="flex items-center gap-0">
+          {menuItems.map((item) => {
+            const isActive = pathname === item.href;
 
-                  const menuLinkClass = `
+            const menuLinkClass = `
                     3xl:text-[18px] 2xl:text-[13px] xl:text-[11px] text-[12px] font-medium uppercase
                     ${isInnerPage ? "lg:text-white text-black" : "text-black"}
                     flex items-center justify-center 3xl:px-[25px] 2xl:px-[20px] px-[15px] 3xl:py-[43px] 2xl:py-[35px] py-[30px]
-                    ${isActive ? "after:absolute after:content-[''] after:bottom-[-1px] after:left-0 after:right-0 after:m-auto after:w-[70%] after:h-[2px] after:bg-white" : ""}
+                    ${
+                      isActive
+                        ? "after:absolute after:content-[''] after:bottom-[-1px] after:left-0 after:right-0 after:m-auto after:w-[70%] after:h-[2px] after:bg-white"
+                        : ""
+                    }
                     ${isPrivacyPage ? "!text-black hover:!text-[#BE1E2D]" : ""}
                     hover:!text-[#BE1E2D] hover:bg-transparent
                   `;
 
-                  return (
-                    <NavigationMenuItem key={item.label}>
-                      <Link href={item.href} passHref>
-                        <NavigationMenuLink asChild>
-                          <span
-                            className={`${menuLinkClass} ${item.label === "Contact Us"
-                              ? "!text-white bg-[#2E4C99] 3xl:h-[40px] 2xl:h-[30px] h-[25px] min-w-[90px] !py-0 !rounded-[50px] after:hidden hover:!bg-[#BE1E2D] hover:!text-white"
-                              : ""
-                              }`}
-                          >
-                            {item.label}
-                          </span>
-                        </NavigationMenuLink>
-                      </Link>
-                    </NavigationMenuItem>
-                  );
-                })}
-              </NavigationMenuList>
-            </NavigationMenu>
+            return (
+              <NavigationMenuItem key={item.label}>
+                <Link href={item.href} passHref>
+                  <NavigationMenuLink asChild>
+                    <span
+                      className={`${menuLinkClass} ${
+                        item.label === "Contact Us"
+                          ? "!text-white bg-[#2E4C99] 3xl:h-[40px] 2xl:h-[30px] h-[25px] min-w-[90px] !py-0 !rounded-[50px] after:hidden hover:!bg-[#BE1E2D] hover:!text-white"
+                          : ""
+                      }`}
+                    >
+                      {item.label}
+                    </span>
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            );
+          })}
+        </NavigationMenuList>
+      </NavigationMenu>
 
       <NavigationMenuItem className="lg:hidden list-none">
         <Sheet open={isOpen} onOpenChange={setIsOpen}>

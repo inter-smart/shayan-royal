@@ -17,11 +17,7 @@ export default async function Header() {
 
   return (
     <header>
-      <div className={`${isPrivacyPage ? "relative bg-white" : "absolute bg-transparent"} w-full  top-0 left-0 z-10 bg-transparent`}>
-        <div className="container">
-          <Contents data={data} />
-        </div>
-      </div>
+      <Contents data={data} />
     </header>
   );
 }
