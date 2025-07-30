@@ -103,7 +103,7 @@ export default function ReserveForm() {
               <FormItem className="w-full p-[5px] 2xl:p-[10px] relative">
                 <FormControl>
                   <Textarea
-                    placeholder="Message*"
+                    placeholder="Message"
                     {...field}
                     className={menuLinkClass}
                     rows={2}

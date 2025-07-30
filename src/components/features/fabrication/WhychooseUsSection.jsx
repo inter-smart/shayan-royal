@@ -28,7 +28,15 @@ const whyData = [
 
 export default function WhychooseUsSection({ title, description, image, alt, whyData = whyData }) {
   return (
-    <section className="relative bg-[#07163D] py-[40px] z-0 3xl:min-h-[850px] 2xl:min-h-[650px] xl:min-h-[550px] min-h-[450px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[100px_160px] after:absolute after:top-0 after:right-0 after:content-[''] after:z-[1] after:w-1/2 after:h-full after:bg-[linear-gradient(271deg,rgba(7,22,61,0)_0.62%,#07163D_97.76%)]">
+    <section className="relative bg-[#07163D] py-[40px] z-0 3xl:min-h-[850px] 2xl:min-h-[650px] xl:min-h-[550px] min-h-[450px] xl:py-[60px] 
+        2xl:py-[80px] 3xl:py-[100px_160px] 
+        after:absolute after:top-0 after:right-0 after:content-[''] after:z-[1] after:w-1/2 after:h-full 
+        after:bg-[linear-gradient(271deg,rgba(7,22,61,0)_0.62%,#07163D_97.76%)]
+        before:absolute before:content-[''] overflow-hidden
+            before:top-0 lg:before:left-[35%] before:left-0 max-lg:before:right-0 before:m-auto before:h-full before:3xl:w-[365px] before:2xl:w-[275px]
+             before:w-[220px] lg:before:skew-x-[15deg] before:skew-x-[20deg]
+            before:bg-[linear-gradient(180deg,_#C1C6D2_-13.07%,_rgba(209,212,220,0.38)_100%)] before:z-[2] before:opacity-10 
+        ">
       <Image
         src={image ? `${mediaUrl}${image}` : "/images/whySectionImg.jpg"}
         width={900}

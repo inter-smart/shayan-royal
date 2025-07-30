@@ -92,10 +92,10 @@ export default function ResponsiveTabsWithSwiper() {
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
   return (
-    <section className="w-full px-4 pt-6 pb-3 bg-white">
+    <section className="w-full px-4 pt-6 pb-3 bg-white overflow-hidden">
       <div className="container mx-auto">
         {/* Tab Header */}
-        <div className="mb-6">
+        <div className="mb-6 px-2">
           <Swiper
             slidesPerView={2}
             spaceBetween={10}
@@ -111,7 +111,7 @@ export default function ResponsiveTabsWithSwiper() {
               <SwiperSlide key={idx}>
                 <button
                   onClick={() => setActiveTab(tab)}
-                  className={`relative text-[14px] sm:text-[16px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[25px] font-base1 w-full pb-2 whitespace-nowrap text-left cursor-pointer transition-all hover:text-[#2E4C99] hover:font-semibold
+                  className={`relative text-[13px] sm:text-[16px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[25px] font-base1 w-full pb-2 whitespace-nowrap text-left cursor-pointer transition-all hover:text-[#2E4C99] hover:font-semibold
                     ${activeTab === tab ? "font-semibold text-black after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-1/2 after:bg-[#2E4C99]" : "text-[#4B4B4B]"}`}
                 >
                   {tab}

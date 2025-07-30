@@ -41,7 +41,7 @@ export default function BlogSection({ title, description, blogs }) {
   const rightItems = blogs?.slice(2);
   return (
     <section
-      className="relative z-0 bg-white py-[45px] xl:py-[60px_115px] 2xl:py-[75px_135px] 3xl:py-[100px_180px] after:absolute after:content-[''] overflow-hidden
+      className="relative z-0 bg-white py-[35px] 2xl:py-[40px] 3xl:py-[75px] after:absolute after:content-[''] overflow-hidden
         after:top-0 after:left-0 after:right-0 after:m-auto after:h-full after:3xl:w-[365px] after:2xl:w-[275px] after:w-[220px] after:skew-x-[-15deg]
         after:bg-[linear-gradient(180deg,_#C1C6D2_-13.07%,_rgba(209,212,220,0.38)_100%)] after:z-[-1] after:opacity-10"
     >
@@ -64,7 +64,7 @@ export default function BlogSection({ title, description, blogs }) {
                   <div className="w-full h-full bg-white lg:p-[18px] md:p-[10px] p-[5px] rounded-[6px] max-2xs:flex">
                     <div className="w-full sm:aspect-[265/140] overflow-hidden rounded-[10px] 2xs:mb-[10px] max-2xs:w-[100px]">
                       <Image
-                        src={item.image ? `${mediaUrl}/${item.image}` : "/images/blog1.jpg"}
+                        src={item.image ? `${mediaUrl}${item.image}` : "/images/blog1.jpg"}
                         alt={item.title}
                         width={1070}
                         height={500}
@@ -110,7 +110,7 @@ export default function BlogSection({ title, description, blogs }) {
                     </div>
                     <div className="3xl:w-[calc(100%-200px)] 2xl:w-[calc(100%-150px)] sm:w-[calc(100%-130px)] w-[calc(100%-100px)] pl-[25px]">
                       <div className="flex items-center mb-[5px]">
-                        <div className="w-[15px] h-[15px] flex items-center justify-end ml-auto">
+                        <div className="w-[15px] h-[15px] flex items-center lg:justify-end lg:ml-auto">
                           <Image src="/images/date.png" alt="date" width={10} height={10} className="w-full h-full object-cover" />
                         </div>
                         <span className="3xl:text-[16px] 2xl:text-[14px] text-[12px]  text-[#BE1E2D] font-medium px-[10px]">

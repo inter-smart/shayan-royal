@@ -109,19 +109,19 @@ export default function SimilarcarSection() {
                         ))}
                     </Swiper>
                     {/* Navigation Arrows */}
-                    <div className="flex items-center justify-center lg:absolute lg:top-0 lg:bottom-0 lg:w-full">
-                        <button className="btn-prev relative lg:absolute left-0 lg:left-[-65px] lg:top-1/2 lg:-translate-y-1/2 z-10
-                        bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] 
-                        shadow w-[34px] h-[38px] flex items-center justify-center rounded-[30px_0px_0px_30px] cursor-pointer group
+                    <div className="flex items-center justify-center absolute top-0 bottom-0 w-full">
+                        <button className="btn-prev absolute left-[-25px] lg:left-[-55px] lg:top-1/2 lg:-translate-y-1/2 z-10
+                        lg:bg-gradient-to-r from-[#E4E4E4] to-[#FFFFFF] 
+                        lg:shadow w-[34px] h-[38px] flex items-center justify-center rounded-[30px_0px_0px_30px] cursor-pointer group
                          hover:bg-[#2E4C99] disabled:pointer-events-none disabled:opacity-[0.2]">
 
                             <svg width="7" height="13" viewBox="0 0 7 13" fill="none" className="group-hover:invert-100" >
                                 <path d="M6.14364 0.699707L0.769531 6.12544L6.14364 12.1834" stroke="black" />
                             </svg>
                         </button>
-                        <button className="btn-next relative lg:absolute right-0 lg:right-[-65px] lg:top-1/2 lg:-translate-y-1/2 z-10 
-                        bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]
-                        shadow w-[34px] h-[38px] flex items-center justify-center rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99] 
+                        <button className="btn-next absolute right-[-25px] lg:right-[-55px] lg:top-1/2 lg:-translate-y-1/2 z-10 
+                        lg:bg-gradient-to-r from-[#E4E4E4] to-[#FFFFFF] 
+                        lg:shadow w-[34px] h-[38px] flex items-center justify-center rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99] 
                         disabled:pointer-events-none disabled:opacity-[0.2] ">
 
                             <svg width="7" height="13" viewBox="0 0 7 13" fill="none" className="group-hover:invert-100" >

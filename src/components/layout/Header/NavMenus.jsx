@@ -17,8 +17,9 @@ const menuItems = [
   { label: "Contact Us", href: "/contact" },
 ];
 
-function NavMenus({ pathname, isInnerPage,data }) {
+function NavMenus({ pathname, isInnerPage, isPrivacyPage }) {
   const [isOpen, setIsOpen] = useState(false); // State for sheet
+
   return (
     <>
       <NavigationMenu className="max-lg:hidden">
@@ -35,6 +36,7 @@ function NavMenus({ pathname, isInnerPage,data }) {
                         ? "after:absolute after:content-[''] after:bottom-[-1px] after:left-0 after:right-0 after:m-auto after:w-[70%] after:h-[2px] after:bg-white"
                         : ""
                     }
+                    ${isPrivacyPage ? "!text-black hover:!text-[#BE1E2D]" : ""}
                     hover:!text-[#BE1E2D] hover:bg-transparent
                   `;
 
@@ -45,7 +47,7 @@ function NavMenus({ pathname, isInnerPage,data }) {
                     <span
                       className={`${menuLinkClass} ${
                         item.label === "Contact Us"
-                          ? "text-white bg-[#2E4C99] 3xl:h-[40px] 2xl:h-[30px] h-[25px] min-w-[90px] !py-0 !rounded-[50px] after:hidden hover:!bg-[#BE1E2D] hover:!text-white"
+                          ? "!text-white bg-[#2E4C99] 3xl:h-[40px] 2xl:h-[30px] h-[25px] min-w-[90px] !py-0 !rounded-[50px] after:hidden hover:!bg-[#BE1E2D] hover:!text-white"
                           : ""
                       }`}
                     >

@@ -32,7 +32,7 @@ const whyData = [
 export default function WhySection({ title, description, image, whyShayanItems }) {
   return (
     <section
-      className="relative z-0 bg-[#F5F9FF] py-[40px] xl:py-[55px_80px] 2xl:py-[65px_90px] 3xl:py-[90px_110px] after:absolute after:content-[''] overflow-hidden
+      className="relative z-0 bg-[#F5F9FF] py-[30px_20px] xl:py-[35px_20px] 2xl:py-[50px_30px] 3xl:py-[70px_50px] after:absolute after:content-[''] overflow-hidden
         after:top-0 after:left-[-10%] after:right-0 after:m-auto after:h-full after:3xl:w-[365px] after:2xl:w-[275px] after:w-[220px] after:skew-x-[16deg]
         after:bg-[linear-gradient(180deg,_#C1C6D2_-13.07%,_rgba(209,212,220,0.38)_100%)] after:z-[-1] after:opacity-20"
     >
@@ -79,10 +79,10 @@ export default function WhySection({ title, description, image, whyShayanItems }
 
           {/* Background Logo */}
           <div
-            className="absolute sm:top-0 top-[15%] sm:bottom-0 right-0 left-0 m-auto 3xl:max-w-[550px] 2xl:max-w-[400px] xl:max-w-[375px] lg:max-w-[275px] 
+            className="absolute top-[35%]  sm:top-0 sm:bottom-0 right-0 left-0 m-auto 3xl:max-w-[550px] 2xl:max-w-[400px] xl:max-w-[375px] lg:max-w-[275px] 
           max-w-[200px] flex items-center justify-center pointer-events-none"
           >
-            <Image src="/images/whyLog.svg" width={550} height={670} className="w-full object-cover" alt="" />
+            <Image src="/images/whyLog.svg" width={550} height={670} className="w-full object-cover" alt="whyLog" />
           </div>
 
           {/* Car Image with Animation */}
