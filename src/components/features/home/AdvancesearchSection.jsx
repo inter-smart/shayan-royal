@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useRouter } from "next/navigation"; // For App Router
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -28,14 +28,15 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
+import { mediaUrl } from "@/lib/constants";
 
 // Form validation schema
 const formSchema = z.object({
-  make: z.string().nonempty("Select make"),
-  model: z.string().nonempty("Select model"),
-  fuel: z.string().nonempty("Select fuel"),
-  gearbox: z.string().nonempty("Select gearbox"),
-  year: z.string().optional(),
+  make: z.string(), //.nonempty("Select make"),
+  model: z.string(), //.nonempty("Select model"),
+  fuel: z.string(), //.nonempty("Select fuel"),
+  gearbox: z.string(), //.nonempty("Select gearbox"),
+  yearTo: z.string().optional(), // Changed from "year" to "yearTo"
   body: z.string().optional(),
   regionalSpec: z.string().optional(),
   yearFrom: z.string().optional(),
@@ -48,18 +49,88 @@ const formSchema = z.object({
 export default function CarSearchForm() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [dropdownData, setDropdownData] = useState(null);
-  // const [models, setModels] = useState([]);
   const [makeId, setMakeId] = useState(null);
-  // const [makes, setMakes] = useState([]);
+
+  const searchParams = useSearchParams();
+
+  const queryValues = useMemo(() => {
+    const params = Object.fromEntries(searchParams.entries());
+    return {
+      make: params.make_id || "",
+      model: params.model_id || "",
+      fuel: params.fueltype || "",
+      gearbox: params.gearbox || "",
+      yearTo: params.yearTo || "",
+      body: params.body || "",
+      regionalSpec: params.specs || "",
+      yearFrom: params.yearFrom || "",
+      steeringSide: params.steering_type || "",
+      carType: "", // optional: map car_type_id to name later
+      cylinders: params.cylinder || "",
+      seats: params.seats || "",
+    };
+  }, [searchParams]);
 
   const form = useForm({
     resolver: zodResolver(formSchema),
-    defaultValues: {
+    values: queryValues, // initially from query string
+  });
+
+  useEffect(() => {
+    if (queryValues.make) {
+      setMakeId(queryValues.make);
+    }
+  }, [queryValues.make]);
+
+  const router = useRouter();
+
+  const onSubmit = async (values) => {
+    try {
+      if (!values) {
+        console.warn("No form values provided");
+        return;
+      }
+
+      // Map carType name to ID
+      const selectedCarType = dropdownData?.data?.carTypes?.find(
+        (type) => type.name === values.carType
+      );
+
+      const params = {
+        make_id: values.make,
+        model_id: values.model,
+        fueltype: values.fuel,
+        gearbox: values.gearbox,
+        yearTo: values.yearTo, // Changed from "year" to "yearTo"
+        body: values.body,
+        specs: values.regionalSpec,
+        steering_type: values.steeringSide,
+        car_type_id: selectedCarType ? String(selectedCarType.id) : undefined,
+        cylinder: values.cylinders,
+        seats: values.seats,
+        yearFrom: values.yearFrom,
+      };
+
+      // Filter out empty or undefined values
+      const filteredParams = Object.fromEntries(
+        Object.entries(params).filter(([_, v]) => v !== "" && v !== undefined)
+      );
+
+      const query = new URLSearchParams(filteredParams).toString();
+      router.push(`/inventory?${query}`);
+    } catch (error) {
+      console.error("Error during form submission:", error);
+      router.push("/inventory");
+    }
+  };
+
+  const handleClear = () => {
+    form.reset({
       make: "",
       model: "",
       fuel: "",
       gearbox: "",
-      year: "",
+      yearTo: "",
       body: "",
       regionalSpec: "",
       yearFrom: "",
@@ -67,103 +138,37 @@ export default function CarSearchForm() {
       carType: "",
       cylinders: "",
       seats: "",
-    },
-  });
+    });
 
-  const router = useRouter();
-// or: import { useRouter } from "next/router"; // For Pages Router
+    setMakeId(null);
 
-// Handle form submission with proper error handling and validation
-const onSubmit = async (values) => {
-  try {
-    // Validate required fields if needed
-    if (!values) {
-      console.warn('No form values provided');
-      return;
-    }
+    // 2. Reset related state
+    setMakeId(null);
 
-    const params = {
-      make_id: values.make,
-      model_id: values.model,
-      fueltype: values.fuel,
-      gearbox: values.gearbox,
-      year: values.year,
-      body: values.body,
-      specs: values.regionalSpec,
-      steering_type: values.steeringSide,
-      car_type_id: values.carType,
-      cylinder: values.cylinders,
-      seats: values.seats,
-      yearFrom: values.yearFrom,
-    };
+    router.push("/inventory?");
+  };
 
-    // Filter out empty, undefined, null values and empty strings
-    const filteredParams = Object.fromEntries(
-      Object.entries(params).filter(([_, value]) => 
-        value !== null && 
-        value !== undefined && 
-        value !== "" && 
-        value !== "0" && // Remove if 0 is a valid value
-        String(value).trim() !== ""
-      )
-    );
-
-    // Only proceed if we have valid parameters
-    if (Object.keys(filteredParams).length === 0) {
-      console.warn('No valid search parameters provided');
-      router.push("/inventory");
-      return;
-    }
-
-    // Create query string
-    const query = new URLSearchParams(filteredParams).toString();
-    console.log('Search params:', filteredParams);
-    console.log('Query string:', query);
-
-    // Navigate with proper error handling
-    await router.push(`/inventory?${query}`);
-    
-  } catch (error) {
-    console.error('Error during form submission:', error);
-    // Fallback to inventory page without params
-    router.push("/inventory");
-  }
-};
-
-const handleClear = () => {
-  try {
-    
-    router.push("/inventory");
-  } catch (error) {
-    console.error('Error clearing filters:', error);
-    // Force reload as fallback
-    window.location.href = "/inventory";
-  }
-};
-
-  // Fetch all makes on mount
   useEffect(() => {
     const fetchMakes = async () => {
       try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/drop-down-data`
-        );
+        const response = await fetch(`${mediaUrl}/api/drop-down-data`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch dropdown data");
+        }
         const data = await response.json();
-        setDropdownData(data || []);
+        setDropdownData(data);
       } catch (error) {
-        console.error("Failed to fetch makes", error);
+        console.error("Failed to fetch dropdown data:", error);
       }
     };
     fetchMakes();
   }, []);
 
-
-const models = makeId
-  ? dropdownData?.data?.models?.filter(
-      (model) => model.make_id === Number(makeId)
-    )
-  : [];
-
+  const models = makeId
+    ? dropdownData?.data?.models?.filter(
+        (model) => model.make_id === Number(makeId)
+      )
+    : [];
 
   const menuLinkClass =
     "!text-[10px] 2xl:!text-[12px] 3xl:!text-[14px] text-black max-w-full min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px] text-black uppercase font-normal placeholder:!text-black placeholder:font-normal !w-full px-[12px] border !border-[rgba(46,76,153,0.34)] bg-white rounded-[5px] font-normal outline-none shadow-none focus:outline-none focus:ring-0 focus:border-[#CCCCCC] focus:shadow-none data-[state=open]:border-[#00095b] data-[state=open]:shadow-none";
@@ -190,23 +195,23 @@ const models = makeId
                 <FormItem>
                   <FormControl>
                     <Select
-                      defaultValue={field.value}
+                      value={field.value}
                       onValueChange={(value) => {
                         field.onChange(value);
                         setMakeId(value);
+                        form.setValue("model", ""); // Reset model when make changes
                       }}
                     >
-                      <SelectTrigger
-                        className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}
-                      >
-                        <SelectValue
-                          placeholder="MAKE"
-                          className="text-black"
-                        />
+                      <SelectTrigger className={menuLinkClass}>
+                        <SelectValue placeholder="MAKE" />
                       </SelectTrigger>
                       <SelectContent className={contentClass}>
                         {dropdownData?.data?.makes?.map((make) => (
-                          <SelectItem key={make.id} value={String(make.id)}>
+                          <SelectItem
+                            key={make.id}
+                            value={String(make.id)}
+                            className={itemClass}
+                          >
                             {make.name}
                           </SelectItem>
                         ))}
@@ -218,7 +223,6 @@ const models = makeId
               )}
             />
           </div>
-
           {/* Model */}
           <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 xl:w-[calc(100%/5)] p-[5px] md:p-[10px]">
             <FormField
@@ -228,22 +232,21 @@ const models = makeId
                 <FormItem>
                   <FormControl>
                     <Select
-                      disabled={!makeId} // disables if make is not selected
+                      disabled={!makeId}
                       onValueChange={field.onChange}
                       value={field.value}
                     >
-                      <SelectTrigger
-                        className={`${menuLinkClass} placeholder:!text-black !text-black`}
-                      >
-                        <SelectValue
-                          placeholder="MODEL"
-                          className="!text-black placeholder:!text-black"
-                        />
+                      <SelectTrigger className={menuLinkClass}>
+                        <SelectValue placeholder="MODEL" />
                       </SelectTrigger>
                       <SelectContent className={contentClass}>
-                        {models.length > 0 ? (
+                        {models ? (
                           models.map((model) => (
-                            <SelectItem key={model.id} value={String(model.id)}>
+                            <SelectItem
+                              key={model.id}
+                              value={String(model.id)}
+                              className={itemClass}
+                            >
                               {model.name}
                             </SelectItem>
                           ))
@@ -260,7 +263,6 @@ const models = makeId
               )}
             />
           </div>
-
           {/* Fuel */}
           <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 xl:w-[calc(100%/5)] p-[5px] md:p-[10px]">
             <FormField
@@ -271,15 +273,10 @@ const models = makeId
                   <FormControl>
                     <Select
                       onValueChange={field.onChange}
-                      defaultValue={field.value}
+                      value={field.value}
                     >
-                      <SelectTrigger
-                        className={`${menuLinkClass} placeholder:!text-black !text-black`}
-                      >
-                        <SelectValue
-                          placeholder="FUEL"
-                          className="text-black"
-                        />
+                      <SelectTrigger className={menuLinkClass}>
+                        <SelectValue placeholder="FUEL" />
                       </SelectTrigger>
                       <SelectContent className={contentClass}>
                         {dropdownData?.data?.fuelTypes?.map((fuel) => (
@@ -299,7 +296,6 @@ const models = makeId
               )}
             />
           </div>
-
           {/* Gearbox */}
           <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 xl:w-[calc(100%/5)] p-[5px] md:p-[10px]">
             <FormField
@@ -310,15 +306,10 @@ const models = makeId
                   <FormControl>
                     <Select
                       onValueChange={field.onChange}
-                      defaultValue={field.value}
+                      value={field.value}
                     >
-                      <SelectTrigger
-                        className={`${menuLinkClass} placeholder:!text-black !text-black`}
-                      >
-                        <SelectValue
-                          placeholder="GEARBOX"
-                          className="text-black"
-                        />
+                      <SelectTrigger className={menuLinkClass}>
+                        <SelectValue placeholder="GEARBOX" />
                       </SelectTrigger>
                       <SelectContent className={contentClass}>
                         {dropdownData?.data?.gearboxes?.map((gearbox) => (
@@ -338,15 +329,13 @@ const models = makeId
               )}
             />
           </div>
-
           {/* Search Button */}
           <div className="w-full sm:w-2/3 md:w-full xl:w-1/5 p-[5px] md:p-[10px]">
             <div className="flex flex-wrap justify-end -m-[5px]">
               <div className="flex-grow p-[5px]">
                 <Button
                   type="submit"
-                  className="bg-[#BD1F2D] min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px]
-                                 text-white cursor-pointer w-full hover:bg-[#a81b27d3]"
+                  className="bg-[#BD1F2D] min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px] text-white cursor-pointer w-full hover:bg-[#a81b27d3]"
                 >
                   SEARCH
                 </Button>
@@ -357,10 +346,9 @@ const models = makeId
                 }`}
               >
                 <Button
-                  type="submit"
+                  type="button"
                   onClick={handleClear}
-                  className="bg-[#C4C4C4] min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px]
-                                 text-white cursor-pointer w-full hover:bg-[#a81b26]"
+                  className="bg-[#C4C4C4] min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px] text-white cursor-pointer w-full hover:bg-[#a81b26]"
                 >
                   CLEAR
                 </Button>
@@ -368,7 +356,6 @@ const models = makeId
             </div>
           </div>
         </form>
-
         {/* Advanced Search Accordion */}
         <Accordion
           type="single"
@@ -378,10 +365,9 @@ const models = makeId
         >
           <AccordionItem value="advanced-search">
             <AccordionTrigger
-              className={`text-[10px] lg:text-[12px] 3xl:text-[16px] text-black uppercase w-[280px]
-                         md:w-[300px] max-sm:m-auto rounded-[0px]
-                         absolute left-0 max-sm:right-0 h-[35px] flex items-center justify-center realtive z-0 font-normal cursor-pointer [&>svg]:hidden
-                           ${isExpanded ? "bottom-0" : "top-[100%]"}`}
+              className={`text-[10px] lg:text-[12px] 3xl:text-[16px] text-black uppercase w-[280px] md:w-[300px] max-sm:m-auto rounded-[0px] absolute left-0 max-sm:right-0 h-[35px] flex items-center justify-center realtive z-0 font-normal cursor-pointer [&>svg]:hidden ${
+                isExpanded ? "bottom-0" : "top-[100%]"
+              }`}
             >
               <Image
                 src="/images/buttonBg.png"
@@ -395,11 +381,9 @@ const models = makeId
               {isExpanded ? "- LESS OPTIONS" : "+ ADVANCED SEARCH"}
             </AccordionTrigger>
             <div
-              className={`absolute max-sm:hidden sm:bottom-[20px] right-[30px] 3xl:max-w-[250px] 2xl:max-w-[200px]
-                            lg:max-w-[150px] md:max-w-[100px]
-                            max-w-[75px] pointer-events-none  ${
-                              isExpanded ? "" : "hidden"
-                            }`}
+              className={`absolute max-sm:hidden sm:bottom-[20px] right-[30px] 3xl:max-w-[250px] 2xl:max-w-[200px] lg:max-w-[150px] md:max-w-[100px] max-w-[75px] pointer-events-none ${
+                isExpanded ? "" : "hidden"
+              }`}
             >
               <Image
                 src="/images/logo.svg"
@@ -421,15 +405,10 @@ const models = makeId
                         <FormControl>
                           <Select
                             onValueChange={field.onChange}
-                            defaultValue={field.value}
+                            value={field.value}
                           >
-                            <SelectTrigger
-                              className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}
-                            >
-                              <SelectValue
-                                placeholder="Regional Spec"
-                                className="text-black"
-                              />
+                            <SelectTrigger className={menuLinkClass}>
+                              <SelectValue placeholder="Regional Spec" />
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
                               {dropdownData?.data?.specs?.map((spec) => (
@@ -449,7 +428,6 @@ const models = makeId
                     )}
                   />
                 </div>
-
                 {/* Year From */}
                 <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 lg:p-[10px] p-[8px]">
                   <FormField
@@ -460,15 +438,10 @@ const models = makeId
                         <FormControl>
                           <Select
                             onValueChange={field.onChange}
-                            defaultValue={field.value}
+                            value={field.value}
                           >
-                            <SelectTrigger
-                              className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}
-                            >
-                              <SelectValue
-                                placeholder="YEAR FROM"
-                                className="text-black"
-                              />
+                            <SelectTrigger className={menuLinkClass}>
+                              <SelectValue placeholder="YEAR FROM" />
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
                               {dropdownData?.data?.years?.map((year) => (
@@ -488,26 +461,20 @@ const models = makeId
                     )}
                   />
                 </div>
-
                 {/* Year To */}
                 <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 lg:p-[10px] p-[8px]">
                   <FormField
                     control={form.control}
-                    name="year"
+                    name="yearTo"
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
                           <Select
                             onValueChange={field.onChange}
-                            defaultValue={field.value}
+                            value={field.value}
                           >
-                            <SelectTrigger
-                              className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}
-                            >
-                              <SelectValue
-                                placeholder="YEAR TO"
-                                className="text-black uppercase placeholder:!uppercase"
-                              />
+                            <SelectTrigger className={menuLinkClass}>
+                              <SelectValue placeholder="YEAR TO" />
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
                               {dropdownData?.data?.years?.map((year) => (
@@ -527,7 +494,6 @@ const models = makeId
                     )}
                   />
                 </div>
-
                 {/* Steering Side */}
                 <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 lg:p-[10px] p-[8px]">
                   <FormField
@@ -538,15 +504,10 @@ const models = makeId
                         <FormControl>
                           <Select
                             onValueChange={field.onChange}
-                            defaultValue={field.value}
+                            value={field.value}
                           >
-                            <SelectTrigger
-                              className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}
-                            >
-                              <SelectValue
-                                placeholder="STEERING SIDE"
-                                className="text-black uppercase"
-                              />
+                            <SelectTrigger className={menuLinkClass}>
+                              <SelectValue placeholder="STEERING SIDE" />
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
                               {dropdownData?.data?.steeringTypes?.map(
@@ -568,7 +529,6 @@ const models = makeId
                     )}
                   />
                 </div>
-
                 {/* Car Type */}
                 <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 lg:p-[10px] p-[8px]">
                   <FormField
@@ -579,15 +539,10 @@ const models = makeId
                         <FormControl>
                           <Select
                             onValueChange={field.onChange}
-                            defaultValue={field.value}
+                            value={field.value}
                           >
-                            <SelectTrigger
-                              className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}
-                            >
-                              <SelectValue
-                                placeholder="CAR TYPE"
-                                className="text-black"
-                              />
+                            <SelectTrigger className={menuLinkClass}>
+                              <SelectValue placeholder="CAR TYPE" />
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
                               {dropdownData?.data?.carTypes?.map((type) => (
@@ -607,7 +562,6 @@ const models = makeId
                     )}
                   />
                 </div>
-
                 {/* Cylinders */}
                 <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 lg:p-[10px] p-[8px]">
                   <FormField
@@ -618,15 +572,10 @@ const models = makeId
                         <FormControl>
                           <Select
                             onValueChange={field.onChange}
-                            defaultValue={field.value}
+                            value={field.value}
                           >
-                            <SelectTrigger
-                              className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}
-                            >
-                              <SelectValue
-                                placeholder="CYLINDERS"
-                                className="text-black"
-                              />
+                            <SelectTrigger className={menuLinkClass}>
+                              <SelectValue placeholder="CYLINDERS" />
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
                               {dropdownData?.data?.cylinders?.map(
@@ -648,7 +597,6 @@ const models = makeId
                     )}
                   />
                 </div>
-
                 {/* Number of Seats */}
                 <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 lg:p-[10px] p-[8px]">
                   <FormField
@@ -659,15 +607,10 @@ const models = makeId
                         <FormControl>
                           <Select
                             onValueChange={field.onChange}
-                            defaultValue={field.value}
+                            value={field.value}
                           >
-                            <SelectTrigger
-                              className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}
-                            >
-                              <SelectValue
-                                placeholder="NUMBER OF SEATS"
-                                className="text-black"
-                              />
+                            <SelectTrigger className={menuLinkClass}>
+                              <SelectValue placeholder="NUMBER OF SEATS" />
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
                               {dropdownData?.data?.seats?.map((seat) => (

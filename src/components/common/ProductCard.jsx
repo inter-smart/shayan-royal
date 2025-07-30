@@ -7,10 +7,20 @@ const variants = {
 };
 
 export default function ProductCard({ car, variant }) {
+
+
+function toTitleCase(text) {
+  if (typeof text !== 'string') return '';
+  return text
+    .toLowerCase()
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
   const defaultPadding = "px-[10px] 3xl:py-[25px] py-[15px]";
   const paddingClass = variant ? variants[variant] || defaultPadding : defaultPadding;
 
-  const specs = ["GCC", car.fueltype, car.year, car.gearbox]
+  const specs = ["GCC", toTitleCase(car.fueltype), car.year, toTitleCase(car.gearbox)]
 
   return (
     <Link href={car.link || "#"} aria-label="news" className={`w-full h-full flex cursor-pointer group ${paddingClass}`}>
@@ -23,11 +33,11 @@ export default function ProductCard({ car, variant }) {
                     after:bg-[linear-gradient(90deg,_rgba(187,192,207,0.00)_0%,_#BBC0CF_100%)] after:w-full after:max-w-[150px] 
                     after:opacity-[0.22] after:h-full"
         >
-          {/* Logo */}
+          {/* Make.make_logo */}
           <div className="w-full 3xl:max-w-[50px] max-w-[40px] absolute top-0 left-0 z-10">
             <Image
-              src={car.logo ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${car.logo}` : "/images/toyota.png"}
-              alt={car.brand}
+              src={car.make.make_logo ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${car.make.make_logo}` : "/images/toyota.png"}
+              alt={car.make.name}
               width={350}
               height={200}
               className="w-full h-full object-contain "
@@ -45,7 +55,8 @@ export default function ProductCard({ car, variant }) {
           </div>
           {/* Title */}
           <div className="py-2">
-            <div className="3xl:text-[20px] 2xl:text-[18px] text-[14px] font-semibold font-base1 text-black capitalize line-clamp-3">{car.title} - {car.description}</div>
+            <div className="3xl:text-[20px] 2xl:text-[18px] text-[14px] font-semibold font-base1 text-black capitalize line-clamp-3"> {`${car.make?.name} ${car.model?.name} - ${car.make?.name} ${car.model?.name} ${car.title} is the ${car.fueltype === "hybrid" ? "hybrid (electric + petrol)" : car.fueltype} variant. It gives a mileage of ${car.kilometer} kmpl.`.toUpperCase()}
+</div>
           </div>
         </div>
 
@@ -60,7 +71,7 @@ export default function ProductCard({ car, variant }) {
                       <div className="3xl:w-[22px] w-[15px] 3xl:h-[22px] h-[15px] m-auto mb-[3px] flex">
                         <Image src={`/images/${specIcons[i].icon}`} alt={spec} width={25} height={25} className="w-full h-full object-contain" />
                       </div>
-                      <div className="3xl:text-[14px] text-[10px] font-normal font-base1 text-black">{spec}</div>
+                      <div className="3xl:text-[14px] text-[10px] font-normal font-base1 text-black">  {spec}</div>
                     </div>
                   </div>
                 </div>
