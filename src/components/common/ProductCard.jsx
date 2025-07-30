@@ -21,7 +21,7 @@ export default function ProductCard({ car, variant }) {
     return (
         <Link href={car.link || "#"}
             aria-label="news" className={`w-full h-full flex cursor-pointer group ${paddingClass}`}>
-            <div className="w-full h-full rounded-[10px] bg-white overflow-hidden 3xl:py-[15px] py-[10px] 3xl:px-[20px] px-[15px] flex items-end shadow-xl">
+            <div className="w-full h-full rounded-[10px] bg-white overflow-hidden 3xl:py-[15px] py-[10px] 3xl:px-[20px] px-[15px] flex items-center shadow-xl">
                 {/* Left Section */}
                 <div className={`3xl:w-[calc(100%-65px)] w-[calc(100%-45px)] h-full min-h-[200px] 3xs:min-h-[230px] 3xl:min-h-[295px] mr-[20px] 
                     relative flex flex-col rounded-[10px] overflow-hidden after:absolute 
