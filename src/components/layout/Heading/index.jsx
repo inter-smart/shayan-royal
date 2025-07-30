@@ -29,9 +29,9 @@ const sizes = {
   heading3:
     "text-[16px] sm:text-[20px] lg:text-[22px] xl:text-[25px] 2xl:text-[35px] 3xl:text-[46px] font-medium leading-[1.2] font-base1",
   heading4:
-    "text-[14px] sm:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[26px] 3xl:text-[30px] font-medium leading-[1.2] font-base1",
+    "text-[18px] xl:text-[20px] 2xl:text-[26px] 3xl:text-[30px] font-medium leading-[1.2] font-base1",
   heading5:
-    "text-[12px] sm:text-[14px] lg:text-[16px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[25px] font-medium leading-[1.2] font-base1",
+    "text-[20px] 2xl:text-[22px] 3xl:text-[25px] font-medium leading-[1.2] font-base1",
   heading6:
     "text-[10px] sm:text-[12px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[20px] font-medium leading-[1.2] font-base1",
 };

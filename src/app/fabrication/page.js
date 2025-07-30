@@ -4,6 +4,7 @@ import CustomerrequirementForm from "@/components/features/fabrication/Customerr
 import FabricationSection from "@/components/features/fabrication/FabricationSection";
 import ClientSection from "@/components/features/fabrication/OurClientSection";
 import WhychooseUsSection from "@/components/features/fabrication/WhychooseUsSection";
+import { BreadCrumb } from "@/components/common/BreadCrumb";
 import { fetchFromAPI } from "@/lib/api";
 import { mediaUrl } from "@/lib/constants";
 
@@ -29,6 +30,12 @@ export default async function Page() {
         image={banner?.image ? `${mediaUrl}${banner?.image}` : "/images/fabricationBanner.jpg"}
         alt={banner?.title ? banner?.title : "fabrication-banner"}
       />
+       <BreadCrumb
+            items={[
+                    { label: "HOME", href: "/" },
+                    { label: "FABRICATION", isCurrent: true }
+                ]}
+             />
       <FabricationSection title={contents?.title} description={contents?.description} />
       <WhychooseUsSection
         title={contents?.why_choose_us_section_title}

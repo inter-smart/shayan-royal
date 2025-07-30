@@ -1,6 +1,7 @@
 import InnerBanner from "@/components/common/InnerBanner";
 import { BreadCrumb } from "@/components/common/BreadCrumb";
 import BlogDetailSection from "@/components/features/blog/BlogDetailSection";
+import CommentSection from "@/components/features/blog/CommentSection";
 import { fetchFromAPI } from "@/lib/api";
 import { mediaUrl } from "@/lib/constants";
 
@@ -36,6 +37,7 @@ export default async function Page({ params }) {
         ]}
       />
       <BlogDetailSection blog={blog} recentBlogs={recentBlogs} />
+            {/* <CommentSection /> */}
     </>
   );
 }

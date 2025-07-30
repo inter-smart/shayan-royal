@@ -44,9 +44,9 @@ export default function PartnershipSection({ title, description, image, alt, bra
             </div>
           </div>
           <div>
-            <div className="3xl:text-[50px] 2xl:text-[40px] xl:text-[30px] lg:text-[25px] 3xs:text-[20px] text-[18px] 3xl:mb-[30px] 2xl:mb-[20px] 3xs:mb-[15px] mb-[10px] uppercase font-semibold font-barlow">
+            <h2 className="3xl:text-[50px] 2xl:text-[40px] xl:text-[30px] lg:text-[25px] 3xs:text-[20px] text-[18px] 3xl:mb-[30px] 2xl:mb-[20px] 3xs:mb-[15px] mb-[10px] uppercase font-semibold font-barlow">
               {title ? title : "Trusted Brand Partnership"}
-            </div>
+            </h2>
             {description && parse(description, customParserOptions)}
           </div>
         </div>

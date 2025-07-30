@@ -23,71 +23,94 @@ const item = {
 export default function BusinessSection({ title, description1, description2, image, alt, year, year_title }) {
   const { ref, inView } = useInView({ threshold: 0.4 });
 
-  return (
-    <section className="w-full h-auto 3xl:pb-[175px] 2xl:pb-[140px] xl:pb-[110px] md:pb-[70px] sm:pb-[50px] pb-[40px] block relative z-0">
-      <div className="absolute -z-1 left-0 top-0 bottom-0 lg:w-[70%] w-full h-full m-auto pointer-events-none">
-        <Image src="/images/business_section_bg.png" alt="Business background" fill style={{ objectFit: "cover" }} priority />
-      </div>
-      <div className="container">
-        <div className="absolute z-2 top-0 left-0 w-full">
-          <BreadCrumb
-            items={[
-              { label: "HOME", href: "/" },
-              { label: "ABOUT US", isCurrent: true },
-            ]}
-          />
-        </div>
-        <div className="flex flex-wrap">
-          <div className="3xl:w-[955px] 2xl:w-[740px] xl:w-[620px] lg:w-[520px] w-full 3xl:pt-[210px] xl:pt-[140px] md:pt-[100px] pt-[70px] overflow-hidden relative z-0">
-            <motion.div
-              initial={{ x: "-10%", opacity: 1 }}
-              animate={inView ? { x: "0%", opacity: 1 } : { x: "-10%", opacity: 1 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="w-full h-full max-xl:flex max-xl:items-center max-w-[1270px]"
-            >
-              <Image
-                src={image ? `${mediaUrl}${image}` : item.image}
-                alt={alt || "Business Car"}
-                width={1250}
-                height={550}
-                priority
-                className="w-full object-fill"
-              />
-            </motion.div>
-            <motion.div
-              ref={ref}
-              className="absolute -z-1 top-0 right-[25%] 2xl:max-w-[210px] xl:max-w-[170px] lg:max-w-[140px] sm:max-w-[120px] max-w-[100px] h-[70%] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]"
-              initial={{ y: "-5%", opacity: 0.7 }}
-              animate={inView ? { y: "0%", opacity: 1 } : { y: "-20%", opacity: 0.7 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-              <div className="w-full h-full lg:p-[30px_20px] sm:p-[20px] p-[15px]">
-                <div className="3xl:text-[100px] 2xl:text-[74px] xl:text-[66px] lg:text-[54px] sm:text-[38px] text-[28px] leading-none font-bold text-white font-base1">
-                  <CountUp start={0} end={inView ? parseInt(year) || item.years : 0} duration={1.5} separator="," />
-                  <span className="leading-none font-bold text-[#BE1E2D]">+</span>
+    return (
+        <section className="w-full h-auto 3xl:pb-[175px] 2xl:pb-[140px] xl:pb-[110px] md:pb-[70px] sm:pb-[50px] pb-[40px] block relative z-0">
+            <div className="absolute -z-1 left-0 top-0 bottom-0 lg:w-[70%] w-full h-full m-auto pointer-events-none">
+                <Image
+                    src="/images/business_section_bg.png"
+                    alt="Business background"
+                    fill
+                    style={{ objectFit: "cover" }}
+                    priority
+                />
+            </div>
+            <div className="container">
+                <div className="absolute z-2 top-0 left-0 w-full">
+                    <BreadCrumb
+                        items={[
+                            { label: "HOME", href: "/" },
+                            { label: "ABOUT US", isCurrent: true }
+                        ]}
+                    />
                 </div>
-                <div className="3xl:text-[40px] 2xl:text-[32px] xl:text-[26px] lg:text-[18px] sm:text-[16px] text-[14px] leading-none font-normal text-white">
-                  { year_title || item.yearsExperience}
+                <div className="flex flex-wrap">
+                    <div className="3xl:w-[955px] 2xl:w-[740px] xl:w-[620px] lg:w-[520px] w-full 3xl:pt-[210px] xl:pt-[140px] md:pt-[100px] pt-[70px] overflow-hidden relative z-0">
+                        <div className="absolute top-[10%] right-[15%]  m-auto max-w-[150px] 2xl:max-w-[250px] 3xl:max-w-[300px] w-full h-fit">
+                            <Image
+                                src="/images/aboutLogo.png"
+                                alt="Business logo"
+                                width={1250}
+                                height={550}
+                                priority
+                                className="w-full object-cover"
+                            />
+                        </div>
+
+                        <motion.div
+                            initial={{ x: "-10%", opacity: 1 }}
+                            animate={inView ? { x: "0%", opacity: 1 } : { x: "-10%", opacity: 1 }}
+                            transition={{ duration: 1, ease: "easeOut" }}
+                            className="w-full h-full max-xl:flex max-xl:items-center max-w-[1270px]"
+                        >
+                            <Image
+                                src={item.image}
+                                alt="Business Car"
+                                width={1250}
+                                height={550}
+                                priority
+                                className="w-full object-fill"
+                            />
+                        </motion.div>
+                        <motion.div
+                            ref={ref}
+                            className="absolute -z-1 top-0 right-[25%] 2xl:max-w-[210px] xl:max-w-[170px] lg:max-w-[140px] sm:max-w-[120px] max-w-[100px] h-[70%] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]"
+                            initial={{ y: "-5%", opacity: 0.7 }}
+                            animate={inView ? { y: "0%", opacity: 1 } : { y: "-20%", opacity: 0.7 }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                        >
+                            <div className="w-full h-full lg:p-[30px_20px] sm:p-[20px] p-[15px]">
+                                <div className="3xl:text-[100px] 2xl:text-[74px] xl:text-[66px] lg:text-[54px] sm:text-[38px] text-[28px] leading-none font-bold text-white font-base1">
+                                    <CountUp start={0} end={inView ? item.years : 0} duration={1.5} separator="," />
+                                    <span className="leading-none font-bold text-[#BE1E2D]">+</span>
+                                </div>
+                                <div className="3xl:text-[40px] 2xl:text-[32px] xl:text-[26px] lg:text-[18px] sm:text-[16px] text-[14px] leading-none font-normal text-white">{item.yearsExperience}</div>
+                            </div>
+                        </motion.div>
+                    </div>
+                    <div className="3xl:w-[calc(100%-955px)] 2xl:w-[calc(100%-740px)] xl:w-[calc(100%-620px)] lg:w-[calc(100%-520px)] w-full 3xl:p-[90px_90px_0_90px] xl:p-[80px_20px_0_40px] lg:p-[50px_20px_0_20px] sm:pt-[20px]">
+                        <Heading
+                            size={"heading2"}
+                            as="h2"
+                            className=" text-black uppercase font-semibold leading-none 2xl:mb-[35px] lg:mb-[20px] mb-[15px]"
+                        >
+                            {item.title}
+                        </Heading>
+                        <Text
+                            as="p"
+                            className="3xl:text-[20px] 2xl:text-[18px] sm:text-[14px] text-[13px] leading-[1.5] font-semibold text-black lg:mb-[20px] mb-[10px]"
+                        >
+                            {item.description1}
+                        </Text>
+                        <Text
+                            size="text1"
+                            as="p"
+                            className="text-black"
+                        >
+                            {item.description2}
+                        </Text>
+                    </div>
                 </div>
-              </div>
-            </motion.div>
-          </div>
-          <div className="3xl:w-[calc(100%-955px)] 2xl:w-[calc(100%-740px)] xl:w-[calc(100%-620px)] lg:w-[calc(100%-520px)] w-full 3xl:p-[90px_90px_0_90px] xl:p-[80px_20px_0_40px] lg:p-[50px_20px_0_20px] sm:pt-[20px]">
-            <Heading size={"heading2"} as="h2" className=" text-black uppercase font-semibold leading-none 2xl:mb-[35px] lg:mb-[20px] mb-[15px]">
-              {title || item.title}
-            </Heading>
-            <Text
-              as="p"
-              className="3xl:text-[20px] 2xl:text-[18px] sm:text-[14px] text-[13px] leading-[1.5] font-semibold text-black lg:mb-[20px] mb-[10px]"
-            >
-              {parse(description1) || item.description1}
-            </Text>
-            <Text size="text1" as="p" className="text-black">
-              {parse(description2) || item.description2}
-            </Text>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+            </div>
+        </section>
+    );
 }

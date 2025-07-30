@@ -7,7 +7,14 @@ import { Heading } from "@/components/layout/Heading";
 import { Button } from "@/components/ui/button";
 import { Form, FormField, FormItem, FormControl, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
+import {
+    Select,
+    SelectTrigger,
+    SelectValue,
+    SelectContent,
+    SelectItem,
+} from "@/components/ui/select";
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { useState } from "react";
@@ -79,64 +86,86 @@ export default function CustomerrequirementForm({ title }) {
             {title ? title : "Customer Requirement Form"}
           </Heading>
 
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-wrap items-end">
-              {/* PERSONAL INFO */}
-              <div className="w-full lg:p-[15px] p-[8px]">
-                <div className={`${mainText} mb-0`}>Personal Info</div>
-              </div>
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-wrap items-end">
+                            {/* PERSONAL INFO */}
+                            <div className="w-full lg:p-[15px] p-[8px]">
+                                <div className={`${mainText} mb-0`}>Personal Info</div>
+                            </div>
 
-              <FormField
-                name="company"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem className="w-full md:w-1/3 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
-                    <FormControl>
-                      <Input placeholder="Company Name" {...field} className={menuLinkClass} />
-                    </FormControl>
-                    <FormMessage className={errorMessage} />
-                  </FormItem>
-                )}
-              />
+                            <FormField name="company" control={form.control} render={({ field }) => (
+                                <FormItem className="w-full md:w-1/3 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
+                                    <FormControl>
+                                        <Input placeholder="Company Name " {...field} className={menuLinkClass} />
+                                    </FormControl>
+                                    <FormMessage className={errorMessage} />
+                                </FormItem>
+                            )} />
 
-              <FormField
-                name="contactPerson"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem className="w-full md:w-1/3 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
-                    <FormControl>
-                      <Input placeholder="Contact Person" {...field} className={menuLinkClass} />
-                    </FormControl>
-                    <FormMessage className={errorMessage} />
-                  </FormItem>
-                )}
-              />
+                            <FormField
+                                name="contactPerson"
+                                control={form.control}
+                                render={({ field }) => (
+                                    <FormItem className="w-full md:w-1/3 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
 
-              <FormField
-                name="phone"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem className="w-full md:w-1/3 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
-                    <FormControl>
-                      <Input placeholder="Phone Number" {...field} className={menuLinkClass} />
-                    </FormControl>
-                    <FormMessage className={errorMessage} />
-                  </FormItem>
-                )}
-              />
+                                        {/* Custom Placeholder */}
+                                        {!field.value && (
+                                            <span className={`!text-[11px] md:!text-[12px] 2xl:!text-[14px] 3xl:!text-[17px] !text-black placeholder:text-black !font-normal absolute left-3 
+                                             top-[15px] lg:top-[30px]  border-none pointer-events-none text-sm transition-opacity duration-200 peer-focus:opacity-0 
+                                            peer-placeholder-shown:opacity-100 `}>
+                                                Contact Person <span className="text-red-500">*</span>
+                                            </span>
+                                        )}
 
-              <FormField
-                name="email"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem className="w-full md:w-1/3 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
-                    <FormControl>
-                      <Input placeholder="Email Address" {...field} className={menuLinkClass} />
-                    </FormControl>
-                    <FormMessage className={errorMessage} />
-                  </FormItem>
-                )}
-              />
+                                        {/* Input Field */}
+                                        <FormControl>
+                                            <Input
+                                                id="contact"
+                                                placeholder=" " // required for placeholder-shown to work
+                                                {...field}
+                                                className={`${menuLinkClass} peer`}
+                                            />
+                                        </FormControl>
+
+                                        <FormMessage className={errorMessage} />
+                                    </FormItem>
+                                )}
+                            />
+
+
+
+                            <FormField name="phone" control={form.control} render={({ field }) => (
+                                <FormItem className="w-full md:w-1/3 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
+                                    {/* Custom Placeholder */}
+                                    {!field.value && (
+                                        <span className={`!text-[11px] md:!text-[12px] 2xl:!text-[14px] 3xl:!text-[17px] !text-black placeholder:text-black !font-normal absolute left-3 
+                                           top-[15px] lg:top-[30px] border-none pointer-events-none text-sm transition-opacity duration-200 peer-focus:opacity-0 
+                                            peer-placeholder-shown:opacity-100 `}>
+                                            Phone Number <span className="text-red-500">*</span>
+                                        </span>
+                                    )}
+                                    <FormControl>
+                                        <Input placeholder=" " {...field} className={menuLinkClass} />
+                                    </FormControl>
+                                    <FormMessage className={errorMessage} />
+                                </FormItem>
+                            )} />
+
+                            <FormField name="email" control={form.control} render={({ field }) => (
+                                <FormItem className="w-full md:w-1/3 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
+                                    {!field.value && (
+                                        <span className={`!text-[11px] md:!text-[12px] 2xl:!text-[14px] 3xl:!text-[17px] !text-black placeholder:text-black !font-normal absolute left-3
+                                            top-[15px] lg:top-[30px] border-none pointer-events-none text-sm transition-opacity duration-200 peer-focus:opacity-0 
+                                            peer-placeholder-shown:opacity-100 `}>
+                                            Email Address <span className="text-red-500">*</span>
+                                        </span>
+                                    )}
+                                    <FormControl>
+                                        <Input placeholder=" " {...field} className={menuLinkClass} />
+                                    </FormControl>
+                                    <FormMessage className={errorMessage} />
+                                </FormItem>
+                            )} />
 
               <FormField
                 name="address"
@@ -151,69 +180,54 @@ export default function CustomerrequirementForm({ title }) {
                 )}
               />
 
-              {/* FABRICATION TYPE */}
-              <div className="w-full md:w-1/2 lg:p-[15px] p-[8px] relative">
-                <div className={mainText}>
-                  Fabrication Type <span className="2xl:text-[14px] text-[12px] text-black">(Please select one or more options)</span>
-                </div>
-                <FormField
-                  name="fabricationType"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <SelectTrigger className={menuLinkClass}>
-                            <SelectValue placeholder="Model" />
-                          </SelectTrigger>
-                          <SelectContent className={contentClass}>
-                            <SelectItem value="type1" className={itemClass}>
-                              Type 1
-                            </SelectItem>
-                            <SelectItem value="type2" className={itemClass}>
-                              Type 2
-                            </SelectItem>
-                            <SelectItem value="type3" className={itemClass}>
-                              Type 3
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </FormControl>
-                      <FormMessage className={errorMessage} />
-                    </FormItem>
-                  )}
-                />
-              </div>
+                            {/* FABRICATION TYPE */}
+                            <div className="w-full md:w-1/2 lg:p-[15px] p-[8px] relative">
+                                <div className={mainText}>Fabrication Type <span className="2xl:text-[14px] text-[12px] text-black">(Please select one or more options)</span></div>
+                                <FormField name="fabricationType" control={form.control} render={({ field }) => (
+                                    <FormItem>
+                                        <FormControl>
+                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                <SelectTrigger className={menuLinkClass}>
+                                                    <SelectValue placeholder="Model" />
+                                                </SelectTrigger>
+                                                <SelectContent className={contentClass} position="popper" >
+                                                    <SelectItem value="type1" className={itemClass}>Type 1</SelectItem>
+                                                    <SelectItem value="type2" className={itemClass}>Type 2</SelectItem>
+                                                    <SelectItem value="type3" className={itemClass}>Type 3</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </FormControl>
+                                        <FormMessage className={errorMessage} />
+                                    </FormItem>
+                                )} />
+                            </div>
 
-              {/* FINAL DESTINATION */}
-              <FormField
-                name="finalDestination"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem className="w-full md:w-1/2 lg:p-[15px] p-[8px] relative">
-                    <div className={mainText}>Final Destination</div>
-                    <FormControl>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <SelectTrigger className={menuLinkClass}>
-                          <SelectValue placeholder="Country" />
-                        </SelectTrigger>
-                        <SelectContent className={contentClass}>
-                          <SelectItem value="country1" className={itemClass}>
-                            Country 1
-                          </SelectItem>
-                          <SelectItem value="country2" className={itemClass}>
-                            Country 2
-                          </SelectItem>
-                          <SelectItem value="country3" className={itemClass}>
-                            Country 3
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage className={errorMessage} />
-                  </FormItem>
-                )}
-              />
+                            {/* FINAL DESTINATION */}
+                            <FormField name="finalDestination" control={form.control} render={({ field }) => (
+                                <FormItem className="w-full md:w-1/2 lg:p-[15px] p-[8px] relative">
+                                    {!field.value && (
+                                        <span className={`!text-[11px] md:!text-[12px] 2xl:!text-[14px] 3xl:!text-[17px] !text-black placeholder:text-black !font-normal absolute left-3 
+                                           top-[70px] lg:top-[80px] 2xl:top-[90px] border-none pointer-events-none text-sm transition-opacity duration-200 peer-focus:opacity-0 
+                                            peer-placeholder-shown:opacity-100 `}>
+                                            Country <span className="text-red-500">*</span>
+                                        </span>
+                                    )}
+                                    <div className={mainText}>Final Destination</div>
+                                    <FormControl>
+                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                            <SelectTrigger className={menuLinkClass}>
+                                                <SelectValue placeholder=" " />
+                                            </SelectTrigger>
+                                            <SelectContent className={contentClass}>
+                                                <SelectItem value="country1" className={itemClass}>Country 1</SelectItem>
+                                                <SelectItem value="country2" className={itemClass}>Country 2</SelectItem>
+                                                <SelectItem value="country3" className={itemClass}>Country 3</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                    </FormControl>
+                                    <FormMessage className={errorMessage} />
+                                </FormItem>
+                            )} />
 
               {/* VEHICLE DETAILS */}
               <div className="w-full lg:p-[15px] p-[8px] ">

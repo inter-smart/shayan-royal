@@ -22,7 +22,7 @@ const carCategories = [
 export default function AboutSection({ title, description, categories }) {
   const [activeIndex, setActiveIndex] = useState(0);
   return (
-    <section className="relative py-[30px] md:py-[40px ] 2xl:py-[50px] 3xl:py-[60px_45px] bg-[#F5F9FF]">
+    <section className="relative py-[20px] md:py-[25px] 2xl:py-[30px] 3xl:py-[40px] bg-[#F5F9FF] overflow-hidden">
       <div className="container">
         <div className="max-w-[85%] m-auto">
           <Heading size="heading2" as="h2" className="text-[#B4BACA] text-center uppercase mb-[10px]">
@@ -53,28 +53,34 @@ export default function AboutSection({ title, description, categories }) {
             }}
             breakpoints={{
               320: {
-                slidesPerView: 3,
+                slidesPerView: 2,
                 spaceBetween: 8,
+                                centeredSlides: false,
               },
               420: {
                 slidesPerView: 3,
                 spaceBetween: 10,
+                                centeredSlides: true,
               },
               640: {
                 slidesPerView: 3,
                 spaceBetween: 20,
+                                centeredSlides: true,
               },
               768: {
                 slidesPerView: 3,
                 spaceBetween: 20,
+                                centeredSlides: true,
               },
               1024: {
                 slidesPerView: 4,
                 spaceBetween: 25,
+                                centeredSlides: true,
               },
               1280: {
                 slidesPerView: 5,
                 spaceBetween: 30,
+                                centeredSlides: true,
               },
             }}
             className="px-10 overflow-hidden mb-3"
@@ -96,7 +102,7 @@ export default function AboutSection({ title, description, categories }) {
                   </div>
                   <p
                     className={`3xl:text-[25px] 2xl:text-[18px] md:text-[16px] sm:text-[14px] text-[12px] font-base1 mt-1 md:mt-1 ${
-                      index === activeIndex ? "text-[#2E4C99] font-semibold" : "text-black font-normal"
+                      index === activeIndex ? "xs:text-[#2E4C99] xs:font-semibold" : "text-black font-normal"
                     }`}
                   >
                     {" "}
@@ -107,17 +113,17 @@ export default function AboutSection({ title, description, categories }) {
             ))}
           </Swiper>
           {/* center Arrow */}
-          <div className="realtive 3xl:max-w-[20px] 2xl:max-w-[15px] m-auto mb-[25px] flex justify-center">
+          <div className="realtive 3xl:max-w-[20px] 2xl:max-w-[15px] m-auto flex justify-center max-sm:hidden">
             <svg className="3xl:-w-[20px] 2xl:w-[15px] w-[12px] h-[12px]" viewBox="0 0 21 18" fill="none">
               <path d="M1 10.6404L11.3019 1.64038L20.5 10.6404" stroke="black" />
               <path d="M1 16.6404L11.3019 7.64038L20.5 16.6404" stroke="black" />
             </svg>
           </div>
           {/* Navigation Arrows */}
-          <div className="flex items-center justify-center max-md:top-[20px] md:absolute md:top-0 md:bottom-0 md:w-full  ">
+          <div className="flex items-center justify-center absolute top-0 bottom-0 w-full  ">
             <button
-              className="nav-prev relative md:absolute left-0 lg:left-[-35px] sm:top-1/2 sm:-translate-y-1/2 z-10 bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] 
-                        shadow 3xl:w-[34px] 2xl:w-[25px] w-[35px] 3xl:h-[38px] h-[35px] flex items-center justify-center rounded-[30px_0px_0px_30px] cursor-pointer group hover:bg-[#2E4C99]"
+              className="nav-prev  absolute left-[-25px] lg:left-[-35px] -translate-y-1/2 z-10 sm:bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] 
+                        sm:shadow 3xl:w-[34px] 2xl:w-[25px] w-[35px] 3xl:h-[38px] h-[35px] flex items-center justify-center sm:rounded-[30px_0px_0px_30px] cursor-pointer group hover:bg-[#2E4C99]"
             >
               <svg
                 viewBox="0 0 7 13"
@@ -128,8 +134,8 @@ export default function AboutSection({ title, description, categories }) {
               </svg>
             </button>
             <button
-              className=" nav-next relative md:absolute right-0 lg:right-[-35px] sm:top-1/2 sm:-translate-y-1/2 z-10 bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]
-                        shadow 3xl:w-[34px] 2xl:w-[25px] w-[35px] 3xl:h-[38px]  h-[35px]   flex items-center justify-center rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99]"
+              className=" nav-next  absolute right-[-25px] lg:right-[-35px]  -translate-y-1/2 z-10 sm:bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]
+                        sm:shadow 3xl:w-[34px] 2xl:w-[25px] w-[35px] 3xl:h-[38px]  h-[35px]   flex items-center justify-center sm:rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99]"
             >
               <svg
                 viewBox="0 0 7 13"
