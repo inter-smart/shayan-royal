@@ -16,7 +16,7 @@ export default function AboutSection() {
                 loading="lazy"
                 className="w-full h-full object-cover absolute top-0 left-0"
             >
-                <source src="/videos/about.mp4" type="video/mp4" />
+                <source src="/videos/social1.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
             <div className="container">
