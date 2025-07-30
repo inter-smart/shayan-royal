@@ -9,8 +9,11 @@ export default function AboutSection() {
                 autoPlay
                 muted
                 playsInline
+                preload="metadata"
                 loop
-                preload="auto"
+                width={1920}
+                height={550}
+                loading="lazy"
                 className="w-full h-full object-cover absolute top-0 left-0"
             >
                 <source src="/videos/about.mp4" type="video/mp4" />
