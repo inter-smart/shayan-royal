@@ -83,9 +83,9 @@ export default function BlogSection() {
                                                 <span className="3xl:text-[16px] 2xl:text-[14px] text-[12px] text-[#BE1E2D] font-medium px-[10px]">{item.date}</span>
                                             </div>
                                             <Heading
-                                                size="heading5"
+                                                size=""
                                                 as="div"
-                                                className="text-black line-clamp-2 font-semibold mb-[10px] max-w-[360px]"
+                                                className="text-[14px] 2xl:text-[18px] 3xl:text-[25px] text-black line-clamp-2 font-semibold mb-[10px] max-w-[360px]"
                                             >
                                                 {item.title}
                                             </Heading>
@@ -128,9 +128,9 @@ export default function BlogSection() {
                                                 <span className="3xl:text-[16px] 2xl:text-[14px] text-[12px]  text-[#BE1E2D] font-medium px-[10px]">{item.date}</span>
                                             </div>
                                             <Heading
-                                                size="heading5"
+                                                size=""
                                                 as="div"
-                                                className="text-black line-clamp-2 font-semibold mb-[10px] max-w-[360px]"
+                                                className="text-[14px] 2xl:text-[18px] 3xl:text-[25px] text-black line-clamp-2 font-semibold mb-[10px] max-w-[360px]"
                                             >
                                                 {item.title}
                                             </Heading>
