@@ -1,58 +1,16 @@
-export default function TermsandConditions() {
-    return (
-        <section className="w-full h-auto pt-[30px] lg:pb-[130px] pb-[40px] relative z-0">
-            <div className="container">
-                <div className="typography">
-                    <h1 className="m-0">
-                        Terms & Conditions
-                    </h1>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quid enim necesse est, tamquam meretricem in matronarum coetum, sic voluptatem in virtutum concilium adducere? Adsint etiam formosi pueri, qui ministrent, respondeat his vestis, argentum, Corinthium, locus ipse, aedificium-hos ergo asotos bene quidem vivere aut beate numquam dixerim. Hoc Hieronymus summum bonum esse dixit. Non igitur de improbo, sed de callido improbo quaerimus, qualis Q. Duo Reges: constructio interrete. In qua si nihil est praeter rationem, sit in una virtute finis bonorum; Tu es plurimae, quae, nisi honestas natura plurimum valeat,
-                        cur non cadant in sapientem non est facile defendere. Sed haec ab Antiocho, familiari nostro, dicuntur multo melius et fortius, quam a Stasea dicebantur. Igitur neque stultorum quisquam beatus neque sapientium non beatus. Sed ad haec, nisi molestum est, habeo quae velim. Neque enim civitas in seditione beata esse potest nec in discordia dominorum domus; Itaque primos congressus copulationesque et consuetudinum instituendarum voluntates fieri propter voluptatem
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quid enim necesse est, tamquam meretricem in matronarum coetum, sic voluptatem in virtutum concilium adducere? Adsint etiam formosi pueri, qui ministrent, respondeat his vestis, argentum, Corinthium, locus ipse, aedificium-hos ergo asotos bene quidem vivere aut beate numquam dixerim. Hoc Hieronymus summum bonum esse dixit. Non igitur de improbo, sed de callido improbo quaerimus, qualis Q. Duo Reges: constructio interrete. In qua si nihil est praeter rationem, sit in una virtute finis bonorum; Tu autem negas fortem esse quemquam posse, qui dolorem malum putet. Illa tamen simplicia, vestra versuta.
-                    </p>
+"use client";
 
-                    <h2>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                    </h2>
-                    <p>
-                        Pollicetur certe. Sed quid minus probandum quam esse aliquem beatum nec satis beatum? Si verbum sequimur, primum longius verbum praepositum quam bonum. Quis est enim aut quotus quisque, cui, mora cum adpropinquet, non refugiat timido sanguen átque exalbescát metu? De quibus cupio scire quid sentias.
-                        Illud urgueam, non intellegere eum quid sibi dicendum sit, cum dolorem summum malum esse dixerit. Epicurei num desistunt de isdem, de quibus et ab Epicuro scriptum est et ab antiquis, ad arbitrium suum scribere? Sunt etiam turpitudines plurimae, quae, nisi honestas natura plurimum valeat, cur non cadant in sapientem non est facile defendere. Sed haec ab Antiocho, familiari nostro, dicuntur multo melius et fortius, quam a Stasea dicebantur. Igitur neque stultorum quisquam beatus neque sapientium non beatus. Sed ad haec, nisi molestum est, habeo quae velim. Neque enim civitas in seditione beata esse potest nec in discordia dominorum domus; Itaque primos congressus copulationesque et consuetudinum instituendarum voluntates fieri propter voluptatem.
-                    </p>
+import parse from "html-react-parser";
 
-                    <h3>
-                        Ipsum dolor sit amet, consectetur adipiscing elit
-                    </h3>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quid enim necesse est, tamquam meretricem in matronarum coetum, sic voluptatem in virtutum concilium adducere? Adsint etiam formosi pueri, qui ministrent, respondeat his vestis, argentum, Corinthium, locus ipse, aedificium-hos ergo asotos bene quidem vivere aut beate numquam dixerim. Hoc Hieronymus summum bonum esse dixit. Non igitur de improbo, sed de callido improbo quaerimus, qualis Q. Duo Reges: constructio interrete. In qua si nihil est praeter rationem, sit in una virtute finis bonorum; Tu autem negas fortem esse quemquam posse, qui dolorem malum putet. Illa tamen simplicia, vestra simplicia, vestra versuta. Pollicetur certe. Sed quid minus probandum quam esse aliquem beatum nec satis beatum? Si verbum sequimur, pr versuta.                    </p>
-                    <p>
-                        Illud urgueam, non intellegere eum quid sibi dicendum sit, cum dolorem summum malum esse dixerit. Epicurei num desistunt de isdem, de quibus et ab Epicuro scriptum est et ab antiquis, ad arbitrium suum scribere? Sunt etiam turpitudines plurimae, quae, nisi honestas natura plurimum valeat, cur non cadant in sapientem non est facile defendere. Sed haec ab Antiocho, familiari nostro, dicuntur multo melius et fortius, quam a Stasea dicebantur. Igitur neque stultorum quisquam beatus neque sapientium non beatus. Sed ad haec, nisi molestum est, habeo quae velim. Neque enim civitas in seditione beata esse potest nec in discordia dominorum domus; Itaque primos congressus copulationesque et consuetudinum instituendarum voluntates fieri propter voluptatem                    </p>
-                    <h3>
-                        Ipsum dolor sit amet, consectetur adipiscing elit
-                    </h3>
-                    <p>
-                        Cum dolorem summum malum esse dixerit. Epicurei num desistunt de isdem, de quibus et ab Epicuro scriptum est et ab antiquis, ad arbitrium suum scribere? Sunt etiam turpitudines plurimae, quae, nisi honestas natura plurimum valeat, cur non cadant in sapientem non est facile defendere. Sed haec ab Antiocho, familiari nostro, dicuntur multo melius et fortius, quam a Stasea dicebantur. Igitur neque stultorum quisquam beatus neque sapientium non beatus. Sed ad haec, nisi molestum est, habeo quae velim. Neque enim civitas in seditione beata esse potest nec in discordia dominorum domus; Itaque primos congressus copulationesque et consuetudinum instituendarum voluntates fieri propter voluptatem simplicia, vestra versuta. Pollicetur certe. Sed quid minus probandum quam esse aliquem beatum nec satis beatum? Si verbum sequimur, formosi pueri, qui ministrent, respondeat his vestis, argentum, Corinthium, locus ipse, aedificium-hos ergo asotos bene quidem vivere aut beate numquam dixerim. Hoc Hieronymus summum bonum esse dixit. Non igitur de improbo, sed de callido improbo quaerimus, qualis
-                    </p>
-                    <h4>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                    </h4>
-                    <p>
-                        Pollicetur certe. Sed quid minus probandum quam esse aliquem beatum nec satis beatum? Si verbum sequimur, primum longius verbum praepositum quam bonum. Quis est enim aut quotus quisque, cui, mora cum adpropinquet, non refugiat timido sanguen átque exalbescát metu? De quibus cupio scire quid sentias.
-                        Illud urgueam, non intellegere eum quid sibi dicendum sit, cum dolorem summum malum esse dixerit. Epicurei num desistunt de isdem, de quibus et ab Epicuro scriptum est et ab antiquis, ad arbitrium suum scribere? Sunt etiam turpitudines plurimae, quae, nisi honestas natura plurimum valeat, cur non cadant in sapientem non est facile defendere. Sed haec ab Antiocho, familiari nostro, dicuntur multo melius et fortius, quam a Stasea dicebantur. Igitur neque stultorum quisquam beatus neque sapientium non beatus. Sed ad haec, nisi molestum est, habeo quae velim. Neque enim civitas in seditione beata esse potest nec in discordia dominorum domus; Itaque primos congressus copulationesque et consuetudinum instituendarum voluntates fieri propter voluptatem.
-                    </p>
-                    <h5>
-                        Ipsum dolor sit amet, consectetur adipiscing elit
-                    </h5>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quid enim necesse est, tamquam meretricem in matronarum coetum, sic voluptatem in virtutum concilium adducere? Adsint etiam formosi pueri, qui ministrent, respondeat his vestis, argentum, Corinthium, locus ipse, aedificium-hos ergo asotos bene quidem vivere aut beate numquam dixerim. Hoc Hieronymus summum bonum esse dixit. Non igitur de improbo, sed de callido improbo quaerimus, qualis Q. Duo Reges: constructio interrete. In qua si nihil est praeter rationem, sit in una virtute finis bonorum; Tu autem negas fortem esse quemquam posse, qui dolorem malum putet. Illa tamen simplicia, vestra simplicia, vestra versuta. Pollicetur certe. Sed quid minus probandum quam esse aliquem beatum nec satis beatum? Si verbum sequimur, pr versuta.
-                    </p>
-                    <p>
-                        Illud urgueam, non intellegere eum quid sibi dicendum sit, cum dolorem summum malum esse dixerit. Epicurei num desistunt de isdem, de quibus et ab Epicuro scriptum est et ab antiquis, ad arbitrium suum scribere? Sunt etiam turpitudines plurimae, quae, nisi honestas natura plurimum valeat, cur non cadant in sapientem non est facile defendere. Sed haec ab Antiocho, familiari nostro, dicuntur multo melius et fortius, quam a Stasea dicebantur. Igitur neque stultorum quisquam beatus neque sapientium non beatus. Sed ad haec, nisi molestum est, habeo quae velim. Neque enim civitas in seditione beata esse potest nec in discordia dominorum domus; Itaque primos congressus copulationesque et consuetudinum instituendarum voluntates fieri propter voluptatem
-                    </p>
-                </div>
-            </div>
-        </section>
-    );
+export default function TermsandConditions({ policy }) {
+  return (
+    <section className="w-full h-auto pt-[30px] lg:pb-[130px] pb-[40px] relative z-0">
+      <div className="container">
+        <div className="typography">
+          <h1 className="m-0">Terms & Conditions</h1>
+          {parse(policy)}
+        </div>
+      </div>
+    </section>
+  );
 }
