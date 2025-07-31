@@ -37,6 +37,8 @@ const blogs = [
 ];
 
 export default function BlogSection({ title, description, blogs }) {
+  console.log(blogs);
+
   const leftItems = blogs?.slice(0, 2);
   const rightItems = blogs?.slice(2);
   return (

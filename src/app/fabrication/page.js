@@ -30,12 +30,12 @@ export default async function Page() {
         image={banner?.image ? `${mediaUrl}${banner?.image}` : "/images/fabricationBanner.jpg"}
         alt={banner?.title ? banner?.title : "fabrication-banner"}
       />
-       <BreadCrumb
-            items={[
-                    { label: "HOME", href: "/" },
-                    { label: "FABRICATION", isCurrent: true }
-                ]}
-             />
+      <BreadCrumb
+        items={[
+          { label: "HOME", href: "/" },
+          { label: "FABRICATION", isCurrent: true },
+        ]}
+      />
       <FabricationSection title={contents?.title} description={contents?.description} />
       <WhychooseUsSection
         title={contents?.why_choose_us_section_title}
@@ -44,7 +44,7 @@ export default async function Page() {
         image={contents?.why_choose_us_section_image}
         alt={contents?.image_alt}
       />
-      <CategorySection title={contents?.category_title} categoryData={categories} />
+      <CategorySection title={contents?.category_title} description={contents?.category_description} categoryData={categories} />
       <CustomerrequirementForm title={contents?.form_title} />
       <ClientSection title={contents?.testimonial_title} clientData={testimonials} />
     </>
