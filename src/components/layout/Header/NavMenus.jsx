@@ -10,7 +10,6 @@ import Link from "next/link";
 
 function NavMenus({ pathname, isInnerPage, data={data}, isPrivacyPage }) {
 
-
   const menuItems = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
