@@ -8,26 +8,9 @@ import * as z from "zod";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormField,
-  FormItem,
-  FormControl,
-  FormMessage,
-} from "@/components/ui/form";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/ui/select";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@/components/ui/accordion";
+import { Form, FormField, FormItem, FormControl, FormMessage } from "@/components/ui/form";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { mediaUrl } from "@/lib/constants";
 
 // Form validation schema
@@ -92,9 +75,7 @@ export default function CarSearchForm() {
       }
 
       // Map carType name to ID
-      const selectedCarType = dropdownData?.data?.carTypes?.find(
-        (type) => type.name === values.carType
-      );
+      const selectedCarType = dropdownData?.data?.carTypes?.find((type) => type.name === values.carType);
 
       const params = {
         make_id: values.make,
@@ -112,9 +93,7 @@ export default function CarSearchForm() {
       };
 
       // Filter out empty or undefined values
-      const filteredParams = Object.fromEntries(
-        Object.entries(params).filter(([_, v]) => v !== "" && v !== undefined)
-      );
+      const filteredParams = Object.fromEntries(Object.entries(params).filter(([_, v]) => v !== "" && v !== undefined));
 
       const query = new URLSearchParams(filteredParams).toString();
       router.push(`/inventory?${query}`);
@@ -164,11 +143,10 @@ export default function CarSearchForm() {
     fetchMakes();
   }, []);
 
-  const models = makeId
-    ? dropdownData?.data?.models?.filter(
-        (model) => model.make_id === Number(makeId)
-      )
-    : [];
+  const models = makeId ? dropdownData?.data?.models?.filter((model) => model.make_id == Number(makeId)) : [];
+
+  console.log("models", models);
+  console.log("models", dropdownData);
 
   const menuLinkClass =
     "!text-[10px] 2xl:!text-[12px] 3xl:!text-[14px] text-black max-w-full min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px] text-black uppercase font-normal placeholder:!text-black placeholder:font-normal !w-full px-[12px] border !border-[rgba(46,76,153,0.34)] bg-white rounded-[5px] font-normal outline-none shadow-none focus:outline-none focus:ring-0 focus:border-[#CCCCCC] focus:shadow-none data-[state=open]:border-[#00095b] data-[state=open]:shadow-none";
@@ -207,11 +185,7 @@ export default function CarSearchForm() {
                       </SelectTrigger>
                       <SelectContent className={contentClass}>
                         {dropdownData?.data?.makes?.map((make) => (
-                          <SelectItem
-                            key={make.id}
-                            value={String(make.id)}
-                            className={itemClass}
-                          >
+                          <SelectItem key={make.id} value={String(make.id)} className={itemClass}>
                             {make.name}
                           </SelectItem>
                         ))}
@@ -231,29 +205,19 @@ export default function CarSearchForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Select
-                      disabled={!makeId}
-                      onValueChange={field.onChange}
-                      value={field.value}
-                    >
+                    <Select disabled={!makeId} onValueChange={field.onChange} value={field.value}>
                       <SelectTrigger className={menuLinkClass}>
                         <SelectValue placeholder="MODEL" />
                       </SelectTrigger>
                       <SelectContent className={contentClass}>
-                        {models ? (
+                        {models?.length > 0 ? (
                           models.map((model) => (
-                            <SelectItem
-                              key={model.id}
-                              value={String(model.id)}
-                              className={itemClass}
-                            >
+                            <SelectItem key={model.id} value={String(model.id)} className={itemClass}>
                               {model.name}
                             </SelectItem>
                           ))
                         ) : (
-                          <div className="p-2 text-sm text-gray-500">
-                            No models available
-                          </div>
+                          <div className="p-2 text-sm text-gray-500">No models available</div>
                         )}
                       </SelectContent>
                     </Select>
@@ -271,20 +235,13 @@ export default function CarSearchForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Select
-                      onValueChange={field.onChange}
-                      value={field.value}
-                    >
+                    <Select onValueChange={field.onChange} value={field.value}>
                       <SelectTrigger className={menuLinkClass}>
                         <SelectValue placeholder="FUEL" />
                       </SelectTrigger>
                       <SelectContent className={contentClass}>
                         {dropdownData?.data?.fuelTypes?.map((fuel) => (
-                          <SelectItem
-                            key={fuel}
-                            value={fuel}
-                            className={itemClass}
-                          >
+                          <SelectItem key={fuel} value={fuel} className={itemClass}>
                             {fuel}
                           </SelectItem>
                         ))}
@@ -304,20 +261,13 @@ export default function CarSearchForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Select
-                      onValueChange={field.onChange}
-                      value={field.value}
-                    >
+                    <Select onValueChange={field.onChange} value={field.value}>
                       <SelectTrigger className={menuLinkClass}>
                         <SelectValue placeholder="GEARBOX" />
                       </SelectTrigger>
                       <SelectContent className={contentClass}>
                         {dropdownData?.data?.gearboxes?.map((gearbox) => (
-                          <SelectItem
-                            key={gearbox}
-                            value={gearbox}
-                            className={itemClass}
-                          >
+                          <SelectItem key={gearbox} value={gearbox} className={itemClass}>
                             {gearbox}
                           </SelectItem>
                         ))}
@@ -340,11 +290,7 @@ export default function CarSearchForm() {
                   SEARCH
                 </Button>
               </div>
-              <div
-                className={`relative flex-grow p-[5px] ${
-                  isExpanded ? "block" : "hidden"
-                }`}
-              >
+              <div className={`relative flex-grow p-[5px] ${isExpanded ? "block" : "hidden"}`}>
                 <Button
                   type="button"
                   onClick={handleClear}
@@ -374,9 +320,7 @@ export default function CarSearchForm() {
                 alt="buttonBg"
                 width="300"
                 height="33"
-                className={`absolute top-0 left-0 w-full h-full object-cover -z-10 ${
-                  isExpanded ? "scale-y-[-1]" : " "
-                }`}
+                className={`absolute top-0 left-0 w-full h-full object-cover -z-10 ${isExpanded ? "scale-y-[-1]" : " "}`}
               />
               {isExpanded ? "- LESS OPTIONS" : "+ ADVANCED SEARCH"}
             </AccordionTrigger>
@@ -385,13 +329,7 @@ export default function CarSearchForm() {
                 isExpanded ? "" : "hidden"
               }`}
             >
-              <Image
-                src="/images/logo.svg"
-                alt="buttonBg"
-                width="300"
-                height="33"
-                className={`w-full h-full object-cover -z-10 `}
-              />
+              <Image src="/images/logo.svg" alt="buttonBg" width="300" height="33" className={`w-full h-full object-cover -z-10 `} />
             </div>
             <AccordionContent className="xl:p-[30px] p-[20px] relative">
               <div className="flex flex-wrap lg:-m-[10px] -m-[8px]">
@@ -403,20 +341,13 @@ export default function CarSearchForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Select
-                            onValueChange={field.onChange}
-                            value={field.value}
-                          >
+                          <Select onValueChange={field.onChange} value={field.value}>
                             <SelectTrigger className={menuLinkClass}>
                               <SelectValue placeholder="Regional Spec" />
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
                               {dropdownData?.data?.specs?.map((spec) => (
-                                <SelectItem
-                                  key={spec}
-                                  value={spec}
-                                  className={itemClass}
-                                >
+                                <SelectItem key={spec} value={spec} className={itemClass}>
                                   {spec}
                                 </SelectItem>
                               ))}
@@ -436,20 +367,13 @@ export default function CarSearchForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Select
-                            onValueChange={field.onChange}
-                            value={field.value}
-                          >
+                          <Select onValueChange={field.onChange} value={field.value}>
                             <SelectTrigger className={menuLinkClass}>
                               <SelectValue placeholder="YEAR FROM" />
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
                               {dropdownData?.data?.years?.map((year) => (
-                                <SelectItem
-                                  key={year}
-                                  value={year.toString()}
-                                  className={itemClass}
-                                >
+                                <SelectItem key={year} value={year.toString()} className={itemClass}>
                                   {year}
                                 </SelectItem>
                               ))}
@@ -469,20 +393,13 @@ export default function CarSearchForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Select
-                            onValueChange={field.onChange}
-                            value={field.value}
-                          >
+                          <Select onValueChange={field.onChange} value={field.value}>
                             <SelectTrigger className={menuLinkClass}>
                               <SelectValue placeholder="YEAR TO" />
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
                               {dropdownData?.data?.years?.map((year) => (
-                                <SelectItem
-                                  key={year}
-                                  value={year.toString()}
-                                  className={itemClass}
-                                >
+                                <SelectItem key={year} value={year.toString()} className={itemClass}>
                                   {year}
                                 </SelectItem>
                               ))}
@@ -502,25 +419,16 @@ export default function CarSearchForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Select
-                            onValueChange={field.onChange}
-                            value={field.value}
-                          >
+                          <Select onValueChange={field.onChange} value={field.value}>
                             <SelectTrigger className={menuLinkClass}>
                               <SelectValue placeholder="STEERING SIDE" />
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
-                              {dropdownData?.data?.steeringTypes?.map(
-                                (steering) => (
-                                  <SelectItem
-                                    key={steering}
-                                    value={steering}
-                                    className={itemClass}
-                                  >
-                                    {steering}
-                                  </SelectItem>
-                                )
-                              )}
+                              {dropdownData?.data?.steeringTypes?.map((steering) => (
+                                <SelectItem key={steering} value={steering} className={itemClass}>
+                                  {steering}
+                                </SelectItem>
+                              ))}
                             </SelectContent>
                           </Select>
                         </FormControl>
@@ -537,20 +445,13 @@ export default function CarSearchForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Select
-                            onValueChange={field.onChange}
-                            value={field.value}
-                          >
+                          <Select onValueChange={field.onChange} value={field.value}>
                             <SelectTrigger className={menuLinkClass}>
                               <SelectValue placeholder="CAR TYPE" />
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
                               {dropdownData?.data?.carTypes?.map((type) => (
-                                <SelectItem
-                                  key={type.id}
-                                  value={type.name}
-                                  className={itemClass}
-                                >
+                                <SelectItem key={type.id} value={type.name} className={itemClass}>
                                   {type.name}
                                 </SelectItem>
                               ))}
@@ -570,25 +471,16 @@ export default function CarSearchForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Select
-                            onValueChange={field.onChange}
-                            value={field.value}
-                          >
+                          <Select onValueChange={field.onChange} value={field.value}>
                             <SelectTrigger className={menuLinkClass}>
                               <SelectValue placeholder="CYLINDERS" />
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
-                              {dropdownData?.data?.cylinders?.map(
-                                (cylinder) => (
-                                  <SelectItem
-                                    key={cylinder}
-                                    value={cylinder.toString()}
-                                    className={itemClass}
-                                  >
-                                    {cylinder}
-                                  </SelectItem>
-                                )
-                              )}
+                              {dropdownData?.data?.cylinders?.map((cylinder) => (
+                                <SelectItem key={cylinder} value={cylinder.toString()} className={itemClass}>
+                                  {cylinder}
+                                </SelectItem>
+                              ))}
                             </SelectContent>
                           </Select>
                         </FormControl>
@@ -605,20 +497,13 @@ export default function CarSearchForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Select
-                            onValueChange={field.onChange}
-                            value={field.value}
-                          >
+                          <Select onValueChange={field.onChange} value={field.value}>
                             <SelectTrigger className={menuLinkClass}>
                               <SelectValue placeholder="NUMBER OF SEATS" />
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
                               {dropdownData?.data?.seats?.map((seat) => (
-                                <SelectItem
-                                  key={seat}
-                                  value={seat.toString()}
-                                  className={itemClass}
-                                >
+                                <SelectItem key={seat} value={seat.toString()} className={itemClass}>
                                   {seat}
                                 </SelectItem>
                               ))}
