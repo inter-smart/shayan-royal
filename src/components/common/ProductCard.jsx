@@ -8,6 +8,7 @@ const variants = {
 
 export default function ProductCard({ car, variant }) {
 
+console.log(car);
 
 function toTitleCase(text) {
   if (typeof text !== 'string') return '';
@@ -23,7 +24,7 @@ function toTitleCase(text) {
   const specs = ["GCC", toTitleCase(car.fueltype), car.year, toTitleCase(car.gearbox)]
 
   return (
-    <Link href={car.link || "#"} aria-label="news" className={`w-full h-full flex cursor-pointer group ${paddingClass}`}>
+    <Link href={`inventory/${car.id}` || "#"} aria-label="news" className={`w-full h-full flex cursor-pointer group ${paddingClass}`}>
       <div className="w-full h-full rounded-[10px] bg-white overflow-hidden 3xl:py-[15px] py-[10px] 3xl:px-[20px] px-[15px] flex items-end shadow-xl">
         {/* Left Section */}
         <div
@@ -33,11 +34,11 @@ function toTitleCase(text) {
                     after:bg-[linear-gradient(90deg,_rgba(187,192,207,0.00)_0%,_#BBC0CF_100%)] after:w-full after:max-w-[150px] 
                     after:opacity-[0.22] after:h-full"
         >
-          {/* Make.make_logo */}
+          {/* Logo */}
           <div className="w-full 3xl:max-w-[50px] max-w-[40px] absolute top-0 left-0 z-10">
             <Image
-              src={car.make.make_logo ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${car.make.make_logo}` : "/images/toyota.png"}
-              alt={car.make.name}
+              src={car.logo ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${car.logo}` : "/images/toyota.png"}
+              alt={car.brand}
               width={350}
               height={200}
               className="w-full h-full object-contain "

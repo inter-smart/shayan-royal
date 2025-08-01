@@ -10,7 +10,6 @@ export default async function Page({ params }) {
   const { slug } = resolvedParamms;
 
   const { data, error } = await fetchFromAPI(`blog?slug=${slug}`);
-  console.log(error);
 
   if (error) {
     return <div>Something went wrong</div>;
@@ -36,7 +35,7 @@ export default async function Page({ params }) {
           { label: "BLOGS DETAIL", isCurrent: true },
         ]}
       />
-      <BlogDetailSection blog={blog} recentBlogs={recentBlogs} />
+      <BlogDetailSection blog={blog} recentBlogs={recentBlogs} slug={slug}/>
             {/* <CommentSection /> */}
     </>
   );
