@@ -9,16 +9,13 @@ import SpecificationSection from "@/components/features/inventory/SpecificationS
 import SimilarcarSection from "@/components/features/inventory/SimilarcarSection";
 import PDFViewerSection from "@/components/features/inventory/PDFViewerSection";
 import LogoScrollSection from "@/components/features/inventory/LogoScrollSection";
-import { useParams } from "next/navigation";
-import Productdetails from "@/components/features/inventory/productDetails";
+ 
 
-export default function page() {
-    const { type } = useParams();
-
+export default function page() { 
     return (
         <>
             <InnerBanner title="Camry Hybrid" image="/images/inventoryDetailBanner.jpg" alt="about-banner" />
-            {/* <Productdetails type={type} /> */}
+         
             <BreadCrumb
                 items={[
                     { label: "HOME", href: "/" },
