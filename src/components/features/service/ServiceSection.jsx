@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import { mediaUrl } from "@/lib/constants";
+import parse from "html-react-parser";
 
 const items = [
   {
@@ -107,7 +108,7 @@ export default function ServiceSection({ services = items }) {
                       {item?.title || "Logistic Services"}
                     </div>
                     <p className="3xl:text-[20px] 2xl:text-[16px] lg:text-[14px] sm:text-[13px] text-[12px] leading-[1.2] font-normal font-base1 text-white 3xl:mb-[30px] lg:mb-[20px] sm:mb-[15px] mb-[10px]">
-                      {item?.description || ""}
+                      {item?.description ? parse(item?.description) : item?.description || ""}
                     </p>
                     <Link
                       href={item?.type == "service-detail" ? `/service-detail/${item?.id}` : `/service-fitment/${item?.id}`}

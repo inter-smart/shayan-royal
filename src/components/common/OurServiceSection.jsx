@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Text } from "@/components/layout/Text";
 import { Heading } from "@/components/layout/Heading";
+import parse from "html-react-parser";
 
 export default function OurServiceSection({ image, title, description1, description2 }) {
   return (
@@ -29,7 +30,7 @@ export default function OurServiceSection({ image, title, description1, descript
               as="p"
               className="3xl:text-[20px] 2xl:text-[16px] sm:text-[13px] text-[13px] leading-[1.3] font-normal text-[#4B4B4B] 2xl:mb-[30px] lg:mb-[15px] mb-[10px]"
             >
-              {description1}
+              {description1 ? parse(description1) : ""}
             </Text>
             {/* <Text
                             as="p"
