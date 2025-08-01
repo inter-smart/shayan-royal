@@ -7,26 +7,28 @@ const carData = [
     {
         brand: "Toyota",
         logo: "/images/toyota.png",
-        image: "/images/NewArr1.png",
+        image: "/images/productImages/car3.jpeg",
         title: "Camry Hybrid - Toyota Camry Elegant is the hybrid (electric + petrol) variant . It gives a mileage of 25.49 kmpl ",
         specs: ["GCC", "Petrol", "Auto", "2024"],
-        link:"/inventory/cars"
+        link: "/inventory/cars",
+        type: "type1"
     },
     {
         brand: "Toyota",
         logo: "/images/toyota.png",
-        image : "/images/productImages/car3.jpeg",
+        image: "/images/productImages/car3/car31.jpeg",
         title: "Corolla Cross - Corolla Cross Elegant is the hybrid (electric + petrol) variant . It gives a mileage of 25.49 kmpl ",
         specs: ["GCC", "Petrol", "Auto", "2024"],
-        link:"/inventory/cars"
+        link: "/inventory/cars",
+        type: "type2"
     },
     {
         brand: "Lexus",
-        logo: "/images/lexus.png",
-        image: "/images/NewArr3.png",
+        logo: "/images/toyota.png",
+        image: "/images/productImages/car4/car41.jpeg",
         title: "RX 350h Luxury - RX 350h Luxury Elegant is the hybrid (electric + petrol) variant . It gives a mileage of 25.49 kmpl ",
         specs: ["GCC", "Petrol", "Auto", "2024"],
-        link:"/inventory/cars"
+        link: "/inventory/cars"
     },
     {
         brand: "Toyota",
@@ -34,7 +36,8 @@ const carData = [
         image: "/images/NewArr4.png",
         title: "Prado - PradoElegant is the hybrid (electric + petrol) variant . It gives a mileage of 25.49 kmpl ",
         specs: ["GCC", "Petrol", "Auto", "2024"],
-        link:"/inventory/cars"
+        link: "/inventory/cars",
+        type: "type3"
     },
     {
         brand: "Lexus",
@@ -42,7 +45,8 @@ const carData = [
         image: "/images/NewArr5.png",
         title: "Lexus LC - Lexus LC Elegant is the hybrid (electric + petrol) variant . It gives a mileage of 25.49 kmpl ",
         specs: ["GCC", "Petrol", "Auto", "2024"],
-        link:"/inventory/cars"
+        link: "/inventory/cars",
+        type: "type4"
     },
     {
         brand: "Lexus",
@@ -50,7 +54,8 @@ const carData = [
         image: "/images/NewArr6.png",
         title: "NX 350h F-Sport - NX 350h F-Sport is the hybrid (electric + petrol) variant . It gives a mileage of 25.49 kmpl ",
         specs: ["GCC", "Petrol", "Auto", "2024"],
-        link:"/inventory/cars"
+        link: "/inventory/cars",
+        type: "type5"
     },
     {
         brand: "Lexus",
@@ -58,7 +63,8 @@ const carData = [
         image: "/images/inventory_car_1.png",
         title: "Land Cruiser- Land Cruiser is the hybrid (electric + petrol) variant . It gives a mileage of 25.49 kmpl ",
         specs: ["GCC", "Petrol", "Auto", "2024"],
-        link:"/inventory/cars"
+        link: "/inventory/cars",
+        type: "type5"
     },
     {
         brand: "Lexus",
@@ -66,7 +72,8 @@ const carData = [
         image: "/images/inventory_car_2.png",
         title: "Urban Cruiser - Urban Cruiser is the hybrid (electric + petrol) variant . It gives a mileage of 25.49 kmpl ",
         specs: ["GCC", "Petrol", "Auto", "2024"],
-        link:"/inventory/cars"
+        link: "/inventory/cars",
+        type: "type6"
     },
     {
         brand: "Lexus",
@@ -74,7 +81,8 @@ const carData = [
         image: "/images/inventory_car_3.png",
         title: "Lexus LS - Lexus LS is the hybrid (electric + petrol) variant . It gives a mileage of 25.49 kmpl ",
         specs: ["GCC", "Petrol", "Auto", "2024"],
-        link:"/inventory/cars"
+        link: "/inventory/cars",
+        type: "type7"
     },
     {
         brand: "Lexus",
@@ -82,7 +90,8 @@ const carData = [
         image: "/images/inventory_car_4.png",
         title: "Granvia - Granvia is the hybrid (electric + petrol) variant . It gives a mileage of 25.49 kmpl ",
         specs: ["GCC", "Petrol", "Auto", "2024"],
-        link:"/inventory/cars"
+        link: "/inventory/cars",
+        type: "type8"
     },
     {
         brand: "Lexus",
@@ -90,7 +99,8 @@ const carData = [
         image: "/images/inventory_car_5.png",
         title: "2.4L Crown Hybrid - 2.4L Crown Hybrid is the hybrid (electric + petrol) variant . It gives a mileage of 25.49 kmpl ",
         specs: ["GCC", "Petrol", "Auto", "2024"],
-        link:"/inventory/cars"
+        link: "/inventory/cars",
+        type: "type9"
     },
     {
         brand: "Lexus",
@@ -98,7 +108,8 @@ const carData = [
         image: "/images/inventory_car_6.png",
         title: "NX 350h Overtrail - NX 350h Overtrail is the hybrid (electric + petrol) variant . It gives a mileage of 25.49 kmpl ",
         specs: ["GCC", "Petrol", "Auto", "2024"],
-        link:"/inventory/cars"
+        link: "/inventory/cars",
+        type: "type10"
     },
     {
         brand: "Lexus",
@@ -106,7 +117,8 @@ const carData = [
         image: "/images/inventory_car_7.png",
         title: "1.0L Raize - 1.0L Raize is the hybrid (electric + petrol) variant . It gives a mileage of 25.49 kmpl ",
         specs: ["GCC", "Petrol", "Auto", "2024"],
-        link:"/inventory/cars"
+        link: "/inventory/cars",
+        type: "type11"
     },
     {
         brand: "Lexus",
@@ -114,7 +126,8 @@ const carData = [
         image: "/images/inventory_car_8.png",
         title: "LM  Flagship Luxury MPV - LM  Flagship Luxury MPV  is the hybrid (electric + petrol) variant . It gives a mileage of 25.49 kmpl ",
         specs: ["GCC", "Petrol", "Auto", "2024"],
-        link:"/inventory/cars"
+        link: "/inventory/cars",
+        type: "type12"
     },
     {
         brand: "Lexus",
@@ -122,7 +135,8 @@ const carData = [
         image: "/images/inventory_car_9.png",
         title: "2.4L 86 - 2.4L 86 is the hybrid (electric + petrol) variant . It gives a mileage of 25.49 kmpl ",
         specs: ["GCC", "Petrol", "Auto", "2024"],
-        link:"/inventory/cars"
+        link: "/inventory/cars",
+        type: "type13"
     }
 ];
 

@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 import "swiper/css";
 
 const tabs = [
@@ -90,20 +93,28 @@ const detailsData = [
 
 export default function ResponsiveTabsWithSwiper() {
   const [activeTab, setActiveTab] = useState(tabs[0]);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <section className="w-full px-4 pt-6 pb-3 bg-white overflow-hidden">
       <div className="container mx-auto">
         {/* Tab Header */}
-        <div className="mb-6 px-2">
+        <div className="mb-6 relative">
           <Swiper
             slidesPerView={2}
+            modules={[Navigation]}
             spaceBetween={10}
             breakpoints={{
               420: { slidesPerView: 3 },
               578: { slidesPerView: 3 },
               768: { slidesPerView: 4 },
               1024: { slidesPerView: 5 },
+            }}
+            onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+            onBeforeInit={(swiper) => setActiveIndex(swiper.realIndex)}
+            navigation={{
+              prevEl: ".btn-prev",
+              nextEl: ".btn-next",
             }}
             className="border-b border-[#D9D9D9]"
           >
@@ -119,6 +130,28 @@ export default function ResponsiveTabsWithSwiper() {
               </SwiperSlide>
             ))}
           </Swiper>
+          {/* Navigation Arrows */}
+          <div className="flex items-center justify-center absolute top-0 bottom-0 w-full">
+            <button className="btn-prev absolute left-[-30px] lg:left-[-55px] lg:top-1/2 lg:-translate-y-1/2 z-10
+                        lg:bg-gradient-to-r from-[#E4E4E4] to-[#FFFFFF] 
+                        lg:shadow w-[34px] h-[38px] flex items-center justify-center rounded-[30px_0px_0px_30px] cursor-pointer group
+                         hover:bg-[#2E4C99] disabled:pointer-events-none disabled:opacity-[0.2]">
+
+              <svg width="7" height="13" viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 flex" >
+                <path d="M6.14364 0.699707L0.769531 6.12544L6.14364 12.1834" stroke="black" />
+              </svg>
+            </button>
+            <button className="btn-next absolute right-[-30px] lg:right-[-55px] lg:top-1/2 lg:-translate-y-1/2 z-10 
+                        lg:bg-gradient-to-r from-[#E4E4E4] to-[#FFFFFF] 
+                        lg:shadow w-[34px] h-[38px] flex items-center justify-center
+                         rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99] 
+                        disabled:pointer-events-none disabled:opacity-[0.2] ">
+
+              <svg width="7" height="13" viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 flex" >
+                <path d="M0.817302 0.699707L6.19141 6.12544L0.817302 12.1834" stroke="black" />
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Tab Content */}

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Heading } from "@/components/layout/Heading";
 import { Text } from "@/components/layout/Text";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper/modules";
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -171,7 +171,7 @@ export default function TestimonialSection() {
 
                 <div className="relative">
                     <Swiper
-                        modules={[Pagination, Navigation]}
+                        modules={[Pagination, Navigation, Autoplay]}
                         pagination={!isMobile ? { clickable: true } : false}
                         spaceBetween={20}
                         breakpoints={{

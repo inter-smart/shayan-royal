@@ -14,6 +14,7 @@ import "swiper/css/thumbs";
 const carDetails = [
     {
         carName: "Camry Hybrid",
+        type: "type1",
         model: "2024",
         images: [
             "/images/productImages/car3.jpeg",
@@ -24,7 +25,36 @@ const carDetails = [
             "/images/productImages/car6.jpeg",
 
         ],
-    }
+    },
+    {
+        carName: "Camry Hybrid",
+        type: "type2",
+        model: "2024",
+        images: [
+            "/images/productImages/car3.jpeg",
+            "/images/productImages/car2.jpeg",
+            "/images/productImages/car1.jpeg",
+            "/images/productImages/car4.jpeg",
+            "/images/productImages/car5.jpeg",
+            "/images/productImages/car6.jpeg",
+
+        ],
+    },
+    {
+        carName: "Camry Hybrid",
+        type: "type3",
+        model: "2024",
+        images: [
+            "/images/productImages/car3.jpeg",
+            "/images/productImages/car2.jpeg",
+            "/images/productImages/car1.jpeg",
+            "/images/productImages/car4.jpeg",
+            "/images/productImages/car5.jpeg",
+            "/images/productImages/car6.jpeg",
+
+        ],
+    },
+
 ];
 
 const specIcons = [
@@ -57,19 +87,18 @@ const SocialLinks = [
     }
 ];
 
-export default function InventoryDetailSection() {
+export default function Productdetails({ type }) {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
     const thumbsPrevRef = useRef(null);
     const thumbsNextRef = useRef(null);
     const verticalPrevRef = useRef(null);
     const verticalNextRef = useRef(null);
-    const carImages = carDetails[0].images;
+    // const carImages = carDetails[0].images;
 
-
-    useEffect(() => {
-        // Delay update to ensure refs are mounted
-    }, []);
+   
+  const selectedCar = carDetails.find((car) => car.type === type);
+  if (!selectedCar) return <div className="p-10 text-center text-red-600">Car not found</div>;
 
     return (
         <section className="w-full h-auto block 3xl:py-[40px_100px] xl:py-[30px_50px] sm:py-[20px_30px] py-[15px_30px]">
@@ -82,18 +111,7 @@ export default function InventoryDetailSection() {
                         <div className="flex flex-col lg:flex-row w-full">
                             {/* Main Slider */}
                             <div className="w-full 3xl:w-[calc(100%-110px)] 2xl:w-[calc(100%-80px)] lg:w-[calc(100%-70px)] 3xl:mr-[50px] mr-[30px] overflow-hidden relative">
-                                {/* <div className="absolute 3xl:top-[50px] md:top-[30px] top-[15px] 3xl:left-[50px] md:left-[30px] left-[15px] flex items-center 3xl:p-[15px] 2xl:p-[10px]
-                                 p-[5px] bg-[#2E4C99] rounded-[10px] z-9">
-                                    <div className="3xl:w-[30px] 2xl:w-[25px] w-[20px] flex">
-                                        <svg width="34" height="26" viewBox="0 0 34 26" fill="none" >
-                                            <path d="M31.2475 8.04021H29.0275L28.446 4.64112C28.0512 2.31382 26.0505 0.624573 23.6884 0.624573H10.3561C7.99414 0.624573 5.99297 2.31382 5.59785 4.64193L5.52437 5.07978C5.48068 5.34096 5.65669 5.58817 5.91772 5.632C6.18111 5.67584 6.42625 5.49969 6.46994 5.23865L6.54327 4.80161C6.85969 2.9368 8.46318 1.58331 10.356 1.58331H23.6883C25.5811 1.58331 27.1845 2.9368 27.5009 4.8022L28.2047 8.91584V9.70335C27.925 9.69298 6.12241 9.69283 5.83946 9.70335V8.9154L6.04776 7.69739C6.09241 7.43651 5.91699 7.18871 5.6561 7.14407C5.3958 7.09957 5.14742 7.27469 5.10278 7.53573L5.0165 8.04021H2.79673C1.56592 8.04021 0.564453 9.04169 0.564453 10.2725C0.564453 11.4153 1.42809 12.3588 2.53673 12.4883C2.43809 12.962 2.46281 12.5357 2.46281 18.9154C1.81482 19.1205 1.34071 19.7204 1.34071 20.4354C1.34071 21.2785 1.99745 21.9639 2.82497 22.0251V23.977C2.82497 24.8093 3.50216 25.4863 4.33446 25.4863H8.53798C9.37029 25.4863 10.0473 24.8093 10.0473 23.977V22.037H24.3589V23.977C24.3589 24.8093 25.0361 25.4863 25.8684 25.4863H30.0718C30.9041 25.4863 31.5812 24.8093 31.5812 23.977V21.9556C32.2293 21.7504 32.7035 21.1505 32.7035 20.4354C32.7035 19.7204 32.2294 19.1205 31.5812 18.9154C31.5812 12.7817 31.6097 12.9798 31.5073 12.4883C32.616 12.3589 33.4796 11.4153 33.4796 10.2725C33.4797 9.04169 32.4783 8.04021 31.2475 8.04021ZM5.97016 10.6554H28.074C29.4792 10.6554 30.6227 11.7987 30.6227 13.2039V13.4608H27.3549C26.3978 13.4608 25.6192 14.2394 25.6192 15.1965C25.6192 16.5752 26.7408 17.6969 28.1192 17.6969H30.6227V18.8339H3.42162V17.6969H6.68935C7.64647 17.6969 8.42508 16.9181 8.42508 15.9609C8.42508 14.5824 7.3035 13.4607 5.92486 13.4607H3.42162V13.2039C3.42162 11.7987 4.5649 10.6554 5.97016 10.6554ZM30.6227 14.4195V16.7382H28.1193C27.2695 16.7382 26.5779 16.0467 26.5779 15.1966C26.5779 14.7681 26.9265 14.4195 27.355 14.4195H30.6227ZM3.42162 16.7382V14.4195H5.92493C6.77489 14.4195 7.46641 15.111 7.46641 15.961C7.46641 16.3897 7.11786 16.7382 6.68935 16.7382H3.42162ZM1.52327 10.2725C1.52327 9.57015 2.09454 8.99888 2.79688 8.99888H4.88095V9.87208C4.02003 10.1543 3.3046 10.7598 2.88087 11.5461H2.79688C2.09454 11.5461 1.52327 10.9748 1.52327 10.2725ZM9.08873 23.977C9.08873 24.2806 8.84175 24.5276 8.53805 24.5276H4.33461C4.03099 24.5276 3.78378 24.2807 3.78378 23.977V22.037H9.08873V23.977ZM30.6227 23.977C30.6227 24.2806 30.3756 24.5276 30.0719 24.5276H25.8685C25.5649 24.5276 25.3177 24.2807 25.3177 23.977V22.037H30.6227V23.977H30.6227ZM31.745 20.4354C31.745 20.7899 31.4566 21.0783 31.1021 21.0783C25.3572 21.0783 8.56622 21.0783 2.94229 21.0783C2.58792 21.0783 2.2996 20.7899 2.2996 20.4354C2.2996 20.081 2.58799 19.7927 2.94229 19.7927H31.1021C31.4566 19.7927 31.745 20.081 31.745 20.4354ZM31.2475 11.5461H31.1635C30.7397 10.7598 30.0243 10.1544 29.1635 9.87215V8.99895H31.2475C31.9497 8.99895 32.5212 9.57022 32.5212 10.2726C32.5211 10.9748 31.9497 11.5461 31.2475 11.5461Z" fill="white" />
-                                            <path d="M11.5639 17.9432H22.4792C23.3633 17.9432 24.0823 17.2242 24.0823 16.3402V13.1489C24.0823 12.265 23.3633 11.546 22.4792 11.546H11.5639C10.68 11.546 9.96094 12.265 9.96094 13.1489V16.3402C9.96094 17.2242 10.68 17.9432 11.5639 17.9432ZM10.9196 13.1489C10.9196 12.7936 11.2086 12.5046 11.5639 12.5046H22.4792C22.8347 12.5046 23.1236 12.7936 23.1236 13.1489V16.3402C23.1236 16.6956 22.8347 16.9845 22.4792 16.9845H11.5639C11.2086 16.9845 10.9196 16.6956 10.9196 16.3402V13.1489Z" fill="white" />
-                                            <path d="M12.5496 14.2502H21.491C21.7557 14.2502 21.9704 14.0357 21.9704 13.7709C21.9704 13.5061 21.7557 13.2916 21.491 13.2916H12.5496C12.2849 13.2916 12.0703 13.5061 12.0703 13.7709C12.0703 14.0357 12.2849 14.2502 12.5496 14.2502Z" fill="white" />
-                                            <path d="M20.4339 15.239H13.6121C13.3474 15.239 13.1328 15.4536 13.1328 15.7183C13.1328 15.9831 13.3474 16.1977 13.6121 16.1977H20.4339C20.6986 16.1977 20.9133 15.9831 20.9133 15.7183C20.9133 15.4536 20.6986 15.239 20.4339 15.239Z" fill="white" />
-                                        </svg>
-                                    </div>
-                                    <span className="3xl:text-[20px] text-[15px] text-white w-[calc(100%-30px)] 3xl:px-[15px] 2xl:px-[10px] px-[5px]">{carDetails[0].model}</span>
-                                </div> */}
+                         
                                 <div className="relative w-full">
                                     <Swiper
                                         modules={[Thumbs, EffectFade, Navigation]}

@@ -1,3 +1,5 @@
+"use client";
+
 import InnerBanner from "@/components/common/InnerBanner";
 import { BreadCrumb } from "@/components/common/BreadCrumb";
 import InventoryDetailSection from "@/components/features/inventory/InventoryDetailSection";
@@ -7,11 +9,16 @@ import SpecificationSection from "@/components/features/inventory/SpecificationS
 import SimilarcarSection from "@/components/features/inventory/SimilarcarSection";
 import PDFViewerSection from "@/components/features/inventory/PDFViewerSection";
 import LogoScrollSection from "@/components/features/inventory/LogoScrollSection";
+import { useParams } from "next/navigation";
+import Productdetails from "@/components/features/inventory/productDetails";
 
 export default function page() {
+    const { type } = useParams();
+
     return (
         <>
             <InnerBanner title="Camry Hybrid" image="/images/inventoryDetailBanner.jpg" alt="about-banner" />
+            {/* <Productdetails type={type} /> */}
             <BreadCrumb
                 items={[
                     { label: "HOME", href: "/" },
@@ -25,7 +32,8 @@ export default function page() {
             {/* <PDFViewerSection fileUrl="/images/policy.pdf" /> */}
             <SimilarcarSection />
             <FaqSection />
-            <LogoScrollSection />
+            {/* <LogoScrollSection /> */}
+
 
         </>
     );

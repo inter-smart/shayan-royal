@@ -15,7 +15,7 @@ const carCategories = [
     { name: "Crossover", img: "/images/cat3.png" },
     { name: "Hatchback", img: "/images/cat4.png" },
     { name: "Pickup", img: "/images/cat5.png" },
-    { name: "Pickup", img: "/images/cat5.png" },
+    { name: "Bus", img: "/images/bus.png" },
 ];
 
 

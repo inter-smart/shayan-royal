@@ -51,7 +51,7 @@ export default function footer() {
               </li>
               <li className='mb-[10]'>
                 <Link href="/brand" className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] text-white mb-[15px] hover:text-[#BE1E2D]" >
-                  Brands Specialized In
+                  Brands 
                 </Link>
               </li>
               <li className='mb-[10]'>

@@ -66,7 +66,7 @@ export default function ClientSection() {
                 <div className="relative">
                     <Swiper
                         spaceBetween={15}
-                        modules={[Navigation]}
+                        modules={[Navigation, Autoplay]}
                         autoplay={{
                             delay: 3000,
                             disableOnInteraction: false,
