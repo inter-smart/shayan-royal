@@ -7,7 +7,7 @@ const colors = [
     { name: "Platinum White", code: "#EDEDED", image: "/images/whiteCar.png" },
     { name: "Black", code: "#000000", image: "/images/blackCar1.png" },
     { name: "Blue", code: "#3C44B1", image: "/images/blueCar.png" },
-    { name: "Green", code: "#295F29", image: "/images/greenCar.png" },
+    { name: "Gunmetal", code: "#2c3333", image: "/images/greenCar.png" },
 ];
 
 const specIcons = [

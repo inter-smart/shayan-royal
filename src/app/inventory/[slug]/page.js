@@ -7,8 +7,8 @@ import ColorSection from "@/components/features/inventory/ColorSection";
 import FaqSection from "@/components/features/inventory/FaqSection";
 import SpecificationSection from "@/components/features/inventory/SpecificationSection";
 import SimilarcarSection from "@/components/features/inventory/SimilarcarSection";
-import PDFViewerSection from "@/components/features/inventory/PDFViewerSection";
-import LogoScrollSection from "@/components/features/inventory/LogoScrollSection";
+// import PDFViewerSection from "@/components/features/inventory/PDFViewerSection";
+// import LogoScrollSection from "@/components/features/inventory/LogoScrollSection";
  
 
 export default function page() { 
