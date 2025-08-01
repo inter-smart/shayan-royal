@@ -16,16 +16,15 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { mediaUrl } from "@/lib/constants";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name is requied." }),
   email: z.string().email({ message: "Invalid email address." }),
-phone: z
-    .string()
-    .regex(/^(\+971|0)?5[0-9]{8}$/, {
-      message: "Enter a valid mobile number.",
-    }),
-  message: z.string().min(5, { message: "Message is required." })
+  phone: z.string().regex(/^((\+971|0)?(5[024568][0-9]{7}|4[0-9]{7}))$/, {
+    message: "Enter a valid UAE mobile number.",
+  }),
+  message: z.string().min(5, { message: "Message is required." }),
 });
 
 const items = [
@@ -65,40 +64,39 @@ export default function EnquiryForm({ image, Formtitle, Formsubtitle }) {
     },
   });
 
-const onSubmit = async (values) => {
-  setLoading(true);
-  try {
-    const payload = {
-      name: values.name,
-      phone: values.phone,
-      email: values.email,
-      message: values.message,
-    };
+  const onSubmit = async (values) => {
+    setLoading(true);
+    try {
+      const payload = {
+        name: values.name,
+        phone: values.phone,
+        email: values.email,
+        message: values.message,
+      };
 
-    const res = await fetch(`${mediaUrl}/api/enquiries`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+      const res = await fetch(`${mediaUrl}/api/enquiries`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (data.success) {
-      alert(data.message || "Enquiry submitted!");
-      form.reset();
-    } else {
-      alert(data.message || "Something went wrong. Please try again.");
+      if (data.success) {
+        toast.success(data.message || "Enquiry submitted!");
+        form.reset();
+      } else {
+        toast.error(data.message || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      toast.error("Failed to submit enquiry. Please try again later.");
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    console.error("Submission error:", error);
-    alert("Failed to submit enquiry. Please try again later.");
-  } finally {
-    setLoading(false);
-  }
-};
-
+  };
 
   const inputFormStyle =
     "text-white w-full h-auto 2xl:p-[15px_0] p-[10px_0] bg-transparent border-0 border-b border-white rounded-none placeholder:2xl:text-[16px] placeholder:text-[12px] placeholder:leading-[1] placeholder:font-normal placeholder:text-white focus-visible:placeholder:text-[#BE1E2D] focus-visible:border-[#BE1E2D] focus-visible:ring-0 transition-colors duration-300 ease-in-out";

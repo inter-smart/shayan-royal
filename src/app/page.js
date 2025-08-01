@@ -11,7 +11,6 @@ import BlogSection from "@/components/features/home/BlogSection";
 import SocialSection from "@/components/features/home/SocialSection";
 import FaqSection from "@/components/features/home/FaqSection";
 import { fetchFromAPI } from "@/lib/api";
-
 export default async function Home() {
   const { data, error } = await fetchFromAPI("home");
 
