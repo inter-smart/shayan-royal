@@ -37,7 +37,6 @@ export default function ChooseServicesSection({ chooseItems, image, title }) {
   const { ref, inView } = useInView({ threshold: 0.4 });
 
   const modified = [{ sectionTitle: title }, ...chooseItems];
-  console.log("M", modified);
 
   return (
     <section className="w-full h-auto block overflow-hidden bg-[#F5F9FF] 3xl:py-[110px] 2xl:py-[80px] lg:py-[70px] sm:py-[50px] py-[40px] relative z-0">

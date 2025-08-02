@@ -145,9 +145,6 @@ export default function CarSearchForm() {
 
   const models = makeId ? dropdownData?.data?.models?.filter((model) => model.make_id == Number(makeId)) : [];
 
-  console.log("models", models);
-  console.log("models", dropdownData);
-
   const menuLinkClass =
     "!text-[10px] 2xl:!text-[12px] 3xl:!text-[14px] text-black max-w-full min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px] text-black uppercase font-normal placeholder:!text-black placeholder:font-normal !w-full px-[12px] border !border-[rgba(46,76,153,0.34)] bg-white rounded-[5px] font-normal outline-none shadow-none focus:outline-none focus:ring-0 focus:border-[#CCCCCC] focus:shadow-none data-[state=open]:border-[#00095b] data-[state=open]:shadow-none";
 
