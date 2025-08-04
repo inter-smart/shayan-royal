@@ -23,6 +23,7 @@
     "clsx": "^2.1.1",
     "countup.js": "^2.9.0",
     "date-fns": "^4.1.0",
+    "dayjs": "^1.11.13",
     "framer-motion": "^12.16.0",
     "gsap": "^3.13.0",
     "html-react-parser": "^5.2.6",
