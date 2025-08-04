@@ -7,6 +7,7 @@ const variants = {
 };
 
 export default function ProductCard({ car, variant }) {
+  console.log(car);
   function toTitleCase(text) {
     if (typeof text !== "string") return "";
     return text
@@ -18,10 +19,10 @@ export default function ProductCard({ car, variant }) {
   const defaultPadding = "px-[10px] 3xl:py-[25px] py-[15px]";
   const paddingClass = variant ? variants[variant] || defaultPadding : defaultPadding;
 
-  const specs = ["GCC", toTitleCase(car.fueltype), car.year, toTitleCase(car.gearbox)];
+  const specs = ["GCC", toTitleCase(car?.fueltype), car?.year, toTitleCase(car?.gearbox)];
 
   return (
-    <Link href={car.link || "#"} aria-label={car.type} className={`w-full h-full flex cursor-pointer group ${paddingClass}`}>
+    <Link href={car?.link || "#"} aria-label={car?.type} className={`w-full h-full flex cursor-pointer group ${paddingClass}`}>
       <div className="w-full h-full rounded-[10px] bg-white overflow-hidden 3xl:py-[15px] py-[10px] 3xl:px-[20px] px-[15px] flex items-center shadow-xl">
         {/* Left Section */}
         <div
@@ -33,13 +34,13 @@ export default function ProductCard({ car, variant }) {
         >
           {/* Logo */}
           <div className="w-full 3xl:max-w-[50px] max-w-[40px] absolute top-[10px] left-[10px] z-10">
-            <Image src={car.logo} alt={`${car.brand} Logo`} width={350} height={200} className="w-full h-full object-contain " />
+            <Image src={car?.logo} alt={`${car?.brand} Logo`} width={350} height={200} className="w-full h-full object-contain " />
           </div>
           {/* Image */}
           <div className="w-full  3xl:min-h-[250px] 2xl:min-h-[170px] min-h-[140px] flex items-center justify-center m-auto overflow-hidden rounded-[5px] relative">
             <Image
-              src={car.image}
-              alt={car.title}
+              src={car?.image}
+              alt={car?.title}
               width={350}
               height={200}
               className="w-full h-full object-contain  transition-transform duration-500  group-hover:scale-110"
@@ -47,14 +48,16 @@ export default function ProductCard({ car, variant }) {
           </div>
           {/* Title */}
           <div className="py-2">
-            <div className="3xl:text-[20px] 2xl:text-[18px] text-[14px] font-semibold font-base1 uppercase text-black  line-clamp-3">{car.title}</div>
+            <div className="3xl:text-[20px] 2xl:text-[18px] text-[14px] font-semibold font-base1 uppercase text-black  line-clamp-3">
+              {car?.title}
+            </div>
           </div>
         </div>
 
         {/* Right Section - Specs */}
         <div className={`3xl:w-[65px] w-[45px] ${variant === "inventory" ? "h-full pb-5" : " "}`}>
           <div className={`flex flex-col h-full ${variant === "inventory" ? "max-h-full" : "3xl:max-h-[265px] max-h-[200px]"}`}>
-            {car.specs.map((spec, i) => {
+            {car?.specs?.map((spec, i) => {
               const icon = specIcons.find((s) => s.label === spec)?.icon;
 
               return (
