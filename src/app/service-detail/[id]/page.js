@@ -22,6 +22,8 @@ export default async function Page({ params }) {
 
   const { service, banner } = data;
 
+  console.log("Service Detail Page Data:", service);
+
   return (
     <>
       <InnerBanner
@@ -43,7 +45,7 @@ export default async function Page({ params }) {
         // description1="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Esse enim quam vellet iniquus iustus poterat inpune. Naturales divitias dixit parabiles esse, quod parvo esset natura contenta. Paulum, cum regem Persem captum adduceret, eodem flumine invectio? Duo Reges: constructio interrete. Que Manilium, ab iisque M. Quo studio Aristophanem putamus aetatem in litteris duxisse Cum autem in quo sapienter dicimus, id a primo rectissime dicitur. Conferam tecum, quam cuique verso rem subicias; Sed haec nihil sane ad rem."
         // description2="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Esse enim quam vellet iniquus iustus poterat inpune. Naturales divitias dixit parabiles esse, quod parvo esset natura contenta. Paulum, cum regem Persem captum adduceret, eodem flumine invectio? Duo Reges: constructio interrete. Que Manilium, ab iisque M. Quo studio Aristophanem putamus aetatem in litteris duxisse Cum autem in quo sapienter dicimus, id a primo rectissime dicitur. Conferam tecum, quam cuique verso rem subicias; Sed haec nihil sane ad rem."
       />
-      <ChooseServicesSection chooseItems={service?.servicesWhyChooseItems} image={service?.side_image} />
+      <ChooseServicesSection chooseItems={service?.servicesWhyChooseItems} image={service?.side_image} title={service?.why_choose_title} />
       <LogisticSection title={service?.contact_title} desc={service?.contact_description} image={service?.contact_image} />
     </>
   );
