@@ -30,10 +30,10 @@ const carDetails = [
 const specIcons = [
     { label: "GCC", icon: "/images/globe.svg" },
     { label: "Auto", icon: "/images/transmission.svg" },
-    { label: "Hybrid", icon: "/images/hybrid.svg" }, 
-    { label: "2.5L", icon: "/images/liter.svg" }, 
-    { label: "0Km", icon: "/images/km.svg" }, 
-    { label: "2024", icon: "/images/calender.svg" }, 
+    { label: "Hybrid", icon: "/images/hybrid.svg" },
+    { label: "2.5L", icon: "/images/liter.svg" },
+    { label: "0Km", icon: "/images/km.svg" },
+    { label: "2024", icon: "/images/calender.svg" },
 ];
 
 const SocialLinks = [
@@ -94,34 +94,70 @@ export default function InventoryDetailSection() {
                                     </div>
                                     <span className="3xl:text-[20px] text-[15px] text-white w-[calc(100%-30px)] 3xl:px-[15px] 2xl:px-[10px] px-[5px]">{carDetails[0].model}</span>
                                 </div> */}
-                                <Swiper
-                                    modules={[Thumbs, EffectFade, Navigation]}
-                                    spaceBetween={10}
-                                    effect="fade"
-                                    fadeEffect={{ crossFade: true }}
-                                    speed={800}
-                                    thumbs={{ swiper: thumbsSwiper }}
-                                    className="border border-[rgba(46,76,153,0.3)] rounded-[10px] sm:mb-[30px] mb-[20px]"
-                                >
-                                    {carImages.map((img, index) => (
-                                        <SwiperSlide key={index}>
-                                            <div className="relative w-full 3xl:h-[570px] 2xl:h-[465px] xl:h-[425px] sm:h-[370px] 3xs:h-[300px] h-[200px] bg-white">
-                                                {/* <Image
+                                <div className="relative w-full">
+                                    <Swiper
+                                        modules={[Thumbs, EffectFade, Navigation]}
+                                        spaceBetween={10}
+                                        effect="fade"
+                                        fadeEffect={{ crossFade: true }}
+                                        speed={800}
+                                        onBeforeInit={(swiper) => {
+                                            swiper.params.navigation.prevEl = ".navBtn-prev";
+                                            swiper.params.navigation.nextEl = ".navBtn-next";
+                                        }}
+                                        navigation={{
+                                            prevEl: ".navBtn-prev",
+                                            nextEl: ".navBtn-next",
+                                        }}
+                                        thumbs={{ swiper: thumbsSwiper }}
+                                        className="border border-[rgba(46,76,153,0.3)] rounded-[10px] sm:mb-[30px] mb-[20px]"
+                                    >
+                                        {carImages.map((img, index) => (
+                                            <SwiperSlide key={index}>
+                                                <div className="relative w-full 3xl:h-[570px] 2xl:h-[465px] xl:h-[425px] sm:h-[370px] 3xs:h-[300px] h-[200px] bg-white">
+                                                    {/* <Image
                                                     src={img}
                                                     alt={`car-${index}`}
                                                     fill
                                                     className="2xl:max-w-[900px] lg:max-w-[650px] max-w-[300px] w-full h-full object-contain m-auto"
                                                 /> */}
-                                                <Image
-                                                    src={img}
-                                                    alt={`car-${index}`}
-                                                    fill
-                                                    className="max-w-full w-full h-full object-cover m-auto"
-                                                />
-                                            </div>
-                                        </SwiperSlide>
-                                    ))}
-                                </Swiper>
+                                                    <Image
+                                                        src={img}
+                                                        alt={`car-${index}`}
+                                                        fill
+                                                        className="max-w-full w-full h-full object-cover m-auto"
+                                                    />
+                                                </div>
+                                            </SwiperSlide>
+                                        ))}
+                                    </Swiper>
+                                    {/* Navigation Arrows */}
+                                    <div className="absolute top-[45%] left-0 right-0 flex items-center justify-between  w-full z-10 
+                                            pointer-events-none">
+                                        <button className="navBtn-prev pointer-events-auto bg-white rounded-full shadow 
+                                            w-[20px] md:w-10 md:h-10 h-[20px]
+                                                flex items-center justify-center group hover:bg-[#2E4C99] relative left-[5px] md:left-[10px] cursor-pointer disabled:opacity-[0.5]">
+                                            <svg
+                                                viewBox="0 0 7 13"
+                                                fill="none"
+                                                className="group-hover:invert-100 w-[7px] md:w-2 md:h-5 h-[8px]"
+                                            >
+                                                <path d="M6.14364 0.699707L0.769531 6.12544L6.14364 12.1834" stroke="black" />
+                                            </svg>
+                                        </button>
+                                        <button className="navBtn-next pointer-events-auto bg-white rounded-full shadow  w-[20px] md:w-10 md:h-10 h-[20px]
+                                            flex items-center justify-center group hover:bg-[#2E4C99] relative right-[5px] md:right-[10px] cursor-pointer disabled:opacity-[0.5]">
+                                            <svg
+                                                viewBox="0 0 7 13"
+                                                fill="none"
+                                                className="group-hover:invert-100 w-[7px] md:w-2 md:h-5 h-[8px]"
+                                            >
+                                                <path d="M0.817302 0.699707L6.19141 6.12544L0.817302 12.1834" stroke="black" />
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                </div>
 
                                 {/* Thumbnail Slider */}
                                 <div className="relative">
@@ -163,8 +199,8 @@ export default function InventoryDetailSection() {
                                             </SwiperSlide>
                                         ))}
                                     </Swiper>
-                                    <button ref={thumbsPrevRef} className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-5 lg:h-10 h-6 bg-[rgba(46,76,153,0.9)] shadow text-white hover:bg-[#2E4C99] cursor-pointer disabled:pointer-events-none disabled:opacity-[0.2]">‹</button>
-                                    <button ref={thumbsNextRef} className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-5 lg:h-10 h-6 bg-[rgba(46,76,153,0.9)] shadow text-white hover:bg-[#2E4C99] cursor-pointer disabled:pointer-events-none disabled:opacity-[0.2]">›</button>
+                                    {/* <button ref={thumbsPrevRef} className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-5 lg:h-10 h-6 bg-[rgba(46,76,153,0.9)] shadow text-white hover:bg-[#2E4C99] cursor-pointer disabled:pointer-events-none disabled:opacity-[0.2]">‹</button>
+                                    <button ref={thumbsNextRef} className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-5 lg:h-10 h-6 bg-[rgba(46,76,153,0.9)] shadow text-white hover:bg-[#2E4C99] cursor-pointer disabled:pointer-events-none disabled:opacity-[0.2]">›</button> */}
                                 </div>
                             </div>
 

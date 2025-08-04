@@ -37,8 +37,6 @@ const blogs = [
 ];
 
 export default function BlogSection({ title, description, blogs }) {
-  console.log(blogs);
-
   const leftItems = blogs?.slice(0, 2);
   const rightItems = blogs?.slice(2);
   return (
@@ -82,7 +80,11 @@ export default function BlogSection({ title, description, blogs }) {
                           {item?.published_at ? formatPostTime(item?.published_at) : ""}
                         </span>
                       </div>
-                      <Heading size="heading5" as="div" className="text-black line-clamp-2 font-semibold mb-[10px] max-w-[360px]">
+                      <Heading
+                        size=""
+                        as="div"
+                        className="text-[14px] 2xl:text-[18px] 3xl:text-[25px] text-black line-clamp-2 font-semibold mb-[10px] max-w-[360px]"
+                      >
                         {item?.title}
                       </Heading>
                       <Text size="text1" as="p" className="text-[#595959] line-clamp-2">
@@ -120,7 +122,11 @@ export default function BlogSection({ title, description, blogs }) {
                           {item?.published_at ? formatPostTime(item?.published_at) : ""}
                         </span>
                       </div>
-                      <Heading size="heading5" as="div" className="text-black line-clamp-2 font-semibold mb-[10px] max-w-[360px]">
+                      <Heading
+                        size=""
+                        as="div"
+                        className="text-[14px] 2xl:text-[18px] 3xl:text-[25px] text-black line-clamp-2 font-semibold mb-[10px] max-w-[360px]"
+                      >
                         {item?.title}
                       </Heading>
                       <Text size="text1" as="p" className="text-[#595959] line-clamp-2">

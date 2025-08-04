@@ -29,7 +29,6 @@ const coreValues = [
 ];
 
 export default function CorevalueSection({ title, description, values }) {
-    console.log("CorevalueSection values:", title);
   return (
     <section className="w-full h-auto 3xl:py-[140px] xl:py-[90px] lg:py-[70px] sm:py-[50px] py-[40px] block">
       <div className="container">

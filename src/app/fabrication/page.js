@@ -21,8 +21,6 @@ export default async function Page() {
 
   const { contents, categories, whyChooseUs, testimonials, banner } = data;
 
-  console.log("Fabrication Page Data:", data);
-
   return (
     <>
       <InnerBanner

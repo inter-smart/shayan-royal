@@ -15,7 +15,6 @@ const customParserOptions = {
 };
 
 export default function PartnershipSection({ title, description, image, alt, brandCount }) {
-  console.log("PartnershipSection rendered with title:", description);
   return (
     <section className="w-full h-auto xl:pt-[80px] lg:pt-[40px] pt-[20px] lg:pb-[90px] pb-[20px]">
       <div className="container">

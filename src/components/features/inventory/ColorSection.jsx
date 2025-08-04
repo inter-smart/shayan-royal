@@ -3,11 +3,11 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 
 const colors = [
-    { name: "Red", code: "#C6564A", image: "/images/carDetails1.png" },
-    { name: "Platinum White", code: "#EDEDED", image: "/images/productImages/varient1.jpeg" },
-    { name: "Black", code: "#000000", image: "/images/NewArr2.png" },
-    { name: "Blue", code: "#3C44B1", image: "/images/carColor1.png" },
-    { name: "Green", code: "#295F29", image: "/images/whyCar.png" },
+    { name: "Red", code: "#C6564A", image: "/images/redCar.png" },
+    { name: "Platinum White", code: "#EDEDED", image: "/images/whiteCar.png" },
+    { name: "Black", code: "#000000", image: "/images/blackCar1.png" },
+    { name: "Blue", code: "#3C44B1", image: "/images/blueCar.png" },
+    { name: "Gunmetal", code: "#2c3333", image: "/images/greenCar.png" },
 ];
 
 const specIcons = [
@@ -79,7 +79,7 @@ export default function CarColorSpecSection() {
                                             onClick={() => setActiveColor(color)}
                                         >
                                             <div
-                                                className={`2xl:w-[42px] w-[30px] 2xl:h-[42px] h-[30px] rounded flex items-center justify-center ${isActive
+                                                className={`2xl:w-[42px] w-[30px] 2xl:h-[42px] h-[30px] rounded-full flex items-center justify-center ${isActive
                                                     ? "border border-[#D2D5DA] shadow-[0_0_0_2px_white] bg-white"
                                                     : ""
                                                     }`}
@@ -89,13 +89,14 @@ export default function CarColorSpecSection() {
                                             >
                                                 {isActive && (
                                                     <div
-                                                        className="2xl:w-[32px] w-[22px] 2xl:h-[32px] h-[22px] rounded"
+                                                        className="2xl:w-[32px] w-[22px] 2xl:h-[32px] h-[22px] rounded-full"
                                                         style={{ backgroundColor: color.code }}
                                                     />
                                                 )}
                                             </div>
                                             {isActive && (
-                                                <span className="absolute left-[55px] top-1/2 transform -translate-y-1/2 text-black text-lg font-medium whitespace-nowrap max-lg:hidden">
+                                                <span className="absolute left-[55px] top-1/2 transform -translate-y-1/2 text-black text-lg font-medium
+                                                 whitespace-nowrap max-lg:hidden">
                                                     {color.name}
                                                 </span>
                                             )}
