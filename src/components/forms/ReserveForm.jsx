@@ -14,6 +14,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useParams } from "next/navigation";
+import { toast } from "sonner";
+import { mediaUrl } from "@/lib/constants";
+import { useState } from "react";
 
 // Tailwind Classes
 const menuLinkClass =
@@ -26,8 +30,9 @@ const errorMessage =
 const formSchema = z.object({
   Name: z.string().nonempty("Name is required"),
   email: z.string().email("Invalid email"),
-  phone: z.string().nonempty("Phone number is required"),
-  message: z.string().nonempty("Message is required"),
+  phone: z.string().regex(/^\+?[1-9]\d{7,14}$/, {
+    message: "Enter a valid phone number.",
+  }),
 });
 
 export default function ReserveForm() {
@@ -40,8 +45,49 @@ export default function ReserveForm() {
       message: "",
     },
   });
+  const [loading, setLoading] = useState(false);
 
+  const params = useParams();
+  console.log(params.slug);
 
+  const onSubmit = async (values) => {
+    setLoading(true);
+
+    const inventoryId = params.slug;
+
+    console.log(values);
+    try {
+      const payload = {
+        name: values.Name,
+        phone: values.phone,
+        email: values.email,
+        message: values.message,
+        inventory_id: inventoryId,
+      };
+
+      const res = await fetch(`${mediaUrl}/api/reserve-form`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        toast.success(data.message || "Enquiry submitted!");
+        form.reset();
+      } else {
+        toast.error(data.message || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      toast.error("Failed to submit enquiry. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="relative bg-[#F5F9FF] rounded-[10px] p-[15px_20px] 3xl:px-[20px] px-[15px] shadow-2xl overflow-hidden">

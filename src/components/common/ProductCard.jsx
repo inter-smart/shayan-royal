@@ -7,8 +7,6 @@ const variants = {
 };
 
 export default function ProductCard({ car, variant }) {
-  console.log(car);
-  console.log(car);
 
   function toTitleCase(text) {
     if (typeof text !== "string") return "";
