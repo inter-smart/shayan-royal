@@ -51,7 +51,7 @@ const items = [
   },
 ];
 
-export default function EnquiryForm({ image, Formtitle, Formsubtitle }) {
+export default function EnquiryForm({ image, Formtitle, Formsubtitle,type }) {
   const [loading, setLoading] = useState(false);
 
   const form = useForm({
@@ -72,6 +72,7 @@ export default function EnquiryForm({ image, Formtitle, Formsubtitle }) {
         phone: values.phone,
         email: values.email,
         message: values.message,
+        type
       };
 
       const res = await fetch(`${mediaUrl}/api/enquiries`, {

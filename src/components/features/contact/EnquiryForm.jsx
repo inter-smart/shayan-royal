@@ -61,7 +61,7 @@ const items = [
   },
 ];
 
-export default function EnquiryForm({ form_title }) {
+export default function EnquiryForm({ form_title, type }) {
   const {
     register,
     handleSubmit,
@@ -71,15 +71,16 @@ export default function EnquiryForm({ form_title }) {
 
   const onSubmit = async (data) => {
     try {
+      const payload = { ...data, type }; // Merge `type` from props
+
       const res = await fetch(`${mediaUrl}/api/enquiries`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json", // <-- this is required
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
       });
       const result = await res.json();
-      console.log(result);
       if (!result.success)
         throw new Error(result.error?.message || "Something went wrong");
 

@@ -10,6 +10,7 @@ export default function FitmentEnquirySection({ title, desc, image }) {
           image={image ? `${mediaUrl}${image}` : "/images/fitment-enquiry.webp"}
           Formtitle={title || "One Click Away Send Your Enquiry"}
           Formsubtitle={desc || "Seamless Logistic"}
+          type="service-fitments"
         />
       </div>
     </section>
