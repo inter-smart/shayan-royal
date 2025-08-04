@@ -77,7 +77,7 @@ export default function ServiceSection({ services = items }) {
             }}
             className="serviceSlider !overflow-visible"
           >
-            {items?.map((item, index) => (
+            {services?.map((item, index) => (
               <SwiperSlide
                 key={index}
                 style={{
@@ -95,7 +95,7 @@ export default function ServiceSection({ services = items }) {
                 >
                   <div className="w-full h-full overflow-hidden block absolute -z-2 inset-0">
                     <Image
-                      src={item.image}
+                      src={item.cover_image ? `${mediaUrl}${item.cover_image}` : "/images/service_1.webp"}
                       alt={item.title}
                       fill
                       style={{ objectFit: "cover" }}
@@ -118,10 +118,10 @@ export default function ServiceSection({ services = items }) {
                       {item.title}
                     </div>
                     <p className="3xl:text-[20px] 2xl:text-[16px] lg:text-[14px] sm:text-[13px] text-[12px] leading-[1.2] font-normal font-base1 text-white 3xl:mb-[30px] lg:mb-[20px] sm:mb-[15px] mb-[10px]">
-                      {item.description}
+                      {item.description ? parse(item.description) : ""}
                     </p>
                     <Link
-                      href={item.href}
+                      href={item.type === "service-detail" ? `/service-detail/${item.id}` : `/service-fitment/${item.id}`}
                       prefetch={true}
                       aria-label="Learn More"
                       className="3xl:text-[16px] 2xl:text-[13px] text-[11px] leading-1 font-medium font-base1 text-[#2E4C99] w-fit h-[40px] 3xl:p-[10px_25px] p-[7px_15px] rounded-[50px] bg-white hover:bg-base1 hover:text-white transition-colors duration-200 ease-in-out"
