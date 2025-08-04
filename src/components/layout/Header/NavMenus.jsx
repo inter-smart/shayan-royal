@@ -6,7 +6,11 @@ import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuL
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import Link from "next/link";
 
-const menuItems = [
+
+
+function NavMenus({ pathname, isInnerPage, data={data}, isPrivacyPage }) {
+
+  const menuItems = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   { label: "Inventory", href: "/inventory" },
@@ -14,10 +18,9 @@ const menuItems = [
   { label: "Fabrication", href: "/fabrication" },
   { label: "Services", href: "/service" },
   { label: "Blog", href: "/blog" },
-  { label: "Contact Us", href: "/contact" },
+  { label: data?.header_button_text, href: data?.header_button_link},
 ];
 
-function NavMenus({ pathname, isInnerPage, isPrivacyPage }) {
   const [isOpen, setIsOpen] = useState(false); // State for sheet
 
   return (
@@ -46,7 +49,7 @@ function NavMenus({ pathname, isInnerPage, isPrivacyPage }) {
                   <NavigationMenuLink asChild>
                     <span
                       className={`${menuLinkClass} ${
-                        item.label === "Contact Us"
+                        item.label === data?.header_button_text
                           ? "!text-white bg-[#2E4C99] 3xl:h-[40px] 2xl:h-[30px] h-[25px] min-w-[90px] !py-0 !rounded-[50px] after:hidden hover:!bg-[#BE1E2D] hover:!text-white"
                           : ""
                       }`}

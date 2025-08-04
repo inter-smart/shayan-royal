@@ -7,6 +7,7 @@ import { formatPostDate, formatPostTime } from "@/lib/utils";
 import parse from "html-react-parser";
 import { mediaUrl } from "@/lib/constants";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const items = [
   {
@@ -25,12 +26,43 @@ const items = [
   },
 ];
 
-export default function BlogDetailSection({ blog, recentBlogs }) {
+export default function BlogDetailSection({ blog, recentBlogs, slug }) {
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!name.trim() || !comment.trim()) {
+      toast.warning("Please enter both name and comment.");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await fetch(`${mediaUrl}/api/comments`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, content: comment, slug }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        toast.success("Your comment has been submitted!");
+        setName("");
+        setComment("");
+      } else {
+        toast.error(result.message || "Submission failed.");
+      }
+    } catch (error) {
+      console.error("Comment submission error:", error);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

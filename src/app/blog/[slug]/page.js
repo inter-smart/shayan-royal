@@ -35,7 +35,7 @@ export default async function Page({ params }) {
           { label: "BLOGS DETAIL", isCurrent: true },
         ]}
       />
-      <BlogDetailSection blog={blog} recentBlogs={recentBlogs} />
+      <BlogDetailSection blog={blog} recentBlogs={recentBlogs} slug={slug} />
       {/* <CommentSection /> */}
     </>
   );

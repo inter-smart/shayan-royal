@@ -41,9 +41,7 @@ export default function ReserveForm() {
     },
   });
 
-  const onSubmit = (values) => {
-    
-  };
+
 
   return (
     <div className="relative bg-[#F5F9FF] rounded-[10px] p-[15px_20px] 3xl:px-[20px] px-[15px] shadow-2xl overflow-hidden">
@@ -55,7 +53,10 @@ export default function ReserveForm() {
         Reserve Your Ride
       </Heading>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-wrap items-end">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="flex flex-wrap items-end"
+        >
           {/* Name */}
           <FormField
             name="Name"
@@ -63,7 +64,11 @@ export default function ReserveForm() {
             render={({ field }) => (
               <FormItem className="w-full p-[5px] 2xl:p-[10px] relative">
                 <FormControl>
-                  <Input placeholder="Name*" {...field} className={menuLinkClass} />
+                  <Input
+                    placeholder="Name*"
+                    {...field}
+                    className={menuLinkClass}
+                  />
                 </FormControl>
                 <FormMessage className={errorMessage} />
               </FormItem>
@@ -76,7 +81,11 @@ export default function ReserveForm() {
             render={({ field }) => (
               <FormItem className="w-full p-[5px] 2xl:p-[10px] relative">
                 <FormControl>
-                  <Input placeholder="Email*" {...field} className={menuLinkClass} />
+                  <Input
+                    placeholder="Email*"
+                    {...field}
+                    className={menuLinkClass}
+                  />
                 </FormControl>
                 <FormMessage className={errorMessage} />
               </FormItem>
@@ -89,7 +98,11 @@ export default function ReserveForm() {
             render={({ field }) => (
               <FormItem className="w-full p-[5px] 2xl:p-[10px] relative">
                 <FormControl>
-                  <Input placeholder="Phone Number*" {...field} className={menuLinkClass} />
+                  <Input
+                    placeholder="Phone Number*"
+                    {...field}
+                    className={menuLinkClass}
+                  />
                 </FormControl>
                 <FormMessage className={errorMessage} />
               </FormItem>

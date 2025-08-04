@@ -4,6 +4,7 @@ import Footer from "@/components/layout/Footer";
 import { Barlow } from "next/font/google";
 import localFont from "next/font/local";
 import WidgetSection from "@/components/common/WidgetSection";
+import { Toaster } from "sonner";
 
 const stretchPro = localFont({
   src: [
@@ -38,6 +39,7 @@ export default async function RootLayout({ children }) {
         <main className="flex-grow">{children}</main>
         <WidgetSection />
         <Footer />
+        <Toaster richColors />
       </body>
     </html>
   );

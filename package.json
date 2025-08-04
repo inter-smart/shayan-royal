@@ -35,9 +35,11 @@
     "react-countup": "^6.5.3",
     "react-day-picker": "^9.7.0",
     "react-dom": "^19.0.0",
+    "react-fast-marquee": "^1.6.5",
     "react-hook-form": "^7.58.1",
     "react-intersection-observer": "^9.16.0",
     "react-pdf": "^9.2.1",
+    "sonner": "^2.0.6",
     "swiper": "^11.2.8",
     "tailwind-merge": "^3.3.1",
     "zod": "^3.25.67"

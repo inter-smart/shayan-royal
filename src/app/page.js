@@ -11,7 +11,6 @@ import BlogSection from "@/components/features/home/BlogSection";
 import SocialSection from "@/components/features/home/SocialSection";
 import FaqSection from "@/components/features/home/FaqSection";
 import { fetchFromAPI } from "@/lib/api";
-
 export default async function Home() {
   const { data, error } = await fetchFromAPI("home");
 
@@ -19,7 +18,7 @@ export default async function Home() {
     return <div>Something went wrong</div>;
   }
 
-  const { homeBanners, contents, whyShayanItems, categories, productLists, lastProductList, firstProductList, logistics, testimonials, blogs, faqs } =
+  const { homeBanners, contents, whyShayanItems, categories, productLists, lastProductList, firstProductList, logistics, testimonials, blogs, socialMedia, faqs } =
     data;
 
   return (
@@ -60,7 +59,7 @@ export default async function Home() {
         testimonials={testimonials}
       />
       <BlogSection title={contents?.blog_section_title} description={contents?.blog_section_description} blogs={blogs} />
-      <SocialSection title={contents?.social_media_post_section_title} description={contents?.social_media_post_section_description} />
+      <SocialSection title={contents?.social_media_post_section_title} description={contents?.social_media_post_section_description} socialMedia={socialMedia} />
       <FaqSection
         faqs={faqs}
         title={contents?.faq_section_title}

@@ -10,30 +10,31 @@ import { Heading } from "@/components/layout/Heading";
 import { Text } from "@/components/layout/Text";
 import parse from "html-react-parser";
 
-const socialMedia = [
-  {
-    title: "instagram",
-    video: "/videos/social1.mp4",
-    icon: "/images/insta.png",
-  },
-  {
-    title: "ticktop",
-    video: "/videos/social2.mp4",
-    icon: "/images/tik-tok.png",
-  },
-  {
-    title: "facebook",
-    video: "/videos/social3.mp4",
-    icon: "/images/facebook.png",
-  },
-  {
-    title: "youtube",
-    video: "/videos/social4.mp4",
-    icon: "/images/utube.png",
-  },
-];
+// const socialMedia = [
+//   {
+//     title: "instagram",
+//     video: "/videos/social1.mp4",
+//     icon: "/images/insta.png",
+//   },
+//   {
+//     title: "ticktop",
+//     video: "/videos/social2.mp4",
+//     icon: "/images/tik-tok.png",
+//   },
+//   {
+//     title: "facebook",
+//     video: "/videos/social3.mp4",
+//     icon: "/images/facebook.png",
+//   },
+//   {
+//     title: "youtube",
+//     video: "/videos/social4.mp4",
+//     icon: "/images/utube.png",
+//   },
+// ];
 
-export default function SocialSection({ title, description }) {
+export default function SocialSection({ title, description, socialMedia }) {
+  console.log(socialMedia);
   const [activeIndex, setActiveIndex] = useState(0);
   return (
     <section
@@ -101,11 +102,11 @@ export default function SocialSection({ title, description }) {
                 className="w-full h-full block overflow-hidden rounded-[10px] relative aspect-square 2xl:min-h-[350px] xl:min-h-[275px] sm:min-h-[250px] min-h-[220px]"
               >
                 <video autoPlay preload="auto" muted playsInline loop width={390} height={390} className="w-full h-full object-cover">
-                  <source src={item.video} type="video/mp4" />
+                  <source src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${item?.video}`} type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
                 <div className="absolute bottom-[10px] right-[10px] w-[24px] h-[24px]">
-                  <Image src={item.icon} alt={item.title} width={24} height={24} className="w-full h-full object-contain" />
+                  <Image src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${item?.icon}`} alt={item?.title} width={24} height={24} className="w-full h-full object-contain" />
                 </div>
               </a>
             </SwiperSlide>
