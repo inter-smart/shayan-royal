@@ -55,12 +55,13 @@ export default function BusinessSection({ title, description1, description2, ima
                 width={1250}
                 height={550}
                 priority
-                className="w-full object-fill"
+                className="w-full object-cover"
               />
             </motion.div>
             <motion.div
               ref={ref}
-              className="absolute -z-1 top-0 right-[25%] 2xl:max-w-[210px] xl:max-w-[170px] lg:max-w-[140px] sm:max-w-[120px] max-w-[100px] h-[70%] bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]"
+              className="absolute -z-1 top-0 right-[25%] 2xl:max-w-[210px] xl:max-w-[170px] lg:max-w-[140px] sm:max-w-[120px] max-w-[100px] h-[70%] 
+                            bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]"
               initial={{ y: "-5%", opacity: 0.7 }}
               animate={inView ? { y: "0%", opacity: 1 } : { y: "-20%", opacity: 0.7 }}
               transition={{ duration: 0.8, ease: "easeOut" }}

@@ -36,9 +36,9 @@ const socialLinks = [
 
 export default function GetInTouchSection({ title, description, socialLinks, image, form_title, footer }) {
   return (
-    <section className="w-full h-auto 3xl:py-[100px_135px] 2xl:py-[80px_100px] lg:py-[65px_90px] sm:py-[50px_60px] py-[40px] block">
+    <section className="w-full h-auto 3xl:py-[15px_135px] 2xl:py-[10px_100px] lg:py-[10px_90px] sm:py-[10px_60px] py-[10px_40px] block">
       <div className="container">
-        <div className="2xl:mb-[50px] lg:mb-[30px] sm:mb-[20px] flex flex-wrap items-center">
+        <div className="2xl:mb-[50px] lg:mb-[30px] mb-[25px] flex flex-wrap items-center">
           <div className="lg:w-[30%] max-lg:w-[50%] max-sm:w-full 3xl:pr-[50px] lg:pr-[30px] max-lg:mb-[25px] max-md:mb-[15px]">
             <Heading
               as="h2"

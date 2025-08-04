@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Heading } from "@/components/layout/Heading";
 import { Text } from "@/components/layout/Text";
 import { motion } from "framer-motion";
-import parse  from "html-react-parser";
+import parse from "html-react-parser";
 
 const whyData = [
   {
@@ -49,8 +49,8 @@ export default function WhySection({ title, description, image, whyShayanItems }
 
         {/* Boxes + Car + Logo */}
         <div className="flex flex-wrap relative">
-          {whyShayanItems?.map((item, index) => (
-            <div key={index} className={`w-full 2xs:w-1/2 md:p-[32px] sm:p-[25px] p-[8px] ${index == 1 ? "max-2xs:mb-[150px]" : "mb-0"} `}>
+          {whyShayanItems.map((item, index) => (
+            <div key={index} className={`w-full 2xs:w-1/2 md:p-[32px] sm:p-[25px] p-[8px] `}>
               <motion.div
                 initial={{ opacity: 0, x: index % 2 === 0 ? 150 : -150 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -91,7 +91,7 @@ export default function WhySection({ title, description, image, whyShayanItems }
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
             viewport={{ once: false, amount: 0.2 }}
-            className="max-2xs:absolute sm:absolute top-0 bottom-0 right-0 left-0 m-auto 3xl:max-w-[850px] 2xl:max-w-[700px] lg:max-w-[450px]
+            className="realtive sm:absolute sm:top-0 bottom-0 right-0 left-0 m-auto 3xl:max-w-[850px] 2xl:max-w-[700px] lg:max-w-[450px]
              max-w-[250px] flex items-center justify-center pointer-events-none"
           >
             <Image

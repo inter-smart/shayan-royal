@@ -16,7 +16,7 @@ const carCategories = [
   { name: "Crossover", img: "/images/cat3.png" },
   { name: "Hatchback", img: "/images/cat4.png" },
   { name: "Pickup", img: "/images/cat5.png" },
-  { name: "Pickup", img: "/images/cat5.png" },
+  { name: "Bus", img: "/images/bus.png" },
 ];
 
 export default function AboutSection({ title, description, categories }) {
@@ -55,32 +55,32 @@ export default function AboutSection({ title, description, categories }) {
               320: {
                 slidesPerView: 2,
                 spaceBetween: 8,
-                                centeredSlides: false,
+                centeredSlides: false,
               },
               420: {
                 slidesPerView: 3,
                 spaceBetween: 10,
-                                centeredSlides: true,
+                centeredSlides: true,
               },
               640: {
                 slidesPerView: 3,
                 spaceBetween: 20,
-                                centeredSlides: true,
+                centeredSlides: true,
               },
               768: {
                 slidesPerView: 3,
                 spaceBetween: 20,
-                                centeredSlides: true,
+                centeredSlides: true,
               },
               1024: {
                 slidesPerView: 4,
                 spaceBetween: 25,
-                                centeredSlides: true,
+                centeredSlides: true,
               },
               1280: {
                 slidesPerView: 5,
                 spaceBetween: 30,
-                                centeredSlides: true,
+                centeredSlides: true,
               },
             }}
             className="px-10 overflow-hidden mb-3"
