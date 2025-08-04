@@ -1,3 +1,4 @@
+import { mediaUrl } from "@/lib/constants";
 import Image from "next/image";
 import Link from "next/link";
 const specIcons = [{ icon: "globe.svg" }, { icon: "fuel.svg" }, { icon: "transmission.svg" }, { icon: "year.svg" }];
@@ -8,8 +9,6 @@ const variants = {
 
 export default function ProductCard({ car, variant }) {
   console.log(car);
-  console.log(car);
-
   function toTitleCase(text) {
     if (typeof text !== "string") return "";
     return text
@@ -36,12 +35,18 @@ export default function ProductCard({ car, variant }) {
         >
           {/* Logo */}
           <div className="w-full 3xl:max-w-[50px] max-w-[40px] absolute top-[10px] left-[10px] z-10">
-            <Image src={car?.logo} alt={`${car?.brand} Logo`} width={350} height={200} className="w-full h-full object-contain " />
+            <Image
+              src={car?.make?.make_logo ? `${mediaUrl}${car?.make?.make_logo}` : "/images/no-image.png"}
+              alt={`${car?.brand} Logo`}
+              width={350}
+              height={200}
+              className="w-full h-full object-contain "
+            />
           </div>
           {/* Image */}
           <div className="w-full  3xl:min-h-[250px] 2xl:min-h-[170px] min-h-[140px] flex items-center justify-center m-auto overflow-hidden rounded-[5px] relative">
             <Image
-              src={car?.image}
+              src={car?.main_image ? `${mediaUrl}${car?.main_image}` : "/images/no-image.png"}
               alt={car?.title}
               width={350}
               height={200}
@@ -59,9 +64,7 @@ export default function ProductCard({ car, variant }) {
         {/* Right Section - Specs */}
         <div className={`3xl:w-[65px] w-[45px] ${variant === "inventory" ? "h-full pb-5" : " "}`}>
           <div className={`flex flex-col h-full ${variant === "inventory" ? "max-h-full" : "3xl:max-h-[265px] max-h-[200px]"}`}>
-            {car?.specs?.map((spec, i) => {
-              const icon = specIcons.find((s) => s.label === spec)?.icon;
-
+            {specs?.map((spec, i) => {
               return (
                 <div key={i} className="3xl:mb-[15px] mb-[10px] last:mb-0 flex-grow-1">
                   <div
@@ -70,7 +73,7 @@ export default function ProductCard({ car, variant }) {
                   >
                     <div>
                       <div className="3xl:w-[22px] w-[15px] 3xl:h-[22px] h-[15px] m-auto mb-[3px] flex">
-                        <Image src={`/images/${icon}`} alt={spec} width={25} height={25} className="w-full h-full object-contain" />
+                        <Image src={`/images/${specIcons[i]?.icon}`} alt={spec} width={25} height={25} className="w-full h-full object-contain" />
                       </div>
                       <div className="3xl:text-[14px] text-[10px] font-normal  font-base1 text-black">{spec}</div>
                     </div>

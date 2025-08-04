@@ -6,21 +6,14 @@ import * as z from "zod";
 import { Heading } from "@/components/layout/Heading";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Form,
-  FormField,
-  FormItem,
-  FormControl,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormField, FormItem, FormControl, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
 // Tailwind Classes
 const menuLinkClass =
   "!text-[11px] md:!text-[12px] 2xl:!text-[14px] 3xl:!text-[17px] !text-black placeholder:text-black !font-normal max-w-full min-h-[35px] lg:min-h-[40px] 3xl:min-h-[50px]  !w-full px-0 border-0 border-b border-[#000] bg-transparent rounded-[0px] font-medium outline-none shadow-none focus:outline-none focus:ring-0 focus:shadow-none focus-visible:ring-0 focus-visible:shadow-none data-[state=open]:shadow-none font-base1";
 
-const errorMessage =
-  "absolute bottom-[-12px] left-[5px] 2xl:left-[10px] md:text-[12px] text-[10px] text-red-500";
+const errorMessage = "absolute bottom-[-12px] left-[5px] 2xl:left-[10px] md:text-[12px] text-[10px] text-red-500";
 
 // Zod Schema
 const formSchema = z.object({
@@ -41,22 +34,17 @@ export default function ReserveForm() {
     },
   });
 
-
+  const onSubmit = async (values) => {
+    console.log(values);
+  };
 
   return (
     <div className="relative bg-[#F5F9FF] rounded-[10px] p-[15px_20px] 3xl:px-[20px] px-[15px] shadow-2xl overflow-hidden">
-      <Heading
-        size="heading5"
-        as="div"
-        className="text-black uppercase font-semibold xl:mb-[10px]"
-      >
+      <Heading size="heading5" as="div" className="text-black uppercase font-semibold xl:mb-[10px]">
         Reserve Your Ride
       </Heading>
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-wrap items-end"
-        >
+        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-wrap items-end">
           {/* Name */}
           <FormField
             name="Name"
@@ -64,11 +52,7 @@ export default function ReserveForm() {
             render={({ field }) => (
               <FormItem className="w-full p-[5px] 2xl:p-[10px] relative">
                 <FormControl>
-                  <Input
-                    placeholder="Name*"
-                    {...field}
-                    className={menuLinkClass}
-                  />
+                  <Input placeholder="Name*" {...field} className={menuLinkClass} />
                 </FormControl>
                 <FormMessage className={errorMessage} />
               </FormItem>
@@ -81,11 +65,7 @@ export default function ReserveForm() {
             render={({ field }) => (
               <FormItem className="w-full p-[5px] 2xl:p-[10px] relative">
                 <FormControl>
-                  <Input
-                    placeholder="Email*"
-                    {...field}
-                    className={menuLinkClass}
-                  />
+                  <Input placeholder="Email*" {...field} className={menuLinkClass} />
                 </FormControl>
                 <FormMessage className={errorMessage} />
               </FormItem>
@@ -98,11 +78,7 @@ export default function ReserveForm() {
             render={({ field }) => (
               <FormItem className="w-full p-[5px] 2xl:p-[10px] relative">
                 <FormControl>
-                  <Input
-                    placeholder="Phone Number*"
-                    {...field}
-                    className={menuLinkClass}
-                  />
+                  <Input placeholder="Phone Number*" {...field} className={menuLinkClass} />
                 </FormControl>
                 <FormMessage className={errorMessage} />
               </FormItem>
@@ -115,12 +91,7 @@ export default function ReserveForm() {
             render={({ field }) => (
               <FormItem className="w-full p-[5px] 2xl:p-[10px] relative">
                 <FormControl>
-                  <Textarea
-                    placeholder="Message"
-                    {...field}
-                    className={menuLinkClass}
-                    rows={2}
-                  />
+                  <Textarea placeholder="Message" {...field} className={menuLinkClass} rows={2} />
                 </FormControl>
                 <FormMessage className={errorMessage} />
               </FormItem>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, Suspense } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Thumbs, EffectFade, Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -233,7 +233,15 @@ export default function BannerSection({ homeBanners }) {
         </div>
 
         <div className="2xl:min-h-[165px] min-h-[140px]">
-          <AdvancesearchSection />
+          <Suspense
+            fallback={
+              <div className="h-full w-full flex items-center justify-center">
+                <div className="border-t-2 border-b-2 border-gray-900 h-[2px] w-[50px] mx-auto"></div>
+              </div>
+            }
+          >
+            <AdvancesearchSection />
+          </Suspense>
         </div>
       </div>
     </section>
