@@ -24,8 +24,6 @@ export default async function page({ params }) {
 
   const { service, banner } = data;
 
-  console.log("Service Fitment Page Data:", service);
-
   return (
     <>
       <InnerBanner

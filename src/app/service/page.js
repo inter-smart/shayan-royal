@@ -19,8 +19,6 @@ export default async function Page() {
 
   const { contents, banner, services } = data;
 
-  console.log(services);
-
   return (
     <>
       <InnerBanner

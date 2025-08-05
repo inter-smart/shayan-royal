@@ -41,14 +41,12 @@ export default function ReserveForm() {
   const [loading, setLoading] = useState(false);
 
   const params = useParams();
-  console.log(params.slug);
 
   const onSubmit = async (values) => {
     setLoading(true);
 
     const inventoryId = params.slug;
 
-    console.log(values);
     try {
       const payload = {
         name: values.Name,

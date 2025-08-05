@@ -25,8 +25,6 @@ export default async function page({ params }) {
 
   const { carDetails, specs, specs2, faqs } = data;
 
-  console.log("Inventory Page Data:", data);
-
   return (
     <>
       <InnerBanner title="Camry Hybrid" image="/images/inventoryDetailBanner.jpg" alt="about-banner" />

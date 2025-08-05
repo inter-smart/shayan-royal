@@ -5,8 +5,6 @@ import { Heading } from "@/components/layout/Heading";
 import { mediaUrl } from "@/lib/constants";
 import { formatPostTime } from "@/lib/utils";
 export default function BlogCard({ item }) {
-  console.log(item);
-
   return (
     <div className="w-full h-full block group">
       <div

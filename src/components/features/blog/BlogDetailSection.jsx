@@ -30,8 +30,6 @@ const items = [
 ];
 
 export default function BlogDetailSection({ blog, recentBlogs, slug }) {
-  console.log("blog", blog);
-
   const [name, setName] = useState("");
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);

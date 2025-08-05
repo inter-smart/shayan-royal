@@ -21,8 +21,6 @@ export default async function Page({ params }) {
 
   const { banner, blog, recentBlogs } = data;
 
-  console.log("Blog Detail Page Data:", blog);
-
   return (
     <>
       <InnerBanner

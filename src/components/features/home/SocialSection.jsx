@@ -34,7 +34,6 @@ import parse from "html-react-parser";
 // ];
 
 export default function SocialSection({ title, description, socialMedia }) {
-  console.log(socialMedia);
   const [activeIndex, setActiveIndex] = useState(0);
   return (
     <section
@@ -106,7 +105,13 @@ export default function SocialSection({ title, description, socialMedia }) {
                   Your browser does not support the video tag.
                 </video>
                 <div className="absolute bottom-[10px] right-[10px] w-[24px] h-[24px]">
-                  <Image src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${item?.icon}`} alt={item?.title} width={24} height={24} className="w-full h-full object-contain" />
+                  <Image
+                    src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${item?.icon}`}
+                    alt={item?.title}
+                    width={24}
+                    height={24}
+                    className="w-full h-full object-contain"
+                  />
                 </div>
               </a>
             </SwiperSlide>

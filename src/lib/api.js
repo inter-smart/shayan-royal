@@ -12,8 +12,6 @@ export class APIError extends Error {
 export async function fetchFromAPI(endpoint, options = {}) {
   const url = `${API_BASE_URL}${endpoint}`;
 
-  console.log("Fetching from API:", url);
-
   const defaultOptions = {
     headers: {
       "Content-Type": "application/json",
@@ -26,7 +24,6 @@ export async function fetchFromAPI(endpoint, options = {}) {
 
   try {
     const response = await fetch(url, defaultOptions);
-    console.log("API response status:", response.status);
 
     if (!response.ok) {
       return {
