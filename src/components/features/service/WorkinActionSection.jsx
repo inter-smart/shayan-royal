@@ -28,6 +28,7 @@ const workImages = [
 ];
 
 export default function WorkinActionSection({ gallery = workImages }) {
+
   return (
     <section className="w-full bg-[#F5F9FF] 2xl:pt-[105px] lg:pt-[60px] pt-[40px] 2xl:pb-[130px] lg:pb-[80px] pb-[60px] relative">
       <div className="absolute z-0 top-0 left-[-20%] right-0 mx-auto w-[50%]">
@@ -60,23 +61,23 @@ export default function WorkinActionSection({ gallery = workImages }) {
         <div className="flex xs:flex-nowrap flex-wrap 3xl:gap-5 2xl:gap-4 xs:gap-2 gap-1 w-full relative">
           {/* Column 1 */}
           <div className="xs:w-3/12 w-full flex flex-col 3xl:gap-5 2xl:gap-4 xs:gap-2 gap-1">
-            <ImageBox src={gallery[0].image ? `${mediaUrl}${gallery[0].image}` : ""} alt={gallery[0].alt} className="aspect-[393/387]" />
-            <ImageBox src={gallery[1].image ? `${mediaUrl}${gallery[1].image}` : ""} alt={gallery[1].alt} className="aspect-[393/581]" />
+            <ImageBox src={gallery[0]?.image ? `${mediaUrl}${gallery[0]?.image}` : ""} alt={gallery[0]?.alt} className="aspect-[393/387]" />
+            <ImageBox src={gallery[1]?.image ? `${mediaUrl}${gallery[1]?.image}` : ""} alt={gallery[1]?.alt} className="aspect-[393/581]" />
           </div>
 
           {/* Column 2 */}
           <div className="xs:w-6/12 w-full flex flex-col 3xl:gap-5 2xl:gap-4 xs:gap-2 gap-1">
-            <ImageBox src={gallery[2].image ? `${mediaUrl}${gallery[2].image}` : ""} alt={gallery[2].alt} className="aspect-[4/3]" />
+            <ImageBox src={gallery[2]?.image ? `${mediaUrl}${gallery[2]?.image}` : ""} alt={gallery[2]?.alt} className="aspect-[4/3]" />
             <div className="grid grid-cols-2 3xl:gap-5 2xl:gap-4 xs:gap-2 gap-1 w-full">
-              <ImageBox src={gallery[3].image ? `${mediaUrl}${gallery[3].image}` : ""} alt={gallery[3].alt} className="aspect-[1] w-full" />
-              <ImageBox src={gallery[4].image ? `${mediaUrl}${gallery[4].image}` : ""} alt={gallery[4].alt} className="aspect-[1] w-full" />
+              <ImageBox src={gallery[3]?.image ? `${mediaUrl}${gallery[3]?.image}` : ""} alt={gallery[3]?.alt} className="aspect-[1] w-full" />
+              <ImageBox src={gallery[4]?.image ? `${mediaUrl}${gallery[4]?.image}` : ""} alt={gallery[4]?.alt} className="aspect-[1] w-full" />
             </div>
           </div>
 
           {/* Column 3 */}
-          <div className="xs:w-3/12 w-full flex flex-col 3xl:gap-5 2xl:gap-4 xs:gap-2 gap-1">
-            <ImageBox src={gallery[5].image ? `${mediaUrl}${gallery[5].image}` : ""} alt={gallery[5].alt} className="aspect-[393/581]" />
-            <ImageBox src={gallery[6].image ? `${mediaUrl}${gallery[6].image}` : ""} alt={gallery[6].alt} className="aspect-[393/387]" />
+          <div className="xs:w-3/12 w?-full flex flex-col 3xl:gap-5 2xl:gap-4 xs:gap-2 gap-1">
+            <ImageBox src={gallery[5]?.image ? `${mediaUrl}${gallery[5]?.image}` : ""} alt={gallery[5]?.alt} className="aspect-[393/581]" />
+            <ImageBox src={gallery[6]?.image ? `${mediaUrl}${gallery[6]?.image}` : ""} alt={gallery[6]?.alt} className="aspect-[393/387]" />
           </div>
         </div>
       </div>

@@ -49,10 +49,11 @@ const items = [
   },
   {
     id: "subject",
-    label: "Subject",
+    label: "Subject*",
     type: "text",
-    placeholder: "Subject (Optional)",
+    placeholder: "Subject",
     validation: {
+      required: "Subject is required",
       minLength: {
         value: 3,
         message: "Subject must be at least 3 characters",
