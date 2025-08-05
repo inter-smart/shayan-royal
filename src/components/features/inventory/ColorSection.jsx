@@ -79,7 +79,7 @@ export default function CarColorSpecSection() {
                                             onClick={() => setActiveColor(color)}
                                         >
                                             <div
-                                                className={`2xl:w-[42px] w-[30px] 2xl:h-[42px] h-[30px] rounded flex items-center justify-center ${isActive
+                                                className={`2xl:w-[42px] w-[30px] 2xl:h-[42px] h-[30px] rounded-full flex items-center justify-center ${isActive
                                                     ? "border border-[#D2D5DA] shadow-[0_0_0_2px_white] bg-white"
                                                     : ""
                                                     }`}
@@ -89,7 +89,7 @@ export default function CarColorSpecSection() {
                                             >
                                                 {isActive && (
                                                     <div
-                                                        className="2xl:w-[32px] w-[25px] 2xl:h-[32px] h-[25px] rounded"
+                                                        className="2xl:w-[32px] w-[25px] 2xl:h-[32px] h-[25px] rounded-full"
                                                         style={{ backgroundColor: color.code }}
                                                     />
                                                 )}
