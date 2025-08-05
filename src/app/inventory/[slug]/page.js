@@ -26,7 +26,7 @@ export default function page() {
             <InventoryDetailSection />
             <SpecificationSection />
             <ColorSection />
-            <PDFViewerSection fileUrl="/images/policy.pdf" />
+            <PDFViewerSection fileUrl="/images/shyayanRoyal.pdf" />
             <SimilarcarSection />
             <FaqSection />
             {/* <LogoScrollSection /> */}
