@@ -13,7 +13,7 @@ const testimonials = [
     {
         bg: "bg-[#FFF5F5]",
         content:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non autem hoc: igitur ne illud quidem. Prave, nequiter, turpiter cenabat; Quibusnam praeteritis? Intrandum est igitur in rerum naturam et penitus quid ea postulet pervidendum; Duo Reges: constructio interrete. An eum discere ea mavis, quae cum plane. printer took a galley of type and scrambled it to make a type specimen book.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non autem hoc: igitur ne illud quidem. Prave, nequiter, turpiter cenabat; .",
         name: "John George",
         location: "UAE",
         image: "/images/avat.png",
@@ -205,7 +205,7 @@ export default function TestimonialSection() {
                         {slides.map((slideGroup, index) => {
                             if (isMobile) {
                                 return (
-                                    <SwiperSlide key={index}>
+                                    <SwiperSlide key={index} className="!h-auto">
                                         {slideGroup.map((item, idx) => (
                                             <div key={idx} className="p-[20px]">
                                                 <div className={`h-full p-[25px] w-full rounded-[12px] flex flex-col justify-between overflow-hidden ${item.bg}`}>

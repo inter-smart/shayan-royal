@@ -1,9 +1,11 @@
 "use client";
+
+import { useState, useRef } from "react";
 import Image from "next/image";
 import { Text } from "@/components/layout/Text";
 import { Heading } from "@/components/layout/Heading";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
+import { Navigation, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 
 const item = {
@@ -27,6 +29,7 @@ const coreValues = [
 ];
 
 export default function CorevalueSection() {
+      const [activeIndex, setActiveIndex] = useState(0);
     return (
         <section className="w-full h-auto 3xl:py-[140px] xl:py-[90px] lg:py-[70px] sm:py-[50px] py-[40px] block">
             <div className="container">
@@ -47,9 +50,11 @@ export default function CorevalueSection() {
                             {item.description}
                         </Text>
                     </div>
-                    <div className="3xl:w-[calc(100%-370px)] 2xl:w-[calc(100%-280px)] xl:w-[calc(100%-250px)] lg:w-[calc(100%-180px)] w-full 2xl:pl-[100px] xl:pl-[70px] lg:pl-[40px]">
+                    <div className="3xl:w-[calc(100%-370px)] 2xl:w-[calc(100%-280px)] xl:w-[calc(100%-250px)]
+                     lg:w-[calc(100%-180px)] w-full 2xl:pl-[100px]
+                     xl:pl-[70px] lg:pl-[40px] relative">
                         <Swiper
-                            modules={[Autoplay]}
+                            modules={[Autoplay, Navigation]}
                             spaceBetween={10}
                             slidesPerView={2}
                             breakpoints={{
@@ -73,6 +78,12 @@ export default function CorevalueSection() {
                             autoplay={{
                                 delay: 7000,
                                 disableOnInteraction: false
+                            }}
+                            onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+                            onBeforeInit={(swiper) => setActiveIndex(swiper.realIndex)}
+                            navigation={{
+                                prevEl: ".navbts-prev",
+                                nextEl: ".navbts-next",
                             }}
                             className="corevalueSlider"
                         >
@@ -99,6 +110,29 @@ export default function CorevalueSection() {
                                 </SwiperSlide>
                             ))}
                         </Swiper>
+
+                        {/* Navigation Arrows */}
+                        <div className="flex items-center justify-center absolute top-[30px] bottom-0 w-full left-0 m-auto lg:hidden">
+                            <button className="navbts-prev  absolute left-[-25px] lg:left-[-35px] -translate-y-1/2 z-10
+                             sm:bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] 
+                               sm:shadow 3xl:w-[34px] 2xl:w-[25px] w-[35px] 3xl:h-[38px] h-[35px] flex items-center justify-center sm:rounded-[30px_0px_0px_30px] cursor-pointer group hover:bg-[#2E4C99]">
+
+                                <svg viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]" >
+                                    <path d="M6.14364 0.699707L0.769531 6.12544L6.14364 12.1834" stroke="black" />
+                                </svg>
+                            </button>
+                            <button className=" navbts-next  absolute right-[-25px] lg:right-[-35px]  
+                            -translate-y-1/2 z-10 sm:bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]
+                              sm:shadow 3xl:w-[34px] 2xl:w-[25px] w-[35px] 3xl:h-[38px]  h-[35px]  
+                               flex items-center justify-center sm:rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99]">
+
+                                <svg viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]" >
+                                    <path d="M0.817302 0.699707L6.19141 6.12544L0.817302 12.1834" stroke="black" />
+                                </svg>
+                            </button>
+                        </div>
+
+
                     </div>
                 </div>
             </div>

@@ -66,16 +66,14 @@ export default function FitmentTypeServiceSection() {
                     </Heading>
                 </div>
 
-                <div className="w-full h-[340px] md:h-[350px] xl:h-[475px] 2xl:h-[545px] 3xl:h-[930px] 
+                <div className="w-full h-[340px] md:h-[350px] xl:h-[475px] 2xl:h-[600px] 3xl:h-[930px] 
                 relative">
 
                     <Swiper
-                        modules={[Pagination, Navigation, Autoplay]}
+                        modules={[Navigation, Autoplay]}
                         spaceBetween={10}
                         slidesPerView={1}
-                        loop={false}
-                        loopAdditionalSlides={0}
-                        loopFillGroupWithBlank={false}
+                        loop={false} // ✅ Disable loop here
                         autoplay={{
                             delay: 5000,
                             disableOnInteraction: false,

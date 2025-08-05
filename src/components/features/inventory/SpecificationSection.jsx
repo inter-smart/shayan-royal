@@ -1,12 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Tabs, TabsContent } from "@/components/ui/tabs";
+import { Tabs, TabsContent } from "@/components/ui/tabs"; 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import "swiper/css";
 
 const tabs = [
   "Specifications",
@@ -91,7 +90,7 @@ const detailsData = [
   ],
 ];
 
-export default function ResponsiveTabsWithSwiper() {
+export default function SpecificationSection() {
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -111,7 +110,7 @@ export default function ResponsiveTabsWithSwiper() {
               1024: { slidesPerView: 5 },
             }}
             onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-            onBeforeInit={(swiper) => setActiveIndex(swiper.realIndex)}
+            onSwiper={(swiper) => setActiveIndex(swiper.realIndex)}
             navigation={{
               prevEl: ".btn-prev",
               nextEl: ".btn-next",

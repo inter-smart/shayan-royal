@@ -1,5 +1,5 @@
 "use client";
-
+import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -23,7 +23,6 @@ import {
 } from "@/components/ui/select";
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
-import { useState } from "react";
 import {
     Popover,
     PopoverContent,
@@ -50,20 +49,20 @@ const errorMessage =
 
 // Schema
 const formSchema = z.object({
-    company: z.string().nonempty("Company name is required"),
+    // company: z.string().nonempty("Company name is required"),
     contactPerson: z.string().nonempty("Contact person is required"),
     phone: z.string().nonempty("Phone number is required"),
     email: z.string().email("Invalid email"),
-    address: z.string().nonempty("Address is required"),
-    fabricationType: z.string().nonempty("Select a model"),
+    // address: z.string().nonempty("Address is required"),
+    // fabricationType: z.string().nonempty("Select a model"),
     finalDestination: z.string().nonempty("Select final destination"),
-    make: z.string().nonempty("Select make"),
-    modelYear: z.string().nonempty("Select model year"),
-    vehicleType: z.string().nonempty("Select vehicle type"),
-    additionalNotes: z.string().optional(),
-    samplePictures: z.string().optional(),
-    budgetRange: z.string().nonempty("Select budget range"),
-    deliveryDate: z.date({ required_error: "Expected completion date is required" }),
+    // make: z.string().nonempty("Select make"),
+    // modelYear: z.string().nonempty("Select model year"),
+    // vehicleType: z.string().nonempty("Select vehicle type"),
+    // additionalNotes: z.string().optional(),
+    // samplePictures: z.string().optional(),
+    // budgetRange: z.string().nonempty("Select budget range"),
+    // deliveryDate: z.date({ required_error: "Expected completion date is required" }),
 });
 
 export default function CustomerrequirementForm() {
@@ -72,20 +71,20 @@ export default function CustomerrequirementForm() {
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            company: "",
+            // company: "",
             contactPerson: "",
             phone: "",
             email: "",
-            address: "",
-            fabricationType: "",
+            // address: "",
+            // fabricationType: "",
             finalDestination: "",
-            make: "",
-            modelYear: "",
-            vehicleType: "",
-            additionalNotes: "",
-            samplePictures: "",
-            budgetRange: "",
-            deliveryDate: undefined,
+            // make: "",
+            // modelYear: "",
+            // vehicleType: "",
+            // additionalNotes: "",
+            // samplePictures: "",
+            // budgetRange: "",
+            // deliveryDate: undefined,
         },
     });
 
@@ -314,37 +313,104 @@ export default function CustomerrequirementForm() {
                             <FormField
                                 control={form.control}
                                 name="samplePictures"
-                                render={({ field }) => (
-                                    <FormItem className="w-full lg:p-[15px] p-[8px] relative">
-                                        <div className={mainText}>Sample Pictures <span className="2xl:text-[14px] text-[12px] text-black"> (Please attach any reference images for the required modifications.)</span></div>
-                                        <div className="flex items-center justify-between mb-2">
-                                            <label className="text-sm text-black">Upload the Sample Pictures</label>
-                                            <label className="flex items-center gap-2 text-[#24408A] text-sm cursor-pointer">
-                                                <div className="w-6 h-6 rounded-full bg-[#24408A] flex items-center justify-center text-white ">
-                                                    <svg width="18" height="18" viewBox="0 0 26 26" fill="none" >
-                                                        <g clipPath="url(#clip0_4263_3055)">
-                                                            <path d="M6.72419 19.1871C4.764 17.199 4.78676 13.988 6.77494 12.0279L13.1838 5.70916C14.5827 4.33003 16.8427 4.34605 18.2219 5.74487C19.601 7.14369 19.585 9.40375 18.1861 10.7829L12.3113 16.575C11.5019 17.3731 10.1926 17.3638 9.39457 16.5543C8.59651 15.7449 8.60579 14.4357 9.41524 13.6376L14.2219 8.89858C14.4431 8.68055 14.7994 8.68307 15.0174 8.90421C15.2354 9.12536 15.2329 9.48166 15.0118 9.69969L10.2051 14.4387C9.83686 14.8017 9.83265 15.3963 10.1957 15.7645C10.5587 16.1327 11.1533 16.1369 11.5215 15.7739L17.3963 9.98176C18.3534 9.03818 18.3648 7.49228 17.4207 6.5347C16.4766 5.57712 14.9307 5.56668 13.9737 6.51027L7.56477 12.829C6.01888 14.3531 6.00117 16.8514 7.52531 18.3973C9.04944 19.9432 11.5477 19.9609 13.0936 18.4368L18.4344 13.1712C18.6555 12.9532 19.0118 12.9557 19.2299 13.1768C19.4479 13.398 19.4454 13.7543 19.2242 13.9723L13.8835 19.2379C11.8953 21.1981 8.68439 21.1753 6.72419 19.1871Z" fill="white" />
-                                                        </g>
-                                                        <defs>
-                                                            <clipPath id="clip0_4263_3055">
-                                                                <rect width="18" height="18" fill="white" transform="translate(13.0898 0.272461) rotate(45.4061)" />
-                                                            </clipPath>
-                                                        </defs>
-                                                    </svg>
-                                                </div>
-                                                <span className="underline">Upload File</span>
-                                                <input
-                                                    type="file"
-                                                    onChange={(e) => field.onChange(e.target.files?.[0])}
-                                                    className="hidden"
-                                                />
-                                            </label>
-                                        </div>
-                                        <div className="border-b border-gray-300"></div>
-                                        <FormMessage className={errorMessage} />
-                                    </FormItem>
-                                )}
+                                render={({ field }) => {
+                                    const [selectedFiles, setSelectedFiles] = useState([]);
+                                    const inputRef = useRef(null); // for resetting input if needed
+
+                                    const handleFileChange = (e) => {
+                                        const files = Array.from(e.target.files || []);
+                                        setSelectedFiles((prev) => [...prev, ...files]); // append files
+                                        field.onChange([...selectedFiles, ...files]);
+                                    };
+
+                                    const handleRemoveFile = (indexToRemove) => {
+                                        const updatedFiles = selectedFiles.filter((_, i) => i !== indexToRemove);
+                                        setSelectedFiles(updatedFiles);
+                                        field.onChange(updatedFiles);
+                                    };
+
+                                    return (
+                                        <FormItem className="w-full lg:p-[15px] p-[8px] relative">
+                                            <div className={mainText}>
+                                                Sample Pictures{" "}
+                                                <span className="2xl:text-[14px] text-[12px] text-black">
+                                                    (Please attach any reference images for the required modifications.)
+                                                </span>
+                                            </div>
+
+                                            <div className="flex items-center justify-between mb-2">
+                                                <label className="text-sm text-black">Upload the Sample Pictures</label>
+
+                                                <label className="flex items-center gap-2 text-[#24408A] text-sm cursor-pointer">
+                                                    <div className="w-6 h-6 rounded-full bg-[#24408A] flex items-center justify-center text-white ">
+                                                        {/* SVG icon */}
+                                                        <svg width="18" height="18" viewBox="0 0 26 26" fill="none">
+                                                            <g clipPath="url(#clip0_4263_3055)">
+                                                                <path
+                                                                    d="M6.72419 19.1871C4.764 17.199 4.78676 13.988 6.77494 12.0279L13.1838 5.70916C14.5827 4.33003 16.8427 4.34605 18.2219 5.74487C19.601 7.14369 19.585 9.40375 18.1861 10.7829L12.3113 16.575C11.5019 17.3731 10.1926 17.3638 9.39457 16.5543C8.59651 15.7449 8.60579 14.4357 9.41524 13.6376L14.2219 8.89858C14.4431 8.68055 14.7994 8.68307 15.0174 8.90421C15.2354 9.12536 15.2329 9.48166 15.0118 9.69969L10.2051 14.4387C9.83686 14.8017 9.83265 15.3963 10.1957 15.7645C10.5587 16.1327 11.1533 16.1369 11.5215 15.7739L17.3963 9.98176C18.3534 9.03818 18.3648 7.49228 17.4207 6.5347C16.4766 5.57712 14.9307 5.56668 13.9737 6.51027L7.56477 12.829C6.01888 14.3531 6.00117 16.8514 7.52531 18.3973C9.04944 19.9432 11.5477 19.9609 13.0936 18.4368L18.4344 13.1712C18.6555 12.9532 19.0118 12.9557 19.2299 13.1768C19.4479 13.398 19.4454 13.7543 19.2242 13.9723L13.8835 19.2379C11.8953 21.1981 8.68439 21.1753 6.72419 19.1871Z"
+                                                                    fill="white"
+                                                                />
+                                                            </g>
+                                                            <defs>
+                                                                <clipPath id="clip0_4263_3055">
+                                                                    <rect
+                                                                        width="18"
+                                                                        height="18"
+                                                                        fill="white"
+                                                                        transform="translate(13.0898 0.272461) rotate(45.4061)"
+                                                                    />
+                                                                </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </div>
+                                                    <span className="underline">Upload File</span>
+                                                    <input
+                                                        type="file"
+                                                        multiple
+                                                        ref={inputRef}
+                                                        onChange={handleFileChange}
+                                                        className="hidden"
+                                                    />
+                                                </label>
+                                            </div>
+
+                                            {/* Selected files with close button */}
+                                            {selectedFiles.length > 0 && (
+                                                <ul className="mt-2 space-y-1 flex flex-wrap gap-1">
+                                                    {selectedFiles.map((file, index) => (
+                                                        <li
+                                                            key={index}
+                                                            className="flex items-center justify-between text-sm text-gray-700 bg-gray-100 px-3 py-1 rounded"
+                                                        >
+                                                            <span className="truncate">{file.name}</span>
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => handleRemoveFile(index)}
+                                                                className="ml-2 text-black hover:text-red-700 text-[8px] cursor-pointer group flex"
+                                                            >
+                                                                <svg width="8" height="8" viewBox="0 0 15 15" className="fill-black group-hover:fill-[#f11025]">
+                                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.293457 12.8798C-0.0970427 13.2704 -0.0969825 13.9035 0.293577 14.294C0.684137 14.6845 1.3173 14.6845
+                                                                     1.70779 14.2939L7.29303 8.70773L12.8787 14.2934C13.2692 14.6839 13.9024 14.6839 14.2929 14.2934C14.6834 13.9029 14.6834 13.2697 
+                                                                     14.2929 12.8792L8.70713 7.29343L14.2925 1.70705C14.6829 1.31649 14.6829 0.683328 14.2923 0.292838C13.9018 -0.0976623 13.2686 
+                                                                     -0.0976027 12.8781 0.292957L7.29283 5.87923L1.70711 0.293438C1.31659 -0.0970825 0.683417 -0.0970825 0.292897 0.293438C-0.0976325 0.683968
+                                                                      -0.0976325 1.31713 0.292897 1.70766L5.87883 7.29353L0.293457 12.8798Z" />
+                                                                </svg>
+
+                                                            </button>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            )}
+
+                                            <div className="border-b border-gray-300 mt-2"></div>
+                                            <FormMessage className={errorMessage} />
+                                        </FormItem>
+                                    );
+                                }}
                             />
+
+
+
 
                             {/* BUDGET + DELIVERY */}
                             <div className="w-full lg:p-[15px] p-[8px]">
