@@ -5,6 +5,8 @@ import { Heading } from "@/components/layout/Heading";
 import { mediaUrl } from "@/lib/constants";
 import { formatPostTime } from "@/lib/utils";
 export default function BlogCard({ item }) {
+  console.log(item);
+
   return (
     <div className="w-full h-full block group">
       <div
@@ -30,7 +32,9 @@ export default function BlogCard({ item }) {
         </Text>
       </div>
       <div className="2xl:py-[20px] md:py-[15px] py-[10px] border-t border-b border-[#D9D9D9] flex justify-between">
-        <span className="3xl:text-[16px] 2xl:text-[14px] text-[11px] font-semibold text-[#262626]">{item.date ? formatPostTime(item.date) : ""}</span>
+        <span className="3xl:text-[16px] 2xl:text-[14px] text-[11px] font-semibold text-[#262626]">
+          {item.date ? formatPostTime(item.date) : formatPostTime(item?.published_at)}
+        </span>
         <Link
           href={item.link || `/blog/${item.slug}`}
           aria-label="news"
