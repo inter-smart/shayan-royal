@@ -48,7 +48,7 @@ const items = [
   },
 ];
 
-export default function EnquiryForm({ image, Formtitle, Formsubtitle, type, type }) {
+export default function EnquiryForm({ image, Formtitle, Formsubtitle, type }) {
   const [loading, setLoading] = useState(false);
   const { executeRecaptcha } = useGoogleReCaptcha();
 

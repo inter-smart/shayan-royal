@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { mediaUrl } from "@/lib/constants";
 import { toast } from "sonner";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const items = [
   {
@@ -42,8 +43,7 @@ const items = [
       required: "Phone number is required",
       pattern: {
         value: /^(\+971\s?|0)(4|5[024568])\s?\d{3}\s?\d{4}$/,
-        message:
-          "Enter a valid UAE number (e.g., 0501234567 or +971 4 765 4321)",
+        message: "Enter a valid UAE number (e.g., 0501234567 or +971 4 765 4321)",
       },
     },
   },
@@ -63,6 +63,7 @@ const items = [
 ];
 
 export default function EnquiryForm({ form_title, type }) {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const {
     register,
     handleSubmit,
@@ -71,8 +72,15 @@ export default function EnquiryForm({ form_title, type }) {
   } = useForm();
 
   const onSubmit = async (data) => {
+    const recaptchaToken = await executeRecaptcha(type || "enquiry");
+    if (!recaptchaToken) {
+      toast.error("Failed to get reCAPTCHA token. Please try again.");
+      setLoading(false);
+      return;
+    }
+
     try {
-      const payload = { ...data, type }; // Merge `type` from props
+      const payload = { ...data, type, recaptchaToken }; // Merge `type` from props
 
       const res = await fetch(`${mediaUrl}/api/enquiries`, {
         method: "POST",
@@ -82,8 +90,7 @@ export default function EnquiryForm({ form_title, type }) {
         body: JSON.stringify(payload),
       });
       const result = await res.json();
-      if (!result.success)
-        throw new Error(result.error?.message || "Something went wrong");
+      if (!result.success) throw new Error(result.error?.message || "Something went wrong");
 
       toast.success("Enquiry submitted successfully!");
       reset();
@@ -103,22 +110,9 @@ export default function EnquiryForm({ form_title, type }) {
 
       <div className="w-full h-full 2xl:mb-[35px] sm:mb-[25px] mb-[15px]">
         {items.map((item) => (
-          <div
-            key={item.id}
-            className="2xl:mb-[30px] lg:mb-[20px] md:mb-[15px] sm:mb-[10px] mb-[7px]"
-          >
-            <Input
-              id={item.id}
-              type={item.type}
-              placeholder={item.placeholder}
-              className={inputFormStyle}
-              {...register(item.id, item.validation)}
-            />
-            {errors[item.id] && (
-              <p className="text-red-400 text-sm mt-1">
-                {errors[item.id]?.message}
-              </p>
-            )}
+          <div key={item.id} className="2xl:mb-[30px] lg:mb-[20px] md:mb-[15px] sm:mb-[10px] mb-[7px]">
+            <Input id={item.id} type={item.type} placeholder={item.placeholder} className={inputFormStyle} {...register(item.id, item.validation)} />
+            {errors[item.id] && <p className="text-red-400 text-sm mt-1">{errors[item.id]?.message}</p>}
           </div>
         ))}
 

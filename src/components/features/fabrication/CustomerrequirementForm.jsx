@@ -19,6 +19,7 @@ import { countries } from "@/data/countries";
 import Image from "next/image";
 import { mediaUrl } from "@/lib/constants";
 import { toast } from "sonner";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 // Tailwind Classes
 const menuLinkClass =
@@ -67,7 +68,8 @@ const formSchema = z.object({
   }),
 });
 
-export default function CustomerrequirementForm({ title }) {
+export default function CustomerrequirementForm({ title, type }) {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const [date, setDate] = useState(null);
   const [dropdownData, setDropdownData] = useState([]);
   const [makeId, setMakeId] = useState(null);
@@ -114,6 +116,13 @@ export default function CustomerrequirementForm({ title }) {
   const models = makeId ? dropdownData?.models?.filter((model) => model.make_id == Number(makeId)) : [];
 
   const onSubmit = async (values) => {
+    const token = await executeRecaptcha("submit_form");
+    if (!token) {
+      toast.error("Failed to get reCAPTCHA token. Please try again.");
+      setLoading(false);
+      return;
+    }
+
     try {
       const formData = new FormData();
 
@@ -135,6 +144,7 @@ export default function CustomerrequirementForm({ title }) {
       formData.append("additionalNotes", values.additionalNotes || "");
       formData.append("budgetRange", values.budgetRange);
       formData.append("deliveryDate", values.deliveryDate.toISOString());
+      formData.append("recaptchaToken", token);
 
       if (values.samplePictures instanceof File) {
         formData.append("samplePictures", values.samplePictures);
