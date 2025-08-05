@@ -5,18 +5,15 @@ import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import {
-  FormItem,
-  FormControl,
-  FormMessage,
-  FormField,
-  Form,
-} from "../ui/form";
+import { FormItem, FormControl, FormMessage, FormField, Form } from "../ui/form";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { mediaUrl } from "@/lib/constants";
 import { toast } from "sonner";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { usePathname } from "next/navigation";
+import { toSnakeCase } from "@/lib/utils";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name is requied." }),
@@ -51,8 +48,9 @@ const items = [
   },
 ];
 
-export default function EnquiryForm({ image, Formtitle, Formsubtitle,type }) {
+export default function EnquiryForm({ image, Formtitle, Formsubtitle, type }) {
   const [loading, setLoading] = useState(false);
+  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -66,13 +64,22 @@ export default function EnquiryForm({ image, Formtitle, Formsubtitle,type }) {
 
   const onSubmit = async (values) => {
     setLoading(true);
+
+    const recaptchaToken = await executeRecaptcha(type || "enquiry");
+    if (!recaptchaToken) {
+      toast.error("Failed to get reCAPTCHA token. Please try again.");
+      setLoading(false);
+      return;
+    }
+
     try {
       const payload = {
         name: values.name,
         phone: values.phone,
         email: values.email,
         message: values.message,
-        type
+        recaptchaToken,
+        type,
       };
 
       const res = await fetch(`${mediaUrl}/api/enquiries`, {
@@ -105,18 +112,10 @@ export default function EnquiryForm({ image, Formtitle, Formsubtitle,type }) {
   return (
     <div className="w-full flex flex-wrap rounded-[10px] overflow-hidden">
       <div className="w-full lg:w-[55%]">
-        <Image
-          src={image}
-          alt="brand"
-          width={915}
-          height={567}
-          className="w-full h-full object-cover lg:rounded-l-[10px]"
-        />
+        <Image src={image} alt="brand" width={915} height={567} className="w-full h-full object-cover lg:rounded-l-[10px]" />
       </div>
       <div className="w-full lg:w-[45%] bg-[#07163D] lg:rounded-r-[10px] 2xl:pt-[45px] xl:pt-[30px] 2xs:pt-[20px] pt-[15px] 2xl:pr-[75px] xl:pr-[55px] 2xs:pr-[35px] pr-[15px] 2xl:pb-[55px] xl:pb-[45px] 2xs:pb-[35px] pb-[25px] 2xl:pl-[75px] xl:pl-[55px] 2xs:pl-[35px] pl-[15px] relative after:content-[''] after:absolute after:top-0 after:right-0 after:bg-[url('/images/form-bg2.webp')] after:bg-no-repeat xl:after:w-[320px] after:w-[220px] xl:after:h-[185px] after:h-[135px] after:bg-contain before:content-[''] before:absolute before:bottom-0 before:left-0 before:bg-[url('/images/form-bg.webp')] before:bg-no-repeat xl:before:w-[330px] before:w-[240px] xl:before:h-[155px] before:h-[115px] before:bg-contain before:pointer-events-none after:pointer-events-none">
-        <div className="text-white 2xl:text-[20px] text-[15px] font-base1 mb-[0px]">
-          {Formsubtitle}
-        </div>
+        <div className="text-white 2xl:text-[20px] text-[15px] font-base1 mb-[0px]">{Formsubtitle}</div>
         <div className="text-white 3xl:text-[35px] 2xl:text-[30px] text-[20px] font-base1 font-medium uppercase 2xl:mb-[35px] 2xs:mb-[25px] mb-[15px]">
           {Formtitle}
         </div>
@@ -130,11 +129,7 @@ export default function EnquiryForm({ image, Formtitle, Formsubtitle,type }) {
                 render={({ field }) => (
                   <FormItem className="2xl:mb-[40px] 2xs:mb-[30px] mb-[20px]">
                     <FormControl>
-                      <Input
-                        placeholder={item.placeholder}
-                        className={inputFormStyle}
-                        {...field}
-                      />
+                      <Input placeholder={item.placeholder} className={inputFormStyle} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -147,11 +142,7 @@ export default function EnquiryForm({ image, Formtitle, Formsubtitle,type }) {
               name="message"
               render={({ field }) => (
                 <FormItem className="2xl:mt-[40px] 2xs:mt-[30px] mt-[20px] 2xl:mb-[40px] 2xs:mb-[30px] mb-[20px]">
-                  <Textarea
-                    placeholder="Message"
-                    className={`${inputFormStyle} min-h-[55px] pt-0`}
-                    {...field}
-                  />
+                  <Textarea placeholder="Message" className={`${inputFormStyle} min-h-[55px] pt-0`} {...field} />
                   <FormMessage />
                 </FormItem>
               )}

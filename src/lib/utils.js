@@ -23,3 +23,13 @@ export function formatPostTime(dateString) {
   const year = date.getFullYear();
   return `${day}.${month}.${year}`;
 }
+
+export function toSnakeCase(input) {
+  return input
+    .replace(/\s+/g, "_") // Replace spaces with underscores
+    .replace(/[A-Z]/g, (match) => `_${match.toLowerCase()}`) // Handle camelCase
+    .replace(/-+/g, "_") // Replace dashes with underscores
+    .replace(/__+/g, "_") // Remove multiple underscores
+    .replace(/^_+|_+$/g, "") // Trim leading/trailing underscores
+    .toLowerCase(); // Final lowercase
+}

@@ -7,6 +7,7 @@ import WhychooseUsSection from "@/components/features/fabrication/WhychooseUsSec
 import { BreadCrumb } from "@/components/common/BreadCrumb";
 import { fetchFromAPI } from "@/lib/api";
 import { mediaUrl } from "@/lib/constants";
+import CustomerReqSection from "@/components/features/fabrication/CustomerReqSection";
 
 export default async function Page() {
   const { data, error } = await fetchFromAPI("fabrications");
@@ -43,7 +44,7 @@ export default async function Page() {
         alt={contents?.image_alt}
       />
       <CategorySection title={contents?.category_title} description={contents?.category_description} categoryData={categories} />
-      <CustomerrequirementForm title={contents?.form_title} />
+      <CustomerReqSection title={contents?.form_title} />
       <ClientSection title={contents?.testimonial_title} clientData={testimonials} />
     </>
   );
