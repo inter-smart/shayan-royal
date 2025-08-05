@@ -66,8 +66,6 @@ export default function InventoryDetailSection({ carDetails, specs }) {
   const verticalNextRef = useRef(null);
   const carImages = carDetails?.images;
 
-  console.log(carImages);
-
   useEffect(() => {
     // Delay update to ensure refs are mounted
   }, []);
@@ -274,16 +272,10 @@ export default function InventoryDetailSection({ carDetails, specs }) {
                         <div className="text-center w-full h-full rounded-[5px] lg:rounded-[10px] overflow-hidden bg-[#F5F9FF] flex items-center justify-center flex-col">
                           <div className="w-full">
                             <div className="3xl:w-[40px] 2xl:w-[35px] lg:w-[30px] w-[25px] 3xl:h-[40px] 2xl::h-[30px] lg-h-[20px] h-[22px] m-auto mb-[2px] flex">
-                              <Image
-                                src={`${specIcons?.[idx]?.icon}`}
-                                alt={feature}
-                                width={25}
-                                height={25}
-                                className="w-full h-full object-contain"
-                              />
+                              <Image src={`${feature?.icon}`} alt={feature} width={25} height={25} className="w-full h-full object-contain" />
                             </div>
                             <div className="3xl:text-[20px] 2xl:text-[17px] lg:text-[14px] text-[10px] font-normal font-base1 text-black">
-                              {feature}
+                              {feature?.label}
                             </div>
                           </div>
                         </div>
