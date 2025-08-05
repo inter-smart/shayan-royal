@@ -11,8 +11,8 @@ import AdvancesearchSection from "@/components/features/home/AdvancesearchSectio
 
 const slides = [
   { img: "/images/banner1.png", title: "Lexus LFA" },
-  { img: "/images/banner2.png", title: "Supra MK4" },
-  { img: "/images/banner3.png", title: "Nissan GTR" },
+  { img: "/images/banner2.png", title: "vellfire" },
+  { img: "/images/banner3.png", title: "LAND CRUISER" },
 ];
 
 export default function BannerSection() {
