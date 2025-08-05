@@ -12,7 +12,6 @@ const footerHeading = "lg:text-[11px] text-[10px] uppercase text-white/40 font-m
 export default async function footer() {
   const footerData = await fetchFromAPI("footer");
   const { data, error } = footerData;
-  console.log(data);
   const { socialMediaLinks, footerContents } = data;
 
   if (error) {

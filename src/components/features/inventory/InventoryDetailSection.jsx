@@ -58,6 +58,9 @@ const SocialLinks = [
 ];
 
 export default function InventoryDetailSection({ carDetails, specs }) {
+
+
+  console.log(carDetails);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   const thumbsPrevRef = useRef(null);
