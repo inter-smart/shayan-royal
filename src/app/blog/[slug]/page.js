@@ -21,6 +21,8 @@ export default async function Page({ params }) {
 
   const { banner, blog, recentBlogs } = data;
 
+  console.log("Blog Detail Page Data:", blog);
+
   return (
     <>
       <InnerBanner
@@ -32,7 +34,7 @@ export default async function Page({ params }) {
         items={[
           { label: "HOME", href: "/" },
           { label: "BLOGS", href: "/blog" },
-          { label: "BLOGS DETAIL", isCurrent: true },
+          { label: blog?.title, isCurrent: true },
         ]}
       />
       <BlogDetailSection blog={blog} recentBlogs={recentBlogs} slug={slug} />
