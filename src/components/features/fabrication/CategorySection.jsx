@@ -134,6 +134,7 @@ export default function CategorySection() {
             modules={[Navigation, Autoplay]}
             slidesPerView={1}
             loop={true}
+             autoHeight={true} 
             autoplay={{
               delay: 3000,
               disableOnInteraction: false,
