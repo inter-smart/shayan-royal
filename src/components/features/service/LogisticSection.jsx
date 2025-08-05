@@ -12,6 +12,7 @@ export default function LogisticSection({ title, desc, image }) {
             Formtitle={title || "One Click Away Send Your Enquiry"}
             Formsubtitle={desc || "Seamless Logistic"}
             type="service-detail"
+            type="service-details"
           />
         </RecaptchaProvider>
       </div>

@@ -48,7 +48,7 @@ const items = [
   },
 ];
 
-export default function EnquiryForm({ image, Formtitle, Formsubtitle, type }) {
+export default function EnquiryForm({ image, Formtitle, Formsubtitle, type, type }) {
   const [loading, setLoading] = useState(false);
   const { executeRecaptcha } = useGoogleReCaptcha();
 
@@ -79,6 +79,7 @@ export default function EnquiryForm({ image, Formtitle, Formsubtitle, type }) {
         email: values.email,
         message: values.message,
         recaptchaToken,
+        type,
       };
 
       const res = await fetch(`${mediaUrl}/api/enquiries`, {

@@ -13,6 +13,7 @@ export default function FitmentEnquirySection({ title, desc, image }) {
             Formtitle={title || "One Click Away Send Your Enquiry"}
             Formsubtitle={desc || "Seamless Logistic"}
             type={"service_fitment"}
+            type="fitments"
           />
         </RecaptchaProvider>
       </div>

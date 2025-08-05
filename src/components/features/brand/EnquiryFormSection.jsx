@@ -16,7 +16,7 @@ export default function EnquiryFormSection({ image }) {
             nonce: undefined,
           }}
         >
-          <EnquiryForm image={image ? `${mediaUrl}${image}` : "/images/brand-form.webp"} Formtitle="Enquiry Form" type="brand" />
+          <EnquiryForm image={image ? `${mediaUrl}${image}` : "/images/brand-form.webp"} Formtitle="Enquiry Form" type="brand" type="brands" />
         </RecaptchaProvider>
       </div>
     </section>
