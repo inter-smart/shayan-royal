@@ -60,7 +60,7 @@ export default function CarColorSpecSection() {
     }, []);
 
     return (
-        <section className="relative w-full pt-[30px] 3xl:pt-[70px] pb-[40px]">
+        <section className="relative w-full pt-[30px] 3xl:pt-[70px] pb-[40px] overflow-hidden">
             <div className="container mx-auto">
                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10">
                     {/* Color Selection */}
@@ -118,8 +118,8 @@ export default function CarColorSpecSection() {
                                 <Image
                                     src={activeColor.image}
                                     alt="Car"
-                                    width={780}
-                                    height={400}
+                                    width={480}
+                                    height={300}
                                     className="object-contain bg-white p-5 xl:max-w-[700px] sm:max-w-[580px] max-w-[300px] w-full"
                                 />
                             </div>
@@ -131,7 +131,7 @@ export default function CarColorSpecSection() {
                                 const endAngle = 50;
                                 const angleDeg =
                                     startAngle + (index * (endAngle - startAngle)) / (total - 1);
-                                const angleRad = (angleDeg * Math.PI) / 180;
+                                const angleRad = (angleDeg * Math.PI) / 190;
 
                                 const size = 70;
                                 const x = center + radius * Math.cos(angleRad) - size / 2;
@@ -140,7 +140,8 @@ export default function CarColorSpecSection() {
                                 return (
                                     <div
                                         key={index}
-                                        className="absolute flex flex-col items-center justify-center 2xl:w-[70px] sm:w-[60px] w-[50px] 2xl:h-[70px] sm:h-[60px] h-[50px] rounded-full bg-[#F1F5FF] text-center"
+                                        className="absolute flex flex-col items-center justify-center 2xl:w-[70px] sm:w-[60px] w-[50px] 2xl:h-[70px] sm:h-[60px]
+                                         h-[50px] rounded-full bg-[#F1F5FF] text-center"
                                         style={{ top: `${y}px`, left: `${x}px` }}
                                     >
                                         <div className="2xl:w-6 sm:w-5 w-4 2xl:h-6 sm:h-5 h-4 mb-1">

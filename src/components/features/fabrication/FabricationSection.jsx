@@ -4,12 +4,12 @@ import { Text } from "@/components/layout/Text";
 
 export default function FabricationSection() {
     return (
-        <section className="relative py-[40px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[80px_120px]">
+        <section className="relative py-[10px] xl:py-[60px] 2xl:py-[80px] 3xl:py-[80px_120px]">
 
             <div className="container">
                 <div className="relative text-white">
 
-                    <Heading size="heading2" as="h2" className="text-black uppercase font-normal mb-[40px]" >
+                    <Heading size="heading2" as="h2" className="text-black uppercase font-normal mb-[10px]" >
                         fabrication
                     </Heading>
 
