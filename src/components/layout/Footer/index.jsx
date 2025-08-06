@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import SocialMediaSections from "./SocialMediaSections";
 import { fetchFromAPI } from "@/lib/api";
+import NewsletterForm from "@/components/forms/NresLetterSub";
 
 const footerLink = "2xl:text-[14px] xl:text-[12px] md:text-[11px] text-[10px] text-white/60 capitalize font-normal hover:text-white transition-all";
 const footerHeading = "lg:text-[11px] text-[10px] uppercase text-white/40 font-medium lg:mb-3 mb-1";
@@ -125,19 +126,7 @@ export default async function footer() {
             <p className="xl:text-[16px] text-[14px] leading-[1.3] font-normal text-white mb-[25px]">
               {footerContents?.footer_news_letter_description ? footerContents?.footer_news_letter_description : "Sign up for email updates today."}
             </p>
-            <div className="w-full flex items-center relative z-0">
-              <Input
-                type="email"
-                placeholder="Enter Email"
-                className="rounded-[10px] border-gray-300 focus-visible:ring-0 focus-visible:ring-offset-0 bg-white h-[45px] placeholder-[#555555] placeholder:text-[14px]"
-              />
-              <Button
-                type="submit"
-                className="absolute  bottom-0 margin-auto bg-[#BE1E2D] h-[40px] top-1/2 -translate-y-1/2 right-[3px] 3xl:text-[16px] 2xl:text-[14px] text-[14px] uppercase font-medium"
-              >
-                Subscribe
-              </Button>
-            </div>
+           <NewsletterForm />
           </div>
           <div className="2xl:w-[30%] xl:w-[25%] sm:w-[50%] w-[100%] sm:mt-[0px] mt-[25px]">
             <Heading
