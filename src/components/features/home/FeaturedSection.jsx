@@ -10,6 +10,7 @@ import "swiper/css/navigation";
 import { Heading } from "@/components/layout/Heading";
 import { Text } from "@/components/layout/Text";
 import ProductCard from "@/components/common/ProductCard";
+import ProductCardHome from "@/components/common/ProductCardHome";
 
 const carData = [
   {
@@ -144,7 +145,7 @@ export default function NewarrivalSection({ products }) {
           >
             {inventories?.map((car, index) => (
               <SwiperSlide key={index}>
-                <ProductCard car={car} />
+                <ProductCardHome car={car} />
               </SwiperSlide>
             ))}
           </Swiper>
