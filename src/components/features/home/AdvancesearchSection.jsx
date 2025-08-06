@@ -45,7 +45,7 @@ export default function CarSearchForm() {
       gearbox: params.gearbox || "",
       yearTo: params.yearTo || "",
       body: params.body || "",
-      regionalSpec: params.specs || "",
+      regionalSpec: params.regional_spec || "",
       yearFrom: params.yearFrom || "",
       steeringSide: params.steering_type || "",
       carType: "", // optional: map car_type_id to name later
@@ -84,7 +84,7 @@ export default function CarSearchForm() {
         gearbox: values.gearbox,
         yearTo: values.yearTo, // Changed from "year" to "yearTo"
         body: values.body,
-        specs: values.regionalSpec,
+        regional_spec: values.regionalSpec,
         steering_type: values.steeringSide,
         car_type_id: selectedCarType ? String(selectedCarType.id) : undefined,
         cylinder: values.cylinders,
@@ -240,8 +240,8 @@ export default function CarSearchForm() {
                       </SelectTrigger>
                       <SelectContent className={contentClass}>
                         {dropdownData?.data?.fuelTypes?.map((fuel) => (
-                          <SelectItem key={fuel} value={fuel} className={itemClass}>
-                            {fuel}
+                          <SelectItem key={fuel?.id} value={fuel?.name} className={itemClass}>
+                            {fuel?.name}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -266,8 +266,8 @@ export default function CarSearchForm() {
                       </SelectTrigger>
                       <SelectContent className={contentClass}>
                         {dropdownData?.data?.gearboxes?.map((gearbox) => (
-                          <SelectItem key={gearbox} value={gearbox} className={itemClass}>
-                            {gearbox}
+                          <SelectItem key={gearbox?.id} value={gearbox?.name} className={itemClass}>
+                            {gearbox?.name}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -345,9 +345,9 @@ export default function CarSearchForm() {
                               <SelectValue placeholder="Regional Spec" />
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
-                              {dropdownData?.data?.specs?.map((spec) => (
-                                <SelectItem key={spec} value={spec} className={itemClass}>
-                                  {spec}
+                              {dropdownData?.data?.regional_specs?.map((spec) => (
+                                <SelectItem key={spec?.id} value={spec?.name} className={itemClass}>
+                                  {spec?.name}
                                 </SelectItem>
                               ))}
                             </SelectContent>
@@ -424,8 +424,8 @@ export default function CarSearchForm() {
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
                               {dropdownData?.data?.steeringTypes?.map((steering) => (
-                                <SelectItem key={steering} value={steering} className={itemClass}>
-                                  {steering}
+                                <SelectItem key={steering?.id} value={steering?.name} className={itemClass}>
+                                  {steering?.name}
                                 </SelectItem>
                               ))}
                             </SelectContent>
@@ -476,8 +476,8 @@ export default function CarSearchForm() {
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
                               {dropdownData?.data?.cylinders?.map((cylinder) => (
-                                <SelectItem key={cylinder} value={cylinder.toString()} className={itemClass}>
-                                  {cylinder}
+                                <SelectItem key={cylinder?.id} value={cylinder.count} className={itemClass}>
+                                  {cylinder?.count}
                                 </SelectItem>
                               ))}
                             </SelectContent>
@@ -502,8 +502,8 @@ export default function CarSearchForm() {
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
                               {dropdownData?.data?.seats?.map((seat) => (
-                                <SelectItem key={seat} value={seat.toString()} className={itemClass}>
-                                  {seat}
+                                <SelectItem key={seat?.id} value={seat.count} className={itemClass}>
+                                  {seat?.count}
                                 </SelectItem>
                               ))}
                             </SelectContent>
