@@ -8,7 +8,7 @@ const variants = {
 };
 
 export default function ProductCard({ car, variant }) {
-console.log(car);
+  console.log(car);
 
   function toTitleCase(text) {
     if (typeof text !== "string") return "";
@@ -37,7 +37,7 @@ console.log(car);
           {/* Logo */}
           <div className="w-full 3xl:max-w-[50px] max-w-[40px] absolute top-[10px] left-[10px] z-10">
             <Image
-              src={car?.logo ? `${mediaUrl}${car?.logo}` : "/images/no-image.png"}
+              src={car?.logo ? `${mediaUrl}${car?.logo}` : "/images/no-image.jpg"}
               alt={`${car?.brand} Logo`}
               width={350}
               height={200}
@@ -47,7 +47,7 @@ console.log(car);
           {/* Image */}
           <div className="w-full  3xl:min-h-[250px] 2xl:min-h-[170px] min-h-[140px] flex items-center justify-center m-auto overflow-hidden rounded-[5px] relative">
             <Image
-              src={car?.image ? `${mediaUrl}${car?.image}` : "/images/no-image.png"}
+              src={car?.image ? `${mediaUrl}${car?.image}` : "/images/no-image.jpg"}
               alt={car?.title}
               width={350}
               height={200}
