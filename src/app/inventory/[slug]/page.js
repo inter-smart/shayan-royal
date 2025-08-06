@@ -6,6 +6,7 @@ import FaqSection from "@/components/features/inventory/FaqSection";
 import SpecificationSection from "@/components/features/inventory/SpecificationSection";
 import SimilarcarSection from "@/components/features/inventory/SimilarcarSection";
 import { fetchFromAPI } from "@/lib/api";
+import { mediaUrl } from "@/lib/constants";
 // import PDFViewerSection from "@/components/features/inventory/PDFViewerSection";
 // import LogoScrollSection from "@/components/features/inventory/LogoScrollSection";
 
@@ -23,14 +24,16 @@ export default async function page({ params }) {
     return <div>No data</div>;
   }
 
-  const { carDetails, specs, specs2, faqs } = data;
-  
+  const { carDetails, specs, specs2, faqs, colorVariants, banner, specList } = data;
+
+  console.log(colorVariants);
+
   return (
     <>
       <InnerBanner
-        title="Camry Hybrid"
-        image="/images/inventoryDetailBanner.jpg"
-        alt="about-banner"
+        title={banner?.title ? banner?.title : "Our Car"}
+        image={banner?.image ? `${mediaUrl}${banner?.image}` : "/images/inventoryDetailBanner.jpg"}
+        alt={banner?.title ? banner?.title : "inventory-banner"}
       />
 
       <BreadCrumb
@@ -41,8 +44,8 @@ export default async function page({ params }) {
         ]}
       />
       <InventoryDetailSection carDetails={carDetails} specs={specs} />
-      <SpecificationSection />
-      <ColorSection />
+      <SpecificationSection specList={specList} />
+      <ColorSection colorVariants={colorVariants} specs2={specs2} />
       {/* <PDFViewerSection fileUrl="/images/policy.pdf" /> */}
       <SimilarcarSection />
       <FaqSection faqs={faqs} />

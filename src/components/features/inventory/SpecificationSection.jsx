@@ -8,13 +8,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css";
 
-const tabs = [
-  "Specifications",
-  "Description",
-  "Interior Features",
-  "Exterior Features",
-  "Security & Environment",
-];
+const tabs = ["Specifications", "Description", "Interior Features", "Exterior Features", "Security & Environment"];
 
 const detailsData = [
   // Specifications tab (first)
@@ -91,7 +85,7 @@ const detailsData = [
   ],
 ];
 
-export default function ResponsiveTabsWithSwiper() {
+export default function ResponsiveTabsWithSwiper({ specList = detailsData }) {
   const [activeTab, setActiveTab] = useState(tabs[0]);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -123,7 +117,11 @@ export default function ResponsiveTabsWithSwiper() {
                 <button
                   onClick={() => setActiveTab(tab)}
                   className={`relative text-[13px] sm:text-[16px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[25px] font-base1 w-full pb-2 whitespace-nowrap text-left cursor-pointer transition-all hover:text-[#2E4C99] hover:font-semibold
-                    ${activeTab === tab ? "font-semibold text-black after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-1/2 after:bg-[#2E4C99]" : "text-[#4B4B4B]"}`}
+                    ${
+                      activeTab === tab
+                        ? "font-semibold text-black after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-1/2 after:bg-[#2E4C99]"
+                        : "text-[#4B4B4B]"
+                    }`}
                 >
                   {tab}
                 </button>
@@ -132,22 +130,24 @@ export default function ResponsiveTabsWithSwiper() {
           </Swiper>
           {/* Navigation Arrows */}
           <div className="flex items-center justify-center absolute top-0 bottom-0 w-full">
-            <button className="btn-prev absolute left-[-30px] lg:left-[-55px] lg:top-1/2 lg:-translate-y-1/2 z-10
+            <button
+              className="btn-prev absolute left-[-30px] lg:left-[-55px] lg:top-1/2 lg:-translate-y-1/2 z-10
                         lg:bg-gradient-to-r from-[#E4E4E4] to-[#FFFFFF] 
                         lg:shadow w-[34px] h-[38px] flex items-center justify-center rounded-[30px_0px_0px_30px] cursor-pointer group
-                         hover:bg-[#2E4C99] disabled:pointer-events-none disabled:opacity-[0.2]">
-
-              <svg width="7" height="13" viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 flex" >
+                         hover:bg-[#2E4C99] disabled:pointer-events-none disabled:opacity-[0.2]"
+            >
+              <svg width="7" height="13" viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 flex">
                 <path d="M6.14364 0.699707L0.769531 6.12544L6.14364 12.1834" stroke="black" />
               </svg>
             </button>
-            <button className="btn-next absolute right-[-30px] lg:right-[-55px] lg:top-1/2 lg:-translate-y-1/2 z-10 
+            <button
+              className="btn-next absolute right-[-30px] lg:right-[-55px] lg:top-1/2 lg:-translate-y-1/2 z-10 
                         lg:bg-gradient-to-r from-[#E4E4E4] to-[#FFFFFF] 
                         lg:shadow w-[34px] h-[38px] flex items-center justify-center
                          rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99] 
-                        disabled:pointer-events-none disabled:opacity-[0.2] ">
-
-              <svg width="7" height="13" viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 flex" >
+                        disabled:pointer-events-none disabled:opacity-[0.2] "
+            >
+              <svg width="7" height="13" viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 flex">
                 <path d="M0.817302 0.699707L6.19141 6.12544L0.817302 12.1834" stroke="black" />
               </svg>
             </button>
@@ -167,9 +167,12 @@ export default function ResponsiveTabsWithSwiper() {
               {index === 0 ? (
                 // Specifications layout
                 <div className="flex flex-wrap">
-                  {(detailsData[index] || []).map((item, idx) => (
+                  {(specList?.[index] || []).map((item, idx) => (
                     <div className="w-full xs:w-1/2 lg:w-1/4  border-l border-[#D9D9D9] px-[15px] 2xl:px-[30px]">
-                      <div key={idx} className="flex items-start justify-between text-sm mb-3 border-b border-dashed border-[#2E4C99] pb-[10px] 2xl:pb-[15px]">
+                      <div
+                        key={idx}
+                        className="flex items-start justify-between text-sm mb-3 border-b border-dashed border-[#2E4C99] pb-[10px] 2xl:pb-[15px]"
+                      >
                         <span className="text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[20px] block text-black font-medium mr-2">
                           {item.label}
                         </span>
@@ -181,16 +184,25 @@ export default function ResponsiveTabsWithSwiper() {
               ) : index === 1 ? (
                 // Description layout
                 <p className="text-[14px] text-[#4B4B4B] font-base1 leading-relaxed px-[30px]">
-                  {detailsData[index]?.[0]?.value || "No description available."}
+                  {specList?.[index]?.[0]?.value || "No description available."}
                 </p>
               ) : (
                 // Features grid layout
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-y-4 gap-x-1 lg:gap-x-2 text-[14px] text-[#1F1F1F] font-base1">
-                  {(detailsData[index] || []).map((item, i) => (
-                    <div key={i} className="text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[20px]
-                     whitespace-nowrap block text-black font-semibold mr-2 font-base1 mx-[10px] lg:mx-[20px] border-b 
-                    border-dashed border-[#2E4C99] pb-[10px] xl:pb-[15px]">{item.value}</div>
-                  ))}
+                  {specList?.[index] && specList[index].length > 0 ? (
+                    specList[index].map((item, i) => (
+                      <div
+                        key={i}
+                        className="text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[20px]
+        whitespace-nowrap block text-black font-semibold mr-2 font-base1 mx-[10px] lg:mx-[20px] border-b 
+        border-dashed border-[#2E4C99] pb-[10px] xl:pb-[15px]"
+                      >
+                        {item.value}
+                      </div>
+                    ))
+                  ) : (
+                    <div className="text-gray-500 text-center italic mx-[10px] lg:mx-[20px]">No features</div>
+                  )}
                 </div>
               )}
             </TabsContent>
