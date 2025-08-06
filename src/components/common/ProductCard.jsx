@@ -21,7 +21,7 @@ export default function ProductCard({ car, variant }) {
   const defaultPadding = "px-[10px] 3xl:py-[25px] py-[15px]";
   const paddingClass = variant ? variants[variant] || defaultPadding : defaultPadding;
 
-  const specs = ["GCC", toTitleCase(car?.fueltype), car?.year, toTitleCase(car?.gearbox)];
+  const specs = [toTitleCase(car?.regional_spec), toTitleCase(car?.fueltype), car?.year, toTitleCase(car?.gearbox)];
 
   return (
     <Link href={`inventory/${car?.id}` || "#"} aria-label={car?.type} className={`w-full h-full flex cursor-pointer group ${paddingClass}`}>
