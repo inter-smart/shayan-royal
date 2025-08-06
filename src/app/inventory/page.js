@@ -76,7 +76,7 @@ async function getMetaData() {
         canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/inventory`,
       },
 
-      error: result?.message || "No metadata found",
+      error:  "No metadata found",
     };
   }
 }

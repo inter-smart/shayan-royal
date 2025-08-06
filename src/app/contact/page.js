@@ -77,7 +77,7 @@ async function getMetaData() {
         canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/contact`,
       },
 
-      error: result?.message || "No metadata found",
+      error:  "No metadata found",
     };
   }
 }
