@@ -45,7 +45,7 @@ const faqContents = [
 ]
 
 
-export default function FaqSection() {
+export default function FaqSection({faqs}) {
     return (
         <section className="relative z-0 bg-white py-[60px] 2xl:py-[60px_120px] 3xl:py-[115px_70px]">
             <div className="container">
@@ -56,7 +56,7 @@ export default function FaqSection() {
                         </Heading>                       
                     </div>
                     <Accordion type="single" collapsible defaultValue="item-0" className="w-full space-y-2 ">
-                        {faqContents.map((item, index) => (
+                        {faqs.map((item, index) => (
                             <div className="relative" key={index}>
                                 <AccordionItem 
                                     value={`item-${index}`}
@@ -69,11 +69,11 @@ export default function FaqSection() {
                                         after:text-[15px] after:bg-white after:rounded-[5px] after:flex after:items-center after:justify-center
                                         data-[state=open]:after:content-['-']"
                                     >
-                                        {item.title}
+                                        {item.question}
                                     </AccordionTrigger>
 
                                     <AccordionContent className="typography [&>p]:text-[#656565] [&>p]:text-[16px] text-[#656565] 3xl:text-[16px] lg:text-[14px] text-[12px] pb-[15px]">
-                                        {item.description}
+                                        {item.answer}
                                     </AccordionContent>
                                 </AccordionItem>
 
