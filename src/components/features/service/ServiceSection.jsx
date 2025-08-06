@@ -39,6 +39,8 @@ export default function ServiceSection({ services = items }) {
   const [hovered, setHovered] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
+
+  console.log(services);
   return (
     <section className="w-full h-auto block 3xl:py-[95px_135px] 2xl:py-[70px_100px] sm:py-[50px_60px] py-[40px_30px] 3xl:mb-[120px] 2xl:mb-[90px] lg:mb-[80px] sm:mb-[60px] mb-[40px] bg-[#F5F9FF]">
       <div className="container overflow-hidden">
@@ -127,7 +129,7 @@ export default function ServiceSection({ services = items }) {
                       aria-label="Learn More"
                       className="3xl:text-[16px] 2xl:text-[13px] text-[11px] leading-1 font-medium font-base1 text-[#2E4C99] w-fit h-[40px] 3xl:p-[10px_25px] p-[7px_15px] rounded-[50px] bg-white hover:bg-base1 hover:text-white transition-colors duration-200 ease-in-out"
                     >
-                      LEARN MORE
+                      {item.button_text}
                     </Link>
                   </div>
                 </div>
