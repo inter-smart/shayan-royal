@@ -24,10 +24,14 @@ export default async function page({ params }) {
   }
 
   const { carDetails, specs, specs2, faqs } = data;
-
+  
   return (
     <>
-      <InnerBanner title="Camry Hybrid" image="/images/inventoryDetailBanner.jpg" alt="about-banner" />
+      <InnerBanner
+        title="Camry Hybrid"
+        image="/images/inventoryDetailBanner.jpg"
+        alt="about-banner"
+      />
 
       <BreadCrumb
         items={[
@@ -41,7 +45,7 @@ export default async function page({ params }) {
       <ColorSection />
       {/* <PDFViewerSection fileUrl="/images/policy.pdf" /> */}
       <SimilarcarSection />
-      <FaqSection />
+      <FaqSection faqs={faqs} />
       {/* <LogoScrollSection /> */}
     </>
   );
