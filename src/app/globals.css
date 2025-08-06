@@ -307,12 +307,32 @@ body {
   -webkit-text-stroke: 1px rgba(74, 95, 112, 0.2);
 }
 
- body[data-scroll-locked]{
+body[data-scroll-locked] {
   overflow: auto !important;
- }
+}
 
-.react-pdf__Page__canvas
-{
+.react-pdf__Page__canvas {
   width: 100% !important;
   height: 100% !important;
 }
+
+.cls-1 {
+  fill: #fff;
+
+}
+
+.cls-2 {
+  fill: #2e4c99;
+}
+
+.cls-3 {
+  fill: #be1e2d;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.cls-3:hover {
+  transform: translateY(10px);
+}
+
+ 

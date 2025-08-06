@@ -66,7 +66,7 @@ export default function Header() {
                   const isActive = pathname === item.href;
 
                   const menuLinkClass = `
-                    3xl:text-[18px] 2xl:text-[13px] xl:text-[11px] text-[12px] font-medium uppercase
+                    3xl:text-[18px] 2xl:text-[13px] xl:text-[11px] text-[12px] font-medium uppercase leading-[2rem]
                     ${isInnerPage ? "lg:text-white text-black" : "text-black"}
                     flex items-center justify-center 3xl:px-[25px] 2xl:px-[20px] px-[15px] 3xl:py-[43px] 2xl:py-[35px] py-[30px]
                     ${isActive ? "after:absolute after:content-[''] after:bottom-[-1px] after:left-0 after:right-0 after:m-auto after:w-[70%] after:h-[2px] after:bg-white" : ""}
@@ -79,8 +79,8 @@ export default function Header() {
                       <Link href={item.href} passHref>
                         <NavigationMenuLink asChild>
                           <span
-                            className={`${menuLinkClass} ${item.label === "Contact Us"
-                              ? "!text-white bg-[#2E4C99] 3xl:h-[40px] 2xl:h-[30px] h-[25px] min-w-[90px] !py-0 !rounded-[50px] after:hidden hover:!bg-[#BE1E2D] hover:!text-white"
+                            className={`${menuLinkClass} leading-3 ${item.label === "Contact Us"
+                              ? "!text-[16px] !text-white bg-[#2E4C99] 3xl:h-[40px] 2xl:h-[30px] h-[25px] min-w-[90px] !py-0 !rounded-[50px] after:hidden hover:!bg-[#BE1E2D] hover:!text-white"
                               : ""
                               }`}
                           >

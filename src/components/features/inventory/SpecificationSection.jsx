@@ -130,7 +130,7 @@ export default function SpecificationSection() {
             ))}
           </Swiper>
           {/* Navigation Arrows */}
-          <div className="flex items-center justify-center absolute top-0 bottom-0 w-full">
+          <div className="flex items-center justify-center absolute top-0 bottom-0 w-full lg:hidden">
             <button className="btn-prev absolute left-[-30px] lg:left-[-55px] lg:top-1/2 lg:-translate-y-1/2 z-10
                         lg:bg-gradient-to-r from-[#E4E4E4] to-[#FFFFFF] 
                         lg:shadow w-[34px] h-[38px] flex items-center justify-center rounded-[30px_0px_0px_30px] cursor-pointer group
