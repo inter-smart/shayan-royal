@@ -202,7 +202,7 @@ export default function CarSearchForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Select disabled={!makeId} onValueChange={field.onChange} value={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value}>
                       <SelectTrigger className={menuLinkClass}>
                         <SelectValue placeholder="MODEL" />
                       </SelectTrigger>
@@ -213,6 +213,8 @@ export default function CarSearchForm() {
                               {model.name}
                             </SelectItem>
                           ))
+                        ) : !makeId ? (
+                          <div className="p-2 text-sm text-gray-500">Choose a make first</div>
                         ) : (
                           <div className="p-2 text-sm text-gray-500">No models available</div>
                         )}
