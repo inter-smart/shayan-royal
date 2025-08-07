@@ -114,7 +114,7 @@ export default function NewarrivalSection() {
                         className=""
                     >
                         {carData.map((car, index) => (
-                            <SwiperSlide key={index}>
+                            <SwiperSlide key={index} className="!h-auto">
                                 <ProductCard car={car} />
                             </SwiperSlide>
                         ))}

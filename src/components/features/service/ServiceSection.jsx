@@ -38,7 +38,8 @@ export default function ServiceSection() {
     const [activeIndex, setActiveIndex] = useState(0);
 
     return (
-        <section className="w-full h-auto block 3xl:py-[95px_135px] 2xl:py-[70px_100px] sm:py-[50px_60px] py-[40px_30px] 3xl:mb-[120px] 2xl:mb-[90px] lg:mb-[80px] sm:mb-[60px] mb-[40px] bg-[#F5F9FF]">
+        <section className="w-full h-auto block 3xl:py-[45px_135px] 2xl:py-[40px_100px] sm:py-[35px_60px] py-[30px_30px] 3xl:mb-[120px] 2xl:mb-[50px] lg:mb-[40px] 
+        sm:mb-[30px] mb-[30px] bg-[#F5F9FF]">
             <div className="container overflow-hidden">
                 <Heading
                     as="h2"

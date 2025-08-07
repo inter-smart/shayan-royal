@@ -7,28 +7,28 @@ const blogs = [
         image: "/images/blog1.jpg",
         title: "Lorem ipsum dolor sit amet, consectetur",
         description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Illa enim, quae prosunt aut quae nocent, aut bona sunt aut mala, quae sint paria necesse est.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Illa enim, quae prosunt aut quae nocent...",
         date: "29.11.2024",
     },
     {
         image: "/images/blog2.jpg",
         title: "Lorem ipsum dolor sit amet, consectetur",
         description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Illa enim, quae prosunt aut quae nocent, aut bona sunt aut mala, quae sint paria necesse est.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Illa enim, quae prosunt aut quae nocent...",
         date: "29.11.2024",
     },
     {
         image: "/images/blog3.jpg",
         title: "Lorem ipsum dolor sit amet, consectetur",
         description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Illa enim, quae prosunt aut quae nocent, aut bona sunt aut mala, quae sint paria necesse est.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit..",
         date: "29.11.2024",
     },
     {
         image: "/images/blog4.jpg",
         title: "Lorem ipsum dolor sit amet, consectetur",
         description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Illa enim, quae prosunt aut quae nocent, aut bona sunt aut mala, quae sint paria necesse est.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit..",
         date: "29.11.2024",
     },
 ];
@@ -85,12 +85,12 @@ export default function BlogSection() {
                                             <Heading
                                                 size=""
                                                 as="div"
-                                                className="text-[14px] 2xl:text-[18px] 3xl:text-[25px] text-black line-clamp-2 font-semibold mb-[10px] max-w-[360px]"
+                                                className="text-[14px] 2xl:text-[18px] 3xl:text-[25px] text-black line-clamp-2 font-semibold mb-[10px] max-w-[360px] leading-[1.17]"
                                             >
                                                 {item.title}
                                             </Heading>
-                                            <Text size="text1" as="p" className="text-[#595959] ">
-                                                <span className=" line-clamp-2">{item.description}</span>
+                                            <Text size="text1" as="p" className="text-[#595959]">
+                                                 <span>{item.description} </span>
                                                 <span className="text-[10px] 2xl:text-[12px] 3xl:text-[16px] text-[#2E4C99] text-nowrap font-medium underline">READ MORE</span>
                                             </Text>
                                         </div>
@@ -131,12 +131,12 @@ export default function BlogSection() {
                                             <Heading
                                                 size=""
                                                 as="div"
-                                                className="text-[14px] 2xl:text-[18px] 3xl:text-[25px] text-black line-clamp-2 font-semibold mb-[10px] max-w-[360px]"
+                                                className="text-[14px] 2xl:text-[18px] 3xl:text-[25px] text-black line-clamp-2 leading-[1.17] font-semibold mb-[10px] max-w-[360px]"
                                             >
                                                 {item.title}
                                             </Heading>
-                                            <Text size="text1" as="p" className="text-[#595959] line-clamp-2">
-                                                 <span className=" line-clamp-2">{item.description}</span>
+                                            <Text size="text1" as="p" className="text-[#595959]">
+                                                  {item.description} 
                                                 <span className="text-[10px] 2xl:text-[12px] 3xl:text-[16px] text-[#2E4C99] text-nowrap font-medium underline">READ MORE</span>
                                             </Text>
                                         </div>

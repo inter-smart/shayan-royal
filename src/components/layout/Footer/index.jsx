@@ -6,136 +6,143 @@ import { Input } from "@/components/ui/input"
 
 
 
-const footerLink = "2xl:text-[14px] xl:text-[12px] md:text-[11px] text-[10px] text-white/60 capitalize font-normal hover:text-white transition-all"
-const footerHeading = "lg:text-[11px] text-[10px] uppercase text-white/40 font-medium lg:mb-3 mb-1"
+const footerLink = "text-[10px] xl:text-[13px] 2xl:text-[16px] 3xl:text-[20px] text-white font-light mb-[8px] 2xl:mb-[10px] 3xl:mb-[15px] hover:text-[#BE1E2D] transition-all"
+const footerHeading = "3xl:text-[20px] 2xl:text-[16px] xl:text-[13px] text-[10px] leading-none font-semibold uppercase text-white 3xl:mb-[30px] 2xl:mb-[25px] sm:mb-[15px] mb-[10px]"
 
 export default function footer() {
   return (
-    <footer className="w-full h-auto block bg-[#07163D] 2xl:py-[120px_60px] sm:py-[80px_40px] py-[40px_30px]">
+    <footer className="w-full h-auto block bg-[#07163D] py-[40px_20px] 2xl:py-[60px_25px] 3xl:py-[120px_60px]">
       <div className="container">
-        <div className="w-full flex flex-wrap">
-          <div className="xl:w-[25%] sm:w-[50%] w-[100%]  sm:pr-[60px] xl:mb-[0] mb-[20px]">
-            <Link
-              href="#"
-              className="3xl:w-[320px] 3xl:h-[135px] 2xl:w-[260px] 2xl:h-[100px] xl:w-[200px] xl:h-[85px] w-[200px] h-[85px] aspect-square block 3xl:mb-[50px] 2xl:mb-[30px] mb-[20px]"
-            >
-              <Image
-                src="/images/footer-logo.webp"
-                alt="logo"
-                width="319"
-                height="135"
-                className="w-full h-full block object-contain"
-              />
-            </Link>
-            <p className="3xl:text-[20px] 2xl:text-[18px] xl:text-[16px] text-[14px] leading-[1.3] font-normal text-white ">
-              Shayan Royal General Trading was established in 1995 in Dubai, United Arab Emirates and has since extended its core business into exporting of Brand-new cars from Middle East.
-            </p>
-          </div>
-          <div className="xl:w-[20%] sm:w-[50%] w-[100%] sm:pr-[60px] xl:mb-[0] mb-[20px]">
-            <Heading
-              as="h6"
-              className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] leading-none font-semibold uppercase text-white sm:mb-[30px] mb-[20px]"
-            >
-              Quick Link
-            </Heading>
-            <ul>
-              <li className='mb-[10]'>
-                <Link href="/about" className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] text-white mb-[15px] hover:text-[#BE1E2D]" >
-                  About Us
+        <div className="w-full flex flex-wrap mb-[30px] max-sm:gap-3">
+          <div className="w-full md:w-5/12">
+            <div className="flex flex-wrap max-sm:gap-2">
+              <div className="w-full sm:w-1/2 md:w-2/3">
+                <Link
+                  href="#"
+                  className="3xl:w-[320px] 2xl:w-[250px] xl:w-[200px] lg:w-[170px] w-[120px]  block mb-[25px] lg:mb-[30px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] "
+                >
+                  <Image
+                    src="/images/footer-logo.webp"
+                    alt="logo"
+                    width="319"
+                    height="135"
+                    className="w-full h-full block object-contain"
+                  />
                 </Link>
-              </li>
-              <li className='mb-[10]'>
-                <Link href="/inventory" className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] text-white mb-[15px] hover:text-[#BE1E2D]" >
-                  Inventory
-                </Link>
-              </li>
-              <li className='mb-[10]'>
-                <Link href="/brand" className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] text-white mb-[15px] hover:text-[#BE1E2D]" >
-                  Brands 
-                </Link>
-              </li>
-              <li className='mb-[10]'>
-                <Link href="/service" className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] text-white mb-[15px] hover:text-[#BE1E2D]" >
-                  Services
-                </Link>
-              </li>
-              <li className='mb-[10]'>
-                <Link href="/privacy-policy" className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] text-white mb-[15px] hover:text-[#BE1E2D]" >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li className='mb-[10]'>
-                <Link href="/terms-conditions" className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] text-white mb-[15px] hover:text-[#BE1E2D]" >
-                  Terms & Condition
-                </Link>
-              </li>
-              <li className='mb-[10]'>
-                <Link href="/contact" className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] text-white mb-[15px] hover:text-[#BE1E2D]" >
-                  Contact Us
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div className="2xl:w-[25%] xl:w-[30%] sm:w-[50%] w-[100%] sm:pr-[60px] ">
-            <Heading
-              as="h6"
-              className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] leading-none font-semibold uppercase text-white sm:mb-[30px] mb-[20px]"
-            >
-              visit us
-            </Heading>
-            <p className="3xl:text-[20px] 2xl:text-[18px] xl:text-[16px] text-[14px] leading-[1.3] font-normal text-white 3xl:mb-[85px] 2xl:mb-[60px] xl:mb-[40px] mb-[40px]">
-              Centurion Star Tower, behind Day To Day,Port Saeed 34 St. Deira.
-              Dubai, United Arab Emirates
-            </p>
-            <Heading
-              as="h6"
-              className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] leading-none font-semibold uppercase text-white mb-[10px]"
-            >
-              Stay in the loop.
-            </Heading>
-            <p className="xl:text-[16px] text-[14px] leading-[1.3] font-normal text-white mb-[25px]">
-              Sign up for email updates today.
-            </p>
-            <div className="w-full flex items-center relative z-0">
-              <Input
-                type="email"
-                placeholder="Enter Email"
-                className="rounded-[10px] border-gray-300 focus-visible:ring-0 focus-visible:ring-offset-0 bg-white h-[45px] placeholder-[#555555] placeholder:text-[14px]"
-              />
-              <Button
-                type="submit"
-                className="absolute top-0 right-[10px] bottom-0 margin-auto bg-[#BE1E2D] h-[40px] top-1/2 -translate-y-1/2 right-[3px] 3xl:text-[16px] 2xl:text-[14px] text-[14px] uppercase font-medium">
-                Subscribe
-              </Button>
+                <p className="text-[10px] xl:text-[13px] 2xl:text-[16px] 3xl:text-[20px] leading-[1.4] font-light text-white sm:max-w-[220px] md:max-w-[180px] lg:max-w-[200px] xl:max-w-[245px] 2xl:max-w-[280px] 3xl:max-w-[350px]">
+                  Shayan Royal General Trading was established in 1995 in Dubai, United Arab Emirates and has since extended its core business into exporting of Brand-new cars from Middle East.
+                </p>
+              </div>
+
+
+              <div className="w-full sm:w-1/2  md:w-1/3 3xl:pl-[30px] mb-[10px]">
+                <div className={`${footerHeading}`}>
+                  Quick Link
+                </div>
+                <ul>
+                  <li className='xl:mb-[6px] 3xl:mb-[10]'>
+                    <Link href="/about" className={`${footerLink}`} >
+                      About Us
+                    </Link>
+                  </li>
+                  <li className='xl:mb-[6px] 3xl:mb-[10]'>
+                    <Link href="/inventory" className={`${footerLink}`} >
+                      Inventory
+                    </Link>
+                  </li>
+                  <li className='xl:mb-[6px] 3xl:mb-[10]'>
+                    <Link href="/brand" className={`${footerLink}`} >
+                      Brands
+                    </Link>
+                  </li>
+                  <li className='xl:mb-[6px] 3xl:mb-[10]'>
+                    <Link href="/service" className={`${footerLink}`} >
+                      Services
+                    </Link>
+                  </li>
+                  <li className='xl:mb-[6px] 3xl:mb-[10]'>
+                    <Link href="/privacy-policy" className={`${footerLink}`} >
+                      Privacy Policy
+                    </Link>
+                  </li>
+                  <li className='xl:mb-[6px] 3xl:mb-[10]'>
+                    <Link href="/terms-conditions" className={`${footerLink}`} >
+                      Terms & Condition
+                    </Link>
+                  </li>
+                  <li className='xl:mb-[6px] 3xl:mb-[10]'>
+                    <Link href="/contact" className={`${footerLink}`} >
+                      Contact Us
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-          <div className="2xl:w-[30%] xl:w-[25%] sm:w-[50%] w-[100%] sm:mt-[0px] mt-[25px]">
-            <Heading
-              as="h6"
-              className="3xl:text-[20px] 2xl:text-[18px] sm:text-[16px] text-[14px] leading-none font-semibold uppercase text-white sm:mb-[30px] mb-[20px]"
-            >
-              our Location
-            </Heading>
-            <div>
-              <Link
-                href="https://maps.app.goo.gl/z5LV1Zd5tjzemEAZ7"
-                className="w-full 3xl:h-[283px] 2xl:h-[255px] xl:h-[215px] xl:h-[215px] sm:h-[195px] h-[160px] aspect-square block sm:mb-[50px] mb-[20px] rounded-[10px] overflow-hidden w-full"
-              >
-                <Image
-                  src="/images/map.webp"
-                  alt="logo"
-                  width="490"
-                  height="283"
-                  className="w-full h-full block object-cover"
-                />
-              </Link>
+
+          <div className="w-full md:w-7/12">
+            <div className="flex flex-wrap max-sm:gap-3">
+              <div className="w-full sm:w-1/2 ">
+                <div className={`${footerHeading}`}>
+                  visit us
+                </div>
+                <div className="w-full 3xl:max-w-[380px] 2xl:max-w-[320px] xl:max-w-[250px] lg:max-w-[220px] md:max-w-[180px] sm:max-w-[250px]">
+                  <p className={`${footerLink} line-clamp-3 !mb-[15px] md:!mb-[50px] 2xl:!mb-[60px] 3xl:!mb-[80px]`} >
+                    Centurion Star Tower, behind Day To Day,Port Saeed 34 St. Deira.
+                    Dubai, United Arab Emirates
+                  </p>
+                  <div className={`${footerHeading} !mb-[10px]`}>
+                    Stay in the loop.
+                  </div>
+                  <p className="text-[8px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[16px]  leading-[1.3] font-light text-white mb-[25px]">
+                    Sign up for email updates today.
+                  </p>
+                  <div className="w-full flex items-center relative z-0 bg-white p-[2px] rounded-[4px] xl:rounded-[5px] 2xl:rounded-[8px] 3xl:rounded-[10px] h-[25px] xl:h-[30px] 2xl:h-[35px] 3xl:h-[45px]">
+                    <Input
+                      type="email"
+                      placeholder="Enter Email"
+                      className="border-none focus-visible:ring-0 focus-visible:ring-offset-0 h-full w-[calc(100%-75px)]  
+                        xl:w-[calc(100%-95px)] 2xl:w-[calc(100%-115px)] 3xl:w-[calc(100%-145px)]  placeholder-[#555555] placeholder:text-[8px]
+                          placeholder:xl:text-[10px] placeholder:2xl:text-[12px] placeholder:3xl:text-[14px] !text-[8px]
+                          xl:!text-[10px] 2xl:!text-[12px] 3xl:!text-[14px]"
+                    />
+                    <Button
+                      type="submit"
+                      className="text-[8px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[16px] bg-[#BE1E2D] w-[75px] xl:w-[95px] 2xl:w-[115px] 3xl:w-[145px] h-full 
+                      rounded-[4px] xl:rounded-[5px] 2xl:rounded-[8px] 3xl:rounded-[10px] 
+                      uppercase font-normal cursor-pointer">
+                      Subscribe
+                    </Button>
+                  </div>
+                </div>
+              </div>
+              <div className="w-full sm:w-1/2">
+                <div className={`${footerHeading}`}>
+                  our Location
+                </div>
+                <div>
+                  <Link
+                    href="https://maps.app.goo.gl/z5LV1Zd5tjzemEAZ7"
+                    className="h-[130px] sm:h-[150px] xl:h-[195px] 2xl:h-[220px] 3xl:h-[283px] aspect-square block rounded-[10px] overflow-hidden w-full"
+                  >
+                    <Image
+                      src="/images/mapFooter.webp"
+                      alt="logo"
+                      width="490"
+                      height="283"
+                      className="w-full h-full block object-cover"
+                    />
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div className="bg-[#0E1D44] lg:pt-[20px] lg:pr-[20px] lg:pb-[20px] lg:pl-[30px] pt-[20px] pr-[20px] pb-[20px] pl-[20px] rounded-[10px] sm:mb-[45px] mb-[20px]">
+
+        <div className="w-full bg-[#0E1D44] p-[12px_15px] xl:p-[15px_20px] 2xl:p-[18px_25px] 3xl:p-[22px_30px] rounded-[10px] mb-[40px] 2xl:mb-[50px] 3xl:mb-[60px]">
           <div className='flex flex-wrap items-center'>
             <div className='flex flex-wrap items-center'>
-              <div className='3xl:text-[50px] 2xl:text-[35px] xl:text-[20px] lg:text-[18px] md:text-[20px] sm:text-[15px] text-[14px] font-semibold text-white sm:mb-[0px] mb-[10px]'>
+              <div className='text-[20px] lg:text-[26px] xl:text-[33px] 2xl:text-[40px] 3xl:text-[50px] font-semibold text-white sm:mb-[0px] mb-[10px]'>
                 CONNECT WITH US
               </div>
               <div className='lg:pl-[40px] md:pl-[30px] pl-[20px] sm:mb-[0px] mb-[10px]'>
@@ -144,22 +151,22 @@ export default function footer() {
                   alt="logo"
                   width="78"
                   height="15"
-                  className=" h-full xl:w-[78px] lg:w-[60px] md:w-[40px] w-[30px] block object-contain"
+                  className=" h-full w-[40px] xl:w-[52px] 2xl:w-[62px] 3xl:w-[78px] block object-contain"
                 />
               </div>
             </div>
             <div className='flex flex-wrap items-center sm:w-auto w-full'>
               <div className='3xl:pl-[60px] 2xl:pl-[40px] md:pl-[25px] sm:pl-[20px] 2xs:w-auto w-full 2xs:mb-[0px] mb-[10px]'>
-                <div className='3xl:text-[20px] 2xl:text-[18px] text-[14px] font-medium text-white'>EMAIL</div>
-                <a href="mailto:sales@shayan.ae" className='block text-white 3xl:text-[20px] lg:text-[18px] text-[14px] hover:text-[#BE1E2D]'>sales@shayan.ae</a>
+                <div className='text-[10px] xl:text-[13px] 2xl:text-[16px] 3xl:text-[20px] font-medium text-white'>EMAIL</div>
+                <a href="mailto:sales@shayan.ae" className='text-[10px] xl:text-[13px] 2xl:text-[16px] 3xl:text-[20px] block text-white hover:text-[#BE1E2D]'>sales@shayan.ae</a>
               </div>
               <div className='3xl:pl-[60px] 2xl:pl-[40px] md:pl-[25px] sm:pl-[20px] 2xs:pl-[25px] 2xs:w-auto w-full 2xs:mb-[0px] mb-[10px]'>
-                <div className='3xl:text-[20px] 2xl:text-[18px] text-[14px] font-medium text-white'>TELEPHONE</div>
-                <a href="tel:+97142728150" className='block text-white 3xl:text-[20px] lg:text-[18px] text-[14px] hover:text-[#BE1E2D]'>+971 4 272 8150</a>
+                <div className='text-[10px] xl:text-[13px] 2xl:text-[16px] 3xl:text-[20px] font-medium text-white'>TELEPHONE</div>
+                <a href="tel:+97142728150" className='text-[10px] xl:text-[13px] 2xl:text-[16px] 3xl:text-[20px] block text-white hover:text-[#BE1E2D]'>+971 4 272 8150</a>
               </div>
               <div className='3xl:pl-[60px] 2xl:pl-[40px] md:pl-[25px] sm:pl-[20px] 2xs:pl-[25px] 2xs:w-auto w-full'>
-                <div className='3xl:text-[20px] 2xl:text-[18px] text-[14px] font-medium text-white'>WHATSAPP</div>
-                <a href="https://wa.me/971505286045" target="_blank" className='block text-white 3xl:text-[20px] lg:text-[18px] text-[14px] hover:text-[#BE1E2D]'>+971 50 528 6045</a>
+                <div className='text-[10px] xl:text-[13px] 2xl:text-[16px] 3xl:text-[20px] font-medium text-white'>WHATSAPP</div>
+                <a href="https://wa.me/971505286045" target="_blank" className='text-[10px] xl:text-[13px] 2xl:text-[16px] 3xl:text-[20px] block text-white hover:text-[#BE1E2D]'>+971 50 528 6045</a>
               </div>
             </div>
             <div className='flex flex-wrap items-center lg:justify-start sm:justify-center justify-start 2xl:pl-[90px] xl:pl-[45px] xl:mt-[0px] mt-[20px] lg:w-auto w-full xl:mx-0 mx-auto'>
@@ -202,11 +209,13 @@ export default function footer() {
             </div>
           </div>
         </div>
+
+        {/* copyRight */}
         <div className='flex flex-wrap justify-between items-center'>
-          <div className='text-white md:text-[16px] sm:text-[14px] text-[13px] sm:mb-[0px] mb-[10px]'>
+          <div className='text-white text-[8px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[16px] sm:mb-[0px] mb-[10px]'>
             © 2025 Shayan Royal Group. All rights reserved.
           </div>
-          <div className='text-white md:text-[16px] sm:text-[14px] text-[13px] text-right'>
+          <div className='text-white text-[7px] xl:text-[9px] 2xl:text-[11px] 3xl:text-[14px] text-right'>
             <div className='flex flex-wrap'>
               Designed By:
               <a href="" className='block pl-[10px]'>
@@ -215,7 +224,7 @@ export default function footer() {
                   alt="logo"
                   width="96"
                   height="12"
-                  className="w-full h-full block object-contain"
+                  className="w-full h-full block object-contain max-w-[50px] xl:max-w-[65px] 2xl:amx-w-[75px] 3xl:max-w-[95px]"
                 />
               </a>
             </div>

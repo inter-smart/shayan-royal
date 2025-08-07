@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-
+import { useEffect, useState } from "react";
 import {
   Sheet,
   SheetContent,
@@ -38,16 +38,28 @@ export default function Header() {
 
   const [isOpen, setIsOpen] = React.useState(false); // Mobile menu state
 
+
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <header>
-      <div className={`${isPrivacyPage ? "relative bg-white" : "absolute bg-transparent"} w-full  top-0 left-0 z-10 bg-transparent`}>
+      <div className={`${isPrivacyPage ? "relative bg-white" : "absolute bg-transparent"}  ${isScrolled ? "stickyHeader" : ""} w-full  top-0 left-0 z-10 bg-transparent `}>
         <div className="container">
           <div
-            className={`w-full flex flex-wrap items-center justify-between py-[5px_0] ${isInnerPage ? "lg:border-b lg:border-[rgba(217,217,217,0.2)]" : ""
+            className={`w-full flex flex-wrap items-center justify-between py-[15px_0] 2xl:py-[20px_0] 3xl:py-[25px_0] ${isInnerPage ? "lg:border-b lg:border-[rgba(217,217,217,0.2)]" : ""
               }`}
           >
             {/* Logo */}
-            <div className="3xl:w-[260px] 2xl:w-[195px] lg:w-[165px] w-[135px] flex items-center justify-center pb-[5px]">
+            <div className={`  ${isScrolled ? "w-[150px]" : "3xl:w-[260px] 2xl:w-[195px] xl:w-[175px] lg:w-[140px] w-[135px]"} transition-all flex items-center justify-center pb-[5px]`}>
               <Link href="/" className="block w-full h-full">
                 <Image
                   src="/images/logo.svg"
@@ -66,9 +78,10 @@ export default function Header() {
                   const isActive = pathname === item.href;
 
                   const menuLinkClass = `
-                   text-[9px]  xl:text-[11px] 2xl:text-[13px] 3xl:text-[18px] font-medium uppercase leading-3
+                   text-[9px]  xl:text-[11px] 2xl:text-[13px] 3xl:text-[18px] font-medium uppercase tracking-[1px] transition-all
                     ${isInnerPage ? "lg:text-white text-black" : "text-black"}
-                    flex items-center justify-center 3xl:px-[25px] 2xl:px-[20px] px-[15px] 3xl:py-[43px] 2xl:py-[35px] py-[30px]
+                    flex items-center justify-center 3xl:px-[25px] 2xl:px-[20px] px-[15px] 
+                    ${isScrolled ? "py-[20px]" : "3xl:py-[43px] 2xl:py-[35px] py-[30px]"} 
                     ${isActive ? "after:absolute after:content-[''] after:bottom-[-1px] after:left-0 after:right-0 after:m-auto after:w-[70%] after:h-[2px] after:bg-white" : ""}
                     ${isPrivacyPage ? "!text-black hover:!text-[#BE1E2D]" : ""}
                     hover:!text-[#BE1E2D] hover:bg-transparent

@@ -146,10 +146,10 @@ export default function NewarrivalSection() {
                                 grid: { rows: 2, fill: "row" },
                             },
                         }}
-                        className=""
+                        className="!h-auto"
                     >
                         {carData.map((car, index) => (
-                            <SwiperSlide key={index}>
+                            <SwiperSlide key={index} className="!h-auto">
                                 <ProductCard car={car} />
                             </SwiperSlide>
                         ))}
