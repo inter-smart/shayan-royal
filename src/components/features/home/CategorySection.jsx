@@ -38,13 +38,14 @@ export default function AboutSection({ title, description, categories }) {
             modules={[Navigation, Autoplay]}
             slidesPerView={5}
             spaceBetween={30}
-            centeredSlides
+            centeredSlides={true}
+            loop={true}
+            loopFillGroupWithBlank={true}
             autoplay={{
-              delay: 3000, // 3 seconds between slides
+              delay: 2000,
               disableOnInteraction: false,
             }}
-            speed={800} // transition duration (ms) for smoothness
-            loop
+            speed={1200} // smooth transition speed (1s)
             onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
             onBeforeInit={(swiper) => setActiveIndex(swiper.realIndex)}
             navigation={{
@@ -83,22 +84,16 @@ export default function AboutSection({ title, description, categories }) {
                 centeredSlides: true,
               },
             }}
-            className="px-10 overflow-hidden mb-3"
+            className="px-10 overflow-hidden mb-3 w-full "
           >
-            {categories?.map((car, index) => (
+            {carCategories.map((car, index) => (
               <SwiperSlide key={index}>
                 <div className="flex flex-col items-center cursor-pointer group transition-all duration-300" onClick={() => setSelected(car.name)}>
                   <div
                     className="w-full max-w-[180px] xs:max-w-[110px] md:max-w-[120px] lg:max-w-[145px] 2xl:max-w-[185px] 3xl:max-w-[250px] 
                                    h-[45px] xs:h-[100px] flex items-center justify-center"
                   >
-                    <Image
-                      src={car.image ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${car.image}` : "/images/cat1.png"}
-                      alt={car.name}
-                      width={100}
-                      height={100}
-                      className="w-full h-full object-contain"
-                    />
+                    <Image src={car.img} alt={car.name} width={100} height={100} className="w-full h-full object-contain" />
                   </div>
                   <p
                     className={`3xl:text-[25px] 2xl:text-[18px] md:text-[16px] sm:text-[14px] text-[12px] font-base1 mt-1 md:mt-1 ${
@@ -113,7 +108,7 @@ export default function AboutSection({ title, description, categories }) {
             ))}
           </Swiper>
           {/* center Arrow */}
-          <div className="realtive 3xl:max-w-[20px] 2xl:max-w-[15px] m-auto flex justify-center max-sm:hidden">
+          <div className="realtive 3xl:max-w-[20px] 2xl:max-w-[15px] m-auto flex justify-center max-sm:hidden animate-jump">
             <svg className="3xl:-w-[20px] 2xl:w-[15px] w-[12px] h-[12px]" viewBox="0 0 21 18" fill="none">
               <path d="M1 10.6404L11.3019 1.64038L20.5 10.6404" stroke="black" />
               <path d="M1 16.6404L11.3019 7.64038L20.5 16.6404" stroke="black" />
