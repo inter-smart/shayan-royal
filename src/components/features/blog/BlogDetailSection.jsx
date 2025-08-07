@@ -38,10 +38,16 @@ export default function BlogDetailSection({ blog, recentBlogs, slug }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!name.trim() || !comment.trim()) {
-      toast.warning("Please enter both name and comment.");
+    if (!name.trim()) {
+      toast.warning("Please enter name.");
       return;
     }
+
+     if (!comment.trim()) {
+      toast.warning("Please enter commect.");
+      return;
+    }
+
 
     setLoading(true);
     try {
