@@ -61,7 +61,7 @@ export default function CarColorSpecSection({ colorVariants = colors, specs2 }) 
   }, []);
 
   return (
-    <section className="relative w-full pt-[30px] 3xl:pt-[70px] pb-[40px]">
+    <section className="relative w-full pt-[30px] 3xl:pt-[70px] pb-[40px] overflow-hidden">
       <div className="container mx-auto">
         <div className="flex flex-col lg:flex-row justify-between items-center gap-10">
           {/* Color Selection */}
@@ -82,14 +82,11 @@ export default function CarColorSpecSection({ colorVariants = colors, specs2 }) 
                         }}
                       >
                         {isActive && (
-                          <div className="2xl:w-[32px] w-[22px] 2xl:h-[32px] h-[22px] rounded-full" style={{ backgroundColor: color?.color }} />
+                          <div className="2xl:w-[32px] w-[25px] 2xl:h-[32px] h-[25px] rounded-full" style={{ backgroundColor: color?.color }} />
                         )}
                       </div>
                       {isActive && (
-                        <span
-                          className="absolute left-[55px] top-1/2 transform -translate-y-1/2 text-black text-lg font-medium
-                                                 whitespace-nowrap max-lg:hidden"
-                        >
+                        <span className="absolute left-[55px] top-1/2 transform -translate-y-1/2 text-black text-lg font-medium whitespace-nowrap max-lg:hidden">
                           {color?.name}
                         </span>
                       )}

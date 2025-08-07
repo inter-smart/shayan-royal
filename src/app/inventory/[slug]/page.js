@@ -7,7 +7,7 @@ import SpecificationSection from "@/components/features/inventory/SpecificationS
 import SimilarcarSection from "@/components/features/inventory/SimilarcarSection";
 import { fetchFromAPI } from "@/lib/api";
 import { mediaUrl } from "@/lib/constants";
-// import PDFViewerSection from "@/components/features/inventory/PDFViewerSection";
+import PDFViewerSection from "@/components/features/inventory/PDFViewerSection";
 // import LogoScrollSection from "@/components/features/inventory/LogoScrollSection";
 
 export default async function page({ params }) {

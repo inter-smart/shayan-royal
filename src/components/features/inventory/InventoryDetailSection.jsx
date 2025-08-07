@@ -58,8 +58,6 @@ const SocialLinks = [
 ];
 
 export default function InventoryDetailSection({ carDetails, specs }) {
-
-
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   const thumbsPrevRef = useRef(null);
@@ -73,7 +71,7 @@ export default function InventoryDetailSection({ carDetails, specs }) {
   }, []);
 
   return (
-    <section className="w-full h-auto block 3xl:py-[40px_100px] xl:py-[30px_50px] sm:py-[20px_30px] py-[15px_30px]">
+    <section className="w-full h-auto block 3xl:py-[40px_100px] xl:py-[30px_50px] sm:py-[20px_30px] py-[15px_30px] overflow-hidden">
       <div className="container">
         <Heading size="heading2" as="h2" className="text-black uppercase font-normal 3xl:mb-[40px] 2xl:mb-[25px] md:mb-[15px] mb-[10px]">
           {carDetails?.carName}
@@ -185,7 +183,10 @@ export default function InventoryDetailSection({ carDetails, specs }) {
                   >
                     {carImages?.map((img, index) => (
                       <SwiperSlide key={`thumb-${index}`} className="group">
-                        <div className="relative w-full 3xl:h-[150px] 2xl:h-[110px] sm:h-[90px] h-[70px] cursor-pointer bg-[#F5F9FF] rounded-[10px] overflow-hidden shadow transition-opacity duration-300 opacity-50 group-[.swiper-slide-thumb-active]:opacity-100">
+                        <div
+                          className="relative w-full 3xl:h-[150px] 2xl:h-[110px] sm:h-[90px] h-[70px] cursor-pointer bg-[#F5F9FF]
+                                                 rounded-[10px] overflow-hidden shadow transition-opacity duration-00 opacity-90 group-[.swiper-slide-thumb-active]:opacity-100"
+                        >
                           <Image
                             src={img ? `${mediaUrl}${img}` : "/images/no-image.png"}
                             alt={`thumb-${index}`}

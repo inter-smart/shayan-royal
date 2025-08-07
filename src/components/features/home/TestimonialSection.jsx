@@ -21,104 +21,91 @@ const testimonials = [
   },
   {
     bg: "bg-[#FEF0FF]",
-    content:
-      "Very beautiful cottages. A good place to stay when visiting Munnar. I visited there during this Onam Holidays. Very peaceful.",
+    content: "Very beautiful cottages. A good place to stay when visiting Munnar. I visited there during this Onam Holidays. Very peaceful.",
     name: "Rahul Krishna",
     location: "UAE",
     image: "/images/avat.png",
   },
   {
     bg: "bg-[#FFFDEC]",
-    content:
-      "Very beautiful cottages. A good place to stay when visiting Munnar. I visited there during this Onam holidays. Very peaceful",
+    content: "Very beautiful cottages. A good place to stay when visiting Munnar. I visited there during this Onam holidays. Very peaceful",
     name: "Jana Mary",
     location: "UAE",
     image: "/images/avat.png",
   },
   {
     bg: "bg-[#D1DEFF]",
-    content:
-      "Comfortable and clean cottages. Great hospitality and peaceful surroundings. I will definitely recommend it to my friends and family.",
+    content: "Comfortable and clean cottages. Great hospitality and peaceful surroundings. I will definitely recommend it to my friends and family.",
     name: "Jana Mary",
     location: "UAE",
     image: "/images/avat.png",
   },
   {
     bg: "bg-[#ECF4DF]",
-    content:
-      "Comfortable and clean cottages. Great hospitality and peaceful surroundings.",
+    content: "Comfortable and clean cottages. Great hospitality and peaceful surroundings.",
     name: "Jana Mary",
     location: "UAE",
     image: "/images/avat.png",
   },
   {
     bg: "bg-[#EDEFFF]",
-    content:
-      "Comfortable and clean cottages. Great hospitality and peaceful surroundings. I will definitely recommend it to my friends and family.",
+    content: "Comfortable and clean cottages. Great hospitality and peaceful surroundings. I will definitely recommend it to my friends and family.",
     name: "Jana Mary",
     location: "UAE",
     image: "/images/avat.png",
   },
   {
     bg: "bg-[#ECFEFF]",
-    content:
-      "Comfortable and clean cottages. Great hospitality and peaceful surroundings. I will definitely recommend it to my friends and family.",
+    content: "Comfortable and clean cottages. Great hospitality and peaceful surroundings. I will definitely recommend it to my friends and family.",
     name: "Jana Mary",
     location: "UAE",
     image: "/images/avat.png",
   },
   {
     bg: "bg-[#FFF5F5]",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non autem hoc: igitur ne illud quidem. Prave, nequiter, turpiter cenabat...",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non autem hoc: igitur ne illud quidem. Prave, nequiter, turpiter cenabat...",
     name: "John George",
     location: "UAE",
     image: "/images/avat.png",
   },
   {
     bg: "bg-[#FEF0FF]",
-    content:
-      "Very beautiful cottages. A good place to stay when visiting Munnar. I visited there during this Onam Holidays. Very peaceful.",
+    content: "Very beautiful cottages. A good place to stay when visiting Munnar. I visited there during this Onam Holidays. Very peaceful.",
     name: "Rahul Krishna",
     location: "UAE",
     image: "/images/avat.png",
   },
   {
     bg: "bg-[#FFFDEC]",
-    content:
-      "Very beautiful cottages. A good place to stay when visiting Munnar. I visited there during this Onam holidays. Very peaceful",
+    content: "Very beautiful cottages. A good place to stay when visiting Munnar. I visited there during this Onam holidays. Very peaceful",
     name: "Jana Mary",
     location: "UAE",
     image: "/images/avat.png",
   },
   {
     bg: "bg-[#D1DEFF]",
-    content:
-      "Comfortable and clean cottages. Great hospitality and peaceful surroundings. I will definitely recommend it to my friends and family.",
+    content: "Comfortable and clean cottages. Great hospitality and peaceful surroundings. I will definitely recommend it to my friends and family.",
     name: "Jana Mary",
     location: "UAE",
     image: "/images/avat.png",
   },
   {
     bg: "bg-[#ECF4DF]",
-    content:
-      "Comfortable and clean cottages. Great hospitality and peaceful surroundings.",
+    content: "Comfortable and clean cottages. Great hospitality and peaceful surroundings.",
     name: "Jana Mary",
     location: "UAE",
     image: "/images/avat.png",
   },
   {
     bg: "bg-[#EDEFFF]",
-    content:
-      "Comfortable and clean cottages. Great hospitality and peaceful surroundings. I will definitely recommend it to my friends and family.",
+    content: "Comfortable and clean cottages. Great hospitality and peaceful surroundings. I will definitely recommend it to my friends and family.",
     name: "Jana Mary",
     location: "UAE",
     image: "/images/avat.png",
   },
   {
     bg: "bg-[#ECFEFF]",
-    content:
-      "Comfortable and clean cottages. Great hospitality and peaceful surroundings. I will definitely recommend it to my friends and family.",
+    content: "Comfortable and clean cottages. Great hospitality and peaceful surroundings. I will definitely recommend it to my friends and family.",
     name: "Jana Mary",
     location: "UAE",
     image: "/images/avat.png",
@@ -142,11 +129,7 @@ const testimonialBgColors = [
   "bg-[#ECFEFF]",
 ];
 
-export default function TestimonialSection({
-  title,
-  description,
-  testimonials,
-}) {
+export default function TestimonialSection({ title, description, testimonials }) {
   const [isMobile, setIsMobile] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -180,20 +163,13 @@ export default function TestimonialSection({
     <section className="relative z-0 py-[30px] xl:py-[45px] 2xl:py-[50px] 3xl:py-[75px] bg-[#F5F9FF] overflow-hidden">
       <div className="container">
         <div className="max-w-[85%] mx-auto text-center mb-[15px] 2xl:mb-[30px] 3xl:mb-[50px]">
-          <Heading
-            size="heading2"
-            as="h2"
-            className="text-black uppercase mb-[10px]"
-          >
+          <Heading size="heading2" as="h2" className="text-black uppercase mb-[10px]">
             Testimonials
           </Heading>
           <Text size="text1" as="p" className="text-[#4B4B4B] mb-[15px]">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in Lorem Ipsum
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever
+            since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only
+            five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in Lorem Ipsum
             passages, and more recently with desktop.
           </Text>
         </div>
@@ -233,27 +209,19 @@ export default function TestimonialSection({
             {slides.map((slideGroup, index) => {
               if (isMobile) {
                 return (
-                  <SwiperSlide key={index}>
+                  <SwiperSlide key={index} className="!h-auto">
                     {slideGroup.map((item, idx) => (
                       <div key={idx} className="p-[20px]">
                         <div
                           className={`h-full p-[25px] w-full rounded-[12px] flex flex-col justify-between overflow-hidden ${testimonialBgColors[idx]}`}
                         >
-                          <Text
-                            size="text1"
-                            as="p"
-                            className="text-[#4B4B4B] mb-[20px] leading-[1.6]"
-                          >
+                          <Text size="text1" as="p" className="text-[#4B4B4B] mb-[20px] leading-[1.6]">
                             {item.message}
                           </Text>
                           <div className="flex items-center gap-4">
                             <div className="3xl:w-[65px] w-[45px] 3xl:h-[65px] h-[45px] rounded-full overflow-hidden">
                               <Image
-                                src={
-                                  item?.image
-                                    ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${item?.image}`
-                                    : "/images/testimonial/1.png"
-                                }
+                                src={item?.image ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${item?.image}` : "/images/testimonial/1.png"}
                                 alt={item?.name}
                                 width={65}
                                 height={65}
@@ -283,30 +251,17 @@ export default function TestimonialSection({
                     // first slide
                     <div className="flex flex-wrap w-full h-full">
                       {slideGroup.map((item, idx) => (
-                        <div
-                          key={idx}
-                          className={`3xl:p-[20px] 2xl:p-[15px] md:p-[10px] p-[5px] ${
-                            idx === 0 ? "w-full" : "w-1/2"
-                          } flex-grow`}
-                        >
+                        <div key={idx} className={`3xl:p-[20px] 2xl:p-[15px] md:p-[10px] p-[5px] ${idx === 0 ? "w-full" : "w-1/2"} flex-grow`}>
                           <div
                             className={`h-full p-[25px] w-full rounded-[12px] flex flex-col justify-between overflow-hidden ${testimonialBgColors[idx]}`}
                           >
-                            <Text
-                              size="text1"
-                              as="p"
-                              className="text-[#4B4B4B] mb-[20px] leading-[1.6]"
-                            >
+                            <Text size="text1" as="p" className="text-[#4B4B4B] mb-[20px] leading-[1.6]">
                               {item.message}
                             </Text>
                             <div className="flex items-center gap-4">
                               <div className="3xl:w-[65px] w-[45px] 3xl:h-[65px] h-[45px] rounded-full overflow-hidden">
                                 <Image
-                                  src={
-                                    item?.image
-                                      ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${item?.image}`
-                                      : "/images/testimonial/1.png"
-                                  }
+                                  src={item?.image ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${item?.image}` : "/images/testimonial/1.png"}
                                   alt={item.name}
                                   width={65}
                                   height={65}
@@ -330,28 +285,17 @@ export default function TestimonialSection({
                     //    second Slide
                     <div className="columns-2 max-lg:gap-2 w-full h-full">
                       {slideGroup.map((item, idx) => (
-                        <div
-                          key={idx}
-                          className="3xl:p-[20px] 2xl:p-[15px] md:p-[10px] p-[5px]  break-inside-avoid w-full "
-                        >
+                        <div key={idx} className="3xl:p-[20px] 2xl:p-[15px] md:p-[10px] p-[5px]  break-inside-avoid w-full ">
                           <div
                             className={`h-full p-[25px] w-full rounded-[12px] flex flex-col justify-between overflow-hidden ${testimonialBgColors[idx]}`}
                           >
-                            <Text
-                              size="text1"
-                              as="p"
-                              className="text-[#4B4B4B] mb-[20px] leading-[1.6]"
-                            >
+                            <Text size="text1" as="p" className="text-[#4B4B4B] mb-[20px] leading-[1.6]">
                               {item.message}
                             </Text>
                             <div className="flex items-center gap-4">
                               <div className="3xl:w-[65px] w-[45px] 3xl:h-[65px] h-[45px] rounded-full overflow-hidden">
                                 <Image
-                                  src={
-                                    item?.image
-                                      ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${item?.image}`
-                                      : "/images/testimonial/1.png"
-                                  }
+                                  src={item?.image ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${item?.image}` : "/images/testimonial/1.png"}
                                   alt={item.name}
                                   width={65}
                                   height={65}
@@ -387,10 +331,7 @@ export default function TestimonialSection({
                 fill="none"
                 className="group-hover:invert-100 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]"
               >
-                <path
-                  d="M6.14364 0.699707L0.769531 6.12544L6.14364 12.1834"
-                  stroke="black"
-                />
+                <path d="M6.14364 0.699707L0.769531 6.12544L6.14364 12.1834" stroke="black" />
               </svg>
             </button>
             <button
@@ -402,10 +343,7 @@ export default function TestimonialSection({
                 fill="none"
                 className="group-hover:invert-100 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]"
               >
-                <path
-                  d="M0.817302 0.699707L6.19141 6.12544L0.817302 12.1834"
-                  stroke="black"
-                />
+                <path d="M0.817302 0.699707L6.19141 6.12544L0.817302 12.1834" stroke="black" />
               </svg>
             </button>
           </div>

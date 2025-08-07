@@ -6,7 +6,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import "swiper/css";
 
 const tabs = ["Specifications", "Description", "Interior Features", "Exterior Features", "Security & Environment"];
 
@@ -105,7 +104,7 @@ export default function ResponsiveTabsWithSwiper({ specList = detailsData }) {
               1024: { slidesPerView: 5 },
             }}
             onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-            onBeforeInit={(swiper) => setActiveIndex(swiper.realIndex)}
+            onSwiper={(swiper) => setActiveIndex(swiper.realIndex)}
             navigation={{
               prevEl: ".btn-prev",
               nextEl: ".btn-next",
@@ -129,7 +128,7 @@ export default function ResponsiveTabsWithSwiper({ specList = detailsData }) {
             ))}
           </Swiper>
           {/* Navigation Arrows */}
-          <div className="flex items-center justify-center absolute top-0 bottom-0 w-full">
+          <div className="flex items-center justify-center absolute top-0 bottom-0 w-full lg:hidden">
             <button
               className="btn-prev absolute left-[-30px] lg:left-[-55px] lg:top-1/2 lg:-translate-y-1/2 z-10
                         lg:bg-gradient-to-r from-[#E4E4E4] to-[#FFFFFF] 

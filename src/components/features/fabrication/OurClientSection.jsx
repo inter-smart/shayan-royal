@@ -67,8 +67,8 @@ export default function ClientSection({ title, clientData = testimonials }) {
             onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
             onBeforeInit={(swiper) => setActiveIndex(swiper.realIndex)}
             navigation={{
-              prevEl: ".btn-prev",
-              nextEl: ".btn-next",
+              prevEl: ".nav-prev",
+              nextEl: ".nav-next ",
             }}
             breakpoints={{
               320: {

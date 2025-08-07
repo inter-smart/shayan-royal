@@ -8,7 +8,6 @@ const variants = {
 };
 
 export default function ProductCard({ car, variant }) {
-
   function toTitleCase(text) {
     if (typeof text !== "string") return "";
     return text
@@ -31,7 +30,7 @@ export default function ProductCard({ car, variant }) {
                     relative flex flex-col rounded-[10px] overflow-hidden after:absolute 
                     after:top-0 after:right-0 after:content-[''] 
                     after:bg-[linear-gradient(90deg,_rgba(187,192,207,0.00)_0%,_#BBC0CF_100%)] after:w-full after:max-w-[150px] 
-                    after:opacity-[0.22] after:h-full ${variant === "inventory" ? "after:!h-[70%] after:rounded-[10px] " : ""}`}
+                    after:opacity-[0.22] after:h-full ${variant === "inventory" ? "after:!h-[68%] after:rounded-[10px] " : ""} max-xs:after:hidden`}
         >
           {/* Logo */}
           <div className="w-full 3xl:max-w-[50px] max-w-[40px] absolute top-[10px] left-[10px] z-10">
