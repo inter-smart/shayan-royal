@@ -39,7 +39,7 @@ export default async function page({ params }) {
       <BreadCrumb
         items={[
           { label: "HOME", href: "/" },
-          { label: "INVENTORY", href: "/" },
+          { label: "INVENTORY", href: "/inventory" },
           { label: "Camry Hybrid", isCurrent: true },
         ]}
       />
