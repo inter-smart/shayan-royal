@@ -34,7 +34,7 @@ const menuItems = [
 export default function Header() {
   const pathname = usePathname();
   const isInnerPage = pathname !== "/";
- const isPrivacyPage = ["/privacy-policy", "/terms-conditions"].includes(pathname);
+  const isPrivacyPage = ["/privacy-policy", "/terms-conditions"].includes(pathname);
 
   const [isOpen, setIsOpen] = React.useState(false); // Mobile menu state
 
@@ -47,7 +47,7 @@ export default function Header() {
               }`}
           >
             {/* Logo */}
-            <div className="3xl:w-[260px] 2xl:w-[195px] lg:w-[165px] w-[145px] flex items-center justify-center pb-[5px]">
+            <div className="3xl:w-[260px] 2xl:w-[195px] lg:w-[165px] w-[135px] flex items-center justify-center pb-[5px]">
               <Link href="/" className="block w-full h-full">
                 <Image
                   src="/images/logo.svg"
@@ -66,7 +66,7 @@ export default function Header() {
                   const isActive = pathname === item.href;
 
                   const menuLinkClass = `
-                    3xl:text-[18px] 2xl:text-[13px] xl:text-[11px] text-[12px] font-medium uppercase leading-[2rem]
+                   text-[9px]  xl:text-[11px] 2xl:text-[13px] 3xl:text-[18px] font-medium uppercase leading-3
                     ${isInnerPage ? "lg:text-white text-black" : "text-black"}
                     flex items-center justify-center 3xl:px-[25px] 2xl:px-[20px] px-[15px] 3xl:py-[43px] 2xl:py-[35px] py-[30px]
                     ${isActive ? "after:absolute after:content-[''] after:bottom-[-1px] after:left-0 after:right-0 after:m-auto after:w-[70%] after:h-[2px] after:bg-white" : ""}
@@ -79,8 +79,8 @@ export default function Header() {
                       <Link href={item.href} passHref>
                         <NavigationMenuLink asChild>
                           <span
-                            className={`${menuLinkClass} leading-3 ${item.label === "Contact Us"
-                              ? "!text-[16px] !text-white bg-[#2E4C99] 3xl:h-[40px] 2xl:h-[30px] h-[25px] min-w-[90px] !py-0 !rounded-[50px] after:hidden hover:!bg-[#BE1E2D] hover:!text-white"
+                            className={`${menuLinkClass}  ${item.label === "Contact Us"
+                              ? "!text-[9[px] ]xl:!text-[10px] 2xl:!text-[12px] 3xl:!text-[16px] !text-white !font-normal bg-[#2E4C99] 3xl:h-[40px] 2xl:h-[30px] h-[25px] min-w-[90px] !py-0 !rounded-[50px] after:hidden hover:!bg-[#BE1E2D] hover:!text-white"
                               : ""
                               }`}
                           >

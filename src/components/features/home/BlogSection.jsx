@@ -89,8 +89,9 @@ export default function BlogSection() {
                                             >
                                                 {item.title}
                                             </Heading>
-                                            <Text size="text1" as="p" className="text-[#595959] line-clamp-2">
-                                                {item.description}
+                                            <Text size="text1" as="p" className="text-[#595959] ">
+                                                <span className=" line-clamp-2">{item.description}</span>
+                                                <span className="text-[10px] 2xl:text-[12px] 3xl:text-[16px] text-[#2E4C99] text-nowrap font-medium underline">READ MORE</span>
                                             </Text>
                                         </div>
                                     </div>
@@ -135,7 +136,8 @@ export default function BlogSection() {
                                                 {item.title}
                                             </Heading>
                                             <Text size="text1" as="p" className="text-[#595959] line-clamp-2">
-                                                {item.description}
+                                                 <span className=" line-clamp-2">{item.description}</span>
+                                                <span className="text-[10px] 2xl:text-[12px] 3xl:text-[16px] text-[#2E4C99] text-nowrap font-medium underline">READ MORE</span>
                                             </Text>
                                         </div>
                                     </div>

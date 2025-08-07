@@ -43,13 +43,15 @@ export default function AboutSection() {
                         modules={[Navigation, Autoplay]}
                         slidesPerView={5}
                         spaceBetween={30}
-                        centeredSlides
+                        centeredSlides={true}
+                        loop={true}
+                        loopFillGroupWithBlank={true}
                         autoplay={{
-                            delay: 3000, // 3 seconds between slides
+                            delay: 2000,
                             disableOnInteraction: false,
-                        }}
-                        speed={800} // transition duration (ms) for smoothness
-                        loop
+                        }} 
+                        speed={1200} // smooth transition speed (1s)
+
                         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
                         onBeforeInit={(swiper) => setActiveIndex(swiper.realIndex)}
                         navigation={{
@@ -88,7 +90,7 @@ export default function AboutSection() {
                                 centeredSlides: true,
                             },
                         }}
-                        className="px-10 overflow-hidden mb-3"
+                        className="px-10 overflow-hidden mb-3 w-full "
                     >
                         {carCategories.map((car, index) => (
                             <SwiperSlide key={index} >
@@ -114,7 +116,7 @@ export default function AboutSection() {
                         ))}
                     </Swiper>
                     {/* center Arrow */}
-                    <div className="realtive 3xl:max-w-[20px] 2xl:max-w-[15px] m-auto flex justify-center max-sm:hidden">
+                    <div className="realtive 3xl:max-w-[20px] 2xl:max-w-[15px] m-auto flex justify-center max-sm:hidden animate-jump">
                         <svg className="3xl:-w-[20px] 2xl:w-[15px] w-[12px] h-[12px]" viewBox="0 0 21 18" fill="none">
                             <path d="M1 10.6404L11.3019 1.64038L20.5 10.6404" stroke="black" />
                             <path d="M1 16.6404L11.3019 7.64038L20.5 16.6404" stroke="black" />

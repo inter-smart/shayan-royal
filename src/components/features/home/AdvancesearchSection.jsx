@@ -58,7 +58,7 @@ export default function CarSearchForm() {
     };
 
     const menuLinkClass =
-        "!text-[10px] 2xl:!text-[12px] 3xl:!text-[14px] text-black max-w-full min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px] text-black uppercase font-normal placeholder:!text-black placeholder:font-normal !w-full px-[12px] border !border-[rgba(46,76,153,0.34)] bg-white rounded-[5px] font-normal outline-none shadow-none focus:outline-none focus:ring-0 focus:border-[#CCCCCC] focus:shadow-none data-[state=open]:border-[#00095b] data-[state=open]:shadow-none";
+        "!text-[10px] 2xl:!text-[12px] 3xl:!text-[14px] text-black max-w-full min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px] text-black uppercase font-normal placeholder:!text-black placeholder:font-normal !w-full px-[12px] border !border-[rgba(46,76,153,0.34)] bg-white rounded-[3px] xl:rounded-[3px] 2xl:rounded-[4px] 3xl:rounded-[5px] font-normal outline-none shadow-none focus:outline-none focus:ring-0 focus:border-[#CCCCCC] focus:shadow-none data-[state=open]:border-[#00095b] data-[state=open]:shadow-none [&>svg]:hidden relative after:absolute after:top-0 after:right-[15px] after:bottom-0 after:content-[''] after:w-[10px] after:h-[5px] after:w-[10px] 2xl:w-[15px] 2xl:h-[8px] after:3xl:w-[15px] after:3xl:h-[7px] after:[background-image:url('/images/selectArrow.png')] after:bg-no-repeat after:bg-center after:bg-contain after:m-auto";
 
     const contentClass =
         "3xl:text-[18px] 2xl:text-[16px] md:text-[12px] text-[10px] bg-white border border-[#CCCCCC] rounded-md shadow-md font-normal  uppercase placeholder:!text-black";
@@ -71,10 +71,10 @@ export default function CarSearchForm() {
             <Form {...form}>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}
-                    className="flex flex-wrap justify-between bg-[#031640] overflow-hidden rounded-[10px] 2xl:p-[30px] lg:p-[15px] sm:p-[15px] p-[10px]"
+                    className="flex flex-wrap justify-between bg-[#031640] overflow-hidden rounded-[6px] 2xl:rounded-[8px] 3xl:rounded-[10px] 2xl:p-[30px] lg:p-[15px] sm:p-[15px] p-[10px]"
                 >
                     {/* Make */}
-                    <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 xl:w-[calc(100%/5)] p-[5px] md:p-[10px]">
+                    <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 xl:w-[calc(100%/5)] p-[5px] 2xl:p-[10px]">
                         <FormField
                             control={form.control}
                             name="make"
@@ -99,7 +99,7 @@ export default function CarSearchForm() {
                     </div>
 
                     {/* Model */}
-                    <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 xl:w-[calc(100%/5)] p-[5px] md:p-[10px]">
+                    <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 xl:w-[calc(100%/5)] p-[5px] 2xl:p-[10px]">
                         <FormField
                             control={form.control}
                             name="model"
@@ -124,7 +124,7 @@ export default function CarSearchForm() {
                     </div>
 
                     {/* Fuel */}
-                    <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 xl:w-[calc(100%/5)] p-[5px] md:p-[10px]">
+                    <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 xl:w-[calc(100%/5)] p-[5px] 2xl:p-[10px]">
                         <FormField
                             control={form.control}
                             name="fuel"
@@ -149,7 +149,7 @@ export default function CarSearchForm() {
                     </div>
 
                     {/* Gearbox */}
-                    <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 xl:w-[calc(100%/5)] p-[5px] md:p-[10px]">
+                    <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 xl:w-[calc(100%/5)] p-[5px] 2xl:p-[10px]">
                         <FormField
                             control={form.control}
                             name="gearbox"
@@ -157,7 +157,7 @@ export default function CarSearchForm() {
                                 <FormItem>
                                     <FormControl>
                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                            <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black`}>
+                                            <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black `}>
                                                 <SelectValue placeholder="GEARBOX" className="text-black" />
                                             </SelectTrigger>
                                             <SelectContent className={contentClass}>
@@ -173,17 +173,17 @@ export default function CarSearchForm() {
                     </div>
 
                     {/* Search Button */}
-                    <div className="w-full sm:w-2/3 md:w-full xl:w-1/5 p-[5px] md:p-[10px]">
+                    <div className="w-full sm:w-2/3 md:w-full xl:w-1/5 p-[5px] 2xl:p-[10px]">
                         <div className="flex flex-wrap justify-end -m-[5px]">
                             <div className="flex-grow p-[5px]">
-                                <Button type="submit" className="bg-[#BD1F2D] min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px]
-                                 text-white cursor-pointer w-full hover:bg-[#a81b27d3]">
+                                <Button type="submit" className="text-[8px] xl:text-[10px] 2xl:text-[13px] 3xl:text-[16px] bg-[#BD1F2D] font-normal min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px]
+                                 text-white cursor-pointer w-full rounded-[3px] xl:rounded-[3px] 2xl:rounded-[4px] 3xl:rounded-[5px]  hover:bg-[#a81b27d3]">
                                     SEARCH
                                 </Button>
                             </div>
                             <div className={`relative flex-grow p-[5px] ${isExpanded ? 'block' : 'hidden'}`}>
-                                <Button type="submit" className="bg-[#C4C4C4] min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px]
-                                 text-white cursor-pointer w-full hover:bg-[#a81b26]">
+                                <Button type="submit" className="text-[8px] xl:text-[10px] 2xl:text-[13px] 3xl:text-[16px] bg-[#C4C4C4] font-normal min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px]
+                                 text-white cursor-pointer w-full rounded-[3px] xl:rounded-[3px] 2xl:rounded-[4px] 3xl:rounded-[5px]  hover:bg-[#a81b26]">
                                     CLEAR
                                 </Button>
                             </div>
@@ -199,21 +199,21 @@ export default function CarSearchForm() {
                     className={`relative ${isExpanded ? "shadow-2xl pb-[50px]" : ""}`}
                 >
                     <AccordionItem value="advanced-search">
-                        <AccordionTrigger className={`text-[10px] lg:text-[12px] 3xl:text-[16px] text-black uppercase w-[280px]
-                         md:w-[300px] max-sm:m-auto rounded-[0px]
-                         absolute left-0 max-sm:right-0 h-[35px]  flex items-center justify-center realtive z-0 font-normal cursor-pointer [&>svg]:hidden
+                        <AccordionTrigger className={`text-[8px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[16px] text-black uppercase w-[160px] xl:w-[205px] 2xl:w-[250px] 3xl:w-[280px]
+                         max-sm:m-auto rounded-[0px]
+                         absolute left-0 max-sm:right-0  h-[20px] xl:h-[22px] 2xl:h-[30px] 3xl:h-[35px]   flex items-center justify-center realtive z-0 font-normal cursor-pointer [&>svg]:hidden
                            ${isExpanded ? "bottom-0" : "top-[100%]"}`}>
                             <Image
                                 src="/images/buttonBg.png"
                                 alt="buttonBg"
                                 width="300"
-                                height="33"
-                                className={`absolute top-0 left-0 w-full h-full object-cover -z-10 ${isExpanded ? "scale-y-[-1]" : " "}`}
+                                height="28"
+                                className={`absolute top-0 left-0 w-full h-full object-fill -z-10 ${isExpanded ? "scale-y-[-1]" : " "}`}
                             />
                             {isExpanded ? "- LESS OPTIONS" : "+ ADVANCED SEARCH"}
                         </AccordionTrigger>
-                        <div className={`absolute max-sm:hidden sm:bottom-[20px] right-[30px] 3xl:max-w-[250px] 2xl:max-w-[200px]
-                            lg:max-w-[150px] md:max-w-[100px]
+                        <div className={`absolute max-sm:hidden sm:bottom-[20px] right-[40px] 2xl:right-[50px] 3xl:right-[70px] 
+                            lg:max-w-[150px] 2xl:max-w-[200px] 3xl:max-w-[250px]  md:max-w-[100px]
                             max-w-[75px] pointer-events-none  ${isExpanded ? "" : "hidden"}`}>
                             <Image
                                 src="/images/logo.svg"
@@ -223,10 +223,10 @@ export default function CarSearchForm() {
                                 className={`w-full h-full object-cover -z-10 `}
                             />
                         </div>
-                        <AccordionContent className="xl:p-[30px] p-[20px] relative">
-                            <div className="flex flex-wrap lg:-m-[10px] -m-[8px]">
+                        <AccordionContent className="2xl:p-[40px] p-[20px] relative">
+                            <div className="flex flex-wrap 2xl:-m-[10px] -m-[5px]">
                                 {/* Regional Spec */}
-                                <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 lg:p-[10px] p-[8px]">
+                                <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:p-[10px] p-[5px]">
                                     <FormField
                                         control={form.control}
                                         name="regionalSpec"
@@ -251,7 +251,7 @@ export default function CarSearchForm() {
                                 </div>
 
                                 {/* Year From */}
-                                <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 lg:p-[10px] p-[8px]">
+                                <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:p-[10px] p-[5px]">
                                     <FormField
                                         control={form.control}
                                         name="Year From"
@@ -275,7 +275,7 @@ export default function CarSearchForm() {
                                     />
                                 </div>
                                 {/* Year To */}
-                                <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 lg:p-[10px] p-[8px]">
+                                <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:p-[10px] p-[5px]">
                                     <FormField
                                         control={form.control}
                                         name="year"
@@ -300,7 +300,7 @@ export default function CarSearchForm() {
                                 </div>
 
                                 {/* Steering side */}
-                                <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 lg:p-[10px] p-[8px]">
+                                <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:p-[10px] p-[5px]">
                                     <FormField
                                         control={form.control}
                                         name="body"
@@ -325,7 +325,7 @@ export default function CarSearchForm() {
                                 </div>
 
                                 {/* Car Type   */}
-                                <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 lg:p-[10px] p-[8px]">
+                                <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:p-[10px] p-[5px]">
                                     <FormField
                                         control={form.control}
                                         name="body"
@@ -349,7 +349,7 @@ export default function CarSearchForm() {
                                     />
                                 </div>
                                 {/*CYLINDERS  */}
-                                <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 lg:p-[10px] p-[8px]">
+                                <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:p-[10px] p-[5px]">
                                     <FormField
                                         control={form.control}
                                         name="body"
@@ -373,7 +373,7 @@ export default function CarSearchForm() {
                                     />
                                 </div>
                                 {/*NUMBER OF SEATS  */}
-                                <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 lg:p-[10px] p-[8px]">
+                                <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:p-[10px] p-[5px]">
                                     <FormField
                                         control={form.control}
                                         name="body"

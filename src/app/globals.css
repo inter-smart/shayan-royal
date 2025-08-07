@@ -335,4 +335,21 @@ body[data-scroll-locked] {
   transform: translateY(10px);
 }
 
- 
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+  }
+  5% {
+    transform: translateY(-10px);
+  }
+  10% {
+    transform: translateY(12px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-jump {
+  animation: jump 2.5s infinite ease-in-out;
+}

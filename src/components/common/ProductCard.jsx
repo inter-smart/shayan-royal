@@ -23,7 +23,7 @@ export default function ProductCard({ car, variant}) {
             aria-label={car.type} className={`w-full h-full flex cursor-pointer group ${paddingClass}`}>
             <div className="w-full h-full rounded-[10px] bg-white overflow-hidden 3xl:py-[15px] py-[10px] 3xl:px-[20px] px-[15px] flex items-center shadow-xl">
                 {/* Left Section */}
-                <div className={`3xl:w-[calc(100%-65px)] w-[calc(100%-45px)] h-full min-h-[200px] 3xs:min-h-[230px] 3xl:min-h-[295px] mr-[20px] 
+                <div className={`3xl:w-[calc(100%-65px)] w-[calc(100%-45px)] h-full min-h-[200px] 3xs:min-h-[230px] 3xl:min-h-[295px] mr-[10px] 2xl:mr-[20px] 
                     relative flex flex-col rounded-[10px] overflow-hidden after:absolute 
                     after:top-0 after:right-0 after:content-[''] 
                     after:bg-[linear-gradient(90deg,_rgba(187,192,207,0.00)_0%,_#BBC0CF_100%)] after:w-full after:max-w-[150px] 
@@ -49,7 +49,7 @@ export default function ProductCard({ car, variant}) {
                         />
                     </div>
                     {/* Title */}
-                    <div className="py-2">
+                    <div className="py-2 pr-2">
                         <div className="3xl:text-[20px] 2xl:text-[18px] text-[14px] font-semibold font-base1 uppercase text-black  line-clamp-3">
                             {car.title}
                         </div>
@@ -64,7 +64,7 @@ export default function ProductCard({ car, variant}) {
 
                             return (
                                 <div key={i} className="3xl:mb-[15px] mb-[10px] last:mb-0 flex-grow-1">
-                                    <div className="text-center w-full h-full rounded-[10px] overflow-hidden bg-[#F5F9FF] 3xl:min-h-[55px] min-h-[40px]
+                                    <div className="text-center w-full h-full rounded-[4px] xl:rounded-[5px] 2xl:rounded-[8px] 3xl:rounded-[10px] overflow-hidden bg-[#F5F9FF] 3xl:min-h-[55px] min-h-[40px]
                                      flex items-center justify-center flex-col">
                                         <div>
                                             <div className="3xl:w-[22px] w-[15px] 3xl:h-[22px] h-[15px] m-auto mb-[3px] flex">
