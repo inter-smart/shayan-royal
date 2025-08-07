@@ -9,6 +9,7 @@ import { fetchFromAPI } from "@/lib/api";
 import { mediaUrl } from "@/lib/constants";
 import PDFViewerSection from "@/components/features/inventory/PDFViewerSection";
 // import LogoScrollSection from "@/components/features/inventory/LogoScrollSection";
+import { notFound } from "next/navigation";
 
 export default async function page({ params }) {
   const resolvedSlug = await params;
@@ -17,7 +18,7 @@ export default async function page({ params }) {
   const { data, error } = await fetchFromAPI(`inventory/${id}`);
 
   if (error) {
-    return <div>Something went wrong</div>;
+    return notFound()
   }
 
   if (!data) {

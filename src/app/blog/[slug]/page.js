@@ -4,6 +4,7 @@ import BlogDetailSection from "@/components/features/blog/BlogDetailSection";
 import CommentSection from "@/components/features/blog/CommentSection";
 import { fetchFromAPI } from "@/lib/api";
 import { mediaUrl } from "@/lib/constants";
+import { notFound } from "next/navigation";
 
 export default async function Page({ params }) {
   const resolvedParamms = await params;
@@ -12,9 +13,10 @@ export default async function Page({ params }) {
   const { data, error } = await fetchFromAPI(`blog?slug=${slug}`);
 
   if (error) {
-    return <div>Something went wrong</div>;
+    return notFound();
   }
-
+  
+  
   if (!data) {
     return <div>No data</div>;
   }
@@ -25,7 +27,11 @@ export default async function Page({ params }) {
     <>
       <InnerBanner
         title={banner?.title ? banner?.title : "Blogs"}
-        image={banner?.image ? `${mediaUrl}${banner?.image}` : "/images/blog_banner.webp"}
+        image={
+          banner?.image
+            ? `${mediaUrl}${banner?.image}`
+            : "/images/blog_banner.webp"
+        }
         alt={banner?.title ? banner?.title : "blog-banner"}
       />
       <BreadCrumb
