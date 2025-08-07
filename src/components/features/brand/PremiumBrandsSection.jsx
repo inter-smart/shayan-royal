@@ -18,8 +18,8 @@ export default function PremiumBrandsSection({ title, brands }) {
                 className="border overflow-hidden border-[#D5DBEB] rounded-[10px] w-full 2xl:h-[95px] xl:h-[85px] md:h-[75px] h-[65px] flex items-center justify-center py-[10px] 3xl:px-[75px]  2xl:px-[45px] md:px-[35px] px-[25px] relative after:absolute after:content-[''] after:bottom-0 after:left-0 after:right-0 after:w-full after:h-[4px] after:bg-transparent hover:after:bg-[#2E4C99] hover:border-[#2E4C99] transition-all"
               >
                 <Image
-                  src={src.make_logo ? `${mediaUrl}${src.make_logo}` : brandLogos[index]}
-                  alt={`brand-${index + 1}`}
+                  src={src.icon ? `${mediaUrl}${src.icon}` : brandLogos[index]}
+                  alt={src?.alt || "Brands"}
                   width={78}
                   height={78}
                   className="w-full h-full block object-contain max-w-[80px]"
