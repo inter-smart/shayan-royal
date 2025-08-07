@@ -6,20 +6,17 @@ import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuL
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import Link from "next/link";
 
-
-
-function NavMenus({ pathname, isInnerPage, data={data}, isPrivacyPage }) {
-
+function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, isScrolled }) {
   const menuItems = [
-  { label: "Home", href: "/" },
-  { label: "About Us", href: "/about" },
-  { label: "Inventory", href: "/inventory" },
-  { label: "Brands", href: "/brand" },
-  { label: "Fabrication", href: "/fabrication" },
-  { label: "Services", href: "/service" },
-  { label: "Blog", href: "/blog" },
-  { label: data?.header_button_text, href: data?.header_button_link},
-];
+    { label: "Home", href: "/" },
+    { label: "About Us", href: "/about" },
+    { label: "Inventory", href: "/inventory" },
+    { label: "Brands", href: "/brand" },
+    { label: "Fabrication", href: "/fabrication" },
+    { label: "Services", href: "/service" },
+    { label: "Blog", href: "/blog" },
+    { label: data?.header_button_text, href: data?.header_button_link },
+  ];
 
   const [isOpen, setIsOpen] = useState(false); // State for sheet
 
@@ -31,9 +28,10 @@ function NavMenus({ pathname, isInnerPage, data={data}, isPrivacyPage }) {
             const isActive = pathname === item.href;
 
             const menuLinkClass = `
-                    3xl:text-[18px] 2xl:text-[13px] xl:text-[11px] text-[12px] font-medium uppercase
+                   text-[9px]  xl:text-[11px] 2xl:text-[13px] 3xl:text-[18px] font-medium uppercase tracking-[1px] transition-all
                     ${isInnerPage ? "lg:text-white text-black" : "text-black"}
-                    flex items-center justify-center 3xl:px-[25px] 2xl:px-[20px] px-[15px] 3xl:py-[43px] 2xl:py-[35px] py-[30px]
+                    flex items-center justify-center 3xl:px-[25px] 2xl:px-[20px] px-[15px] 
+                    ${isScrolled ? "py-[20px]" : "3xl:py-[43px] 2xl:py-[35px] py-[30px]"} 
                     ${
                       isActive
                         ? "after:absolute after:content-[''] after:bottom-[-1px] after:left-0 after:right-0 after:m-auto after:w-[70%] after:h-[2px] after:bg-white"
@@ -41,7 +39,7 @@ function NavMenus({ pathname, isInnerPage, data={data}, isPrivacyPage }) {
                     }
                     ${isPrivacyPage ? "!text-black hover:!text-[#BE1E2D]" : ""}
                     hover:!text-[#BE1E2D] hover:bg-transparent
-                  `;
+                 `;
 
             return (
               <NavigationMenuItem key={item.label}>

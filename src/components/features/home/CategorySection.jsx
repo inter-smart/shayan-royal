@@ -86,14 +86,20 @@ export default function AboutSection({ title, description, categories }) {
             }}
             className="px-10 overflow-hidden mb-3 w-full "
           >
-            {carCategories.map((car, index) => (
+            {categories?.map((car, index) => (
               <SwiperSlide key={index}>
                 <div className="flex flex-col items-center cursor-pointer group transition-all duration-300" onClick={() => setSelected(car.name)}>
                   <div
                     className="w-full max-w-[180px] xs:max-w-[110px] md:max-w-[120px] lg:max-w-[145px] 2xl:max-w-[185px] 3xl:max-w-[250px] 
                                    h-[45px] xs:h-[100px] flex items-center justify-center"
                   >
-                    <Image src={car.img} alt={car.name} width={100} height={100} className="w-full h-full object-contain" />
+                    <Image
+                      src={car.image ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${car.image}` : "/images/cat1.png"}
+                      alt={car.name}
+                      width={100}
+                      height={100}
+                      className="w-full h-full object-contain"
+                    />
                   </div>
                   <p
                     className={`3xl:text-[25px] 2xl:text-[18px] md:text-[16px] sm:text-[14px] text-[12px] font-base1 mt-1 md:mt-1 ${
