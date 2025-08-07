@@ -78,7 +78,7 @@ async function getMetaData() {
         canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/brand`,
       },
 
-      error:  "No metadata found",
+      error: "No metadata found",
     };
   }
 }
@@ -107,6 +107,8 @@ export default async function Page() {
   }
 
   const { contents, brands, banner } = data;
+
+  console.log(brands);
 
   return (
     <>
