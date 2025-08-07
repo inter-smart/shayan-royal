@@ -6,7 +6,7 @@ import ClientSection from "@/components/features/fabrication/OurClientSection";
 import WhychooseUsSection from "@/components/features/fabrication/WhychooseUsSection";
 import { BreadCrumb } from "@/components/common/BreadCrumb";
 import { fetchFromAPI } from "@/lib/api";
-import { mediaUrl } from "@/lib/constants";
+import { defaultMeta, mediaUrl } from "@/lib/constants";
 import CustomerReqSection from "@/components/features/fabrication/CustomerReqSection";
 
 async function getMetaData() {

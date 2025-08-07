@@ -120,7 +120,7 @@ export default function ServiceSection({ services = items }) {
                       {item.title}
                     </div>
                     <p className="3xl:text-[20px] 2xl:text-[16px] lg:text-[14px] sm:text-[13px] text-[12px] leading-[1.2] font-normal font-base1 text-white 3xl:mb-[30px] lg:mb-[20px] sm:mb-[15px] mb-[10px] line-clamp-3">
-                      {item.description ? parse(item.description) : ""}
+                      {item.subtitle ? parse(item.subtitle) : ""}
                     </p>
 
                     <Link
