@@ -2,7 +2,7 @@ import InnerBanner from "@/components/common/InnerBanner";
 import { BreadCrumb } from "@/components/common/BreadCrumb";
 import GetInTouchSection from "@/components/features/contact/GetInTouchSection";
 import ContactMapSection from "@/components/features/contact/ContactMapSection";
-import { mediaUrl } from "@/lib/constants";
+import { defaultMeta, mediaUrl } from "@/lib/constants";
 import { fetchFromAPI } from "@/lib/api";
 
 async function getMetaData() {

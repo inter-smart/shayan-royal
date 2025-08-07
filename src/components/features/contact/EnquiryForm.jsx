@@ -52,13 +52,6 @@ const items = [
     label: "Subject*",
     type: "text",
     placeholder: "Subject",
-    validation: {
-      required: "Subject is required",
-      minLength: {
-        value: 3,
-        message: "Subject must be at least 3 characters",
-      },
-    },
   },
 ];
 
@@ -122,13 +115,6 @@ export default function EnquiryForm({ form_title, type }) {
             rows={2}
             placeholder="Message"
             className={`${inputFormStyle} 2xl:min-h-[80px] min-h-[55px] pt-0`}
-            {...register("message", {
-              required: "Message is required",
-              minLength: {
-                value: 5,
-                message: "Message must be at least 5 characters",
-              },
-            })}
           />
         </div>
       </div>

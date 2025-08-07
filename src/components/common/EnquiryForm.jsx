@@ -21,7 +21,7 @@ const formSchema = z.object({
   phone: z.string().regex(/^((\+971|0)?(5[024568][0-9]{7}|4[0-9]{7}))$/, {
     message: "Enter a valid UAE mobile number.",
   }),
-  message: z.string().min(5, { message: "Message is required." }),
+  message: z.string().optional()
 });
 
 const items = [
