@@ -22,7 +22,7 @@ export default function ProductCardHome({ car, variant }) {
   const specs = car?.specs;
 
   return (
-    <Link href={`inventory/${car?.id}` || "#"} aria-label={car?.type} className={`w-full h-full flex cursor-pointer group ${paddingClass}`}>
+    <Link href={`/inventory/${car?.id}` || "#"} aria-label={car?.type} className={`w-full h-full flex cursor-pointer group ${paddingClass}`}>
       <div className="w-full h-full rounded-[10px] bg-white overflow-hidden 3xl:py-[15px] py-[10px] 3xl:px-[20px] px-[15px] flex items-center shadow-xl">
         {/* Left Section */}
         <div
