@@ -24,7 +24,7 @@ export default async function page({ params }) {
     return <div>No data</div>;
   }
 
-  const { carDetails, specs, specs2, faqs, colorVariants, banner, specList } = data;
+  const { carDetails, specs, specs2, faqs, colorVariants, banner, specList, specDoc } = data;
 
   console.log(colorVariants);
 
@@ -46,7 +46,7 @@ export default async function page({ params }) {
       <InventoryDetailSection carDetails={carDetails} specs={specs} />
       <SpecificationSection specList={specList} />
       <ColorSection colorVariants={colorVariants} specs2={specs2} />
-      {/* <PDFViewerSection fileUrl="/images/policy.pdf" /> */}
+      <PDFViewerSection fileUrl={specDoc ? `${mediaUrl}${specDoc}` : null} />
       <SimilarcarSection />
       <FaqSection faqs={faqs} />
       {/* <LogoScrollSection /> */}
