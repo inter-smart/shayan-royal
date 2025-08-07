@@ -119,8 +119,8 @@ export default function ServiceSection({ services = items }) {
                     <div className="3xl:text-[32px] 2xl:text-[24px] lg:text-[20px] sm:text-[18px] text-[16px] leading-[1] font-semibold font-base1 text-white 2xl:mb-[15px] mb-[10px]">
                       {item.title}
                     </div>
-                    <p className="3xl:text-[20px] 2xl:text-[16px] lg:text-[14px] sm:text-[13px] text-[12px] leading-[1.2] font-normal font-base1 text-white 3xl:mb-[30px] lg:mb-[20px] sm:mb-[15px] mb-[10px] line-clamp-3">
-                      {item.subtitle ? parse(item.subtitle) : ""}
+                    <p className="3xl:text-[20px] 2xl:text-[16px] lg:text-[14px] sm:text-[13px] text-[12px]  font-normal font-base1 text-white 3xl:mb-[30px] lg:mb-[20px] sm:mb-[15px] mb-[10px]">
+                      {item.subtitle ? item.subtitle : ""}
                     </p>
 
                     <Link
