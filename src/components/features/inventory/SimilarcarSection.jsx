@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import { Heading } from "@/components/layout/Heading";
 import { Text } from "@/components/layout/Text";
 import ProductCard from "@/components/common/ProductCard";
+import ProductCardHome from "@/components/common/ProductCardHome";
 
 const carData = [
     {
@@ -41,8 +42,9 @@ const carData = [
     },
 ];
 
-export default function SimilarcarSection() {
+export default function SimilarcarSection({productLists = carData }) {
     const [activeIndex, setActiveIndex] = useState(0);
+    console.log(productLists);
     return (
         <section className="relative bg-[#F5F9FF] z-0 py-[40px] 2xl:py-[60px] 3xl:py-[105px_130px] after:absolute after:content-[''] overflow-hidden
             after:top-0 after:left-[25%] after:m-auto after:h-full after:w-[220px] after:skew-x-[25deg]
@@ -57,7 +59,7 @@ export default function SimilarcarSection() {
                     >
                        Limited stock
                     </Heading>
-                   
+                   productLists
                 </div>
 
                 <div className="relative z-1">
@@ -102,9 +104,9 @@ export default function SimilarcarSection() {
                         }}
                         className=""
                     >
-                        {carData.map((car, index) => (
+                        {productLists?.map((car, index) => (
                             <SwiperSlide key={index}>
-                               <ProductCard car={car} />
+                               <ProductCardHome car={car} />
                             </SwiperSlide>
                         ))}
                     </Swiper>
