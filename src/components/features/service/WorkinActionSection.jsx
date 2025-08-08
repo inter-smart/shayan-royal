@@ -28,7 +28,6 @@ const workImages = [
 ];
 
 export default function WorkinActionSection({ gallery = workImages }) {
-
   return (
     <section className="w-full bg-[#F5F9FF] 2xl:pt-[105px] lg:pt-[60px] pt-[40px] 2xl:pb-[130px] lg:pb-[80px] pb-[60px] relative">
       <div className="absolute z-0 top-0 left-[-20%] right-0 mx-auto w-[50%]">

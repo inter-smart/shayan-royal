@@ -168,7 +168,7 @@ export default function CarSearchForm() {
     "!text-[8px] md:!text-[10px] 2xl:!text-[12px] 3xl:!text-[14px] text-black max-w-full min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px] text-black uppercase font-normal placeholder:!text-black placeholder:font-normal !w-full px-[12px] border !border-[rgba(46,76,153,0.34)] bg-white rounded-[3px] xl:rounded-[3px] 2xl:rounded-[4px] 3xl:rounded-[5px] font-normal outline-none shadow-none focus:outline-none focus:ring-0 focus:border-[#CCCCCC] focus:shadow-none data-[state=open]:border-[#00095b] data-[state=open]:shadow-none [&>svg]:hidden relative after:absolute after:top-0 after:right-[15px] after:bottom-0 after:content-[''] after:w-[10px] after:h-[5px] after:w-[10px] 2xl:w-[15px] 2xl:h-[8px] after:3xl:w-[15px] after:3xl:h-[7px] after:[background-image:url('/images/selectArrow.png')] after:bg-no-repeat after:bg-center after:bg-contain after:m-auto";
 
   const contentClass =
-    "3xl:text-[18px] 2xl:text-[16px] md:text-[12px] sm:text-[10px] text-[8px] bg-white border border-[#CCCCCC] rounded-md shadow-md font-normal uppercase placeholder:!text-black";
+    "3xl:text-[18px] 2xl:text-[16px] md:text-[12px] sm:text-[10px] text-[8px] bg-white border border-[#CCCCCC] rounded-md shadow-md font-normal uppercase placeholder:!text-black max-h-[210px] overflow-auto";
 
   const itemClass =
     "3xl:py-[10px] 3xl:px-4 px-[7px] hover:bg-[#00095b] focus:bg-[#1D0A44] focus:text-white cursor-pointer font-normal !uppercase placeholder:!text-black";
