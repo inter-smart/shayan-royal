@@ -340,12 +340,12 @@ body[data-scroll-locked] {
     transform: translateY(0);
   }
 
-  5% {
-    transform: translateY(-8px);
+  25% {
+    transform: translateY(-6px);
   }
 
-  10% {
-    transform: translateY(10px);
+  50% {
+    transform: translateY(6px);
   }
 
   100% {

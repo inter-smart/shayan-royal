@@ -14,13 +14,18 @@ const carCategories = [
     { name: "SUV", img: "/images/cat2.png" },
     { name: "Crossover", img: "/images/cat3.png" },
     { name: "Hatchback", img: "/images/cat4.png" },
-    { name: "Pickup", img: "/images/cat5.png" },
-    { name: "Bus", img: "/images/bus.png" },
+    // { name: "Pickup", img: "/images/cat5.png" },
+    // { name: "Bus", img: "/images/bus.png" },
 ];
 
 
 export default function AboutSection() {
     const [activeIndex, setActiveIndex] = useState(0);
+    const minSlides = 6; // slidesPerView + 1 (5 + 1)
+    const slidesData =
+        carCategories.length < minSlides
+            ? Array.from({ length: minSlides }, (_, i) => carCategories[i % carCategories.length])
+            : carCategories;
     return (
         <section className="relative py-[20px] md:py-[25px] 2xl:py-[30px] 3xl:py-[40px] bg-[#F5F9FF] overflow-hidden">
             <div className="container">
@@ -49,7 +54,7 @@ export default function AboutSection() {
                         autoplay={{
                             delay: 2000,
                             disableOnInteraction: false,
-                        }} 
+                        }}
                         speed={1200} // smooth transition speed (1s)
 
                         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
@@ -92,7 +97,7 @@ export default function AboutSection() {
                         }}
                         className="px-10 overflow-hidden mb-3 w-full "
                     >
-                        {carCategories.map((car, index) => (
+                        {slidesData.map((car, index) => (
                             <SwiperSlide key={index} >
                                 <div
                                     className="flex flex-col items-center cursor-pointer group transition-all duration-300"
