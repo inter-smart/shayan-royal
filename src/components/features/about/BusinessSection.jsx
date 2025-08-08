@@ -40,7 +40,7 @@ export default function BusinessSection() {
                     />
                 </div>
                 <div className="flex flex-wrap">
-                    <div className="3xl:w-[955px] 2xl:w-[740px] xl:w-[620px] lg:w-[520px] w-full pt-[70px] sm:pt-[100px] lg:pt-[10px] overflow-hidden relative z-0">
+                    <div className="3xl:w-[955px] 2xl:w-[740px] xl:w-[620px] lg:w-[520px] w-full pt-[70px] sm:pt-[100px] lg:pt-[190px] overflow-hidden relative z-0">
                         <div className="absolute top-[10%] right-[15%]  m-auto max-w-[150px] 2xl:max-w-[250px] 3xl:max-w-[300px] w-full h-fit">
                             <Image
                                 src="/images/aboutLogo.png"
@@ -69,7 +69,7 @@ export default function BusinessSection() {
                         </motion.div>
                         <motion.div
                             ref={ref}
-                            className="absolute -z-1 top-0 right-0 md:right-[25%] 2xl:max-w-[210px] xl:max-w-[170px] lg:max-w-[140px] sm:max-w-[120px] max-w-[100px] md:h-[280px] 3xl:h-[430px] 
+                            className="absolute -z-1 top-0 right-0 md:right-[25%] 2xl:max-w-[210px] xl:max-w-[170px] lg:max-w-[140px] sm:max-w-[120px] max-w-[100px] md:h-[300px] 3xl:h-[430px] 
                             bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]"
                             initial={{ y: "-5%", opacity: 0.7 }}
                             animate={inView ? { y: "0%", opacity: 1 } : { y: "-20%", opacity: 0.7 }}
