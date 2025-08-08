@@ -80,15 +80,21 @@ export default function ServiceSection() {
                             <SwiperSlide
                                 key={index}
                                 style={{
-                                    zIndex: hovered === index || activeIndex === index ? 30 : 1,
+                                    zIndex: hovered === index || (hovered === null && activeIndex === index) ? 30 : 1,
                                 }}
-                                onMouseEnter={() => setHovered(index)}
+                                onMouseEnter={() => {
+                                    setHovered(index);
+                                    setActiveIndex(index); // set active when hovered
+                                }}
                                 onMouseLeave={() => setHovered(null)}
                             >
                                 <div
-                                    className={`group w-full h-auto aspect-545/760 3xl:p-[0_45px_50px_45px] 2xl:p-[0_35px_40px_35px] lg:p-[0_30px_35px_30px] sm:p-[0_20px_20px_20px] p-[0_10px_20px_20px] overflow-hidden flex flex-col justify-end relative z-0 before:content-[''] before:absolute before:-z-1 before:bottom-0 before:left-0 before:w-full before:h-[60%] before:bg-gradient-to-b before:from-[rgb(0,0,0,0)] before:to-[rgb(0,0,0,1)] before:pointer-events-none before:transition-all before:duration-500 before:ease-in-out ${hovered === index || activeIndex === index
-                                        ? "z-50 scale-105 rounded-[10px] before:from-[rgba(14,29,68,0)] before:to-[rgba(14,29,68,1)]"
-                                        : ""
+                                    className={`group w-full h-auto aspect-545/760 3xl:p-[0_45px_50px_45px] 2xl:p-[0_35px_40px_35px] lg:p-[0_30px_35px_30px] sm:p-[0_20px_20px_20px] p-[0_10px_20px_20px] overflow-hidden flex flex-col justify-end 
+                                        relative z-0 before:content-[''] before:absolute before:-z-1 before:bottom-0 before:left-0 before:w-full before:h-[60%]
+                                         before:bg-gradient-to-b before:from-[rgb(0,0,0,0)] before:to-[rgb(0,0,0,1)] before:pointer-events-none before:transition-all cursor-pointer 
+                                         before:duration-500 before:ease-in-out ${hovered === index || (hovered === null && activeIndex === index)
+                                            ? "z-50 scale-105 rounded-[10px] before:from-[rgba(14,29,68,0)] before:to-[rgba(14,29,68,1)]"
+                                            : ""
                                         } transition-all duration-500 ease-in-out will-change-transform`}
                                 >
                                     <div className="w-full h-full overflow-hidden block absolute -z-2 inset-0">
@@ -97,7 +103,7 @@ export default function ServiceSection() {
                                             alt={item.title}
                                             fill
                                             style={{ objectFit: "cover" }}
-                                            className={`${hovered === index || activeIndex === index
+                                            className={`${hovered === index || (hovered === null && activeIndex === index)
                                                 ? "scale-105"
                                                 : ""
                                                 } transition-all duration-500 ease-in-out`}
@@ -105,9 +111,9 @@ export default function ServiceSection() {
                                     </div>
                                     <div
                                         className={`3xl:text-[32px] 2xl:text-[24px] lg:text-[20px] sm:text-[18px] text-[16px] leading-[1] font-semibold 
-                                            font-base1 text-white mb-[15px] ${hovered === index || activeIndex === index
-                                            ? "opacity-0"
-                                            : ""
+                                            font-base1 text-white mb-[15px] ${hovered === index || (hovered === null && activeIndex === index)
+                                                ? "opacity-0"
+                                                : ""
                                             } transition-all duration-500 ease-in-out max-xs:hidden`}
                                     >
                                         {item.title}
