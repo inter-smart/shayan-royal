@@ -56,7 +56,7 @@ export default function BusinessSection() {
                             initial={{ x: "-10%", opacity: 1 }}
                             animate={inView ? { x: "0%", opacity: 1 } : { x: "-10%", opacity: 1 }}
                             transition={{ duration: 1, ease: "easeOut" }}
-                            className="w-full h-full flex items-center max-w-[1270px]"
+                            className="w-full flex items-center max-w-[1270px]"
                         >
                             <Image
                                 src={item.image}
