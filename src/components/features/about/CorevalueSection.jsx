@@ -38,7 +38,7 @@ export default function CorevalueSection() {
                         <Heading
                             size={"heading2"}
                             as="div"
-                            className=" text-black uppercase font-semibold leading-none 2xl:mb-[20px] lg:mb-[20px] mb-[15px]"
+                            className=" text-black uppercase font-semibold leading-none 2xl:mb-[20px] lg:mb-[20px] mb-[15px] max-w-[150px]"
                         >
                             {item.title}
                         </Heading>
