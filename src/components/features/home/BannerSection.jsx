@@ -149,7 +149,7 @@ export default function BannerSection() {
               <SwiperSlide key={index} >
                 <div className="flex items-end w-full h-full">
 
-                  <div className="w-full h-full relative flex justify-center items-center sm:overflow-hidden max-h-[145px] xs:max-h-[185px] md:max-h-[220px] lg:max-h-[280px] xl:max-h-[320px] 2xl:max-h-[360px] 3xl:max-h-[400px]">
+                  <div className="w-full h-full relative flex justify-center items-center sm:overflow-hidden max-h-[145px] xs:max-h-[185px] md:max-h-[220px] lg:max-h-[280px] xl:max-h-[320px] 2xl:max-h-[360px] 3xl:max-h-[430px]">
                     <AnimatePresence custom={direction}>
                       {currentIndex === index && (
                         <motion.div

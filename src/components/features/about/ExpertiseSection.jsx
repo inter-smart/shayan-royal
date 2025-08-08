@@ -69,11 +69,11 @@ export default function ExpertiseSection() {
                                     <Heading
                                         size={"heading5"}
                                         as="h2"
-                                        className=" text-black uppercase font-semibold leading-[1.50] 2xl:mb-[20px] mb-[10px] group-hover:text-white transition-colors duration-300 ease-in-out"
+                                        className=" text-black uppercase font-semibold leading-[1.4] max-w-[250px] 2xl:!mb-[15px] !mb-[10px] group-hover:text-white transition-colors duration-300 ease-in-out"
                                     >
                                         {item.title}
                                     </Heading>
-                                    <p className="3xl:text-[20px] 2xl:text-[16px] md:text-[14px] text-[12px] font-normal leading-normal text-black group-hover:text-white transition-colors duration-300 ease-in-out">
+                                    <p className="3xl:text-[20px] 2xl:text-[16px] md:text-[14px] text-[12px] font-light leading-[1.3] text-[#4B4B4B]] group-hover:text-white transition-colors duration-300 ease-in-out">
                                         {item.description}
                                     </p>
                                 </div>
