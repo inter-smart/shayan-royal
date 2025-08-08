@@ -99,7 +99,7 @@ export default function SimilarcarSection({ productLists = carData }) {
             className=""
           >
             {productLists?.map((car, index) => (
-              <SwiperSlide key={index}>
+              <SwiperSlide key={index} className="!h-auto">
                 <ProductCardHome car={car} />
               </SwiperSlide>
             ))}

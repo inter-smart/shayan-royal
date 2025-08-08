@@ -335,4 +335,39 @@ body[data-scroll-locked] {
   transform: translateY(10px);
 }
 
- 
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+  }
+
+  5% {
+    transform: translateY(-8px);
+  }
+
+  10% {
+    transform: translateY(10px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-jump {
+  animation: jump 2.5s infinite ease-in-out;
+}
+
+
+.stickyHeader {
+  position: fixed;
+  top: 0;
+  animation-name: fadeInDown;
+  animation-duration: .8s;
+  animation-fill-mode: both;
+  background: #2e2e2e4a;
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+  border: 0 !important;
+  z-index: 99;
+} 

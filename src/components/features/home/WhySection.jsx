@@ -57,7 +57,7 @@ export default function WhySection({ title, description, image, whyShayanItems }
                 transition={{ duration: 1.2, ease: "easeOut" }}
                 viewport={{ once: false, amount: 0.2 }}
                 className={`w-full h-full bg-white 3xl:p-[30px] 2xl:p-[20px] p-[15px] rounded-[10px] 
-                  3xl:max-w-[400px] xl:max-w-[345px] lg:max-w-[285px] md:max-w-[275px] 2xs:max-w-[250px] ${index % 2 !== 0 ? "ml-auto" : ""}  `}
+                  3xl:max-w-[400px] lg:max-w-[285px] md:max-w-[275px] 2xs:max-w-[250px] ${index % 2 !== 0 ? "ml-auto" : ""}  `}
               >
                 <div className="3xl:w-[65px] 2xl:w-[50px] w-[40px] 3xl:h-[55px] 2xl:h-[40px] h-[35px] flex items-center justify-center 3xl:mb-[20px] 2xl:mb-[15px] mb-[10px]">
                   <Image
@@ -70,7 +70,7 @@ export default function WhySection({ title, description, image, whyShayanItems }
                 <Heading size="heading5" as="h3" className="text-black font-semibold mb-[10px] line-clamp-2">
                   {item?.title}
                 </Heading>
-                <Text size="text1" as="p" className="text-black font-semibold mb-[15px] line-clamp-3">
+                <Text size="text1" as="p" className="text-black font-semibold mb-[15px] line-clamp-2">
                   {item?.description}
                 </Text>
               </motion.div>
@@ -91,7 +91,7 @@ export default function WhySection({ title, description, image, whyShayanItems }
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
             viewport={{ once: false, amount: 0.2 }}
-            className="realtive sm:absolute sm:top-0 bottom-0 right-0 left-0 m-auto 3xl:max-w-[850px] 2xl:max-w-[700px] lg:max-w-[450px]
+            className="realtive sm:absolute sm:top-0 bottom-0 right-0 left-0 m-auto 3xl:max-w-[850px] 2xl:max-w-[700px] xl:max-w-[600px] lg:max-w-[550px]
              max-w-[250px] flex items-center justify-center pointer-events-none"
           >
             <Image

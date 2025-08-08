@@ -144,7 +144,7 @@ export default function NewarrivalSection({ products }) {
             className=""
           >
             {inventories?.map((car, index) => (
-              <SwiperSlide key={index}>
+              <SwiperSlide key={index} className="!h-auto">
                 <ProductCardHome car={car} />
               </SwiperSlide>
             ))}
