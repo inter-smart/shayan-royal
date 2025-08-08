@@ -2,7 +2,8 @@ import Image from "next/image";
 import { Text } from "@/components/layout/Text";
 import { Heading } from "@/components/layout/Heading";
 import parse from "html-react-parser";
-export default function MarketSection({ title, description }) {
+import { mediaUrl } from "@/lib/constants";
+export default function MarketSection({ title, description, image }) {
   return (
     <section className="w-full h-auto 2xl:py-[120px] xl:py-[75px] md:py-[50px] py-[40px] block">
       <div className="container">
@@ -18,7 +19,7 @@ export default function MarketSection({ title, description }) {
         </div>
         <div className="2xl:w-[1225px] xl:w-[815px] md:w-[740px] sm:w-[580px] w-[280px] h-auto aspect-1225/750 m-auto block">
           <Image
-            src="/images/market_map_bg1.svg"
+            src={image ? `${mediaUrl}${image}` : "/images/market_map_bg1.svg"}
             alt="Market Map"
             width={100}
             height={100}
