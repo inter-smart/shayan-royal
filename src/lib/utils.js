@@ -33,3 +33,12 @@ export function toSnakeCase(input) {
     .replace(/^_+|_+$/g, "") // Trim leading/trailing underscores
     .toLowerCase(); // Final lowercase
 }
+
+export function truncateToReferenceLength(text) {
+  const reference = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Illa enim, quae prosunt aut quae nocent";
+  const maxLength = reference.length;
+
+  if (!text) return "";
+
+  return text.length > maxLength ? text.substring(0, maxLength).trim() + "..." : text;
+}

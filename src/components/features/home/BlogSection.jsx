@@ -2,8 +2,9 @@ import Image from "next/image";
 import { Heading } from "@/components/layout/Heading";
 import { Text } from "@/components/layout/Text";
 import parse from "html-react-parser";
-import { formatPostDate, formatPostTime } from "@/lib/utils";
+import { formatPostDate, formatPostTime, truncateToReferenceLength } from "@/lib/utils";
 import { mediaUrl } from "@/lib/constants";
+import ReadMoreBlog from "./ReadMoreBlog";
 
 const blogs = [
   {
@@ -35,6 +36,7 @@ const blogs = [
 export default function BlogSection({ title, description, blogs }) {
   const leftItems = blogs?.slice(0, 2);
   const rightItems = blogs?.slice(2);
+
   return (
     <section
       className="relative z-0 bg-white py-[35px] 2xl:py-[40px] 3xl:py-[75px] after:absolute after:content-[''] overflow-hidden
@@ -83,12 +85,7 @@ export default function BlogSection({ title, description, blogs }) {
                       >
                         {item?.title}
                       </Heading>
-                      <Text size="text1" as="p" className="text-[#595959]">
-                        <span>{item?.short_content} </span>
-                        <span className="text-[10px] 2xl:text-[12px] 3xl:text-[16px] text-[#2E4C99] text-nowrap font-medium underline">
-                          READ MORE
-                        </span>
-                      </Text>
+                      <ReadMoreBlog blog={item} />
                     </div>
                   </div>
                 </div>
@@ -128,12 +125,7 @@ export default function BlogSection({ title, description, blogs }) {
                       >
                         {item?.title}
                       </Heading>
-                      <Text size="text1" as="p" className="text-[#595959]">
-                        {item?.short_content}
-                        <span className="text-[10px] 2xl:text-[12px] 3xl:text-[16px] text-[#2E4C99] text-nowrap font-medium underline">
-                          READ MORE
-                        </span>
-                      </Text>
+                      <ReadMoreBlog blog={item} />
                     </div>
                   </div>
                 </div>
