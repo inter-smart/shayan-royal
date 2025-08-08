@@ -8,7 +8,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Heading } from "@/components/layout/Heading";
 import { Text } from "@/components/layout/Text";
-import parse from "html-react-parser";
 
 const carCategories = [
   { name: "Sedan", img: "/images/cat1.png" },
@@ -19,7 +18,7 @@ const carCategories = [
   // { name: "Bus", img: "/images/bus.png" },
 ];
 
-export default function AboutSection({ title, description, categories }) {
+export default function AboutSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const minSlides = 6; // slidesPerView + 1 (5 + 1)
   const slidesData =
@@ -29,10 +28,13 @@ export default function AboutSection({ title, description, categories }) {
       <div className="container">
         <div className="max-w-[85%] m-auto">
           <Heading size="heading2" as="h2" className="text-[#B4BACA] text-center uppercase mb-[10px]">
-            {title ? title : "Categories"}
+            Browse by category
           </Heading>
           <Text size="text1" as="p" className="text-[#4B4B4B] mb-[15px] text-center">
-            {description ? parse(description) : "Lorem ipsum dolor sit amet consectetur adipiscing elit ut aliquam purus sit amet luctus venenatis"}
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy , when an
+            unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
+            leap into electronic typesetting, remaining essentially unchanged. It was popularised in Lorem Ipsum passages, and more recently with
+            desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
           </Text>
         </div>
 
