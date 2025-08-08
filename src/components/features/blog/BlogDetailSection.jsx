@@ -188,6 +188,7 @@ export default function BlogDetailSection({ blog, recentBlogs, slug }) {
                     onChange={(e) => setComment(e.target.value)}
                     placeholder="Comment"
                     rows={4}
+                    required
                     className="w-full bg-[#eeeeee] rounded-md px-4 py-3 text-sm outline-none resize-none 2xl:h-[120px] h-[100px] 2xl:placeholder:text-[16px] placeholder:text-[14px]"
                   />
                   <div className="flex justify-end">
