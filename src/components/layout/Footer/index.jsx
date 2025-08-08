@@ -111,7 +111,7 @@ export default async function footer() {
                       ? footerContents?.footer_news_letter_description
                       : "Sign up for email updates today."}
                   </p>
-                  <div className="w-full flex items-center relative z-0 bg-white p-[2px] rounded-[4px] xl:rounded-[5px] 2xl:rounded-[8px] 3xl:rounded-[10px] h-[25px] xl:h-[30px] 2xl:h-[35px] 3xl:h-[45px]">
+                  {/* <div className="w-full flex items-center relative z-0 bg-white p-[2px] rounded-[4px] xl:rounded-[5px] 2xl:rounded-[8px] 3xl:rounded-[10px] h-[25px] xl:h-[30px] 2xl:h-[35px] 3xl:h-[45px]">
                     <Input
                       type="email"
                       placeholder="Enter Email"
@@ -128,7 +128,8 @@ export default async function footer() {
                     >
                       Subscribe
                     </Button>
-                  </div>
+                  </div> */}
+                  <NewsletterForm />
                 </div>
               </div>
               <div className="w-full sm:w-1/2">
