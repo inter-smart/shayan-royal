@@ -59,7 +59,7 @@ export default function Header() {
               }`}
           >
             {/* Logo */}
-            <div className={`  ${isScrolled ? "w-[150px]" : "3xl:w-[260px] 2xl:w-[195px] xl:w-[175px] lg:w-[140px] w-[135px]"} transition-all flex items-center justify-center pb-[5px]`}>
+            <div className={`  ${isScrolled ? "w-[110px] lg:w-[130px] 2xl:w-[150px]" : "3xl:w-[260px] 2xl:w-[195px] xl:w-[175px] lg:w-[140px] w-[135px]"} transition-all flex items-center justify-center pb-[5px]`}>
               <Link href="/" className="block w-full h-full">
                 <Image
                   src="/images/logo.svg"
