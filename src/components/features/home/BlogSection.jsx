@@ -39,7 +39,7 @@ export default function BlogSection() {
     return (
         <section className="relative z-0 bg-white py-[35px] 2xl:py-[40px] 3xl:py-[75px] after:absolute after:content-[''] overflow-hidden
         after:top-0 after:left-0 after:right-0 after:m-auto after:h-full after:3xl:w-[365px] after:2xl:w-[275px] after:w-[220px] after:skew-x-[-15deg]
-        after:bg-[linear-gradient(180deg,_#C1C6D2_-13.07%,_rgba(209,212,220,0.38)_100%)] after:z-[-1] after:opacity-10">
+        after:bg-[linear-gradient(180deg,(#d1d4dc61_50%,#C1C6D2_100%)] after:z-[-1] after:opacity-10">
             <div className="container">
                 <div className="max-w-[85%] m-auto text-center mb-[15px] 2xl:mb-[30px] 3xl:mb-[50px]">
                     <Heading size="heading2" as="h2" className="text-black uppercase mb-[10px]">

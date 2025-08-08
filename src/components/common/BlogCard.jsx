@@ -17,14 +17,15 @@ export default function BlogCard({ item }) {
             <div className="2xl:mb-[25px] mb-[15px]">
                 <Heading
                     as="h3"
-                    className="3xl:text-[25px] 2xl:text-[20px] md:text-[16px] text-[14px] leading-[1] font-semibold text-[#262626] 2xl:mb-[20px] md:mb-[15px] mb-[10px]"
+                    className="3xl:text-[25px] 2xl:text-[20px] md:text-[16px] text-[14px] leading-[1.4] font-semibold text-[#262626] 2xl:mb-[20px] 
+                    md:mb-[15px] mb-[10px] line-clamp-1"
                 >
                     {item.title}
                 </Heading>
                 <Text
                     size="text1"
                     as="p"
-                    className='mb-[0]'
+                    className='mb-[0] line-clamp-3'
                 >
                     {item.description}
                 </Text>

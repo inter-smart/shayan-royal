@@ -466,7 +466,9 @@ export default function CustomerrequirementForm() {
 
                             {/* SUBMIT */}
                             <div className="w-full mt-4 lg:p-[15px] p-[8px] flex justify-end">
-                                <Button type="submit" className="bg-[#2E4C99] text-white rounded-[80px] px-6 py-2 hover:bg-[#1f3574] min-h-[40px] md:min-w-[200px] sm:min-w-[170px] min-w-full cursor-pointer">
+                                <Button type="submit" className="text-[8px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[16px] bg-[#2E4C99] text-white rounded-[80px] px-6 hover:bg-[#1f3574] flex items-center
+                                3xl:h-[40px] 2xl:h-[40px] xl:h-[30px] h-[30px] uppercase
+                                md:min-w-[120px] sm:min-w-[100px]  min-w-full cursor-pointer">
                                     Submit
                                 </Button>
                             </div>

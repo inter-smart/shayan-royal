@@ -18,11 +18,11 @@ function ImageBox({ src, alt, className = '' }) {
 
 const workImages = [
     { image: '/images/w1.webp', alt: 'Work Image' },
-    { image: '/images/w2.webp', alt: 'Work Image' },
     { image: '/images/w3.webp', alt: 'Work Image' },
+    { image: '/images/w6.webp', alt: 'Work Image' },
+    { image: '/images/w2.webp', alt: 'Work Image' },
     { image: '/images/w4.webp', alt: 'Work Image' },
     { image: '/images/w5.webp', alt: 'Work Image' },
-    { image: '/images/w6.webp', alt: 'Work Image' },
     { image: '/images/w7.webp', alt: 'Work Image' },
 ];
 
