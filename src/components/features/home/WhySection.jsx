@@ -67,10 +67,10 @@ export default function WhySection({ title, description, image, whyShayanItems }
                     alt={item.title}
                   />
                 </div>
-                <Heading size="heading5" as="h3" className="text-black font-semibold mb-[10px] line-clamp-2">
+                <Heading size="heading5" as="h3" className="text-black font-semibold mb-[10px]">
                   {item?.title}
                 </Heading>
-                <Text size="text1" as="p" className="text-black font-semibold mb-[15px] line-clamp-2">
+                <Text size="text1" as="p" className="text-black font-semibold mb-[15px]">
                   {item?.description}
                 </Text>
               </motion.div>
