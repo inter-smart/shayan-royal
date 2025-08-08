@@ -15,12 +15,15 @@ const carCategories = [
   { name: "SUV", img: "/images/cat2.png" },
   { name: "Crossover", img: "/images/cat3.png" },
   { name: "Hatchback", img: "/images/cat4.png" },
-  { name: "Pickup", img: "/images/cat5.png" },
-  { name: "Bus", img: "/images/bus.png" },
+  // { name: "Pickup", img: "/images/cat5.png" },
+  // { name: "Bus", img: "/images/bus.png" },
 ];
 
 export default function AboutSection({ title, description, categories }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const minSlides = 6; // slidesPerView + 1 (5 + 1)
+  const slidesData =
+    carCategories.length < minSlides ? Array.from({ length: minSlides }, (_, i) => carCategories[i % carCategories.length]) : carCategories;
   return (
     <section className="relative py-[20px] md:py-[25px] 2xl:py-[30px] 3xl:py-[40px] bg-[#F5F9FF] overflow-hidden">
       <div className="container">
@@ -86,20 +89,14 @@ export default function AboutSection({ title, description, categories }) {
             }}
             className="px-10 overflow-hidden mb-3 w-full "
           >
-            {categories?.map((car, index) => (
+            {slidesData.map((car, index) => (
               <SwiperSlide key={index}>
                 <div className="flex flex-col items-center cursor-pointer group transition-all duration-300" onClick={() => setSelected(car.name)}>
                   <div
                     className="w-full max-w-[180px] xs:max-w-[110px] md:max-w-[120px] lg:max-w-[145px] 2xl:max-w-[185px] 3xl:max-w-[250px] 
                                    h-[45px] xs:h-[100px] flex items-center justify-center"
                   >
-                    <Image
-                      src={car.image ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${car.image}` : "/images/cat1.png"}
-                      alt={car.name}
-                      width={100}
-                      height={100}
-                      className="w-full h-full object-contain"
-                    />
+                    <Image src={car.img} alt={car.name} width={100} height={100} className="w-full h-full object-contain" />
                   </div>
                   <p
                     className={`3xl:text-[25px] 2xl:text-[18px] md:text-[16px] sm:text-[14px] text-[12px] font-base1 mt-1 md:mt-1 ${

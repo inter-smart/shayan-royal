@@ -198,8 +198,8 @@ export default function TestimonialSection({ title, description, testimonials })
               prevEl: ".testmonial-prev",
               nextEl: ".testmonial-next",
             }}
-            className="xs:!pb-[35px] [--swiper-pagination-bullet-width:11px] 
-                    [--swiper-pagination-bullet-height:11px] 
+            className="xs:!pb-[35px] [--swiper-pagination-bullet-width:8px] 
+                    [--swiper-pagination-bullet-height:8px] 
                     [--swiper-pagination-bullet-inactive-opacity:1] 
                    [--swiper-pagination-bullet-inactive-color:#D6E1FF] 
                    [--swiper-pagination-color:#2E4C99] 

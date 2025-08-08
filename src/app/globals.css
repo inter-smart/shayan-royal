@@ -340,12 +340,12 @@ body[data-scroll-locked] {
     transform: translateY(0);
   }
 
-  5% {
-    transform: translateY(-8px);
+  25% {
+    transform: translateY(-6px);
   }
 
-  10% {
-    transform: translateY(10px);
+  50% {
+    transform: translateY(6px);
   }
 
   100% {
@@ -369,5 +369,5 @@ body[data-scroll-locked] {
   backdrop-filter: blur(30px);
   box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
   border: 0 !important;
-  z-index: 99;
+  z-index: 2;
 } 

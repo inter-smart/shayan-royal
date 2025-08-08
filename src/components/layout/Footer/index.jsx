@@ -33,7 +33,7 @@ export default async function footer() {
             <div className="flex flex-wrap max-sm:gap-2">
               <div className="w-full sm:w-1/2 md:w-2/3">
                 <Link
-                  href="#"
+                  href="/"
                   className="3xl:w-[320px] 2xl:w-[250px] xl:w-[200px] lg:w-[170px] w-[120px]  block mb-[25px] lg:mb-[30px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] "
                 >
                   <Image

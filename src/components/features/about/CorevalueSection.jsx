@@ -37,7 +37,11 @@ export default function CorevalueSection({ title, description, values }) {
       <div className="container">
         <div className="flex flex-wrap items-center">
           <div className="3xl:w-[370px] 2xl:w-[280px] xl:w-[250px] lg:w-[180px] w-full h-auto max-lg:mb-[30px] max-sm:mb-[20px]">
-            <Heading size={"heading2"} as="div" className=" text-black uppercase font-semibold leading-none 2xl:mb-[20px] lg:mb-[20px] mb-[15px]">
+            <Heading
+              size={"heading2"}
+              as="div"
+              className=" text-black uppercase font-semibold leading-none 2xl:mb-[20px] lg:mb-[20px] mb-[15px] max-w-[150px]"
+            >
               {title || item.title}
             </Heading>
             <Text size="text1" as="p" className="leading-[1.5] font-normal text-black">
