@@ -108,7 +108,7 @@ export default function Header() {
             </NavigationMenu>
 
             {/* Mobile Hamburger & Sheet Menu */}
-            <NavigationMenuItem className="lg:hidden list-none">
+            <NavigationMenuItem className="lg:hidden list-none relative z-90">
               <Sheet open={isOpen} onOpenChange={setIsOpen}>
                 <SheetTrigger className="text-white font-medium flex items-center cursor-pointer">
                   <svg
