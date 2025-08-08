@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Form, FormField, FormItem, FormControl, FormMessage } from "@/components/ui/form";
@@ -34,6 +34,10 @@ export default function CarSearchForm() {
   const [dropdownData, setDropdownData] = useState(null);
   const [makeId, setMakeId] = useState(null);
 
+  // loading / error states for dropdowns
+  const [dropdownLoading, setDropdownLoading] = useState(true);
+  const [dropdownError, setDropdownError] = useState(null);
+
   const searchParams = useSearchParams();
 
   const queryValues = useMemo(() => {
@@ -48,7 +52,7 @@ export default function CarSearchForm() {
       regionalSpec: params.regional_spec || "",
       yearFrom: params.yearFrom || "",
       steeringSide: params.steering_type || "",
-      carType: "", // optional: map car_type_id to name later
+      carType: params.car_type_id || "",
       cylinders: params.cylinder || "",
       seats: params.seats || "",
     };
@@ -57,6 +61,7 @@ export default function CarSearchForm() {
   const form = useForm({
     resolver: zodResolver(formSchema),
     values: queryValues, // initially from query string
+    mode: "onSubmit",
   });
 
   useEffect(() => {
@@ -75,7 +80,9 @@ export default function CarSearchForm() {
       }
 
       // Map carType name to ID
-      const selectedCarType = dropdownData?.data?.carTypes?.find((type) => type.name === values.carType);
+
+      // disable submit via react-hook-form isSubmitting (automatic) and use async handler
+      console.log("Params:", values);
 
       const params = {
         make_id: values.make,
@@ -86,20 +93,24 @@ export default function CarSearchForm() {
         body: values.body,
         regional_spec: values.regionalSpec,
         steering_type: values.steeringSide,
-        car_type_id: selectedCarType ? String(selectedCarType.id) : undefined,
+        car_type_id: values.carType,
         cylinder: values.cylinders,
         seats: values.seats,
         yearFrom: values.yearFrom,
       };
 
+      console.log("Params:", params);
+
       // Filter out empty or undefined values
       const filteredParams = Object.fromEntries(Object.entries(params).filter(([_, v]) => v !== "" && v !== undefined));
 
       const query = new URLSearchParams(filteredParams).toString();
-      router.push(`/inventory?${query}`);
+      // await router.push so we can rely on isSubmitting during navigation
+      await router.push(`/inventory?${query}`);
     } catch (error) {
       console.error("Error during form submission:", error);
-      router.push("/inventory");
+      // show fallback navigation
+      await router.push("/inventory");
     }
   };
 
@@ -120,27 +131,35 @@ export default function CarSearchForm() {
     });
 
     setMakeId(null);
-
-    // 2. Reset related state
-    setMakeId(null);
-
     router.push("/inventory?");
   };
 
   useEffect(() => {
+    let mounted = true;
     const fetchMakes = async () => {
+      setDropdownLoading(true);
+      setDropdownError(null);
       try {
         const response = await fetch(`${mediaUrl}/api/drop-down-data`);
         if (!response.ok) {
           throw new Error("Failed to fetch dropdown data");
         }
         const data = await response.json();
+        if (!mounted) return;
         setDropdownData(data);
       } catch (error) {
+        if (!mounted) return;
         console.error("Failed to fetch dropdown data:", error);
+        setDropdownError(error?.message || "Failed to load dropdowns");
+      } finally {
+        if (!mounted) return;
+        setDropdownLoading(false);
       }
     };
     fetchMakes();
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   const models = makeId ? dropdownData?.data?.models?.filter((model) => model.make_id == Number(makeId)) : [];
@@ -154,11 +173,27 @@ export default function CarSearchForm() {
   const itemClass =
     "3xl:py-[10px] 3xl:px-4 px-[7px] hover:bg-[#00095b] focus:bg-[#1D0A44] focus:text-white cursor-pointer font-normal !uppercase placeholder:!text-black";
 
+  // small inline SVG spinner used in buttons / triggers
+  const Spinner = ({ className = "inline-block h-4 w-4 mr-2 align-middle" }) => (
+    <svg className={`animate-spin ${className}`} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" role="img">
+      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+    </svg>
+  );
+
   return (
-    <div className="w-full relative">
+    <div className="w-full relative" aria-live="polite">
+      {/* top-level error for dropdowns */}
+      {dropdownError ? (
+        <div className="mb-3 p-2 text-sm bg-[#ffe6e6] text-[#7a1a1a] rounded">
+          <strong>Unable to load filters:</strong> {dropdownError}. You can still search but some options may be missing.
+        </div>
+      ) : null}
+
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
+          aria-busy={dropdownLoading || form.formState.isSubmitting}
           className="flex flex-wrap justify-between bg-[#031640] overflow-hidden rounded-[6px] 2xl:rounded-[8px] 3xl:rounded-[10px] 2xl:p-[30px] lg:p-[15px] sm:p-[15px] p-[10px]"
         >
           {/* Make */}
@@ -169,20 +204,45 @@ export default function CarSearchForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <SelectTrigger className={`${menuLinkClass} placeholder:!text-black placeholder:!font-regular !text-black uppercase`}>
-                        <SelectValue placeholder="MAKE" className="text-black" />
+                    <Select
+                      value={field.value}
+                      onValueChange={(value) => {
+                        field.onChange(value);
+                        setMakeId(value);
+                        form.setValue("model", ""); // Reset model when make changes
+                      }}
+                      // when dropdowns are loading disable make select to avoid confusion
+                      disabled={dropdownLoading}
+                    >
+                      <SelectTrigger
+                        className={`${menuLinkClass} placeholder:!text-black placeholder:!font-regular !text-black uppercase`}
+                        aria-label="Select make"
+                      >
+                        {/* show spinner or default placeholder */}
+                        {dropdownLoading ? (
+                          <>
+                            <Spinner className="inline-block h-4 w-4 mr-2" />
+                            <span className="align-middle">LOADING...</span>
+                          </>
+                        ) : (
+                          <SelectValue placeholder="MAKE" className="text-black" />
+                        )}
                       </SelectTrigger>
                       <SelectContent className={contentClass}>
-                        <SelectItem value="toyota" className={itemClass}>
-                          Toyota
-                        </SelectItem>
-                        <SelectItem value="bmw" className={itemClass}>
-                          BMW
-                        </SelectItem>
-                        <SelectItem value="audi" className={itemClass}>
-                          Audi
-                        </SelectItem>
+                        {dropdownLoading ? (
+                          // skeleton placeholders while loading
+                          <div className="p-2 space-y-2">
+                            {[1, 2, 3, 4, 5].map((n) => (
+                              <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
+                            ))}
+                          </div>
+                        ) : (
+                          dropdownData?.data?.makes?.map((make) => (
+                            <SelectItem key={make.id} value={String(make.id)} className={itemClass}>
+                              {make.name}
+                            </SelectItem>
+                          ))
+                        )}
                       </SelectContent>
                     </Select>
                   </FormControl>
@@ -200,20 +260,39 @@ export default function CarSearchForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black `}>
-                        <SelectValue placeholder="MODEL" className="!text-black placeholder:!text-black" />
+                    <Select onValueChange={field.onChange} value={field.value} disabled={dropdownLoading}>
+                      <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black`} aria-label="Select model">
+                        {/* show contextual placeholder */}
+                        {!makeId ? (
+                          <span className="text-black">MODEL</span>
+                        ) : dropdownLoading ? (
+                          <>
+                            <Spinner className="inline-block h-4 w-4 mr-2" />
+                            <span className="align-middle">LOADING...</span>
+                          </>
+                        ) : (
+                          <SelectValue placeholder="MODEL" className="!text-black placeholder:!text-black" />
+                        )}
                       </SelectTrigger>
+
                       <SelectContent className={contentClass}>
-                        <SelectItem value="corolla" className={itemClass}>
-                          Corolla
-                        </SelectItem>
-                        <SelectItem value="3series" className={itemClass}>
-                          3 Series
-                        </SelectItem>
-                        <SelectItem value="a4" className={itemClass}>
-                          A4
-                        </SelectItem>
+                        {dropdownLoading ? (
+                          <div className="p-2 space-y-2">
+                            {[1, 2, 3].map((n) => (
+                              <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
+                            ))}
+                          </div>
+                        ) : models?.length > 0 ? (
+                          models.map((model) => (
+                            <SelectItem key={model.id} value={String(model.id)} className={itemClass}>
+                              {model.name}
+                            </SelectItem>
+                          ))
+                        ) : !makeId ? (
+                          <div className="p-2 text-sm text-gray-500">Choose a make first</div>
+                        ) : (
+                          <div className="p-2 text-sm text-gray-500">No models available</div>
+                        )}
                       </SelectContent>
                     </Select>
                   </FormControl>
@@ -231,20 +310,31 @@ export default function CarSearchForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black`}>
-                        <SelectValue placeholder="FUEL" className="text-black" />
+                    <Select onValueChange={field.onChange} value={field.value} disabled={dropdownLoading}>
+                      <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black`} aria-label="Select fuel">
+                        {dropdownLoading ? (
+                          <>
+                            <Spinner className="inline-block h-4 w-4 mr-2" />
+                            <span className="align-middle">LOADING...</span>
+                          </>
+                        ) : (
+                          <SelectValue placeholder="FUEL" className="text-black" />
+                        )}
                       </SelectTrigger>
                       <SelectContent className={contentClass}>
-                        <SelectItem value="petrol" className={itemClass}>
-                          Petrol
-                        </SelectItem>
-                        <SelectItem value="diesel" className={itemClass}>
-                          Diesel
-                        </SelectItem>
-                        <SelectItem value="electric" className={itemClass}>
-                          Electric
-                        </SelectItem>
+                        {dropdownLoading ? (
+                          <div className="p-2 space-y-2">
+                            {[1, 2, 3].map((n) => (
+                              <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
+                            ))}
+                          </div>
+                        ) : (
+                          dropdownData?.data?.fuelTypes?.map((fuel) => (
+                            <SelectItem key={fuel?.id} value={fuel?.name} className={itemClass}>
+                              {fuel?.name}
+                            </SelectItem>
+                          ))
+                        )}
                       </SelectContent>
                     </Select>
                   </FormControl>
@@ -262,17 +352,31 @@ export default function CarSearchForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black `}>
-                        <SelectValue placeholder="GEARBOX" className="text-black" />
+                    <Select onValueChange={field.onChange} value={field.value} disabled={dropdownLoading}>
+                      <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black `} aria-label="Select gearbox">
+                        {dropdownLoading ? (
+                          <>
+                            <Spinner className="inline-block h-4 w-4 mr-2" />
+                            <span className="align-middle">LOADING...</span>
+                          </>
+                        ) : (
+                          <SelectValue placeholder="GEARBOX" className="text-black" />
+                        )}
                       </SelectTrigger>
                       <SelectContent className={contentClass}>
-                        <SelectItem value="automatic" className={itemClass}>
-                          Automatic
-                        </SelectItem>
-                        <SelectItem value="manual" className={itemClass}>
-                          Manual
-                        </SelectItem>
+                        {dropdownLoading ? (
+                          <div className="p-2 space-y-2">
+                            {[1, 2, 3].map((n) => (
+                              <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
+                            ))}
+                          </div>
+                        ) : (
+                          dropdownData?.data?.gearboxes?.map((gearbox) => (
+                            <SelectItem key={gearbox?.id} value={gearbox?.name} className={itemClass}>
+                              {gearbox?.name}
+                            </SelectItem>
+                          ))
+                        )}
                       </SelectContent>
                     </Select>
                   </FormControl>
@@ -288,19 +392,42 @@ export default function CarSearchForm() {
               <div className="flex-grow p-[5px]">
                 <Button
                   type="submit"
+                  disabled={dropdownLoading || form.formState.isSubmitting}
                   className="text-[8px] xl:text-[10px] 2xl:text-[13px] 3xl:text-[16px] bg-[#BD1F2D] font-normal min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px]
                                  text-white cursor-pointer w-full rounded-[3px] xl:rounded-[3px] 2xl:rounded-[4px] 3xl:rounded-[5px]  hover:bg-[#a81b27d3]"
+                  aria-disabled={dropdownLoading || form.formState.isSubmitting}
                 >
-                  SEARCH
+                  {form.formState.isSubmitting ? (
+                    <>
+                      <Spinner className="inline-block h-4 w-4 mr-2" />
+                      SEARCHING...
+                    </>
+                  ) : dropdownLoading ? (
+                    <>
+                      <Spinner className="inline-block h-4 w-4 mr-2" />
+                      LOADING...
+                    </>
+                  ) : (
+                    "SEARCH"
+                  )}
                 </Button>
               </div>
               <div className={`relative flex-grow p-[5px] ${isExpanded ? "block" : "hidden"}`}>
                 <Button
-                  type="submit"
+                  type="button"
+                  onClick={handleClear}
+                  disabled={form.formState.isSubmitting}
                   className="text-[8px] xl:text-[10px] 2xl:text-[13px] 3xl:text-[16px] bg-[#C4C4C4] font-normal min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px]
                                  text-white cursor-pointer w-full rounded-[3px] xl:rounded-[3px] 2xl:rounded-[4px] 3xl:rounded-[5px]  hover:bg-[#a81b26]"
                 >
-                  CLEAR
+                  {form.formState.isSubmitting ? (
+                    <>
+                      <Spinner className="inline-block h-4 w-4 mr-2" />
+                      ...
+                    </>
+                  ) : (
+                    "CLEAR"
+                  )}
                 </Button>
               </div>
             </div>
@@ -347,20 +474,31 @@ export default function CarSearchForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <Select onValueChange={field.onChange} value={field.value} disabled={dropdownLoading}>
                             <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}>
-                              <SelectValue placeholder="Regional Spec" className="text-black" />
+                              {dropdownLoading ? (
+                                <>
+                                  <Spinner className="inline-block h-4 w-4 mr-2" />
+                                  <span className="align-middle">LOADING...</span>
+                                </>
+                              ) : (
+                                <SelectValue placeholder="Regional Spec" className="text-black" />
+                              )}
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
-                              <SelectItem value="GCC" className={itemClass}>
-                                GCC
-                              </SelectItem>
-                              <SelectItem value="American" className={itemClass}>
-                                American
-                              </SelectItem>
-                              <SelectItem value="Japanese" className={itemClass}>
-                                Japanese
-                              </SelectItem>
+                              {dropdownLoading ? (
+                                <div className="p-2 space-y-2">
+                                  {[1, 2].map((n) => (
+                                    <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
+                                  ))}
+                                </div>
+                              ) : (
+                                dropdownData?.data?.regional_specs?.map((spec) => (
+                                  <SelectItem key={spec?.id} value={spec?.name} className={itemClass}>
+                                    {spec?.name}
+                                  </SelectItem>
+                                ))
+                              )}
                             </SelectContent>
                           </Select>
                         </FormControl>
@@ -374,24 +512,35 @@ export default function CarSearchForm() {
                 <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:p-[10px] p-[5px]">
                   <FormField
                     control={form.control}
-                    name="Year From"
+                    name="yearFrom"
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <Select onValueChange={field.onChange} value={field.value} disabled={dropdownLoading}>
                             <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}>
-                              <SelectValue placeholder="YEAR FROM" className="text-black" />
+                              {dropdownLoading ? (
+                                <>
+                                  <Spinner className="inline-block h-4 w-4 mr-2" />
+                                  <span className="align-middle">LOADING...</span>
+                                </>
+                              ) : (
+                                <SelectValue placeholder="YEAR FROM" className="text-black" />
+                              )}
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
-                              <SelectItem value="2020" className={itemClass}>
-                                2020
-                              </SelectItem>
-                              <SelectItem value="2021" className={itemClass}>
-                                2021
-                              </SelectItem>
-                              <SelectItem value="2022" className={itemClass}>
-                                2022
-                              </SelectItem>
+                              {dropdownLoading ? (
+                                <div className="p-2 space-y-2">
+                                  {[1, 2, 3].map((n) => (
+                                    <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
+                                  ))}
+                                </div>
+                              ) : (
+                                dropdownData?.data?.years?.map((year) => (
+                                  <SelectItem key={year} value={year.toString()} className={itemClass}>
+                                    {year}
+                                  </SelectItem>
+                                ))
+                              )}
                             </SelectContent>
                           </Select>
                         </FormControl>
@@ -404,24 +553,35 @@ export default function CarSearchForm() {
                 <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:p-[10px] p-[5px]">
                   <FormField
                     control={form.control}
-                    name="year"
+                    name="yearTo"
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <Select onValueChange={field.onChange} value={field.value} disabled={dropdownLoading}>
                             <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}>
-                              <SelectValue placeholder="YEAR TO" className="text-black uppercase placeholder:!uppercase" />
+                              {dropdownLoading ? (
+                                <>
+                                  <Spinner className="inline-block h-4 w-4 mr-2" />
+                                  <span className="align-middle">LOADING...</span>
+                                </>
+                              ) : (
+                                <SelectValue placeholder="YEAR TO" className="text-black uppercase placeholder:!uppercase" />
+                              )}
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
-                              <SelectItem value="2020" className={itemClass}>
-                                2020
-                              </SelectItem>
-                              <SelectItem value="2021" className={itemClass}>
-                                2021
-                              </SelectItem>
-                              <SelectItem value="2022" className={itemClass}>
-                                2022
-                              </SelectItem>
+                              {dropdownLoading ? (
+                                <div className="p-2 space-y-2">
+                                  {[1, 2, 3].map((n) => (
+                                    <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
+                                  ))}
+                                </div>
+                              ) : (
+                                dropdownData?.data?.years?.map((year) => (
+                                  <SelectItem key={year} value={year.toString()} className={itemClass}>
+                                    {year}
+                                  </SelectItem>
+                                ))
+                              )}
                             </SelectContent>
                           </Select>
                         </FormControl>
@@ -435,24 +595,35 @@ export default function CarSearchForm() {
                 <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:p-[10px] p-[5px]">
                   <FormField
                     control={form.control}
-                    name="body"
+                    name="steeringSide"
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <Select onValueChange={field.onChange} value={field.value} disabled={dropdownLoading}>
                             <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}>
-                              <SelectValue placeholder="STEERING SIDE" className="text-black uppercase" />
+                              {dropdownLoading ? (
+                                <>
+                                  <Spinner className="inline-block h-4 w-4 mr-2" />
+                                  <span className="align-middle">LOADING...</span>
+                                </>
+                              ) : (
+                                <SelectValue placeholder="STEERING TYPE" className="text-black uppercase" />
+                              )}
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
-                              <SelectItem value="sedan" className={itemClass}>
-                                Sedan
-                              </SelectItem>
-                              <SelectItem value="suv" className={itemClass}>
-                                SUV
-                              </SelectItem>
-                              <SelectItem value="hatchback" className={itemClass}>
-                                Hatchback
-                              </SelectItem>
+                              {dropdownLoading ? (
+                                <div className="p-2 space-y-2">
+                                  {[1, 2].map((n) => (
+                                    <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
+                                  ))}
+                                </div>
+                              ) : (
+                                dropdownData?.data?.steeringTypes?.map((steering) => (
+                                  <SelectItem key={steering?.id} value={steering?.name} className={itemClass}>
+                                    {steering?.name}
+                                  </SelectItem>
+                                ))
+                              )}
                             </SelectContent>
                           </Select>
                         </FormControl>
@@ -466,24 +637,35 @@ export default function CarSearchForm() {
                 <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:p-[10px] p-[5px]">
                   <FormField
                     control={form.control}
-                    name="body"
+                    name="carType"
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <Select onValueChange={field.onChange} value={field.value} disabled={dropdownLoading}>
                             <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}>
-                              <SelectValue placeholder="CAR TYPE" className="text-black" />
+                              {dropdownLoading ? (
+                                <>
+                                  <Spinner className="inline-block h-4 w-4 mr-2" />
+                                  <span className="align-middle">LOADING...</span>
+                                </>
+                              ) : (
+                                <SelectValue placeholder="CAR TYPE" className="text-black" />
+                              )}
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
-                              <SelectItem value="sedan" className={itemClass}>
-                                Sedan
-                              </SelectItem>
-                              <SelectItem value="suv" className={itemClass}>
-                                SUV
-                              </SelectItem>
-                              <SelectItem value="hatchback" className={itemClass}>
-                                Hatchback
-                              </SelectItem>
+                              {dropdownLoading ? (
+                                <div className="p-2 space-y-2">
+                                  {[1, 2, 3].map((n) => (
+                                    <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
+                                  ))}
+                                </div>
+                              ) : (
+                                dropdownData?.data?.carTypes?.map((type) => (
+                                  <SelectItem key={type.id} value={String(type.id)} className={itemClass}>
+                                    {type.name}
+                                  </SelectItem>
+                                ))
+                              )}
                             </SelectContent>
                           </Select>
                         </FormControl>
@@ -496,24 +678,35 @@ export default function CarSearchForm() {
                 <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:p-[10px] p-[5px]">
                   <FormField
                     control={form.control}
-                    name="body"
+                    name="cylinders"
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <Select onValueChange={field.onChange} value={field.value} disabled={dropdownLoading}>
                             <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}>
-                              <SelectValue placeholder="CYLINDERS" className="text-black" />
+                              {dropdownLoading ? (
+                                <>
+                                  <Spinner className="inline-block h-4 w-4 mr-2" />
+                                  <span className="align-middle">LOADING...</span>
+                                </>
+                              ) : (
+                                <SelectValue placeholder="CYLINDERS" className="text-black" />
+                              )}
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
-                              <SelectItem value="sedan" className={itemClass}>
-                                Sedan
-                              </SelectItem>
-                              <SelectItem value="suv" className={itemClass}>
-                                SUV
-                              </SelectItem>
-                              <SelectItem value="hatchback" className={itemClass}>
-                                Hatchback
-                              </SelectItem>
+                              {dropdownLoading ? (
+                                <div className="p-2 space-y-2">
+                                  {[1, 2].map((n) => (
+                                    <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
+                                  ))}
+                                </div>
+                              ) : (
+                                dropdownData?.data?.cylinders?.map((cylinder) => (
+                                  <SelectItem key={cylinder?.id} value={cylinder.count} className={itemClass}>
+                                    {cylinder?.count}
+                                  </SelectItem>
+                                ))
+                              )}
                             </SelectContent>
                           </Select>
                         </FormControl>
@@ -526,24 +719,35 @@ export default function CarSearchForm() {
                 <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:p-[10px] p-[5px]">
                   <FormField
                     control={form.control}
-                    name="body"
+                    name="seats"
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <Select onValueChange={field.onChange} value={field.value} disabled={dropdownLoading}>
                             <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}>
-                              <SelectValue placeholder="NUMBER OF SEATS" className="text-black" />
+                              {dropdownLoading ? (
+                                <>
+                                  <Spinner className="inline-block h-4 w-4 mr-2" />
+                                  <span className="align-middle">LOADING...</span>
+                                </>
+                              ) : (
+                                <SelectValue placeholder="NUMBER OF SEATS" className="text-black" />
+                              )}
                             </SelectTrigger>
                             <SelectContent className={contentClass}>
-                              <SelectItem value="sedan" className={itemClass}>
-                                Sedan
-                              </SelectItem>
-                              <SelectItem value="suv" className={itemClass}>
-                                SUV
-                              </SelectItem>
-                              <SelectItem value="hatchback" className={itemClass}>
-                                Hatchback
-                              </SelectItem>
+                              {dropdownLoading ? (
+                                <div className="p-2 space-y-2">
+                                  {[1, 2].map((n) => (
+                                    <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
+                                  ))}
+                                </div>
+                              ) : (
+                                dropdownData?.data?.seats?.map((seat) => (
+                                  <SelectItem key={seat?.id} value={seat.count} className={itemClass}>
+                                    {seat?.count}
+                                  </SelectItem>
+                                ))
+                              )}
                             </SelectContent>
                           </Select>
                         </FormControl>

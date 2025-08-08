@@ -119,7 +119,7 @@ export default function ClientSection({ title, clientData = testimonials }) {
                         {item?.name || "Client Name"}
                       </div>
                       <div className="3xl:text-[20px] 2xl:text-[17px] xl:text-[13px] lg:text-[12px] text-[12px] text-black text-sm">
-                        {item?.location || "Location"}
+                        {item?.country || "Location"}
                       </div>
                     </div>
                   </div>

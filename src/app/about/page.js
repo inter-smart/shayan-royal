@@ -81,7 +81,7 @@ async function getMetaData() {
         canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/about`,
       },
 
-      error:  "No metadata found",
+      error: "No metadata found",
     };
   }
 }
@@ -140,7 +140,7 @@ export default async function Page() {
       />
       <CorevalueSection title={contents?.core_values_title} description={contents?.core_values_description} values={values} />
       <ExpertiseSection title={contents?.our_expertise_title} expertise={expertise} />
-      <MarketSection title={contents?.map_section_title} description={contents?.map_section_description} />
+      <MarketSection title={contents?.map_section_title} description={contents?.map_section_description} image={contents?.map_image} />
       <ContactSection
         backgroundImage={contents?.contact_section_image ? `${mediaUrl}${contents?.contact_section_image}` : "/images/contact_section.webp"}
         title={contents?.contact_section_title ? contents?.contact_section_title : "Contact Us Today!"}

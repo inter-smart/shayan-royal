@@ -164,13 +164,12 @@ export default function TestimonialSection({ title, description, testimonials })
       <div className="container">
         <div className="max-w-[85%] mx-auto text-center mb-[15px] 2xl:mb-[30px] 3xl:mb-[50px]">
           <Heading size="heading2" as="h2" className="text-black uppercase mb-[10px]">
-            Testimonials
+            {title || "Testimonials"}
           </Heading>
           <Text size="text1" as="p" className="text-[#4B4B4B] mb-[15px]">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever
-            since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only
-            five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in Lorem Ipsum
-            passages, and more recently with desktop.
+            {description
+              ? parse(description)
+              : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non autem hoc: igitur ne illud quidem. Prave, nequiter, turpiter cenabat..."}
           </Text>
         </div>
 
