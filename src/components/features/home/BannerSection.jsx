@@ -123,7 +123,8 @@ export default function BannerSection() {
   return (
     <section className="h-full xl:py-[40px] py-[60px] overflow-hidden ">
       <div className="container">
-        <div className="2xl:h-[calc(100vh-300px)] lg:h-[calc(100vh-200px)] h-[250px] mb-[50px] relative min-h-[250px] 2xl:min-h-[350px] 3xl:min-h-[450px]">
+        {/* <div className="2xl:h-[calc(100vh-400px)] lg:h-[calc(100vh-350px)] h-[250px] mb-[50px] relative min-h-[250px] 2xl:min-h-[350px] 3xl:min-h-[450px]"> */}
+        <div className="h-full mb-[50px] relative min-h-[250px] 2xl:min-h-[350px] 3xl:min-h-[450px]">
           <Swiper
             modules={[Thumbs, EffectFade, Autoplay]}
             speed={900}
@@ -142,13 +143,13 @@ export default function BannerSection() {
               },
             }}
             onSlideChange={handleSlideChange}
-            className="w-full h-full mb-5 !overflow-visible"
+            className="w-full  mb-5 !overflow-visible h-[250px] lg:h-[350px] xl:h-[400px] 2xl:h-[550px] 3xl:h-[600px]"
           >
             {slides.map((slide, index) => (
               <SwiperSlide key={index} >
                 <div className="flex items-end w-full h-full">
 
-                  <div className="w-full h-full relative flex justify-center items-center sm:overflow-hidden max-h-[320px] 2xl:max-h-[360px] 3xl:max-h-[400px]">
+                  <div className="w-full h-full relative flex justify-center items-center sm:overflow-hidden max-h-[145px] xs:max-h-[185px] md:max-h-[220px] lg:max-h-[280px] xl:max-h-[320px] 2xl:max-h-[360px] 3xl:max-h-[400px]">
                     <AnimatePresence custom={direction}>
                       {currentIndex === index && (
                         <motion.div
@@ -159,7 +160,7 @@ export default function BannerSection() {
                           animate={currentIndex === index && hasLoaded ? "center" : false}
                           exit={currentIndex === index && hasLoaded ? "exit" : false}
                           className={`absolute bottom-0 w-full 3xl:max-w-[1000px] 2xl:max-w-[780px] 
-                          lg:max-w-[650px] max-w-[500px] m-auto flex flex-col justify-end z-1 
+                          lg:max-w-[650px] md:max-w-[500px] xs:max-w-[420px] max-w-[320px] m-auto flex flex-col justify-end z-1 
                           ${currentIndex !== index ? "opacity-0 pointer-events-none" : ""} bg-transparent`}
                         >
                           <Image
@@ -185,7 +186,7 @@ export default function BannerSection() {
                             exit={currentIndex === 0 && !hasLoaded ? false : "exit"}
                             className="3xl:text-[150px] 2xl:text-[110px] xl:text-[80px] lg:text-[60px] 
                             sm:text-[40px] 2xs:text-[30px] text-[25px] font-normal uppercase  
-                            font-base2  text-center bg-clip-text text-transparent 
+                            font-base2  text-center bg-clip-text text-transparent line-clamp-1
                             [background-image:linear-gradient(0deg,rgba(180,186,202,0.20)_20.28%,#B4BACA_80.51%)]"
                           >
                             {slide.title}
