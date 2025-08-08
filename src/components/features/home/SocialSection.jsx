@@ -97,7 +97,7 @@ export default function SocialSection({ title, description, socialMedia }) {
           {socialMedia.map((item, keyindex) => (
             <SwiperSlide key={keyindex}>
               <a
-                href="#"
+                href={`${item?.link ? item?.link : "#"}`}
                 className="w-full h-full block overflow-hidden rounded-[10px] relative aspect-square 2xl:min-h-[350px] xl:min-h-[275px] sm:min-h-[250px] min-h-[220px]"
               >
                 <video autoPlay preload="auto" muted playsInline loop width={390} height={390} className="w-full h-full object-cover">

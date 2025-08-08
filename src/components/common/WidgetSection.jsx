@@ -1,78 +1,88 @@
+import { fetchFromAPI } from "@/lib/api";
+import { mediaUrl } from "@/lib/constants";
 import Image from "next/image";
 
-const menuLinkClass = "3xl:w-[32px] 3xl:h-[32px] 2x:w-[24px] 2xl:h-[24px] w-[20px] h-[20px] rounded-full flex items-center justify-center transition-all hover:lg:scale-130";
+const menuLinkClass =
+  "3xl:w-[32px] 3xl:h-[32px] 2x:w-[24px] 2xl:h-[24px] w-[20px] h-[20px] rounded-full flex items-center justify-center transition-all hover:lg:scale-130";
 
-export default function WidgetSection() {
-    return (
-        <section>
-            <div className="fixed right-[-2px] top-1/3 z-50 3xl:w-[65px] 2xl:w-[50px] lg:w-[40px] w-[30px] 3xl:min-h-[260px] min-h-[240px] flex items-center justify-center py-[85px] max-md:px-[15px]">
+export default async function WidgetSection() {
+  const { data, error } = await fetchFromAPI("float-icons");
+
+  if (error) {
+    return <div>Something went wrong</div>;
+  }
+
+  if (!data) {
+    return <div>No data</div>;
+  }
+
+  const { buttons } = data;
+
+  console.log(buttons);
+
+  return (
+    <section>
+      <div className="fixed right-[-2px] top-1/3 z-50 3xl:w-[65px] 2xl:w-[50px] lg:w-[40px] w-[30px] 3xl:min-h-[260px] min-h-[240px] flex items-center justify-center py-[85px] max-md:px-[15px]">
+        <Image
+          src="/images/widgetBg.png"
+          alt="buttonBg"
+          width="47"
+          height="230"
+          className={`absolute top-0 left-0 w-full object-fill h-full -z-10 `}
+        />
+        <div className="relative w-full h-full flex flex-col items-center justify-center gap-3">
+          {buttons?.map((button, index) => (
+            <a
+              key={index}
+              href={button?.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${menuLinkClass}  cursor-pointer`}
+              aria-label={button?.title}
+            >
+              <div className="lg:max-w-[13px] max-w-[10px] flex">
                 <Image
-                    src="/images/widgetBg.png"
-                    alt="buttonBg"
-                    width="47"
-                    height="230"
-                    className={`absolute top-0 left-0 w-full object-fill h-full -z-10 `}
+                  src={button?.icon ? `${mediaUrl}${button?.icon}` : "/images/no-image.jpg"}
+                  width="13"
+                  height="13"
+                  className="object-contain"
+                  alt={button?.title}
                 />
-                <div className="relative w-full h-full flex flex-col items-center justify-center gap-3">
-                    <a
-                        href="tel:+971123456789"
-                        className={`${menuLinkClass} bg-[#24408A] cursor-pointer`}
-                        aria-label="Call Us"
-                    >
-                        <div className="lg:max-w-[13px] max-w-[10px] flex">
-                            {/* <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4.05365 1.63937C4.3228 1.9603 5.51472 3.84256 5.46001 4.15541C5.43394 4.30229 5.30873 4.41465 4.94998 4.71538C4.7734 4.85446 4.60802 5.00719 4.45536 5.17218C4.52838 5.47446 4.63684 5.76706 4.77849 6.0439C5.30708 7.1296 6.18444 8.0067 7.27029 8.53496C7.54713 8.67661 7.83974 8.78508 8.14202 8.8581C8.307 8.70544 8.45973 8.54006 8.59881 8.36348C8.89954 8.0051 9.01117 7.87952 9.15879 7.85345C9.47237 7.79873 11.3539 8.99176 11.6748 9.25981C11.8077 9.37217 11.897 9.47425 11.897 9.60498C11.897 9.98392 9.77751 11.698 9.50285 11.698C9.48045 11.698 7.27396 11.6613 4.43884 8.87462C1.65218 6.03949 1.61546 3.83301 1.61546 3.81061C1.61546 3.53595 3.32954 1.41649 3.70848 1.41649C3.83921 1.41649 3.94129 1.50571 4.05365 1.63937Z" fill="white" />
-                                <path d="M7.12444 3.98703L7.12444 3.25264C7.90326 3.25352 8.64994 3.56329 9.20065 4.114C9.75136 4.66472 10.0611 5.41139 10.062 6.19022L9.32762 6.19022C9.32703 5.60608 9.09473 5.04603 8.68168 4.63298C8.26863 4.21993 7.70858 3.98762 7.12444 3.98703Z" fill="white" />
-                                <path d="M7.12341 2.15105L7.12341 1.41666C8.38899 1.41811 9.60232 1.92151 10.4972 2.81641C11.3921 3.71131 11.8955 4.92464 11.897 6.19022L11.1626 6.19022C11.1613 5.11935 10.7354 4.09271 9.97814 3.33549C9.22092 2.57827 8.19428 2.15231 7.12341 2.15105Z" fill="white" />
-                            </svg> */}
-                            <Image src="/images/callIcon.svg" width="13" height="13" className="object-contain" alt="call" />
-                        </div>
-                    </a>
+              </div>
+            </a>
+          ))}
 
-                    <a
-                        href="mailto:info@example.com"
-                        className={`${menuLinkClass} bg-[#BE1E2D] cursor-pointer`}
-                        aria-label="Email Us"
-                    >
-                        <div className="lg:max-w-[13px] max-w-[10px] flex">
-                            {/* <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                                <g clipPath="url(#clip0_4139_2283)">
-                                    <path fillRule="evenodd" clipRule="evenodd" d="M9.96607 2.36547L6.95038 5.38247C6.29264 6.03894 5.21748 6.0395 4.55921 5.38247L1.54351 2.36547C1.51314 2.33509 1.51757 2.28508 1.5528 2.26051C1.86039 2.046 2.23462 1.91882 2.63775 1.91882H8.87181C9.27496 1.91882 9.6492 2.04602 9.95678 2.26051C9.99202 2.28508 9.99644 2.33509 9.96607 2.36547ZM10.772 3.81896C10.772 3.50195 10.6934 3.20243 10.5549 2.93917C10.5333 2.89799 10.4784 2.88966 10.4455 2.92256L7.46798 5.90008C6.5251 6.84434 4.98503 6.84488 4.04158 5.90008L1.06406 2.92256C1.03116 2.88966 0.976279 2.89799 0.95463 2.93917C0.816207 3.20243 0.737588 3.50198 0.737588 3.81896V7.78561C0.737588 8.83415 1.59052 9.68577 2.63775 9.68577H8.87181C9.91902 9.68577 10.772 8.83415 10.772 7.78561V3.81896Z" fill="white" />
-                                </g>
-                                <defs>
-                                    <clipPath id="clip0_4139_2283">
-                                        <rect width="11.1628" height="11.1628" fill="white" transform="matrix(-1 0 0 1 11.3364 0.221252)" />
-                                    </clipPath>
-                                </defs>
-                            </svg> */}
-                              <Image src="/images/mailIcon.svg" width="13" height="13" className="object-contain" alt="mail" />
-
-                        </div>
-                    </a>
-
-                    <a
-                        href="https://wa.me/971123456789"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`${menuLinkClass} bg-[#2AA81A] cursor-pointer`}
-                        aria-label="WhatsApp Us"
-                    >
-                        <div className="lg:max-w-[13px] max-w-[10px] flex">
-                            {/* <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12.6641 2.11131C12.6641 2.11029 12.6654 2.10978 12.6661 2.1105C13.8359 3.27459 14.5536 4.82073 14.6897 6.47008C14.8259 8.12036 14.3708 9.76521 13.4067 11.1077C12.4426 12.4501 11.0329 13.4017 9.43217 13.7907C9.02153 13.8905 8.60525 13.9515 8.18849 13.9745C5.84218 14.1037 3.42333 13.4885 1.12231 13.965C1.08679 13.9729 1.05003 13.9732 1.0144 13.9659C0.978759 13.9586 0.94504 13.9439 0.915418 13.9227C0.870569 13.8923 0.836019 13.8489 0.816387 13.7982C0.796755 13.7475 0.79298 13.6921 0.805566 13.6392C1.33928 11.3782 0.78964 8.97794 0.919902 6.65848C0.943777 6.23336 1.00665 5.80886 1.10912 5.39039C1.49989 3.79459 2.44111 2.38999 3.76523 1.4266C5.08936 0.463222 6.71048 0.00356665 8.34005 0.129455C9.9687 0.255274 11.5002 0.957819 12.6622 2.11212C12.6629 2.11284 12.6641 2.11233 12.6641 2.11131ZM3.99129 3.20214C3.19192 4.00739 2.66364 5.04431 2.48072 6.16712C2.29779 7.28993 2.46943 8.44215 2.97149 9.46178L2.99689 9.51325C3.1367 9.79657 3.17361 10.1197 3.10128 10.4272L2.71365 12.0753C2.71069 12.088 2.72026 12.1 2.73322 12.1C2.73461 12.1 2.73599 12.0999 2.73735 12.0996L4.37522 11.7554C4.70848 11.6853 5.05567 11.7316 5.35895 11.8865C6.37569 12.4078 7.53054 12.5919 8.65777 12.4123C9.78501 12.2327 10.8267 11.6986 11.6334 10.8868C12.6461 9.86736 13.2149 8.48538 13.2149 7.04446C13.2149 5.61053 12.6516 4.23497 11.6481 3.21701C11.6383 3.20711 11.6277 3.19804 11.6165 3.18986C11.6058 3.18211 11.5957 3.17352 11.5863 3.16426C10.5718 2.16686 9.20769 1.61039 7.78836 1.61554C6.36243 1.62071 4.99631 2.19232 3.98763 3.20583L3.99129 3.20214Z" fill="white" />
-                                <path d="M5.5588 3.39201C5.14685 3.65528 4.64336 4.07321 4.51703 4.59423C4.29732 5.51476 4.51703 6.91582 6.13003 8.67036L6.15017 8.69245C7.56727 10.2187 8.74818 10.6237 9.68376 10.5335C10.2165 10.4801 10.6962 10.0346 11.0111 9.65901C11.0612 9.5993 11.0967 9.52864 11.1148 9.45267C11.1328 9.3767 11.133 9.29754 11.1152 9.22151C11.0974 9.14548 11.0622 9.07469 11.0123 9.01479C10.9624 8.95489 10.8994 8.90756 10.8281 8.87656L9.55743 8.31135C9.47563 8.27445 9.3854 8.26061 9.29639 8.27131C9.20738 8.28202 9.12294 8.31686 9.05211 8.3721L8.68593 8.65931C8.60992 8.71901 8.51794 8.75457 8.42174 8.76146C8.32554 8.76834 8.22948 8.74624 8.14582 8.69798C7.74595 8.42516 7.38499 8.09873 7.07293 7.72773C6.69091 7.32856 6.36838 6.87587 6.11538 6.38375C6.07938 6.29393 6.07078 6.19537 6.09067 6.10062C6.11056 6.00586 6.15804 5.91921 6.22707 5.85168L6.56028 5.52213C6.62734 5.45942 6.67584 5.37928 6.7004 5.29057C6.72495 5.20186 6.72462 5.10805 6.69943 5.01952L6.31678 3.67553C6.29523 3.59938 6.25615 3.52939 6.20271 3.47124C6.14927 3.41309 6.08297 3.3684 6.00917 3.3408C5.93537 3.31319 5.85615 3.30344 5.7779 3.31234C5.69966 3.32124 5.6246 3.34853 5.5588 3.39201Z" fill="white" />
-                            </svg> */}
-                              <Image src="/images/wtapicon.svg" width="13" height="13" className="object-contain" alt="whatsapp" />
-                        </div>
-                    </a>
-                </div>
+          {/* <a href="tel:+971123456789" className={`${menuLinkClass} bg-[#24408A] cursor-pointer`} aria-label="Call Us">
+            <div className="lg:max-w-[13px] max-w-[10px] flex">
+              <Image src="/images/callIcon.svg" width="13" height="13" className="object-contain" alt="call" />
             </div>
-            {/* chat us  */}
-            <div className="fixed bottom-[60px] md:right-[40px] right-[15px] ">
-                <div className="w-[40px] h-[40px] flex items-center justify-center cursor-pointer transition-all hover:-translate-y-1">
-                    <Image src="/images/chat_icon.png" width="40" height="40" className="w-full h-full object-cover" alt="chat_icon" />
-                </div>
+          </a>
+
+          <a href="mailto:info@example.com" className={`${menuLinkClass} bg-[#BE1E2D] cursor-pointer`} aria-label="Email Us">
+            <div className="lg:max-w-[13px] max-w-[10px] flex">
+              <Image src="/images/mailIcon.svg" width="13" height="13" className="object-contain" alt="mail" />
             </div>
-        </section>
-    );
+          </a>
+
+          <a
+            href="https://wa.me/971123456789"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${menuLinkClass} bg-[#2AA81A] cursor-pointer`}
+            aria-label="WhatsApp Us"
+          >
+            <div className="lg:max-w-[13px] max-w-[10px] flex">
+              <Image src="/images/wtapicon.svg" width="13" height="13" className="object-contain" alt="whatsapp" />
+            </div>
+          </a> */}
+        </div>
+      </div>
+      {/* chat us  */}
+      <div className="fixed bottom-[60px] md:right-[40px] right-[15px] ">
+        <div className="w-[40px] h-[40px] flex items-center justify-center cursor-pointer transition-all hover:-translate-y-1">
+          <Image src="/images/chat_icon.png" width="40" height="40" className="w-full h-full object-cover" alt="chat_icon" />
+        </div>
+      </div>
+    </section>
+  );
 }

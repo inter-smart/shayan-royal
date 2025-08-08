@@ -142,7 +142,7 @@ export default function BlogDetailSection({ blog, recentBlogs, slug }) {
                   Leave a <span className="block"> Reply </span>
                 </h3>
                 <p className="3xl:text-[20px] 2xl:text-[18px] xl:text-[16px] text-[14px] text-[#262626] mb-[40px]">
-                  Unum nescio, quo modo possit, si luxuriosus sit, finitas cupiditates habere. Sed ego in hoc resisto; Satis est tibi
+                  Share your feedback, questions, or insights in the comments below.
                 </p>
                 {/* Comment Count with Conditional Icon */}
                 <div className="flex items-center">

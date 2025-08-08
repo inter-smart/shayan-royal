@@ -64,7 +64,7 @@ export default function FitmentAdditionalServicesSection({ items, title }) {
             }}
             className="additional_fitment_Slider"
           >
-            {items.slice(1).map((item, index) => (
+            {items.map((item, index) => (
               <SwiperSlide key={index} className="flex !h-auto">
                 <div
                   className={`w-full h-full text-center 3xl:pt-[55px] 2xl:pt-[35px] xl:pt-[25px] pt-[20px] 3xl:pr-[50px] 2xl:pr-[40px] xl:pr-[30px] pr-[15px] 3xl:pb-[80px] 2xl:pb-[50px] xl:pb-[30px] pb-[20px] 3xl:pl-[50px] 2xl:pl-[40px] xl:pl-[30px] pl-[15px] flex flex-col items-center justify-start 3xl:min-h-[340px] 2xl:min-h-[265px] xl:min-h-[220px] min-h-[180px] transition-all duration-800 ease-in-out bg-[#F5F9FF] group hover:bg-gradient-to-b hover:from-[#2E4C99] hover:to-[#0E1D44] ${

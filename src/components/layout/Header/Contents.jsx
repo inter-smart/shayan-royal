@@ -31,7 +31,7 @@ function Contents({ data }) {
     >
       <div className="container">
         <div
-          className={`w-full flex flex-wrap items-center justify-between py-[5px_0] ${
+          className={`w-full flex flex-wrap items-center justify-between py-[15px_0] 2xl:py-[20px_0] 3xl:py-[25px_0] ${
             isInnerPage ? "lg:border-b lg:border-[rgba(217,217,217,0.2)]" : ""
           }`}
         >
