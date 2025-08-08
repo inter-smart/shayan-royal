@@ -33,7 +33,7 @@ const mainText = "3xl:text-[25px] 2xl:text-[21px] lg:text-[18px] text-[16px] tex
 
 const errorMessage = "absolute bottom-[-15px] lg:left-[15px] left-[8px] md:text-[12px] text-[10px]";
 
-const imageMimeTypes = ["image/jpeg", "image/png", "image/webp", "image/gif", "image/jpg"];
+const imageMimeTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/gif"];
 
 // Schema
 const formSchema = z.object({
@@ -52,15 +52,20 @@ const formSchema = z.object({
   modelYear: z.string().optional(),
   vehicleType: z.string().optional(),
   additionalNotes: z.string().optional(),
-
-  samplePictures: z.any().refine(
-    (file) =>
-      !file || // allow undefined or no file
-      (typeof window !== "undefined" && file instanceof File && imageMimeTypes.includes(file.type)),
-    {
-      message: "Only image files are allowed (jpg, jpeg, png, webp, gif)",
-    }
-  ),
+  samplePictures: z
+    .any()
+    .refine(
+      (files) =>
+        !files ||
+        (Array.isArray(files) &&
+          files.length > 0 &&
+          files.every(
+            (file) => file instanceof File && imageMimeTypes.includes(file.type)
+          )),
+      {
+        message: "Only image files are allowed (jpg, jpeg, png, webp, gif)",
+      }
+    ),
   budgetRange: z.string().optional(),
   deliveryDate: z.date().optional(),
 });
