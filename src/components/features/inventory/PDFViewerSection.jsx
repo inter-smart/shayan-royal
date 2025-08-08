@@ -109,7 +109,7 @@ export default function PDFViewer({ fileUrl }) {
            text-white bg-[#2E4C99] uppercase rounded-[50px] 
            h-[30px] 2xl:h-[35px] 3xl:h-[40px] flex items-center justify-center m-auto 
            lg:m-0 lg:ml-auto px-[10px] max-w-[140px] xl:max-w-[150px] 2xl:max-w-[180px] 
-           3xl:max-w-[210px] hover:bg-[#1f3574] transition-all duration-200"
+           3xl:max-w-[210px] hover:bg-[#1f3574] transition-all duration-200 cursor-pointer"
           >
             DOWNLOAD SPECS
           </button>
