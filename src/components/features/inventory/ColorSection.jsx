@@ -20,7 +20,7 @@ const specIcons = [
 ];
 
 export default function CarColorSpecSection({ colorVariants = colors, specs2 }) {
-  const [activeColor, setActiveColor] = useState(colorVariants[1]);
+  const [activeColor, setActiveColor] = useState(colorVariants[0]);
   const [radius, setRadius] = useState(300);
   const [center, setCenter] = useState(350);
   const circleRef = useRef(null);

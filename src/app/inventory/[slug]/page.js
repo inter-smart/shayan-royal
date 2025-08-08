@@ -9,6 +9,7 @@ import { fetchFromAPI } from "@/lib/api";
 import { mediaUrl } from "@/lib/constants";
 import PDFViewerSection from "@/components/features/inventory/PDFViewerSection";
 // import LogoScrollSection from "@/components/features/inventory/LogoScrollSection";
+import { notFound } from "next/navigation";
 
 export default async function page({ params }) {
   const resolvedSlug = await params;
@@ -17,14 +18,23 @@ export default async function page({ params }) {
   const { data, error } = await fetchFromAPI(`inventory/${id}`);
 
   if (error) {
-    return <div>Something went wrong</div>;
+    return notFound()
   }
 
   if (!data) {
     return <div>No data</div>;
   }
 
-  const { carDetails, specs, specs2, faqs, colorVariants, banner, specList, specDoc, productLists } = data;
+  const {
+    carDetails,
+    specs,
+    specs2,
+    faqs,
+    colorVariants,
+    banner,
+    specList,
+    specDoc,
+  } = data;
 
   console.log(colorVariants);
 
@@ -32,22 +42,28 @@ export default async function page({ params }) {
     <>
       <InnerBanner
         title={banner?.title ? banner?.title : "Our Car"}
-        image={banner?.image ? `${mediaUrl}${banner?.image}` : "/images/inventoryDetailBanner.jpg"}
+        image={
+          banner?.image
+            ? `${mediaUrl}${banner?.image}`
+            : "/images/inventoryDetailBanner.jpg"
+        }
         alt={banner?.title ? banner?.title : "inventory-banner"}
       />
 
       <BreadCrumb
         items={[
           { label: "HOME", href: "/" },
-          { label: "INVENTORY", href: "/" },
+          { label: "INVENTORY", href: "/inventory" },
           { label: "Camry Hybrid", isCurrent: true },
         ]}
       />
       <InventoryDetailSection carDetails={carDetails} specs={specs} />
       <SpecificationSection specList={specList} />
-      <ColorSection colorVariants={colorVariants} specs2={specs2} />
+      {colorVariants.length>0 && (
+        <ColorSection colorVariants={colorVariants} specs2={specs2} />
+      )}
       <PDFViewerSection fileUrl={specDoc ? `${mediaUrl}${specDoc}` : null} />
-      <SimilarcarSection productLists={productLists} />
+      <SimilarcarSection />
       <FaqSection faqs={faqs} />
       {/* <LogoScrollSection /> */}
     </>

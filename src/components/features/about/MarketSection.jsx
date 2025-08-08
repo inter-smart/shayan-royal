@@ -19,7 +19,7 @@ export default function MarketSection({ title, description, image }) {
         </div>
         <div className="2xl:w-[1225px] xl:w-[815px] md:w-[740px] sm:w-[580px] w-[280px] h-auto aspect-1225/750 m-auto block">
           <Image
-            src={image ? `${mediaUrl}${image}` : "/images/market_map_bg1.svg"}
+            src={"/images/market_map_bg1.svg"}
             alt="Market Map"
             width={100}
             height={100}
