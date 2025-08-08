@@ -61,9 +61,8 @@ export default function AboutSection() {
                         slidesPerView={5}
                         spaceBetween={30}
                         centeredSlides={true}
-                        loop={true}
-                        loopFillGroupWithBlank={false}
-                        loopedSlides={carCategories.length}
+                        loop={true} 
+                        // loopedSlides={carCategories.length}
                         autoplay={{
                             delay: 2000,
                             disableOnInteraction: false,
