@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import SocialMediaSections from "./SocialMediaSections";
 import { fetchFromAPI } from "@/lib/api";
 import NewsletterForm from "@/components/forms/NresLetterSub";
+import { mediaUrl } from "@/lib/constants";
 
 const footerLink =
   "text-[10px] xl:text-[13px] 2xl:text-[16px] 3xl:text-[20px] text-white font-light mb-[8px] 2xl:mb-[10px] 3xl:mb-[15px] hover:text-[#BE1E2D] transition-all";
@@ -22,6 +23,8 @@ export default async function footer() {
     return <div>Something went wrong</div>;
   }
 
+  console.log(footerContents);
+
   return (
     <footer className="w-full h-auto block bg-[#07163D] py-[40px_20px] 2xl:py-[60px_25px] 3xl:py-[120px_60px]">
       <div className="container">
@@ -33,11 +36,18 @@ export default async function footer() {
                   href="#"
                   className="3xl:w-[320px] 2xl:w-[250px] xl:w-[200px] lg:w-[170px] w-[120px]  block mb-[25px] lg:mb-[30px] xl:mb-[35px] 2xl:mb-[40px] 3xl:mb-[50px] "
                 >
-                  <Image src="/images/footer-logo.webp" alt="logo" width="319" height="135" className="w-full h-full block object-contain" />
+                  <Image
+                    src={footerContents?.footer_logo ? `${mediaUrl}${footerContents?.footer_logo}` : "/images/footer-logo.webp"}
+                    alt="logo"
+                    width="319"
+                    height="135"
+                    className="w-full h-full block object-contain"
+                  />
                 </Link>
                 <p className="text-[10px] xl:text-[13px] 2xl:text-[16px] 3xl:text-[20px] leading-[1.4] font-light text-white sm:max-w-[220px] md:max-w-[180px] lg:max-w-[200px] xl:max-w-[245px] 2xl:max-w-[280px] 3xl:max-w-[350px]">
-                  Shayan Royal General Trading was established in 1995 in Dubai, United Arab Emirates and has since extended its core business into
-                  exporting of Brand-new cars from Middle East.
+                  {footerContents?.footer_description
+                    ? footerContents?.footer_description
+                    : "Shayan Royal General Trading was established in 1995 in Dubai, United Arab Emirates and has since extended its core business into exporting of Brand-new cars from Middle East."}
                 </p>
               </div>
 
@@ -90,11 +100,16 @@ export default async function footer() {
                 <div className={`${footerHeading}`}>visit us</div>
                 <div className="w-full 3xl:max-w-[380px] 2xl:max-w-[320px] xl:max-w-[250px] lg:max-w-[220px] md:max-w-[180px] sm:max-w-[250px]">
                   <p className={`${footerLink} line-clamp-3 !mb-[15px] md:!mb-[50px] 2xl:!mb-[60px] 3xl:!mb-[80px]`}>
-                    Centurion Star Tower, behind Day To Day,Port Saeed 34 St. Deira. Dubai, United Arab Emirates
+                    {footerContents?.footer_address || "Centurion Star Tower, behind Day To Day,Port Saeed 34 St. Deira. Dubai, United Arab Emirates"}
                   </p>
-                  <div className={`${footerHeading} !mb-[10px]`}>Stay in the loop.</div>
+                  <div className={`${footerHeading} !mb-[10px]`}>
+                    {" "}
+                    {footerContents?.footer_news_letter_title ? footerContents?.footer_news_letter_title : "Stay in the loop."}
+                  </div>
                   <p className="text-[8px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[16px]  leading-[1.3] font-light text-white mb-[25px]">
-                    Sign up for email updates today.
+                    {footerContents?.footer_news_letter_description
+                      ? footerContents?.footer_news_letter_description
+                      : "Sign up for email updates today."}
                   </p>
                   <div className="w-full flex items-center relative z-0 bg-white p-[2px] rounded-[4px] xl:rounded-[5px] 2xl:rounded-[8px] 3xl:rounded-[10px] h-[25px] xl:h-[30px] 2xl:h-[35px] 3xl:h-[45px]">
                     <Input
@@ -117,13 +132,22 @@ export default async function footer() {
                 </div>
               </div>
               <div className="w-full sm:w-1/2">
-                <div className={`${footerHeading}`}>our Location</div>
+                <div className={`${footerHeading}`}>
+                  {" "}
+                  {footerContents?.footer_location_title ? footerContents?.footer_location_title : "Find our Location"}
+                </div>
                 <div>
                   <Link
-                    href="https://maps.app.goo.gl/z5LV1Zd5tjzemEAZ7"
+                    href={footerContents?.map_link || "https://maps.app.goo.gl/z5LV1Zd5tjzemEAZ7"}
                     className="h-[130px] sm:h-[150px] xl:h-[195px] 2xl:h-[220px] 3xl:h-[283px] aspect-square block rounded-[10px] overflow-hidden w-full"
                   >
-                    <Image src="/images/mapFooter.webp" alt="logo" width="490" height="283" className="w-full h-full block object-cover" />
+                    <Image
+                      src={footerContents?.map_image ? `${mediaUrl}${footerContents?.map_image}` : "/images/mapFooter.webp"}
+                      alt="logo"
+                      width="490"
+                      height="283"
+                      className="w-full h-full block object-cover"
+                    />
                   </Link>
                 </div>
               </div>
@@ -135,7 +159,7 @@ export default async function footer() {
           <div className="flex flex-wrap items-center">
             <div className="flex flex-wrap items-center">
               <div className="text-[20px] lg:text-[26px] xl:text-[33px] 2xl:text-[40px] 3xl:text-[50px] font-semibold text-white sm:mb-[0px] mb-[10px]">
-                CONNECT WITH US
+                {footerContents?.footer_social_title ? footerContents?.footer_social_title : "CONNECT WITH US"}
               </div>
               <div className="lg:pl-[40px] md:pl-[30px] pl-[20px] sm:mb-[0px] mb-[10px]">
                 <Image
