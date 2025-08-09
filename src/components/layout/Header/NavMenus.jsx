@@ -8,14 +8,14 @@ import Link from "next/link";
 
 function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, isScrolled }) {
   const menuItems = [
-    { label: "Home", href: "/" },
-    { label: "About Us", href: "/about" },
-    { label: "Inventory", href: "/inventory" },
-    { label: "Brands", href: "/brand" },
-    { label: "Fabrication", href: "/fabrication" },
-    { label: "Services", href: "/service" },
-    { label: "Blog", href: "/blog" },
-    { label: data?.header_button_text, href: data?.header_button_link },
+    { label: "Home", href: "/", sublabel: "home" },
+    { label: "About Us", href: "/about", sublabel: "about" },
+    { label: "Inventory", href: "/inventory", sublabel: "inv" },
+    { label: "Brands", href: "/brand", sublabel: "brand" },
+    { label: "Fabrication", href: "/fabrication", sublabel: "fab" },
+    { label: "Services", href: "/service", sublabel: "ser" },
+    { label: "Blog", href: "/blog", sublabel: "blog" },
+    { label: data?.header_button_text, href: data?.header_button_link, sublabel: "Contact Us" },
   ];
 
   const [isOpen, setIsOpen] = useState(false); // State for sheet
@@ -46,9 +46,9 @@ function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, isScr
                 <Link href={item.href} passHref>
                   <NavigationMenuLink asChild>
                     <span
-                      className={`${menuLinkClass} ${
-                        item.label === data?.header_button_text
-                          ? "!text-white bg-[#2E4C99] 3xl:h-[40px] 2xl:h-[30px] h-[25px] min-w-[90px] !py-0 !rounded-[50px] after:hidden hover:!bg-[#BE1E2D] hover:!text-white"
+                      className={`${menuLinkClass}  ${
+                        item.sublabel === "Contact Us"
+                          ? "!text-[9[px] ]xl:!text-[10px] 2xl:!text-[12px] 3xl:!text-[16px] !text-white !font-normal bg-[#2E4C99] 3xl:h-[40px] 2xl:h-[30px] h-[25px] min-w-[90px] !py-0 !rounded-[50px] after:hidden hover:!bg-[#BE1E2D] hover:!text-white"
                           : ""
                       }`}
                     >

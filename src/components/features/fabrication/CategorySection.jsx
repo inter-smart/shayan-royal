@@ -86,6 +86,8 @@ const categories = [
 ];
 
 export default function CategorySection({ title, description, categoryData = categories }) {
+  console.log(categoryData);
+
   const [activeIndex, setActiveIndex] = useState(0);
   return (
     <section className="relative 3xl:py-[120px_65px] 2xl:py-[80px_40px] xl:py-[40px] py-[30px] overflow-hidden">
@@ -154,7 +156,7 @@ export default function CategorySection({ title, description, categoryData = cat
                   <div className="w-full md:w-1/2">
                     <div className="flex flex-wrap -m-[7px]">
                       {category?.images?.map((img, idx) => (
-                        <div key={idx} className={`${idx === 0 ? "w-full" : "w-1/2"} p-[7px]`}>
+                        <div key={img?.id} className={`${idx === 0 ? "w-full" : "w-1/2"} p-[7px]`}>
                           <div className={`w-full h-full rounded-[10px] overflow-hidden ${idx === 0 ? "aspect-[720/340]" : "aspect-[410/340]"}`}>
                             <Image
                               src={img?.image_url ? `${mediaUrl}${img?.image_url}` : categories?.[0]?.images?.[0]}

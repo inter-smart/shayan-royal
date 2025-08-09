@@ -41,7 +41,7 @@ export default function FitmentAdditionalServicesSection({ items, title }) {
           as="h2"
           className="text-center 3xl:text-[50px] 2xl:text-[40px] xl:text-[32px] lg:text-[28px] 2xs:text-[24px] text-[18px] text-[#262626] uppercase font-semibold font-base1 2xl:mb-[45px] mb-[30px] 3xl:max-w-[880px] 2xl:max-w-[650px] xl:max-w-[550px] max-w-[450px] mx-auto leading-[1.2]"
         >
-          {title || items[0].sectionTitle}
+          {title || items?.[0].sectionTitle}
         </Heading>
         <div className="relative">
           <Swiper
@@ -64,7 +64,7 @@ export default function FitmentAdditionalServicesSection({ items, title }) {
             }}
             className="additional_fitment_Slider"
           >
-            {items.map((item, index) => (
+            {items?.map((item, index) => (
               <SwiperSlide key={index} className="flex !h-auto">
                 <div
                   className={`w-full h-full text-center 3xl:pt-[55px] 2xl:pt-[35px] xl:pt-[25px] pt-[20px] 3xl:pr-[50px] 2xl:pr-[40px] xl:pr-[30px] pr-[15px] 3xl:pb-[80px] 2xl:pb-[50px] xl:pb-[30px] pb-[20px] 3xl:pl-[50px] 2xl:pl-[40px] xl:pl-[30px] pl-[15px] flex flex-col items-center justify-start 3xl:min-h-[340px] 2xl:min-h-[265px] xl:min-h-[220px] min-h-[180px] transition-all duration-800 ease-in-out bg-[#F5F9FF] group hover:bg-gradient-to-b hover:from-[#2E4C99] hover:to-[#0E1D44] ${
