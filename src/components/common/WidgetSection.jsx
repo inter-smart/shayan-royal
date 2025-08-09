@@ -31,26 +31,38 @@ export default async function WidgetSection() {
           className={`absolute top-0 left-0 w-full object-fill h-full -z-10 `}
         />
         <div className="relative w-full h-full flex flex-col items-center justify-center gap-3">
-          {buttons?.map((button, index) => (
-            <a
-              key={index}
-              href={button?.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${menuLinkClass}  cursor-pointer`}
-              aria-label={button?.title}
-            >
-              <div className="lg:max-w-[13px] max-w-[10px] flex">
-                <Image
-                  src={button?.icon ? `${mediaUrl}${button?.icon}` : "/images/no-image.jpg"}
-                  width="13"
-                  height="13"
-                  className="object-contain"
-                  alt={button?.title}
-                />
-              </div>
-            </a>
-          ))}
+          {buttons?.map((button, index) => {
+            let bgClass = "";
+
+            if (button?.link?.startsWith("tel:")) {
+              bgClass = "bg-[#24408A]"; // Call Us
+            } else if (button?.link?.startsWith("mailto:")) {
+              bgClass = "bg-[#BE1E2D]"; // Email Us
+            } else if (button?.link?.includes("wa.me")) {
+              bgClass = "bg-[#2AA81A]"; // WhatsApp
+            }
+
+            return (
+              <a
+                key={index}
+                href={button?.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${menuLinkClass} ${bgClass} cursor-pointer`}
+                aria-label={button?.title}
+              >
+                <div className="lg:max-w-[13px] max-w-[10px] flex">
+                  <Image
+                    src={button?.icon ? `${mediaUrl}${button?.icon}` : "/images/no-image.jpg"}
+                    width="13"
+                    height="13"
+                    className="object-contain"
+                    alt={button?.title}
+                  />
+                </div>
+              </a>
+            );
+          })}
 
           {/* <a href="tel:+971123456789" className={`${menuLinkClass} bg-[#24408A] cursor-pointer`} aria-label="Call Us">
             <div className="lg:max-w-[13px] max-w-[10px] flex">
