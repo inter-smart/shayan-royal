@@ -27,7 +27,7 @@ export default function ProductCard({ car, variant }) {
         {/* Left Section */}
         <div
           className={`3xl:w-[calc(100%-65px)] w-[calc(100%-45px)] h-full min-h-[200px] 3xs:min-h-[230px] 3xl:min-h-[295px] mr-[10px] 2xl:mr-[20px] 
-                    relative flex flex-col rounded-[10px] overflow-hidden after:absolute 
+                    relative rounded-[10px] overflow-hidden after:absolute 
                     after:top-0 after:right-0 after:content-[''] 
                     after:bg-[linear-gradient(90deg,_rgba(187,192,207,0.00)_0%,_#BBC0CF_100%)] after:w-full after:max-w-[150px] 
                     after:opacity-[0.22] after:h-full ${variant === "inventory" ? "after:!h-[68%] after:rounded-[10px] " : ""} after:hidden`}
