@@ -13,7 +13,7 @@ async function getMetaData() {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/web/meta?page=about`);
     const result = await response.json();
-    console.log(result);
+
     const meta = result.data;
 
     if (result.status === "success") {
@@ -140,7 +140,7 @@ export default async function Page() {
       />
       <CorevalueSection title={contents?.core_values_title} description={contents?.core_values_description} values={values} />
       <ExpertiseSection title={contents?.our_expertise_title} expertise={expertise} />
-      <MarketSection title={contents?.map_section_title} description={contents?.map_section_description} image={contents?.map_image} />
+      <MarketSection title={contents?.map_section_title} description={contents?.map_section_description} />
       <ContactSection
         backgroundImage={contents?.contact_section_image ? `${mediaUrl}${contents?.contact_section_image}` : "/images/contact_section.webp"}
         title={contents?.contact_section_title ? contents?.contact_section_title : "Contact Us Today!"}

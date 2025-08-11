@@ -8,7 +8,7 @@ async function getMetaData() {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/web/meta?page=inventory`);
     const result = await response.json();
-    console.log(result);
+
     const meta = result.data;
 
     if (result.status === "success") {
@@ -76,7 +76,7 @@ async function getMetaData() {
         canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/inventory`,
       },
 
-      error:  "No metadata found",
+      error: "No metadata found",
     };
   }
 }

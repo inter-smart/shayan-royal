@@ -86,8 +86,6 @@ const categories = [
 ];
 
 export default function CategorySection({ title, description, categoryData = categories }) {
-  console.log(categoryData);
-
   const [activeIndex, setActiveIndex] = useState(0);
   return (
     <section className="relative 3xl:py-[120px_65px] 2xl:py-[80px_40px] xl:py-[40px] py-[30px] overflow-hidden">

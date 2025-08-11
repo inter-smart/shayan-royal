@@ -82,7 +82,6 @@ export default function CarSearchForm() {
       // Map carType name to ID
 
       // disable submit via react-hook-form isSubmitting (automatic) and use async handler
-      console.log("Params:", values);
 
       const params = {
         make_id: values.make,
@@ -98,8 +97,6 @@ export default function CarSearchForm() {
         seats: values.seats,
         yearFrom: values.yearFrom,
       };
-
-      console.log("Params:", params);
 
       // Filter out empty or undefined values
       const filteredParams = Object.fromEntries(Object.entries(params).filter(([_, v]) => v !== "" && v !== undefined));
