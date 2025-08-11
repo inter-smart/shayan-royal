@@ -81,7 +81,7 @@ async function getMetaData() {
         canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/fabrication`,
       },
 
-      error:  "No metadata found",
+      error: "No metadata found",
     };
   }
 }

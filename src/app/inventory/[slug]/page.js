@@ -6,7 +6,7 @@ import FaqSection from "@/components/features/inventory/FaqSection";
 import SpecificationSection from "@/components/features/inventory/SpecificationSection";
 import SimilarcarSection from "@/components/features/inventory/SimilarcarSection";
 import { fetchFromAPI } from "@/lib/api";
-import { mediaUrl } from "@/lib/constants";
+import { defaultMeta, mediaUrl } from "@/lib/constants";
 import PDFViewerSection from "@/components/features/inventory/PDFViewerSection";
 // import LogoScrollSection from "@/components/features/inventory/LogoScrollSection";
 import { notFound } from "next/navigation";
