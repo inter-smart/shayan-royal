@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
@@ -20,6 +21,7 @@ const carCategories = [
 export default function CategorySection({ title, description, categories }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const swiperRef = useRef(null);
+  const router = useRouter();
 
   // Ensure we have enough slides for smooth looping
   const minSlides = 8;
@@ -113,8 +115,12 @@ export default function CategorySection({ title, description, categories }) {
                   <div
                     className="flex flex-col items-center cursor-pointer group transition-all duration-300"
                     onClick={() => {
-                      // Navigate to the clicked slide
-                      swiperRef.current?.swiper.slideToLoop(car.originalIndex, 500);
+                      // Navigate to inventory page with category ID
+                      // Use the original category ID, not the modified slide ID
+                      const originalCategory = categories[car.originalIndex];
+                      if (originalCategory?.id) {
+                        router.push(`/inventory?car_type_id=${originalCategory.id}`);
+                      }
                     }}
                   >
                     <div
