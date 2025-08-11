@@ -7,28 +7,37 @@ import FitmentTypeServiceSection from "@/components/features/service/FitmentType
 import WorkinActionSection from "@/components/features/service/WorkinActionSection";
 import { fetchFromAPI } from "@/lib/api";
 import { mediaUrl } from "@/lib/constants";
+import { notFound } from "next/navigation";
 
 export default async function page({ params }) {
   const resolvedParamms = await params;
   const { id } = resolvedParamms;
 
   const { data, error } = await fetchFromAPI(`service-fitment/${id}`);
+  
+  console.log("error", error);
 
   if (error) {
-    return <div>Something went wrong</div>;
+    return notFound();
   }
 
-  if (!data) {
-    return <div>No data</div>;
+  if (!data || !data.service) {
+        return notFound();
   }
 
+
+  console.log(data);
   const { service, banner } = data;
 
   return (
     <>
       <InnerBanner
         title={banner?.title ? banner?.title : "additional fitment Services"}
-        image={banner?.image ? `${mediaUrl}${banner?.image}` : "/images/seervice_fitment.webp"}
+        image={
+          banner?.image
+            ? `${mediaUrl}${banner?.image}`
+            : "/images/seervice_fitment.webp"
+        }
         alt={banner?.title ? banner?.title : "service-banner"}
       />
       <BreadCrumb
@@ -38,11 +47,22 @@ export default async function page({ params }) {
           { label: "ADDITIONAL FITMENT SERVICES", isCurrent: true },
         ]}
       />
-      <FitmentServiceSection title={service?.title} desc={service?.description} image={service?.image} />
+      <FitmentServiceSection
+        title={service?.title}
+        desc={service?.description}
+        image={service?.image}
+      />
       <FitmentTypeServiceSection services={service?.fitmentServices} />
-      <FitmentAdditionalServicesSection items={service?.servicesWhyChooseItems} title={service?.why_choose_title} />
+      <FitmentAdditionalServicesSection
+        items={service?.servicesWhyChooseItems}
+        title={service?.why_choose_title}
+      />
       <WorkinActionSection gallery={service?.serviceGallery} />
-      <FitmentEnquirySection title={service?.contact_title} desc={service?.contact_description} image={service?.contact_image} />
+      <FitmentEnquirySection
+        title={service?.contact_title}
+        desc={service?.contact_description}
+        image={service?.contact_image}
+      />
     </>
   );
 }
