@@ -5,12 +5,12 @@ import ChooseServicesSection from "@/components/features/service/ChooseServicesS
 import LogisticSection from "@/components/features/service/LogisticSection";
 import { fetchFromAPI } from "@/lib/api";
 import { defaultMeta, mediaUrl } from "@/lib/constants";
+import { notFound } from "next/navigation";
 
 async function getMetaData(id) {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/web/meta-service?service_id=${id}`);
     const result = await response.json();
-    console.log(result);
     const meta = result.data;
 
     if (result.status === "success") {
@@ -104,11 +104,11 @@ export default async function Page({ params }) {
   const { data, error } = await fetchFromAPI(`service-detail/${id}`);
 
   if (error) {
-    return <div>Something went wrong</div>;
+    return notFound()
   }
 
-  if (!data) {
-    return <div>No data</div>;
+  if (!data || data.service) {
+    return notFound()
   }
 
   const { service, banner } = data;

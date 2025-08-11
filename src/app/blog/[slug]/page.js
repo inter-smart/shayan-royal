@@ -18,7 +18,7 @@ export default async function Page({ params }) {
   
   
   if (!data) {
-    return <div>No data</div>;
+    return notFound()
   }
 
   const { banner, blog, recentBlogs } = data;
