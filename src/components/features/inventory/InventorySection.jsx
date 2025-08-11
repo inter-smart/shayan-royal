@@ -103,7 +103,7 @@ const InventorySectionEmpty = () => (
         <AdvancesearchSection />
         <Link
           href="/"
-          className="3xl:text-[18px] sm:text-[14px] text-[13px] leading-[1.2] font-medium font-base1 text-center sm:text-right text-[#2E4C99] sm:w-1/2 w-full ml-auto sm:mt-[20px] mt-[40px] flex justify-end transition-colors duration-200 hover:text-base3"
+          className="3xl:text-[18px] sm:text-[14px] text-[13px] leading-[1.2] font-medium font-base1 text-center sm:text-right text-[#2E4C99] sm:w-[75%] w-full ml-auto sm:mt-[20px] mt-[40px] flex justify-end transition-colors duration-200 hover:text-base3"
         >
           *If The Cars Are Unavailable, Feel Free To Contact Us For Further Assistance
         </Link>
