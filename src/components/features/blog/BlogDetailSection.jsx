@@ -82,6 +82,7 @@ export default function BlogDetailSection() {
                                             alt="Image-1"
                                             width={79}
                                             height={79}
+                                            className="w-full h-full object-cover rounded-full"
                                         />
                                     </div>
                                 </div>

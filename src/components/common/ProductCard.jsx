@@ -24,7 +24,7 @@ export default function ProductCard({ car, variant}) {
             <div className="w-full h-full rounded-[10px] bg-white overflow-hidden 3xl:py-[15px] py-[10px] 3xl:px-[20px] px-[15px] flex items-center shadow-xl">
                 {/* Left Section */}
                 <div className={`3xl:w-[calc(100%-65px)] w-[calc(100%-45px)] h-full min-h-[200px] 3xs:min-h-[230px] 3xl:min-h-[295px] mr-[10px] 2xl:mr-[20px] 
-                    relative flex flex-col rounded-[10px] overflow-hidden `}>
+                    relative rounded-[10px] overflow-hidden `}>
                     {/* Logo */}
                     <div className="w-full 3xl:max-w-[50px] max-w-[40px] absolute top-[10px] left-[10px] z-10">
                         <Image
