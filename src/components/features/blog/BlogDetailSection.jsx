@@ -43,11 +43,10 @@ export default function BlogDetailSection({ blog, recentBlogs, slug }) {
       return;
     }
 
-     if (!comment.trim()) {
+    if (!comment.trim()) {
       toast.warning("Please enter commect.");
       return;
     }
-
 
     setLoading(true);
     try {
@@ -119,7 +118,13 @@ export default function BlogDetailSection({ blog, recentBlogs, slug }) {
               <div className="flex items-center 2xs:pl-[20px] sm:pl-[30px] 2xl:pl-[40px] !mt-[-35px] sm:!mt-[-45px] xl:!mt-[-55px] 2xl:!mt-[-65px]">
                 <div className="w-[60px] h-[60px] 2xs:w-[70px] 2xs:h-[70px] sm:w-[85px] sm:h-[85px] 2xl:w-[95px] 2xl:h-[95px] rounded-full bg-[#F3F3F3] flex items-center justify-center">
                   <div className="w-[50px] h-[50px] 2xs:w-[60px] 2xs:h-[60px] sm:w-[70px] sm:h-[70px] 2xl:w-[79px] 2xl:h-[79px] rounded-full bg-white">
-                    <Image src={blog?.author_avatar ? `${mediaUrl}${blog.author_avatar}` : "/images/blog.png"} alt="Image-1" width={79} height={79} />
+                    <Image
+                      src={blog?.author_avatar ? `${mediaUrl}${blog.author_avatar}` : "/images/blog.png"}
+                      alt="Image-1"
+                      width={79}
+                      height={79}
+                      className="w-full h-full object-cover rounded-full"
+                    />
                   </div>
                 </div>
                 <div className="pl-[10px] 2xs:pl-[20px] pt-[25px] 2xs:pt-[30px] 2xl:pt-[25px]">

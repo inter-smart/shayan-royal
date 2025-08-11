@@ -18,8 +18,6 @@ export default async function WidgetSection() {
 
   const { buttons } = data;
 
-  console.log(buttons);
-
   return (
     <section>
       <div className="fixed right-[-2px] top-1/3 z-50 3xl:w-[65px] 2xl:w-[50px] lg:w-[40px] w-[30px] 3xl:min-h-[260px] min-h-[240px] flex items-center justify-center py-[85px] max-md:px-[15px]">

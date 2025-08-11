@@ -31,7 +31,7 @@ const sizes = {
   heading4:
     "text-[18px] xl:text-[20px] 2xl:text-[26px] 3xl:text-[30px] font-medium leading-[1.1] font-base1",
   heading5:
-    "text-[20px] 2xl:text-[22px] 3xl:text-[25px] font-medium leading-[1.1] font-base1",
+    "text-[14px] md:text-[16px] lg:text-[20px] 2xl:text-[22px] 3xl:text-[25px] font-medium leading-[1.1] font-base1",
   heading6:
     "text-[10px] sm:text-[12px] lg:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[20px] font-medium leading-[1.1] font-base1",
 };

@@ -69,7 +69,7 @@ export default function PDFViewer({ fileUrl }) {
   const computedWidth = viewportWidth < 768 ? viewportWidth - 60 : undefined;
 
   return (
-    <section className="py-[10px_30px] 3xl:py-[20px_40px]">
+    <section className="py-[10px_30px] 3xl:py-[20px_40px] relative z-0">
       <div className="container">
         <div className="max-w-[650px] m-auto">
           <div className="flex flex-col items-center bg-[#4b4b4b3d] p-[15px] mb-[15px] transition-all duration-200">
