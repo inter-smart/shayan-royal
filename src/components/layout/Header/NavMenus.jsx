@@ -14,7 +14,7 @@ function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, isScr
     { label: "Brands", href: "/brand", sublabel: "brand" },
     { label: "Fabrication", href: "/fabrication", sublabel: "fab" },
     { label: "Services", href: "/service", sublabel: "ser" },
-    { label: "Blog", href: "/blog", sublabel: "blog" },
+    { label: "Blogs", href: "/blog", sublabel: "blog" },
     { label: data?.header_button_text, href: data?.header_button_link, sublabel: "Contact Us" },
   ];
 

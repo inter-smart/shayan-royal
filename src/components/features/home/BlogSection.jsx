@@ -46,7 +46,7 @@ export default function BlogSection({ title, description, blogs }) {
       <div className="container">
         <div className="max-w-[85%] m-auto text-center mb-[15px] 2xl:mb-[30px] 3xl:mb-[50px]">
           <Heading size="heading2" as="h2" className="text-black uppercase mb-[10px]">
-            {title ? title : "Blog"}
+            {title ? title : "Blogs"}
           </Heading>
           <Text size="text1" as="p" className="text-black mb-[15px]">
             {description ? parse(description) : "Lorem ipsum dolor sit amet consectetur adipiscing elit ut aliquam purus sit amet luctus venenatis"}

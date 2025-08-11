@@ -5,6 +5,8 @@ import { Barlow } from "next/font/google";
 import localFont from "next/font/local";
 import WidgetSection from "@/components/common/WidgetSection";
 import { Toaster } from "sonner";
+import { LoadingProvider } from "@/contexts/LoadingContext";
+import LoadingWrapper from "@/components/common/LoadingWrapper";
 
 const stretchPro = localFont({
   src: [
@@ -30,11 +32,15 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`font-base1 ${barlow.variable} ${stretchPro.variable}`}>
-        <Header />
-        <main className="flex-grow">{children}</main>
-        <WidgetSection />
-        <Footer />
-        <Toaster richColors />
+        <LoadingProvider>
+          <LoadingWrapper>
+            <Header />
+            <main className="flex-grow">{children}</main>
+            <WidgetSection />
+            <Footer />
+            <Toaster richColors />
+          </LoadingWrapper>
+        </LoadingProvider>
       </body>
     </html>
   );

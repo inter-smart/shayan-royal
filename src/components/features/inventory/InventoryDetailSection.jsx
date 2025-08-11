@@ -11,6 +11,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import { mediaUrl } from "@/lib/constants";
+import StickyMobileCTA from "@/components/common/StickyMobileCTA";
 
 const carDetails = [
   {
@@ -71,7 +72,11 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
   }, []);
 
   return (
-    <section className="w-full h-auto block 3xl:py-[40px_100px] xl:py-[30px_50px] sm:py-[20px_30px] py-[15px_30px] overflow-hidden">
+    <>
+      {/* Sticky Mobile CTA */}
+      <StickyMobileCTA contactData={contactData} />
+      
+      <section className="w-full h-auto block 3xl:py-[40px_100px] xl:py-[30px_50px] sm:py-[20px_30px] py-[15px_30px] overflow-hidden">
       <div className="container">
         <Heading size="heading2" as="h2" className="text-black uppercase font-normal 3xl:mb-[40px] 2xl:mb-[25px] md:mb-[15px] mb-[10px]">
           {carDetails?.carName}
@@ -293,10 +298,10 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
           {/* Right Section */}
           <div className="3xl:w-[400px] 2xl:w-[300px] md:w-[245px]">
             <div className="w-full h-full">
-              <Heading size="heading3" as="div" className="text-black font-semibold md:mb-[15px] mb-[10px]">
+              <Heading size="heading3" as="div" className="text-black font-semibold md:mb-[15px] mb-[10px] hidden md:block">
                 Ask for the price
               </Heading>
-              <div className="w-full 3xl:mb-[35px] mb-[25px]">
+              <div className="w-full 3xl:mb-[35px] mb-[25px] hidden md:block">
                 <div className="w-full">
                   {contactData?.map((item, index) => (
                     <div className="3xl:mb-[15px] mb-[10px] last:mb-0" key={index}>
@@ -325,5 +330,6 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
         </div>
       </div>
     </section>
+    </>
   );
 }
