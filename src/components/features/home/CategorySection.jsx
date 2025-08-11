@@ -17,20 +17,20 @@ const carCategories = [
   { name: "Hatchback", img: "/images/cat4.png" },
 ];
 
-export default function AboutSection({ title, description, categories }) {
+export default function CategorySection({ title, description, categories }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [selected, setSelected] = useState("");
   const swiperRef = useRef(null);
 
-  // Duplicate slides for smoother loop
+  // Ensure we have enough slides for smooth looping
   const minSlides = 8;
   const slidesData =
     categories.length < minSlides
       ? Array.from({ length: minSlides }, (_, i) => ({
           ...categories[i % categories.length],
-          id: i,
+          id: `${i}-${categories[i % categories.length].id || i}`,
+          originalIndex: i % categories.length,
         }))
-      : categories.map((item, i) => ({ ...item, id: i }));
+      : categories.map((item, i) => ({ ...item, id: item.id || i, originalIndex: i }));
 
   return (
     <section className="relative py-[20px] md:py-[25px] 2xl:py-[30px] 3xl:py-[40px] bg-[#F5F9FF] overflow-hidden">
@@ -61,10 +61,10 @@ export default function AboutSection({ title, description, categories }) {
             }}
             speed={1200}
             onSlideChange={(swiper) => {
-              setActiveIndex(swiper.realIndex % categories.length);
+              setActiveIndex(swiper.realIndex);
             }}
             onSwiper={(swiper) => {
-              setActiveIndex(swiper.realIndex % categories.length);
+              setActiveIndex(swiper.realIndex);
             }}
             navigation={{
               prevEl: ".nav-prev",
@@ -105,15 +105,16 @@ export default function AboutSection({ title, description, categories }) {
             className="px-10 overflow-hidden mb-3 w-full"
           >
             {slidesData.map((car, index) => {
-              const isActive = activeIndex % categories.length === index % categories.length;
+              // Check if this slide is the active center slide
+              const isActive = activeIndex === index;
 
               return (
-                <SwiperSlide key={car.id || index}>
+                <SwiperSlide key={car.id}>
                   <div
                     className="flex flex-col items-center cursor-pointer group transition-all duration-300"
                     onClick={() => {
-                      setSelected(car.name);
-                      swiperRef.current?.swiper.slideToLoop(originalIndex, 500);
+                      // Navigate to the clicked slide
+                      swiperRef.current?.swiper.slideToLoop(car.originalIndex, 500);
                     }}
                   >
                     <div
