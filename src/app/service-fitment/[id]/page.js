@@ -20,13 +20,13 @@ export default async function page({ params }) {
   if (error) {
     return notFound();
   }
+  console.log(data);
 
-  if (!data || !data.service) {
-        return notFound();
+   if (!data|| !data.service) {
+    return notFound();
   }
 
 
-  console.log(data);
   const { service, banner } = data;
 
   return (

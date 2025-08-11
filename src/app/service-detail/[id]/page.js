@@ -9,7 +9,9 @@ import { notFound } from "next/navigation";
 
 async function getMetaData(id) {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/web/meta-service?service_id=${id}`);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/web/meta-service?service_id=${id}`
+    );
     const result = await response.json();
     const meta = result.data;
 
@@ -21,19 +23,29 @@ async function getMetaData(id) {
         // Enhanced SEO fields
         openGraph: {
           title: meta?.og_title || meta?.meta_title || defaultMeta.title,
-          description: meta?.og_description || meta?.meta_description || defaultMeta.description,
-          images: meta?.og_image ? [{ url: meta.og_image, width: 1200, height: 630 }] : [],
+          description:
+            meta?.og_description ||
+            meta?.meta_description ||
+            defaultMeta.description,
+          images: meta?.og_image
+            ? [{ url: meta.og_image, width: 1200, height: 630 }]
+            : [],
           type: "website",
           url: `${process.env.NEXT_PUBLIC_SITE_URL}/service-detail/${id}`,
         },
         twitter: {
           card: "summary_large_image",
           title: meta?.twitter_title || meta?.meta_title || defaultMeta.title,
-          description: meta?.twitter_description || meta?.meta_description || defaultMeta.description,
+          description:
+            meta?.twitter_description ||
+            meta?.meta_description ||
+            defaultMeta.description,
           images: meta?.twitter_image ? [meta.twitter_image] : [],
         },
         alternates: {
-          canonical: meta?.canonical_url || `${process.env.NEXT_PUBLIC_SITE_URL}/service-detail/${id}`,
+          canonical:
+            meta?.canonical_url ||
+            `${process.env.NEXT_PUBLIC_SITE_URL}/service-detail/${id}`,
         },
         error: null,
       };
@@ -86,7 +98,8 @@ async function getMetaData(id) {
 export async function generateMetadata({ params }) {
   const resolvedParamms = await params;
   const { id } = resolvedParamms;
-  const { title, description, keywords, twitter, openGraph, alternates } = await getMetaData(id);
+  const { title, description, keywords, twitter, openGraph, alternates } =
+    await getMetaData(id);
   return {
     title,
     description,
@@ -104,11 +117,11 @@ export default async function Page({ params }) {
   const { data, error } = await fetchFromAPI(`service-detail/${id}`);
 
   if (error) {
-    return notFound()
+    return notFound();
   }
 
-  if (!data || data.service) {
-    return notFound()
+   if (!data|| !data.service) {
+    return notFound();
   }
 
   const { service, banner } = data;
@@ -117,7 +130,11 @@ export default async function Page({ params }) {
     <>
       <InnerBanner
         title={banner?.title ? banner?.title : "Logistic services"}
-        image={banner?.image ? `${mediaUrl}${banner?.image}` : "/images/service_banner.webp"}
+        image={
+          banner?.image
+            ? `${mediaUrl}${banner?.image}`
+            : "/images/service_banner.webp"
+        }
         alt={banner?.title ? banner?.title : "service-banner"}
       />
       <BreadCrumb
@@ -128,14 +145,26 @@ export default async function Page({ params }) {
         ]}
       />
       <OurServiceSection
-        image={service?.image ? `${mediaUrl}${service?.image}` : "/images/service_section.webp"}
+        image={
+          service?.image
+            ? `${mediaUrl}${service?.image}`
+            : "/images/service_section.webp"
+        }
         title={service?.title ? service?.title : ""}
         description1={service?.description}
         // description1="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Esse enim quam vellet iniquus iustus poterat inpune. Naturales divitias dixit parabiles esse, quod parvo esset natura contenta. Paulum, cum regem Persem captum adduceret, eodem flumine invectio? Duo Reges: constructio interrete. Que Manilium, ab iisque M. Quo studio Aristophanem putamus aetatem in litteris duxisse Cum autem in quo sapienter dicimus, id a primo rectissime dicitur. Conferam tecum, quam cuique verso rem subicias; Sed haec nihil sane ad rem."
         // description2="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Esse enim quam vellet iniquus iustus poterat inpune. Naturales divitias dixit parabiles esse, quod parvo esset natura contenta. Paulum, cum regem Persem captum adduceret, eodem flumine invectio? Duo Reges: constructio interrete. Que Manilium, ab iisque M. Quo studio Aristophanem putamus aetatem in litteris duxisse Cum autem in quo sapienter dicimus, id a primo rectissime dicitur. Conferam tecum, quam cuique verso rem subicias; Sed haec nihil sane ad rem."
       />
-      <ChooseServicesSection chooseItems={service?.servicesWhyChooseItems} image={service?.side_image} title={service?.why_choose_title} />
-      <LogisticSection title={service?.contact_title} desc={service?.contact_description} image={service?.contact_image} />
+      <ChooseServicesSection
+        chooseItems={service?.servicesWhyChooseItems}
+        image={service?.side_image}
+        title={service?.why_choose_title}
+      />
+      <LogisticSection
+        title={service?.contact_title}
+        desc={service?.contact_description}
+        image={service?.contact_image}
+      />
     </>
   );
 }
