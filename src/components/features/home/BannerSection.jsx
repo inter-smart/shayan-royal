@@ -133,10 +133,10 @@ export default function BannerSection() {
             onBeforeInit={(swiper) => {
               swiperRef.current = swiper;
             }}
-            autoplay={{
-              delay: 5000,
-              disableOnInteraction: false,
-            }}
+            // autoplay={{
+            //   delay: 5000,
+            //   disableOnInteraction: false,
+            // }}
             breakpoints={{
               992: {
                 speed: 1500,
@@ -168,7 +168,7 @@ export default function BannerSection() {
                             alt={slide.title}
                             width={1000}
                             height={500}
-                            className="w-full h-auto object-contain"
+                            className="w-full h-[110px] sm:h-[140px] md:h-[180px] lg:h-[220px] xl:h-[280px] 3xl:h-[350px] object-contain"
                           />
                         </motion.div>
                       )}
