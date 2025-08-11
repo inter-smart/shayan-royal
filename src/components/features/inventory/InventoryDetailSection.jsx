@@ -57,7 +57,7 @@ const SocialLinks = [
   },
 ];
 
-export default function InventoryDetailSection({ carDetails, specs }) {
+export default function InventoryDetailSection({ carDetails, specs, contactData = SocialLinks }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   const thumbsPrevRef = useRef(null);
@@ -298,19 +298,19 @@ export default function InventoryDetailSection({ carDetails, specs }) {
               </Heading>
               <div className="w-full 3xl:mb-[35px] mb-[25px]">
                 <div className="w-full">
-                  {SocialLinks.map((item, index) => (
+                  {contactData?.map((item, index) => (
                     <div className="3xl:mb-[15px] mb-[10px] last:mb-0" key={index}>
-                      <a href={item.link} target="_blank" rel="noopener noreferrer" className="block">
+                      <a href={item?.link ? item.link : "#"} target="_blank" rel="noopener noreferrer" className="block">
                         <div
                           className="w-full 3xl:h-[55px] xl:h-[40px] h-[35px] flex items-center justify-center rounded-[10px] group"
                           style={{ backgroundColor: item.colorCode }}
                         >
                           <div className="3xl:w-[25px] 2xl:w-[20px] w-[15px] transition-all group-hover:scale-105">
-                            <Image src={item.icon} alt={item.name} width={25} height={25} className="w-full h-full object-contain" />
+                            <Image src={item?.icon} alt={item.name} width={25} height={25} className="w-full h-full object-contain" />
                           </div>
                           <div className="px-[10px]">
                             <div className="3xl:text-[16px] text-[14px] text-white capitalize transition-all group-hover:tracking-widest">
-                              {item.name}
+                              {item?.name}
                             </div>
                           </div>
                         </div>
