@@ -62,7 +62,7 @@ export default function CarColorSpecSection() {
     return (
         <section className="relative w-full pt-[30px] 3xl:pt-[70px] pb-[40px] overflow-hidden">
             <div className="container mx-auto">
-                 <div className="flex flex-col lg:flex-row justify-between items-center gap-10">
+                <div className="flex flex-col lg:flex-row justify-between items-center gap-10">
                     {/* Color Selection */}
                     <div className="3xl:w-[500px] 2xl:w-[400px] xl:w-[300px] md:w-[250px] w-full flex justify-center">
                         <div className="text-center">
@@ -107,10 +107,12 @@ export default function CarColorSpecSection() {
                     </div>
 
                     {/* Car + Circle Layout */}
-                    <div className="relative 3xl:w-[calc(100%-500px)] 2xl:w-[calc(100%-400px)] xl:w-[calc(100%-300px)] md:w-[calc(100%-250px)] max-sm:max-w-[300px] w-full 3xl:pl-[200px] 2xl:pl-[100px] md:pl-[75px]">
+                    <div className="relative 3xl:w-[calc(100%-500px)] 2xl:w-[calc(100%-400px)] xl:w-[calc(100%-300px)] md:w-[calc(100%-250px)] 
+                    max-sm:max-w-[300px] w-full 3xl:pl-[200px] 2xl:pl-[100px] md:pl-[75px]">
                         <div
                             ref={circleRef}
-                            className="relative w-[90vw] 3xl:max-w-[700px] 2xl:max-w-[600px] xl:max-w-[550px] lg::max-w-[450px] xs:max-w-[400px] max-w-[300px] aspect-square border border-gray-300 rounded-full z-0 max-md:m-auto"
+                            className="relative max-w-[300px] xs:max-w-[400px] lg::max-w-[450px] xl:max-w-[550px] 2xl:max-w-[600px] 3xl:max-w-[700px] 
+                             aspect-square border border-gray-300 rounded-full z-0 max-md:m-auto"
                         >
                             {/* Car Image */}
                             <div className="absolute top-0 bottom-0 m-auto left-[-15%] flex items-center -z-10">
@@ -119,7 +121,9 @@ export default function CarColorSpecSection() {
                                     alt="Car"
                                     width={780}
                                     height={400}
-                                    className="object-contain bg-white p-5 xl:max-w-[700px] sm:max-w-[580px] max-w-[300px] w-full"
+                                    className="object-cover bg-white p-5  max-w-[300px] sm:max-w-[350px] md-max-w-[400px] lg:max-w-[420px] xl:max-w-[570px]
+                                     3xl:max-w-[700px]  min-w-[300px] 
+                                    sm:min-w-[350px]  md:max-w-[400px] lg:min-w-[420px] xl:min-w-[570px]  3xl:min-w-[700px] w-full"
                                 />
                             </div>
 
