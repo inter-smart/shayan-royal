@@ -56,12 +56,7 @@ const formSchema = z.object({
     .any()
     .refine(
       (files) =>
-        !files ||
-        (Array.isArray(files) &&
-          files.length > 0 &&
-          files.every(
-            (file) => file instanceof File && imageMimeTypes.includes(file.type)
-          )),
+        !files || (Array.isArray(files) && files.length > 0 && files.every((file) => file instanceof File && imageMimeTypes.includes(file.type))),
       {
         message: "Only image files are allowed (jpg, jpeg, png, webp, gif)",
       }
@@ -633,15 +628,11 @@ export default function CustomerrequirementForm({ title, type }) {
                           <SelectValue placeholder="Budget Range" />
                         </SelectTrigger>
                         <SelectContent className={contentClass}>
-                          <SelectItem value="0 - 10k" className={itemClass}>
-                            Up to $10,000
-                          </SelectItem>
-                          <SelectItem value="10k - 20k" className={itemClass}>
-                            $10,000 - $20,000
-                          </SelectItem>
-                          <SelectItem value="20k - 30k" className={itemClass}>
-                            $20,000 - $30,000
-                          </SelectItem>
+                          {dropdownData?.budget?.map((item) => (
+                            <SelectItem key={item.id} value={item.range}>
+                              {item.range}
+                            </SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                     </FormControl>
