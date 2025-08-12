@@ -144,7 +144,7 @@ export default function ReserveForm() {
           <div className="w-full mt-4 p-[5px] 2xl:p-[10px] flex justify-end">
             <Button
               type="submit"
-              className="text-[8px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[16px]  text-white font-light rounded-[80px] uppercase px-2 py-1 bg-[#2E4C99] hover:bg-[#1f3574] 
+              className="text-[8px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[16px]  text-white font-light rounded-[80px] uppercase px-2 py-1 bg-[#2E4C99] hover:bg-[#be1e2d] 
               3xl:h-[40px] 2xl:h-[40px] xl:h-[30px] h-[30px] md:min-w-[120px] sm:min-w-[100px] min-w-full cursor-pointer"
             >
               Get started

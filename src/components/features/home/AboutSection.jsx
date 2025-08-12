@@ -36,12 +36,12 @@ export default function AboutSection({ title, year, description1, description2, 
           <Heading size="heading1" as="h1" className="text-white uppercase !font-normal mb-[10px] [&>span]:text-[#B6BCCB] ">
             {name ? parse(name) : "Shayan Royal General Trading"}
           </Heading>
-          <Text size="text1" as="p" className="text-white mb-[15px]">
+          <Text size="text1" as="div" className="text-white mb-[15px]">
             {description1
               ? parse(description1)
               : "The reasons to choose shayan royal lorem Ipsum has been the industry's standard dummy text ever since"}
           </Text>
-          <Text size="text2" as="p" className="text-white">
+          <Text size="text2" as="div" className="text-white">
             {description2
               ? parse(description2)
               : "The reasons to choose shayan royal lorem Ipsum has been the industry's standard dummy text ever since"}

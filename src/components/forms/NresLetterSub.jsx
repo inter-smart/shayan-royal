@@ -58,7 +58,7 @@ export default function NewsletterForm() {
       <Button
         type="submit"
         disabled={loading}
-        className="absolute bottom-0 margin-auto bg-[#BE1E2D] h-[40px] top-1/2 -translate-y-1/2 right-[3px] 3xl:text-[16px] 2xl:text-[14px] text-[14px] uppercase font-medium"
+        className="absolute bottom-0 margin-auto bg-[#BE1E2D] h-[40px] top-1/2 -translate-y-1/2 right-[3px] 3xl:text-[16px] 2xl:text-[14px] text-[14px] cursor-pointer uppercase font-medium"
       >
         {loading ? "Loading..." : "Subscribe"}
       </Button>

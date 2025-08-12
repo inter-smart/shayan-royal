@@ -52,10 +52,10 @@ export default function StickyMobileCTA({ contactData }) {
               className="flex-1 block"
             >
               <div
-                className="w-full h-12 flex items-center justify-center rounded-lg group transition-all duration-300 hover:scale-105 active:scale-95"
+                className="w-full h-[30px] flex items-center justify-center rounded-[5px] group transition-all duration-300 hover:scale-105 active:scale-95"
                 style={{ backgroundColor: item.colorCode }}
               >
-                <div className="w-5 h-5 mr-2 transition-all group-hover:scale-110">
+                <div className="w-4 h-4 mr-2 transition-all group-hover:scale-110">
                   <Image 
                     src={item?.icon} 
                     alt={item.name} 
@@ -64,7 +64,7 @@ export default function StickyMobileCTA({ contactData }) {
                     className="w-full h-full object-contain filter brightness-0 invert" 
                   />
                 </div>
-                <div className="text-sm text-white font-medium capitalize transition-all group-hover:tracking-wider">
+                <div className="text-[12px] text-white font-medium capitalize transition-all group-hover:tracking-wider">
                   {item?.name}
                 </div>
               </div>
