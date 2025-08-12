@@ -121,7 +121,7 @@ export default function BannerSection({ homeBanners }) {
   };
 
   return (
-    <section className="h-full xl:py-[40px] py-[60px] overflow-hidden ">
+    <section className="h-full xl:py-[40px] py-[60px] overflow-hidden  ">
       <div className="container">
         {/* <div className="2xl:h-[calc(100vh-400px)] lg:h-[calc(100vh-350px)] h-[250px] mb-[50px] relative min-h-[250px] 2xl:min-h-[350px] 3xl:min-h-[450px]"> */}
         <div className="h-full mb-[50px] relative min-h-[250px] 2xl:min-h-[350px] 3xl:min-h-[450px]">
@@ -201,7 +201,7 @@ export default function BannerSection({ homeBanners }) {
 
           <div className="flex items-center justify-center absolute top-0 bottom-0 w-full ">
             <button
-              className="custom-prev  absolute left-0 z-10 sm:-translate-y-1/2 cursor-pointer
+              className="custom-prev  absolute left-0 z-0 sm:-translate-y-1/2 cursor-pointer
                 disabled:pointer-events-none disabled:opacity-[0.2]   w-[30px] h-[30px] 
                 flex items-center justify-center 
                  "
@@ -217,7 +217,7 @@ export default function BannerSection({ homeBanners }) {
               </svg>
             </button>
             <button
-              className="custom-next  absolute top-1/2  right-0 z-10 -translate-y-1/2 cursor-pointer 
+              className="custom-next  absolute top-1/2  right-0 z-0 -translate-y-1/2 cursor-pointer 
                 disabled:pointer-events-none disabled:opacity-[0.2]  w-[30px] h-[30px]
                 flex items-center justify-center  
                  "

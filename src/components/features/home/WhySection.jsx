@@ -91,7 +91,7 @@ export default function WhySection({ title, description, image, whyShayanItems }
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.5, ease: "easeOut", delay: 0.3 }}
             viewport={{ once: false, amount: 0.2 }}
-            className="realtive sm:absolute sm:top-0 bottom-0 right-0 left-0 m-auto max-w-[250px] lg:max-w-[430px] xl:max-w-[600px] 2xl:max-w-[700px] 3xl:max-w-[850px]  
+            className="realtive sm:absolute sm:top-0 bottom-0 right-0 left-0 m-auto max-w-[250px] lg:max-w-[430px] xl:max-w-[650px] 2xl:max-w-[800px] 3xl:max-w-[950px]  
               flex items-center justify-center pointer-events-none"
           >
             <Image
