@@ -13,10 +13,7 @@ export default function PremiumBrandsSection({ title, brands }) {
         <div className="w-full flex flex-wrap m-0 2xl:mx-[-20px] mx-[-10px]">
           {brands?.map((src, index) => (
             <div key={index} className="lg:w-1/6 sm:w-1/5 xs:w-1/4 3xs:w-1/3 w-1/2 2xl:py-[20px] py-[10px] 2xl:px-[20px] px-[10px]">
-              <a
-                href="#"
-                className="border overflow-hidden border-[#D5DBEB] rounded-[10px] w-full 2xl:h-[95px] xl:h-[85px] md:h-[75px] h-[65px] flex items-center justify-center py-[10px] 3xl:px-[75px]  2xl:px-[45px] md:px-[35px] px-[25px] relative after:absolute after:content-[''] after:bottom-0 after:left-0 after:right-0 after:w-full after:h-[4px] after:bg-transparent hover:after:bg-[#2E4C99] hover:border-[#2E4C99] transition-all"
-              >
+              <div className="border overflow-hidden border-[#D5DBEB] rounded-[10px] w-full 2xl:h-[95px] xl:h-[85px] md:h-[75px] h-[65px] flex items-center justify-center py-[10px] 3xl:px-[75px] 2xl:px-[45px] md:px-[35px] px-[25px] relative after:absolute after:content-[''] after:bottom-0 after:left-0 after:right-0 after:w-full after:h-[4px] after:bg-transparent hover:after:bg-[#2E4C99] hover:border-[#2E4C99] transition-all">
                 <Image
                   src={src.icon ? `${mediaUrl}${src.icon}` : brandLogos[index]}
                   alt={src?.alt || "Brands"}
@@ -24,7 +21,7 @@ export default function PremiumBrandsSection({ title, brands }) {
                   height={78}
                   className="w-full h-full block object-contain max-w-[80px]"
                 />
-              </a>
+              </div>
             </div>
           ))}
         </div>

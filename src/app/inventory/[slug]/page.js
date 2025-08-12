@@ -136,7 +136,7 @@ export default async function page({ params }) {
       <InventoryDetailSection carDetails={carDetails} specs={specs} contactData={contactData} />
       <SpecificationSection specList={specList} />
       {colorVariants.length > 0 && <ColorSection colorVariants={colorVariants} specs2={specs2} />}
-      <PDFViewerSection fileUrl={specDoc ? `${mediaUrl}${specDoc}` : null} />
+      {specDoc && <PDFViewerSection fileUrl={`${mediaUrl}${specDoc}`} />}
       {productLists.length > 0 && <SimilarcarSection productLists={productLists} />}
       <FaqSection faqs={faqs} />
       {/* <LogoScrollSection /> */}
