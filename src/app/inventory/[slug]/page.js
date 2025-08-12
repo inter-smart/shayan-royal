@@ -13,7 +13,7 @@ import { notFound } from "next/navigation";
 
 async function getMetaData(slug) {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/web/meta-inventory?inventory_id=${slug}`);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/web/meta-inventory?slug=${slug}`);
     const result = await response.json();
 
     const meta = result.data;
@@ -104,9 +104,9 @@ export async function generateMetadata({ params }) {
 
 export default async function page({ params }) {
   const resolvedSlug = await params;
-  const id = resolvedSlug.slug;
+  const slug = resolvedSlug.slug;
 
-  const { data, error } = await fetchFromAPI(`inventory/${id}`);
+  const { data, error } = await fetchFromAPI(`inventory/${slug}`);
 
   if (error) {
     return notFound();
