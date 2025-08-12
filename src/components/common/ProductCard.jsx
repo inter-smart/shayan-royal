@@ -47,7 +47,7 @@ export default function ProductCard({ car, variant}) {
                     </div>
                     {/* Title */}
                     <div className="py-2 pr-2">
-                        <div className="3xl:text-[20px] 2xl:text-[18px] text-[14px] font-semibold font-base1 uppercase text-black  line-clamp-3">
+                        <div className="3xl:text-[20px] 2xl:text-[18px] text-[14px] font-semibold font-base1 uppercase text-black  line-clamp-2">
                             {car.title}
                         </div>
                     </div>
