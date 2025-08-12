@@ -22,7 +22,11 @@ export default function ProductCard({ car, variant }) {
   const specs = [toTitleCase(car?.regional_spec), toTitleCase(car?.fueltype), toTitleCase(car?.gearbox), car?.year];
 
   return (
-    <Link href={`inventory/${car?.id}` || "#"} aria-label={car?.type} className={`w-full h-full flex cursor-pointer group ${paddingClass}`}>
+    <Link
+      href={car?.slug ? `/inventory/${car?.slug}` : "#"}
+      aria-label={car?.type}
+      className={`w-full h-full flex cursor-pointer group ${paddingClass}`}
+    >
       <div className="w-full h-full rounded-[10px] bg-white overflow-hidden 3xl:py-[15px] py-[10px] 3xl:px-[20px] px-[15px] flex items-center shadow-xl">
         {/* Left Section */}
         <div
@@ -36,7 +40,7 @@ export default function ProductCard({ car, variant }) {
           <div className="w-full 3xl:max-w-[50px] max-w-[40px] absolute top-[10px] left-[10px] z-10">
             <Image
               src={car?.make?.make_logo ? `${mediaUrl}${car?.make?.make_logo}` : "/images/no-image.jpg"}
-              alt={`${car?.brand} Logo`}
+              alt={car?.title}
               width={350}
               height={200}
               className="w-full h-full object-cover "
