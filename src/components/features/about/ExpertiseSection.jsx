@@ -36,6 +36,8 @@ const items = [
 ];
 
 export default function ExpertiseSection({ title, expertise }) {
+  console.log(expertise);
+
   return (
     <section className="w-full h-auto bg-[#F5F9FF] 3xl:py-[80px] 2xl:py-[60px] xl:py-[50px] lg:py-[50px] py-[40px] block overflow-hidden relative z-0">
       <div className="absolute -z-1 left-0 top-0 right-0 w-[45%] h-full m-auto pointer-events-none">
@@ -58,13 +60,9 @@ export default function ExpertiseSection({ title, expertise }) {
                   <Image src={item?.icon ? `${mediaUrl}${item.icon}` : "/images/expertise_3.svg"} alt={item.title} width={100} height={100} />
                 </div>
                 <div>
-                  <Heading
-                    size={"heading5"}
-                    as="h2"
-                    className=" text-black uppercase font-semibold leading-[1.4] max-w-[250px] 2xl:!mb-[15px] !mb-[10px] group-hover:text-white transition-colors duration-300 ease-in-out"
-                  >
+                  <div className=" text-black uppercase font-semibold leading-[1.4] max-w-[250px] 2xl:!mb-[15px] !mb-[10px] group-hover:text-white transition-colors duration-300 ease-in-out">
                     {item?.title || "Title"}
-                  </Heading>
+                  </div>
                   <p className="3xl:text-[20px] 2xl:text-[16px] md:text-[14px] text-[12px] font-light leading-[1.3] text-[#4B4B4B]] group-hover:text-white transition-colors duration-300 ease-in-out">
                     {item?.description || "Expertise"}
                   </p>

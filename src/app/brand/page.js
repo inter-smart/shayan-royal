@@ -10,7 +10,7 @@ async function getMetaData() {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/web/meta?page=brands`);
     const result = await response.json();
-    console.log(result);
+
     const meta = result.data;
 
     if (result.status === "success") {
@@ -107,8 +107,6 @@ export default async function Page() {
   }
 
   const { contents, brands, banner } = data;
-
-  console.log(brands);
 
   return (
     <>

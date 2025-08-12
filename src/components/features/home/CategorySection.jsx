@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
@@ -17,20 +18,21 @@ const carCategories = [
   { name: "Hatchback", img: "/images/cat4.png" },
 ];
 
-export default function AboutSection({ title, description, categories }) {
+export default function CategorySection({ title, description, categories }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [selected, setSelected] = useState("");
   const swiperRef = useRef(null);
+  const router = useRouter();
 
-  // Duplicate slides for smoother loop
+  // Ensure we have enough slides for smooth looping
   const minSlides = 8;
   const slidesData =
     categories.length < minSlides
       ? Array.from({ length: minSlides }, (_, i) => ({
           ...categories[i % categories.length],
-          id: i,
+          id: `${i}-${categories[i % categories.length].id || i}`,
+          originalIndex: i % categories.length,
         }))
-      : categories.map((item, i) => ({ ...item, id: i }));
+      : categories.map((item, i) => ({ ...item, id: item.id || i, originalIndex: i }));
 
   return (
     <section className="relative py-[20px] md:py-[25px] 2xl:py-[30px] 3xl:py-[40px] bg-[#F5F9FF] overflow-hidden">
@@ -61,10 +63,10 @@ export default function AboutSection({ title, description, categories }) {
             }}
             speed={1200}
             onSlideChange={(swiper) => {
-              setActiveIndex(swiper.realIndex % categories.length);
+              setActiveIndex(swiper.realIndex);
             }}
             onSwiper={(swiper) => {
-              setActiveIndex(swiper.realIndex % categories.length);
+              setActiveIndex(swiper.realIndex);
             }}
             navigation={{
               prevEl: ".nav-prev",
@@ -105,15 +107,20 @@ export default function AboutSection({ title, description, categories }) {
             className="px-10 overflow-hidden mb-3 w-full"
           >
             {slidesData.map((car, index) => {
-              const isActive = activeIndex % categories.length === index % categories.length;
+              // Check if this slide is the active center slide
+              const isActive = activeIndex === index;
 
               return (
-                <SwiperSlide key={car.id || index}>
+                <SwiperSlide key={car.id}>
                   <div
                     className="flex flex-col items-center cursor-pointer group transition-all duration-300"
                     onClick={() => {
-                      setSelected(car.name);
-                      swiperRef.current?.swiper.slideToLoop(originalIndex, 500);
+                      // Navigate to inventory page with category ID
+                      // Use the original category ID, not the modified slide ID
+                      const originalCategory = categories[car.originalIndex];
+                      if (originalCategory?.id) {
+                        router.push(`/inventory?car_type_id=${originalCategory.id}`);
+                      }
                     }}
                   >
                     <div
@@ -153,21 +160,13 @@ export default function AboutSection({ title, description, categories }) {
           {/* Navigation Arrows */}
           <div className="flex items-center justify-center absolute top-1/2 -translate-y-1/2 w-full pointer-events-none">
             <button className="nav-prev pointer-events-auto absolute left-[-25px] lg:left-[-35px] z-10 sm:bg-[linear-gradient(270deg,#FFF_-4.3%,#EBEBEB_100.24%)] sm:shadow-md 3xl:w-[34px] 2xl:w-[25px] w-[35px] 3xl:h-[38px] h-[35px] flex items-center justify-center sm:rounded-[30px_0px_0px_30px] cursor-pointer group hover:bg-[#2E4C99] transition-colors duration-300">
-              <svg
-                viewBox="0 0 7 13"
-                fill="none"
-                className="group-hover:brightness-0 group-hover:invert 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]"
-              >
+              <svg viewBox="0 0 7 13" fill="none" className=" 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]">
                 <path d="M6.14364 0.699707L0.769531 6.12544L6.14364 12.1834" stroke="currentColor" />
               </svg>
             </button>
 
             <button className="nav-next pointer-events-auto absolute right-[-25px] lg:right-[-35px] z-10 sm:bg-[linear-gradient(270deg,#FFF_-4.3%,#EBEBEB_100.24%)] sm:shadow-md 3xl:w-[34px] 2xl:w-[25px] w-[35px] 3xl:h-[38px] h-[35px] flex items-center justify-center sm:rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99] transition-colors duration-300">
-              <svg
-                viewBox="0 0 7 13"
-                fill="none"
-                className="group-hover:brightness-0 group-hover:invert 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]"
-              >
+              <svg viewBox="0 0 7 13" fill="none" className=" 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]">
                 <path d="M0.817302 0.699707L6.19141 6.12544L0.817302 12.1834" stroke="currentColor" />
               </svg>
             </button>

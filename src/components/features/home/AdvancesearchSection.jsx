@@ -58,6 +58,12 @@ export default function CarSearchForm() {
     };
   }, [searchParams]);
 
+  // Auto-expand advanced search if car type is present in URL
+  const shouldAutoExpand = useMemo(() => {
+    return !!(queryValues.carType || queryValues.regionalSpec || queryValues.yearFrom || 
+             queryValues.yearTo || queryValues.steeringSide || queryValues.cylinders || queryValues.seats);
+  }, [queryValues]);
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     values: queryValues, // initially from query string
@@ -69,6 +75,13 @@ export default function CarSearchForm() {
       setMakeId(queryValues.make);
     }
   }, [queryValues.make]);
+
+  // Auto-expand advanced search if advanced parameters are present
+  useEffect(() => {
+    if (shouldAutoExpand) {
+      setIsExpanded(true);
+    }
+  }, [shouldAutoExpand]);
 
   const router = useRouter();
 
@@ -82,7 +95,6 @@ export default function CarSearchForm() {
       // Map carType name to ID
 
       // disable submit via react-hook-form isSubmitting (automatic) and use async handler
-      console.log("Params:", values);
 
       const params = {
         make_id: values.make,
@@ -98,8 +110,6 @@ export default function CarSearchForm() {
         seats: values.seats,
         yearFrom: values.yearFrom,
       };
-
-      console.log("Params:", params);
 
       // Filter out empty or undefined values
       const filteredParams = Object.fromEntries(Object.entries(params).filter(([_, v]) => v !== "" && v !== undefined));
@@ -438,6 +448,7 @@ export default function CarSearchForm() {
         <Accordion
           type="single"
           collapsible
+          value={isExpanded ? "advanced-search" : ""}
           onValueChange={(value) => setIsExpanded(!!value)}
           className={`relative ${isExpanded ? "shadow-2xl pb-[50px]" : ""}`}
         >

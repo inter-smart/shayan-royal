@@ -1,6 +1,32 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Custom loader animations */
+@keyframes spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-reverse {
+  animation: spin-reverse 1s linear infinite;
+}
+
+/* Smooth loading transitions */
+.loading-fade-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.loading-fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

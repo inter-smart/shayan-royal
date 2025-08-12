@@ -19,6 +19,7 @@ import Image from "next/image";
 import { mediaUrl } from "@/lib/constants";
 import { toast } from "sonner";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import PhoneInput from "@/components/ui/phone-input";
 
 // Tailwind Classes
 const menuLinkClass =
@@ -39,8 +40,7 @@ const imageMimeTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp", "i
 const formSchema = z.object({
   company: z.string().optional(),
   contactPerson: z.string().nonempty("Contact person is required"),
-  countryCode: z.string().optional(),
-  phone: z.string().regex(/^\+?[1-9]\d{7,14}$/, {
+  phone: z.string().regex(/^\+?[1-9]\s?\d{7,14}$/, {
     message: "Enter a valid international phone number.",
   }),
   email: z.string().email("Invalid email"),
@@ -56,12 +56,7 @@ const formSchema = z.object({
     .any()
     .refine(
       (files) =>
-        !files ||
-        (Array.isArray(files) &&
-          files.length > 0 &&
-          files.every(
-            (file) => file instanceof File && imageMimeTypes.includes(file.type)
-          )),
+        !files || (Array.isArray(files) && files.length > 0 && files.every((file) => file instanceof File && imageMimeTypes.includes(file.type))),
       {
         message: "Only image files are allowed (jpg, jpeg, png, webp, gif)",
       }
@@ -82,7 +77,6 @@ export default function CustomerrequirementForm({ title, type }) {
     defaultValues: {
       company: "",
       contactPerson: "",
-      countryCode: "",
       phone: "",
       email: "",
       address: "",
@@ -129,14 +123,17 @@ export default function CustomerrequirementForm({ title, type }) {
     }
 
     try {
-      const [countryCode, mobileCode] = values.countryCode.split(":");
-      const fullPhone = `${mobileCode} ${values.phone}`;
+      // Extract country code from phone number
+      const phoneValue = values.phone || "";
+      const phoneMatch = phoneValue.match(/^(\+\d+)\s(.+)$/);
+      const countryCode = phoneMatch ? phoneMatch[1] : "";
+      const country = countries.find(c => c.mobileCode === countryCode);
 
       // Convert file to Base64 if exists
       const formData = new FormData();
       formData.append("company", values.company);
       formData.append("contactPerson", values.contactPerson);
-      formData.append("phone", `${mobileCode} ${values.phone}`);
+      formData.append("phone", values.phone);
       formData.append("email", values.email);
       formData.append("address", values.address);
       formData.append("fabricationType", values.fabricationType);
@@ -145,7 +142,7 @@ export default function CustomerrequirementForm({ title, type }) {
       formData.append("model_id", values.model_id || "");
       formData.append("modelYear", values.modelYear);
       formData.append("vehicleType", values.vehicleType);
-      formData.append("country", countryCode);
+      formData.append("country", country?.code || "");
       formData.append("additionalNotes", values.additionalNotes || "");
       formData.append("budgetRange", values.budgetRange);
       if (values.deliveryDate) {
@@ -182,9 +179,6 @@ export default function CustomerrequirementForm({ title, type }) {
     }
   };
 
-  const uniqueByDialCode = countries.filter((country, index, self) => index === self.findIndex((c) => c.mobileCode === country.mobileCode));
-
-  const countryCode = form.watch("countryCode");
 
   return (
     <section className="relative py-[20px] xl:py-[30px] 2xl:py-[40px] 3xl:py-[80px_60px]">
@@ -205,7 +199,7 @@ export default function CustomerrequirementForm({ title, type }) {
                 name="company"
                 control={form.control}
                 render={({ field }) => (
-                  <FormItem className="w-full md:w-1/4 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
+                  <FormItem className="w-full lg:w-1/3 md:w-1/2 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
                     <FormControl>
                       <Input placeholder="Company Name " {...field} className={menuLinkClass} />
                     </FormControl>
@@ -218,7 +212,7 @@ export default function CustomerrequirementForm({ title, type }) {
                 name="contactPerson"
                 control={form.control}
                 render={({ field }) => (
-                  <FormItem className="w-full md:w-1/4 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
+                  <FormItem className="w-full lg:w-1/3 md:w-1/2 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
                     {/* Custom Placeholder */}
                     {!field.value && (
                       <span
@@ -244,51 +238,27 @@ export default function CustomerrequirementForm({ title, type }) {
                   </FormItem>
                 )}
               />
-              {/* COUNTRY CODE + PHONE */}
-              <FormField
-                name="countryCode"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem className="w-full md:w-1/7 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
-                    <FormControl>
-                      <Select onValueChange={field.onChange} value={field.value}>
-                        <SelectTrigger className={menuLinkClass}>
-                          <SelectValue placeholder="Country Code" />
-                        </SelectTrigger>
-                        <SelectContent className={contentClass}>
-                          {uniqueByDialCode.map((country) => (
-                            <SelectItem
-                              key={`${country.code}-${country.mobileCode}`}
-                              value={`${country.code}:${country.mobileCode}`}
-                              className={itemClass}
-                            >
-                              {country.name} ({country.mobileCode})
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage className={errorMessage} />
-                  </FormItem>
-                )}
-              />
-
+              {/* PHONE NUMBER */}
               <FormField
                 name="phone"
                 control={form.control}
                 render={({ field }) => (
-                  <FormItem className="w-full md:w-1/3 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
+                  <FormItem className="w-full lg:w-1/3 md:w-1/2 lg:p-[15px] p-[8px] relative">
                     {!field.value && (
                       <span
-                        className={`!text-[11px] md:!text-[12px] 2xl:!text-[14px] 3xl:!text-[17px] !text-black placeholder:text-black !font-normal absolute left-3 
-                     top-[15px] lg:top-[30px] border-none pointer-events-none text-sm transition-opacity duration-200 peer-focus:opacity-0 
-                     peer-placeholder-shown:opacity-100 `}
+                        className={`!text-[11px] md:!text-[12px] 2xl:!text-[14px] 3xl:!text-[17px] !text-black placeholder:text-black !font-normal absolute left-[70px] 
+                         top-[15px] lg:top-[30px] border-none pointer-events-none text-sm transition-opacity duration-200 z-10`}
                       >
                         Phone Number <span className="text-red-500">*</span>
                       </span>
                     )}
                     <FormControl>
-                      <Input placeholder=" " {...field} className={`${menuLinkClass} peer`} disabled={!countryCode} />
+                      <PhoneInput
+                        value={field.value}
+                        onChange={field.onChange}
+                        placeholder=" "
+                        defaultCountry="AE"
+                      />
                     </FormControl>
                     <FormMessage className={errorMessage} />
                   </FormItem>
@@ -299,7 +269,7 @@ export default function CustomerrequirementForm({ title, type }) {
                 name="email"
                 control={form.control}
                 render={({ field }) => (
-                  <FormItem className="w-full md:w-1/3 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
+                  <FormItem className="w-full lg:w-1/3 md:w-1/2 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
                     {!field.value && (
                       <span
                         className={`!text-[11px] md:!text-[12px] 2xl:!text-[14px] 3xl:!text-[17px] !text-black placeholder:text-black !font-normal absolute left-3
@@ -321,7 +291,7 @@ export default function CustomerrequirementForm({ title, type }) {
                 name="address"
                 control={form.control}
                 render={({ field }) => (
-                  <FormItem className="w-full md:w-2/3 lg:p-[15px] p-[8px] relative">
+                  <FormItem className="w-full lg:w-2/3 md:w-full lg:p-[15px] p-[8px] relative">
                     <FormControl>
                       <Input placeholder="Address" {...field} className={menuLinkClass} />
                     </FormControl>
@@ -408,7 +378,7 @@ export default function CustomerrequirementForm({ title, type }) {
                 name="make_id"
                 control={form.control}
                 render={({ field }) => (
-                  <FormItem className="w-full md:w-1/3 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
+                  <FormItem className="w-full lg:w-1/3 md:w-1/2 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
                     <FormControl>
                       <Select
                         onValueChange={(value) => {
@@ -437,7 +407,7 @@ export default function CustomerrequirementForm({ title, type }) {
                 name="model_id"
                 control={form.control}
                 render={({ field }) => (
-                  <FormItem className="w-full md:w-1/3 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
+                  <FormItem className="w-full lg:w-1/3 md:w-1/2 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
                     <FormControl>
                       <Select onValueChange={field.onChange} value={field.value} disabled={!makeId}>
                         <SelectTrigger className={menuLinkClass}>
@@ -469,7 +439,7 @@ export default function CustomerrequirementForm({ title, type }) {
                 name="modelYear"
                 control={form.control}
                 render={({ field }) => (
-                  <FormItem className="w-full md:w-1/3 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
+                  <FormItem className="w-full lg:w-1/3 md:w-1/2 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
                     <FormControl>
                       <Select onValueChange={field.onChange} value={field.value}>
                         <SelectTrigger className={menuLinkClass}>
@@ -493,7 +463,7 @@ export default function CustomerrequirementForm({ title, type }) {
                 name="vehicleType"
                 control={form.control}
                 render={({ field }) => (
-                  <FormItem className="w-full md:w-1/3 lg:p-[15px] p-[8px] relative">
+                  <FormItem className="w-full lg:w-1/3 md:w-1/2 lg:p-[15px] p-[8px] relative">
                     <FormControl>
                       <Select onValueChange={field.onChange} value={field.value}>
                         <SelectTrigger className={menuLinkClass}>
@@ -633,15 +603,11 @@ export default function CustomerrequirementForm({ title, type }) {
                           <SelectValue placeholder="Budget Range" />
                         </SelectTrigger>
                         <SelectContent className={contentClass}>
-                          <SelectItem value="0 - 10k" className={itemClass}>
-                            Up to $10,000
-                          </SelectItem>
-                          <SelectItem value="10k - 20k" className={itemClass}>
-                            $10,000 - $20,000
-                          </SelectItem>
-                          <SelectItem value="20k - 30k" className={itemClass}>
-                            $20,000 - $30,000
-                          </SelectItem>
+                          {dropdownData?.budget?.map((item) => (
+                            <SelectItem key={item.id} value={item.range}>
+                              {item.range}
+                            </SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                     </FormControl>

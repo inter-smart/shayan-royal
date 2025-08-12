@@ -12,6 +12,7 @@ import { useParams } from "next/navigation";
 import { toast } from "sonner";
 import { mediaUrl } from "@/lib/constants";
 import { useState } from "react";
+import { useFormLoading } from "@/hooks/usePageLoading";
 
 // Tailwind Classes
 const menuLinkClass =
@@ -39,15 +40,14 @@ export default function ReserveForm() {
     },
   });
   const [loading, setLoading] = useState(false);
-
+  const { submitWithLoading } = useFormLoading();
   const params = useParams();
 
   const onSubmit = async (values) => {
-    setLoading(true);
-
     const inventoryId = params.slug;
 
     try {
+      await submitWithLoading(async () => {
       const payload = {
         name: values.Name,
         phone: values.phone,
@@ -64,19 +64,19 @@ export default function ReserveForm() {
         body: JSON.stringify(payload),
       });
 
-      const data = await res.json();
+        const data = await res.json();
 
-      if (data.success) {
-        toast.success(data.message || "Enquiry submitted!");
-        form.reset();
-      } else {
-        toast.error(data.message || "Something went wrong. Please try again.");
-      }
+        if (data.success) {
+          toast.success(data.message || "Enquiry submitted!");
+          form.reset();
+          return data;
+        } else {
+          throw new Error(data.message || "Something went wrong. Please try again.");
+        }
+      }, "Submitting enquiry...");
     } catch (error) {
       console.error("Submission error:", error);
-      toast.error("Failed to submit enquiry. Please try again later.");
-    } finally {
-      setLoading(false);
+      toast.error(error.message || "Failed to submit enquiry. Please try again later.");
     }
   };
 

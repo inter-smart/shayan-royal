@@ -23,8 +23,6 @@ export default async function footer() {
     return <div>Something went wrong</div>;
   }
 
-  console.log(footerContents);
-
   return (
     <footer className="w-full h-auto block bg-[#07163D] py-[40px_20px] 2xl:py-[60px_25px] 3xl:py-[120px_60px]">
       <div className="container">

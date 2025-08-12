@@ -10,7 +10,7 @@ async function getMetaData() {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/web/meta?page=services`);
     const result = await response.json();
-    console.log(result);
+
     const meta = result.data;
 
     if (result.status === "success") {
@@ -78,7 +78,7 @@ async function getMetaData() {
         canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/services`,
       },
 
-      error:  "No metadata found",
+      error: "No metadata found",
     };
   }
 }
@@ -107,8 +107,6 @@ export default async function Page() {
   }
 
   const { contents, banner, services } = data;
-
-  console.log(banner);
 
   return (
     <>

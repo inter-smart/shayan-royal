@@ -3,7 +3,7 @@ import { Text } from "@/components/layout/Text";
 import { Heading } from "@/components/layout/Heading";
 import parse from "html-react-parser";
 import { mediaUrl } from "@/lib/constants";
-export default function MarketSection({ title, description, image }) {
+export default function MarketSection({ title, description }) {
   return (
     <section className="w-full h-auto 2xl:py-[120px] xl:py-[75px] md:py-[50px] py-[40px] block">
       <div className="container">

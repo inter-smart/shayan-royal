@@ -13,6 +13,7 @@ async function getMetaData(id) {
       `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/web/meta-service?service_id=${id}`
     );
     const result = await response.json();
+
     const meta = result.data;
 
     if (result.status === "success") {
