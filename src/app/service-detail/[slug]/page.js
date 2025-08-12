@@ -101,14 +101,14 @@ export async function generateMetadata({ params }) {
 export default async function Page({ params }) {
   const resolvedParamms = await params;
   const { slug } = resolvedParamms;
+  console.log(slug);
 
   const { data, error } = await fetchFromAPI(`service-detail/${slug}`);
 
-  if (error) {
-    return notFound();
-  }
+  console.log(data);
+  console.log(error);
 
-  if (!data || !data.service) {
+  if (error) {
     return notFound();
   }
 

@@ -24,7 +24,7 @@ async function getMetaData() {
           description: meta?.og_description || meta?.meta_description || defaultMeta.description,
           images: meta?.og_image ? [{ url: meta.og_image, width: 1200, height: 630 }] : [],
           type: "website",
-          url: `${process.env.NEXT_PUBLIC_SITE_URL}/services`,
+          url: `${process.env.NEXT_PUBLIC_SITE_URL}/service`,
         },
         twitter: {
           card: "summary_large_image",
@@ -33,7 +33,7 @@ async function getMetaData() {
           images: meta?.twitter_image ? [meta.twitter_image] : [],
         },
         alternates: {
-          canonical: meta?.canonical_url || `${process.env.NEXT_PUBLIC_SITE_URL}/services`,
+          canonical: meta?.canonical_url || `${process.env.NEXT_PUBLIC_SITE_URL}/service`,
         },
         error: null,
       };
@@ -46,7 +46,7 @@ async function getMetaData() {
         title: defaultMeta.title,
         description: defaultMeta.description,
         type: "website",
-        url: `${process.env.NEXT_PUBLIC_SITE_URL}/services`,
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}/service`,
       },
       twitter: {
         card: "summary_large_image",
@@ -54,7 +54,7 @@ async function getMetaData() {
         description: defaultMeta.description,
       },
       alternates: {
-        canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/services`,
+        canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/service`,
       },
       error: result.message || "No metadata found",
     };
@@ -67,7 +67,7 @@ async function getMetaData() {
         title: defaultMeta.title,
         description: defaultMeta.description,
         type: "website",
-        url: `${process.env.NEXT_PUBLIC_SITE_URL}/services`,
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}/service`,
       },
       twitter: {
         card: "summary_large_image",
@@ -75,7 +75,7 @@ async function getMetaData() {
         description: defaultMeta.description,
       },
       alternates: {
-        canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/services`,
+        canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/service`,
       },
 
       error: "No metadata found",
