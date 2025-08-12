@@ -10,6 +10,7 @@ export default function EnquiryFormSection({ image }) {
         <RecaptchaProvider>
           <EnquiryForm image={image ? `${mediaUrl}${image}` : "/images/brand-form.webp"} Formtitle="Enquiry Form" type="brands" />
         </RecaptchaProvider>
+        
       </div>
     </section>
   );

@@ -110,7 +110,7 @@ export default function EnquiryForm({ image, Formtitle, Formsubtitle, type }) {
     "text-white w-full h-auto 2xl:p-[15px_0] p-[10px_0] bg-transparent border-0 border-b border-white rounded-none placeholder:2xl:text-[16px] placeholder:text-[12px] placeholder:leading-[1] placeholder:font-normal placeholder:text-white focus-visible:placeholder:text-[#BE1E2D] focus-visible:border-[#BE1E2D] focus-visible:ring-0 transition-colors duration-300 ease-in-out";
 
   return (
-    <div className="w-full flex flex-wrap rounded-[10px] overflow-hidden">
+    <div className="w-full flex flex-wrap rounded-[10px] overflow-hidden min-h-[750px]">
       <div className="w-full lg:w-[55%]">
         <Image src={image} alt="brand" width={915} height={567} className="w-full h-full object-cover lg:rounded-l-[10px]" />
       </div>
@@ -119,7 +119,9 @@ export default function EnquiryForm({ image, Formtitle, Formsubtitle, type }) {
         <div className="text-white 3xl:text-[35px] 2xl:text-[30px] text-[20px] font-base1 font-medium uppercase 2xl:mb-[35px] 2xs:mb-[25px] mb-[15px]">
           {Formtitle}
         </div>
-        <Form {...form}>
+        <iframe aria-label='Enquiry Form' frameborder="0" className="w-full h-full max-h-[560px]"
+        src='https://forms.zohopublic.com/shayanroyalgeneraltradingllc/form/ContactUsNewWebsite1/formperma/G5-Ji1DZ_v0_EuNCKtGR-gcC09dSpxx42JE3D1MqwNo'></iframe>
+        {/* <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} autoComplete="off">
             {items.map((item) => (
               <FormField
@@ -158,7 +160,7 @@ export default function EnquiryForm({ image, Formtitle, Formsubtitle, type }) {
               </Button>
             </div>
           </form>
-        </Form>
+        </Form> */}
       </div>
     </div>
   );

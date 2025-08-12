@@ -6,6 +6,7 @@
   from {
     transform: rotate(360deg);
   }
+
   to {
     transform: rotate(0deg);
   }
@@ -396,4 +397,8 @@ body[data-scroll-locked] {
   box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
   border: 0 !important;
   z-index: 2;
+}
+
+.zfErrorDiv{
+  font-size: 10px !important;
 }

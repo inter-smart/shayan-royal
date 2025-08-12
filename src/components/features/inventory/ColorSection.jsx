@@ -110,7 +110,9 @@ export default function CarColorSpecSection({ colorVariants = colors, specs2 }) 
                   alt="Car"
                   width={780}
                   height={400}
-                  className="object-contain bg-white p-5 xl:max-w-[700px] sm:max-w-[580px] max-w-[300px] w-full"
+                    className="object-cover bg-white p-5  max-w-[300px] sm:max-w-[350px] md-max-w-[400px] lg:max-w-[420px] xl:max-w-[570px]
+                                     3xl:max-w-[700px]  min-w-[300px] 
+                                    sm:min-w-[350px]  md:max-w-[400px] lg:min-w-[420px] xl:min-w-[570px]  3xl:min-w-[700px] w-full"
                 />
               </div>
 

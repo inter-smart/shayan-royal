@@ -62,9 +62,11 @@ export default function GetInTouchSection({ title, description, socialLinks, ima
             <Image src={image ? `${mediaUrl}${image}` : item.backgroundImage} alt="Enquiry Banner" fill style={{ objectFit: "cover" }} />
           </div>
           <div className="3xl:max-w-[575px] lg:max-w-[380px] bg-[rgb(7,22,61,0.8)] 3xl:p-[40px] sm:p-[30px] p-[15px] ml-auto">
-            <RecaptchaProvider>
+            {/* <RecaptchaProvider>
               <EnquiryForm form_title={form_title} type="contact" />
-            </RecaptchaProvider>
+            </RecaptchaProvider> */}
+             <iframe aria-label='Enquiry Form' frameborder="0" className="w-full h-full min-h-[560px]"
+        src='https://forms.zohopublic.com/shayanroyalgeneraltradingllc/form/ContactUsNewWebsite1/formperma/G5-Ji1DZ_v0_EuNCKtGR-gcC09dSpxx42JE3D1MqwNo'></iframe>
           </div>
           <div className="3xl:w-[calc(100%-590px)] lg:w-[calc(100%-390px)] w-full h-auto max-lg:px-[30px] max-sm:px-[15px] 2xl:py-[30px] sm:py-[20px] py-[15px] bg-[rgb(7,22,61,0.8)] flex max-sm:flex-wrap items-center justify-center lg:absolute z-1 2xl:bottom-[15px] lg:bottom-[10px] left-0">
             <div className="3xl:text-[40px] 2xl:text-[30px] lg:text-[25px] sm:text-[20px] text-[16px] leading-[1] font-semibold text-white max-lg:w-[100%] 3xl:pr-[80px] lg:pr-[50px] mb-[15px] sm:mb-[0]">
