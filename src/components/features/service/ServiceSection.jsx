@@ -131,7 +131,7 @@ export default function ServiceSection({ services = items }) {
                     </p>
 
                     <Link
-                      href={item.type === "service-detail" ? `/service-detail/${item.id}` : `/service-fitment/${item.id}`}
+                      href={item.type === "service-detail" ? `/service-detail/${item.slug}` : `/service-fitment/${item.slug}`}
                       prefetch={true}
                       aria-label="Learn More"
                       className="3xl:text-[16px] 2xl:text-[13px] text-[11px] leading-1 font-medium font-base1 text-[#2E4C99] w-fit h-[40px] 3xl:p-[10px_25px] p-[7px_15px] rounded-[50px] bg-white hover:bg-base1 hover:text-white transition-colors duration-200 ease-in-out"
