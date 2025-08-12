@@ -10,6 +10,8 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import RecaptchaProvider from "@/components/layout/RecaptchaProvider";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 dayjs.extend(relativeTime);
 
 const items = [
@@ -36,8 +38,11 @@ export default function BlogDetailSection({ blog, recentBlogs, slug }) {
   const [fetchedComments, setFetchedComments] = useState([]);
   const [fetching, setFetching] = useState(false);
 
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!name.trim()) {
       toast.warning("Please enter name.");
       return;
@@ -48,6 +53,13 @@ export default function BlogDetailSection({ blog, recentBlogs, slug }) {
       return;
     }
 
+    const recaptchaToken = await executeRecaptcha("comments");
+    if (!recaptchaToken) {
+      toast.error("Failed to get reCAPTCHA token. Please try again.");
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
     try {
       const response = await fetch(`${mediaUrl}/api/comments`, {
@@ -55,23 +67,16 @@ export default function BlogDetailSection({ blog, recentBlogs, slug }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, content: comment, status: "active", slug }),
+        body: JSON.stringify({ name, content: comment, status: "active", slug, recaptchaToken }),
       });
 
       const result = await response.json();
 
       if (response.ok && result.success) {
-        toast.success("Your comment has been submitted!");
+        console.log("RES", result);
+        toast.success(result?.message || "Your comment has been submitted!");
         setName("");
         setComment("");
-        const newComment = {
-          id: result.data?.id || Date.now(), // fallback to timestamp
-          name,
-          content: comment,
-          created_at: new Date().toISOString(),
-        };
-
-        setFetchedComments((prev) => [newComment, ...prev]);
       } else {
         toast.error(result.message || "Submission failed.");
       }
@@ -178,34 +183,36 @@ export default function BlogDetailSection({ blog, recentBlogs, slug }) {
                 </div>
               </div>
 
-              <div className="w-full md:w-[55%] xl:w-[63%]">
-                <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    placeholder="Name*"
-                    required
-                    className="w-full bg-[#eeeeee] rounded-md px-4 py-3 text-sm outline-none 2xl:h-[60px] h-[50px] 2xl:placeholder:text-[16px] placeholder:text-[14px]"
-                  />
-                  <textarea
-                    value={comment}
-                    onChange={(e) => setComment(e.target.value)}
-                    placeholder="Comment"
-                    rows={4}
-                    required
-                    className="w-full bg-[#eeeeee] rounded-md px-4 py-3 text-sm outline-none resize-none 2xl:h-[120px] h-[100px] 2xl:placeholder:text-[16px] placeholder:text-[14px]"
-                  />
-                  <div className="flex justify-end">
-                    <button
-                      type="submit"
-                      className="bg-[#2E4C99] xl:mt-[25px] mt-[15px] 3xl:text-[16px] 2xl:text-[14px] text-[12px] text-white text-xs font-medium px-5 py-2 rounded-[50px] hover:bg-[#1d397e] transition xl:w-[178px] w-[165px] xl:h-[40px] h-[35px] flex items-center justify-center"
-                    >
-                      POST COMMENT
-                    </button>
-                  </div>
-                </form>
-              </div>
+              <RecaptchaProvider>
+                <div className="w-full md:w-[55%] xl:w-[63%]">
+                  <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
+                    <input
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Name*"
+                      required
+                      className="w-full bg-[#eeeeee] rounded-md px-4 py-3 text-sm outline-none 2xl:h-[60px] h-[50px] 2xl:placeholder:text-[16px] placeholder:text-[14px]"
+                    />
+                    <textarea
+                      value={comment}
+                      onChange={(e) => setComment(e.target.value)}
+                      placeholder="Comment"
+                      rows={4}
+                      required
+                      className="w-full bg-[#eeeeee] rounded-md px-4 py-3 text-sm outline-none resize-none 2xl:h-[120px] h-[100px] 2xl:placeholder:text-[16px] placeholder:text-[14px]"
+                    />
+                    <div className="flex justify-end">
+                      <button
+                        type="submit"
+                        className="bg-[#2E4C99] xl:mt-[25px] mt-[15px] 3xl:text-[16px] 2xl:text-[14px] text-[12px] text-white text-xs font-medium px-5 py-2 rounded-[50px] hover:bg-[#1d397e] transition xl:w-[178px] w-[165px] xl:h-[40px] h-[35px] flex items-center justify-center"
+                      >
+                        POST COMMENT
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </RecaptchaProvider>
             </div>
 
             {/* Comment List */}
