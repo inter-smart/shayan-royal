@@ -40,7 +40,7 @@ const imageMimeTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp", "i
 const formSchema = z.object({
   company: z.string().optional(),
   contactPerson: z.string().nonempty("Contact person is required"),
-  phone: z.string().regex(/^\+?[1-9]\s?\d{7,14}$/, {
+  phone: z.string().regex(/^\+?[1-9]\d{0,2}(?:-\d{1,3})?\s\d{7,14}$/, {
     message: "Enter a valid international phone number.",
   }),
   email: z.string().email("Invalid email"),
@@ -121,6 +121,7 @@ export default function CustomerrequirementForm({ title, type }) {
       setLoading(false);
       return;
     }
+    console.log(values);
 
     try {
       // Extract country code from phone number
@@ -254,7 +255,7 @@ export default function CustomerrequirementForm({ title, type }) {
                     )}
                     <FormControl>
                       <PhoneInput
-                        value={field.value}
+                        value={field.value || ""}
                         onChange={field.onChange}
                         placeholder=" "
                         defaultCountry="AE"

@@ -29,7 +29,7 @@ export default function CategorySection({ title, description, categories }) {
     categories.length < minSlides
       ? Array.from({ length: minSlides }, (_, i) => ({
           ...categories[i % categories.length],
-          id: `${i}-${categories[i % categories.length].id || i}`,
+          id: `${i}-${categories[i % categories.length]?.id || i}`,
           originalIndex: i % categories.length,
         }))
       : categories.map((item, i) => ({ ...item, id: item.id || i, originalIndex: i }));

@@ -31,7 +31,7 @@ export default function NewsletterForm() {
       );
 
       const data = await res.json();
-      if (!data.success) throw new Error(data?.message || "Subscription failed");
+      if (!data.success) throw new Error(data?.message || "Please enter a valid email address.");
 
       toast.success("Subscribed successfully!");
       setEmail("");

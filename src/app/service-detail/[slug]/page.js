@@ -5,6 +5,7 @@ import ChooseServicesSection from "@/components/features/service/ChooseServicesS
 import LogisticSection from "@/components/features/service/LogisticSection";
 import { fetchFromAPI } from "@/lib/api";
 import { defaultMeta, mediaUrl } from "@/lib/constants";
+import { notFound } from "next/navigation";
 
 async function getMetaData(slug) {
   try {
@@ -104,11 +105,11 @@ export default async function Page({ params }) {
   const { data, error } = await fetchFromAPI(`service-detail/${slug}`);
 
   if (error) {
-    return <div>Something went wrong</div>;
+    return notFound();
   }
 
-  if (!data) {
-    return <div>No data</div>;
+  if (!data || !data.service) {
+    return notFound();
   }
 
   const { service, banner } = data;
