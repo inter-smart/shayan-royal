@@ -6,7 +6,7 @@ const customParserOptions = {
   replace: (domNode) => {
     if (domNode.name === "p") {
       return (
-        <p className="3xl:text-[20px] 2xl:text-[18px] lg:text-[16px] text-[14px] text-[#4B4B4B] lg:mb-[30px] mb-[20px]">
+        <p className="3xl:text-[20px] 2xl:text-[18px] lg:text-[16px] text-[14px] text-[#4B4B4B] lg:mb-[30px] mb-[20px] last-of-type:!mb-0">
           {domToReact(domNode.children)}
         </p>
       );
@@ -16,7 +16,7 @@ const customParserOptions = {
 
 export default function PartnershipSection({ title, description, image, alt, brandCount }) {
   return (
-    <section className="w-full h-auto xl:pt-[80px] lg:pt-[40px] pt-[20px] lg:pb-[90px] pb-[20px]">
+    <section className="w-full h-auto xl:pt-[80px] lg:pt-[40px] pt-[20px] lg:pb-[10px] pb-[10px]">
       <div className="container">
         <div className="relative w-full">
           <div className="md:w-[50%] w-full md:float-left xl:mb-[20px] mb-[15px] 3xl:mr-[70px] xl:mr-[50px] mr-[30px]">
