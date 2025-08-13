@@ -108,17 +108,17 @@ export default async function Page({ params }) {
   }
 
   if (!data) {
-    return notFound()
+    return notFound();
   }
 
-  const { banner, blog, recentBlogs } = data;
+  const { blog, recentBlogs } = data;
 
   return (
     <>
       <InnerBanner
-        title={banner?.title ? banner?.title : "Blogs"}
-        image={banner?.image ? `${mediaUrl}${banner?.image}` : "/images/blog_banner.webp"}
-        alt={banner?.title ? banner?.title : "blog-banner"}
+        title={blog?.title ? blog?.title : "Blogs"}
+        image={blog?.cover_image ? `${mediaUrl}${blog?.cover_image}` : "/images/blog_banner.webp"}
+        alt={blog?.title ? blog?.title : "blog-banner"}
       />
       <BreadCrumb
         items={[
