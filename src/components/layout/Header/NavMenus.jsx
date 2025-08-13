@@ -82,7 +82,10 @@ function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, isScr
                       onClick={() => setIsOpen(false)} // 👈 Close Sheet on click
                       className="relative block text-[16px] font-medium py-1 transition-all duration-300 group"
                     >
-                      {item.label}
+                       {item.label
+                        ? item.label.charAt(0).toUpperCase() +
+                          item.label.slice(1).toLowerCase()
+                        : ""}
                       <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#1577F0] transition-all duration-300 group-hover:w-full"></span>
                     </Link>
                   </li>

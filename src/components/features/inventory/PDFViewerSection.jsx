@@ -296,17 +296,17 @@ export default function PDFViewer({ fileUrl }) {
             />
           )}
 
-          <Link
-            href="/"
+          <div
+            onClick={handleFileDownload}
             aria-label="download spec"
             className="text-[12px] 2xl:text-[14px] 3xl:text-[16px]
            text-white bg-[#2E4C99] uppercase rounded-[50px] 
          h-[30px] 2xl:h-[35px] 3xl:h-[40px] flex items-center justify-center m-auto 
          lg:m-0 lg:ml-auto px-[10px] max-w-[140px] xl:max-w-[150px] 2xl:max-w-[180px] 
-         3xl:max-w-[210px] hover:bg-[#be1e2d] !mt-[20px]"
+         3xl:max-w-[210px] hover:bg-[#be1e2d] !mt-[20px] cursor-pointer"
           >
             DOWNLOAD SPECS
-          </Link>
+          </div>
         </div>
       </div>
     </section>
