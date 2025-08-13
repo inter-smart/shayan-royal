@@ -212,7 +212,7 @@ export default async function footer() {
           <div className="text-white text-[7px] xl:text-[9px] 2xl:text-[11px] 3xl:text-[14px] text-right">
             <div className="flex flex-wrap">
               Designed By:
-              <a href="" className="block pl-[10px]">
+              <a href="https://www.intersmartsolution.com/" className="block pl-[10px]">
                 <Image
                   src="/images/intersmart.webp"
                   alt="logo"
