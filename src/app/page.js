@@ -123,6 +123,10 @@ export default async function Home() {
     faqs,
   } = data;
 
+  console.log(firstProductList);
+  console.log(lastProductList);
+  console.log(productLists);
+
   return (
     <>
       <BannerSection homeBanners={homeBanners} />
@@ -138,17 +142,15 @@ export default async function Home() {
         cars={contents?.cars_count}
       />
       <CategorySection title={contents?.category_section_title} description={contents?.category_section_description} categories={categories} />
-      <NewarrivalSection products={firstProductList} />
+      {firstProductList && <NewarrivalSection products={firstProductList} />}
       <WhySection
         title={contents?.why_shayan_royal_section_title}
         description={contents?.why_shayan_royal_section_description}
         image={contents?.why_shayan_royal_section_image}
         whyShayanItems={whyShayanItems}
       />
-      {productLists?.map((productList) => (
-        <LimitedstockSection key={productList?.id} products={productList} />
-      ))}
-      <FeaturedSection products={lastProductList} />
+      {productLists?.length > 0 && productLists?.map((productList) => <LimitedstockSection key={productList?.id} products={productList} />)}
+      {lastProductList && <FeaturedSection products={lastProductList} />}
       <LogisticsSection
         title={contents?.logistics_and_transport_section_title}
         description={contents?.logistics_and_transport_section_description}

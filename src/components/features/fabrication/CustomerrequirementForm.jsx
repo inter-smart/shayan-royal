@@ -128,7 +128,7 @@ export default function CustomerrequirementForm({ title, type }) {
       const phoneValue = values.phone || "";
       const phoneMatch = phoneValue.match(/^(\+\d+)\s(.+)$/);
       const countryCode = phoneMatch ? phoneMatch[1] : "";
-      const country = countries.find(c => c.mobileCode === countryCode);
+      const country = countries.find((c) => c.mobileCode === countryCode);
 
       // Convert file to Base64 if exists
       const formData = new FormData();
@@ -179,7 +179,6 @@ export default function CustomerrequirementForm({ title, type }) {
       setLoading(false);
     }
   };
-
 
   return (
     <section className="relative py-[20px] xl:py-[30px] 2xl:py-[40px] 3xl:py-[80px_60px]">
@@ -254,12 +253,7 @@ export default function CustomerrequirementForm({ title, type }) {
                       </span>
                     )}
                     <FormControl>
-                      <PhoneInput
-                        value={field.value || ""}
-                        onChange={field.onChange}
-                        placeholder=" "
-                        defaultCountry="AE"
-                      />
+                      <PhoneInput value={field.value || ""} onChange={field.onChange} placeholder=" " defaultCountry="AE" />
                     </FormControl>
                     <FormMessage className={errorMessage} />
                   </FormItem>
@@ -509,8 +503,26 @@ export default function CustomerrequirementForm({ title, type }) {
 
                   const handleFileChange = (e) => {
                     const files = Array.from(e.target.files || []);
-                    setSelectedFiles((prev) => [...prev, ...files]); // append files
-                    field.onChange([...selectedFiles, ...files]);
+                    const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/gif"];
+
+                    // Filter only allowed file types
+                    const validFiles = files.filter((file) => {
+                      if (allowedTypes.includes(file.type)) {
+                        return true;
+                      } else {
+                        // Log warning for invalid files
+                        console.warn(`File ${file.name} is not an allowed image type`);
+                        return false;
+                      }
+                    });
+
+                    // Show error message if some files were rejected
+                    if (validFiles.length !== files.length) {
+                      alert("Only image files are allowed (jpg, jpeg, png, webp, gif)");
+                    }
+
+                    setSelectedFiles((prev) => [...prev, ...validFiles]); // append valid files only
+                    field.onChange([...selectedFiles, ...validFiles]);
                   };
 
                   const handleRemoveFile = (indexToRemove) => {
@@ -549,7 +561,14 @@ export default function CustomerrequirementForm({ title, type }) {
                             </svg>
                           </div>
                           <span className="underline">Upload File</span>
-                          <input type="file" multiple ref={inputRef} onChange={handleFileChange} className="hidden" />
+                          <input
+                            type="file"
+                            multiple
+                            ref={inputRef}
+                            onChange={handleFileChange}
+                            className="hidden"
+                            accept="image/jpeg,image/jpg,image/png,image/webp,image/gif"
+                          />
                         </label>
                       </div>
 
@@ -566,13 +585,9 @@ export default function CustomerrequirementForm({ title, type }) {
                               >
                                 <svg width="8" height="8" viewBox="0 0 15 15" className="fill-black group-hover:fill-[#f11025]">
                                   <path
-                                    fill-rule="evenodd"
-                                    clip-rule="evenodd"
-                                    d="M0.293457 12.8798C-0.0970427 13.2704 -0.0969825 13.9035 0.293577 14.294C0.684137 14.6845 1.3173 14.6845
-                                                                     1.70779 14.2939L7.29303 8.70773L12.8787 14.2934C13.2692 14.6839 13.9024 14.6839 14.2929 14.2934C14.6834 13.9029 14.6834 13.2697 
-                                                                     14.2929 12.8792L8.70713 7.29343L14.2925 1.70705C14.6829 1.31649 14.6829 0.683328 14.2923 0.292838C13.9018 -0.0976623 13.2686 
-                                                                     -0.0976027 12.8781 0.292957L7.29283 5.87923L1.70711 0.293438C1.31659 -0.0970825 0.683417 -0.0970825 0.292897 0.293438C-0.0976325 0.683968
-                                                                      -0.0976325 1.31713 0.292897 1.70766L5.87883 7.29353L0.293457 12.8798Z"
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M0.293457 12.8798C-0.0970427 13.2704 -0.0969825 13.9035 0.293577 14.294C0.684137 14.6845 1.3173 14.6845 1.70779 14.2939L7.29303 8.70773L12.8787 14.2934C13.2692 14.6839 13.9024 14.6839 14.2929 14.2934C14.6834 13.9029 14.6834 13.2697 14.2929 12.8792L8.70713 7.29343L14.2925 1.70705C14.6829 1.31649 14.6829 0.683328 14.2923 0.292838C13.9018 -0.0976623 13.2686 -0.0976027 12.8781 0.292957L7.29283 5.87923L1.70711 0.293438C1.31659 -0.0970825 0.683417 -0.0970825 0.292897 0.293438C-0.0976325 0.683968 -0.0976325 1.31713 0.292897 1.70766L5.87883 7.29353L0.293457 12.8798Z"
                                   />
                                 </svg>
                               </button>
