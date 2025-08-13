@@ -5,7 +5,7 @@ const brandLogos = Array.from({ length: 36 }, (_, i) => `/images/p${i + 1}.webp`
 
 export default function PremiumBrandsSection({ title, brands }) {
   return (
-    <section className="w-full h-auto 2xl:pt-[90px] md:pt-[20px] sm:pt-[10px] pt-[5px] lg:pb-[50px] md:pb-[20px] sm:pb-[10px] pb-[5px]">
+    <section className="w-full h-auto 2xl:pt-[40px] md:pt-[20px] sm:pt-[10px] pt-[5px] lg:pb-[50px] md:pb-[20px] sm:pb-[10px] pb-[5px]">
       <div className="container">
         <div className="2xl:text-[50px] lg:text-[40px] md:text-[30px] text-[20px] text-center font-semibold uppercase 2xl:mb-[45px] lg:mb-[35px] md:mb-[25px] mb-[15px]">
           {title ? title : "Premium Brands"}
