@@ -59,25 +59,24 @@ export const PhoneInput = ({
   }, []);
 
   // Parse initial value if provided
-  useEffect(() => {
-    if (value && typeof value === "string") {
-      // Try to extract country code and phone number from the value
-      const cleanValue = value.replace(/\s+/g, " ").trim();
-      const possibleCode = cleanValue.split(" ")[0];
-      
-      const matchingCountry = countries.find(c => 
-        cleanValue.startsWith(c.mobileCode)
-      );
-      
-      if (matchingCountry) {
-        setSelectedCountry(matchingCountry);
-        setPhoneNumber(cleanValue.replace(matchingCountry.mobileCode, "").trim());
-      } else {
-        setPhoneNumber(cleanValue);
-      }
-    }
-  }, [value]);
+useEffect(() => {
+  if (!value) {
+    setSelectedCountry(countries.find((c) => c.code === defaultCountry) || countries[0]);
+    setPhoneNumber("");
+  } else if (value && typeof value === "string") {
+    const cleanValue = value.replace(/\s+/g, " ").trim();
+    const possibleCode = cleanValue.split(" ")[0];
+    const matchingCountry = countries.find((c) => cleanValue.startsWith(c.mobileCode));
 
+    if (matchingCountry) {
+      setSelectedCountry(matchingCountry);
+      setPhoneNumber(cleanValue.replace(matchingCountry.mobileCode, "").trim());
+    } else {
+      setSelectedCountry(countries.find((c) => c.code === defaultCountry) || countries[0]);
+      setPhoneNumber(cleanValue);
+    }
+  }
+}, [value, defaultCountry]);
   const handleCountrySelect = (country) => {
     setSelectedCountry(country);
     setPhoneNumber(""); // Clear the phone number when country changes
