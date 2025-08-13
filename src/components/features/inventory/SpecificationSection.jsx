@@ -115,7 +115,7 @@ export default function ResponsiveTabsWithSwiper({ specList = detailsData }) {
               <SwiperSlide key={idx}>
                 <button
                   onClick={() => setActiveTab(tab)}
-                  className={`relative text-[13px] sm:text-[16px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[25px] font-base1 w-full pb-2 whitespace-nowrap text-left cursor-pointer transition-all hover:text-[#2E4C99] hover:font-semibold
+                  className={`relative text-[13px] sm:text-[16px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[25px] font-base1 w-full pb-2 text-left cursor-pointer transition-all hover:text-[#2E4C99] hover:font-semibold
                     ${
                       activeTab === tab
                         ? "font-semibold text-black after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-1/2 after:bg-[#2E4C99]"
@@ -193,7 +193,7 @@ export default function ResponsiveTabsWithSwiper({ specList = detailsData }) {
                       <div
                         key={i}
                         className="text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[20px]
-        whitespace-nowrap block text-black font-semibold mr-2 font-base1 mx-[10px] lg:mx-[20px] border-b 
+ block text-black font-semibold mr-2 font-base1 mx-[10px] lg:mx-[20px] border-b 
         border-dashed border-[#2E4C99] pb-[10px] xl:pb-[15px]"
                       >
                         {item.value}
