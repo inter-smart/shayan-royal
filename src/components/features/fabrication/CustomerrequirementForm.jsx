@@ -311,15 +311,11 @@ export default function CustomerrequirementForm({ title, type }) {
                             <SelectValue placeholder="Model" />
                           </SelectTrigger>
                           <SelectContent className={contentClass} position="popper">
-                            <SelectItem value="Ambulance Fabrication" className={itemClass}>
-                              Ambulance Fabrication
-                            </SelectItem>
-                            <SelectItem value="Bulletproofing" className={itemClass}>
-                              Bulletproofing
-                            </SelectItem>
-                            <SelectItem value="Truck Fabrication" className={itemClass}>
-                              Truck Fabrication
-                            </SelectItem>
+                            {dropdownData?.fabTypes?.map((make) => (
+                              <SelectItem key={make.id} value={make.name} className={itemClass}>
+                                {make.name}
+                              </SelectItem>
+                            ))}
                           </SelectContent>
                         </Select>
                       </FormControl>
