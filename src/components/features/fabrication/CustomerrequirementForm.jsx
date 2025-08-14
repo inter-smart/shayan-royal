@@ -246,7 +246,7 @@ export default function CustomerrequirementForm({ title, type }) {
                   <FormItem className="w-full lg:w-1/3 md:w-1/2 lg:p-[15px] p-[8px] relative">
                     {!field.value && (
                       <span
-                        className={`!text-[11px] md:!text-[12px] 2xl:!text-[14px] 3xl:!text-[17px] !text-black placeholder:text-black !font-normal absolute left-[70px] 
+                        className={`!text-[11px] md:!text-[12px] 2xl:!text-[14px] 3xl:!text-[17px] !text-black placeholder:text-black !font-normal absolute left-[100px] 
                          top-[15px] lg:top-[30px] border-none pointer-events-none text-sm transition-opacity duration-200 z-10 ml-10`}
                       >
                         Phone Number <span className="text-red-500">*</span>
@@ -264,7 +264,7 @@ export default function CustomerrequirementForm({ title, type }) {
                 name="email"
                 control={form.control}
                 render={({ field }) => (
-                  <FormItem className="w-full lg:w-1/3 md:w-1/2 2xs:w-1/2 lg:p-[15px] p-[8px] relative">
+                  <FormItem className="w-full lg:w-1/3 md:w-1/2 2  lg:p-[15px] p-[8px] relative">
                     {!field.value && (
                       <span
                         className={`!text-[11px] md:!text-[12px] 2xl:!text-[14px] 3xl:!text-[17px] !text-black placeholder:text-black !font-normal absolute left-3

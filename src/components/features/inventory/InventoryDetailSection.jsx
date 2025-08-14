@@ -118,7 +118,7 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                     >
                       {carImages?.map((img, index) => (
                         <SwiperSlide key={index}>
-                          <div className="relative w-full 3xl:h-[570px] 2xl:h-[465px] xl:h-[425px] sm:h-[370px] 3xs:h-[300px] h-[200px] bg-white">
+                          <div className="relative w-full 3xl:h-[570px] 2xl:h-[465px] xl:h-[425px] sm:h-[370px] 3xs:h-[230px] h-[200px] bg-white">
                             {/* <Image
                                                     src={img}
                                                     alt={`car-${index}`}
