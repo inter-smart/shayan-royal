@@ -47,7 +47,7 @@ export default function ProductCardHome({ car, variant }) {
             />
           </div>
           {/* Image */}
-          <div className="w-full  3xl:min-h-[250px] 2xl:min-h-[170px] min-h-[140px] flex items-center justify-center m-auto overflow-hidden rounded-[5px] relative">
+          <div className="w-full  h-[calc(100%-55px)] md:h-[calc(100%-65px)] flex items-center justify-center m-auto overflow-hidden rounded-[5px] relative">
             <Image
               src={car?.image ? `${mediaUrl}${car?.image}` : "/images/no-image.jpg"}
               alt={car?.title}
