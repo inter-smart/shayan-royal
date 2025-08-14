@@ -47,21 +47,29 @@ export default function NewsletterForm() {
       onSubmit={handleSubmit}
       className="w-full flex items-center relative z-0"
     >
-      <Input
-        type="email"
-        placeholder="Enter Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-        className="rounded-[10px] border-gray-300 focus-visible:ring-0 focus-visible:ring-offset-0 bg-white h-[45px] placeholder-[#555555] placeholder:text-[14px]"
-      />
-      <Button
-        type="submit"
-        disabled={loading}
-        className="absolute bottom-0 margin-auto bg-[#BE1E2D] h-[40px] top-1/2 -translate-y-1/2 right-[3px] 3xl:text-[16px] 2xl:text-[14px] text-[14px] cursor-pointer uppercase font-medium"
-      >
-        {loading ? "Loading..." : "Subscribe"}
-      </Button>
+      <div className="w-full flex items-center relative z-0 bg-white p-[2px] rounded-[4px] xl:rounded-[5px] 
+       2xl:rounded-[8px] 3xl:rounded-[10px] h-[25px] xl:h-[30px] 2xl:h-[35px] 3xl:h-[45px]">
+        <Input
+          type="email"
+          placeholder="Enter Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          className="border-none focus-visible:ring-0 focus-visible:ring-offset-0 h-full w-[calc(100%-75px)]  
+                        xl:w-[calc(100%-95px)] 2xl:w-[calc(100%-115px)] 3xl:w-[calc(100%-145px)]  placeholder-[#555555] placeholder:text-[8px]
+                          placeholder:xl:text-[10px] placeholder:2xl:text-[12px] placeholder:3xl:text-[14px] !text-[8px]
+                          xl:!text-[10px] 2xl:!text-[12px] 3xl:!text-[14px]"
+        />
+        <Button
+          type="submit"
+          disabled={loading}
+          className="text-[8px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[16px] bg-[#BE1E2D] w-[75px] xl:w-[95px] 2xl:w-[115px] 3xl:w-[145px] h-full 
+                      rounded-[4px] xl:rounded-[5px] 2xl:rounded-[8px] 3xl:rounded-[10px] 
+                      uppercase font-normal cursor-pointer"
+        >
+          {loading ? "Loading..." : "Subscribe"}
+        </Button>
+      </div>
     </form>
   );
 }

@@ -59,14 +59,14 @@ export default function BlogSection({ title, description, blogs }) {
             <div className="flex flex-wrap -m-[8px]">
               {leftItems?.map((item, index) => (
                 <div key={index} className="2xs:w-1/2 w-full lg:p-[8px] p-[5px]">
-                  <div className="w-full h-full bg-white lg:p-[18px] md:p-[10px] p-[5px] rounded-[6px] max-2xs:flex">
+                  <div className="w-full h-full bg-white lg:p-[18px] md:p-[10px] p-[5px] rounded-[6px] max-2xs:flex cursor-pointer group">
                     <div className="w-full sm:aspect-[265/140] overflow-hidden rounded-[10px] 2xs:mb-[10px] max-2xs:w-[100px]">
                       <Image
                         src={item.image ? `${mediaUrl}${item.image}` : "/images/blog1.jpg"}
                         alt={item.title}
                         width={1070}
                         height={500}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-125"
                       />
                     </div>
                     <div className="w-full max-2xs:w-[calc(100%-100px)] max-2xs:pl-[25px]">
@@ -98,14 +98,14 @@ export default function BlogSection({ title, description, blogs }) {
             <div className="flex flex-col">
               {rightItems.map((item, index) => (
                 <div key={index} className="w-full 3xl:mb-[20px] last:mb-0">
-                  <div className="w-full h-full bg-white lg:p-[12px] md:p-[10px] p-[5px]  rounded-[6px] flex">
+                  <div className="w-full h-full bg-white lg:p-[12px] md:p-[10px] p-[5px]  rounded-[6px] flex cursor-pointer group">
                     <div className="3xl:w-[200px] 2xl:w-[150px] sm:w-[130px] w-[100px] overflow-hidden rounded-[10px]">
                       <Image
                         src={item.image ? `${mediaUrl}${item.image}` : "/images/blog1.jpg"}
                         alt={item.title}
                         width={1070}
                         height={500}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-125"
                       />
                     </div>
                     <div className="3xl:w-[calc(100%-200px)] 2xl:w-[calc(100%-150px)] sm:w-[calc(100%-130px)] w-[calc(100%-100px)] pl-[25px]">
