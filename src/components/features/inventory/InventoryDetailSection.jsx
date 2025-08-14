@@ -103,7 +103,7 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                                     </div>
                                     <span className="3xl:text-[20px] text-[15px] text-white w-[calc(100%-30px)] 3xl:px-[15px] 2xl:px-[10px] px-[5px]">{carDetails[0].model}</span>
                                 </div> */}
-                  <div className="relative w-full 3xl:h-[calc(100%-190px)] 2xl:h-[calc(100%-140px)] sm:h-[calc(100%-120px)] h-[calc(100%-90px)] sm:mb-[20px] mb-[10px]">
+                  <div className="relative w-full 3xl:h-[calc(100%-200px)] 2xl:h-[calc(100%-160px)] sm:h-[calc(100%-140px)] h-[calc(100%-120px)] sm:mb-[20px] mb-[10px]">
                     <Swiper
                       modules={[Thumbs, EffectFade, Navigation]}
                       spaceBetween={10}
@@ -169,7 +169,7 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                   </div>
 
                   {/* Thumbnail Slider */}
-                  <div className="relative 3xl:h-[150px] 2xl:h-[110px] sm:h-[90px] h-[70px] ">
+                  <div className="relative 3xl:h-[170px] 2xl:h-[130px] xl:h-[110px] 3xs:h-[80px] h-[50px] ">
                     <Swiper
                       onSwiper={setThumbsSwiper}
                       spaceBetween={10}
@@ -197,8 +197,8 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                       {carImages?.map((img, index) => (
                         <SwiperSlide key={`thumb-${index}`} className="group">
                           <div
-                            className="relative w-full h-full cursor-pointer bg-[#F5F9FF]
-                                                 rounded-[10px] overflow-hidden shadow transition-opacity duration-00 opacity-90 group-[.swiper-slide-thumb-active]:opacity-100"
+                            className="relative w-full h-full cursor-pointer bg-[#F5F9FF] aspect-[4/4]
+                                               rounded-[5px]  lg:rounded-[10px] overflow-hidden shadow transition-opacity duration-00 opacity-90 group-[.swiper-slide-thumb-active]:opacity-100"
                           >
                             <Image
                               src={img ? `${mediaUrl}${img}` : "/images/no-image.png"}

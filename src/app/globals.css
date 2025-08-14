@@ -402,3 +402,7 @@ body[data-scroll-locked] {
 .zfErrorDiv{
   font-size: 10px !important;
 }
+.zsiq-float { 
+    bottom: 35px !important;   
+    right: 20px !important;
+  }
