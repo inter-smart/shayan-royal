@@ -1,6 +1,7 @@
 import { fetchFromAPI } from "@/lib/api";
 import { mediaUrl } from "@/lib/constants";
 import Image from "next/image";
+import Script from "next/script";
 
 const menuLinkClass =
   "3xl:w-[32px] 3xl:h-[32px] 2x:w-[24px] 2xl:h-[24px] w-[20px] h-[20px] rounded-full flex items-center justify-center transition-all hover:lg:scale-130";
@@ -88,11 +89,24 @@ export default async function WidgetSection() {
         </div>
       </div>
       {/* chat us  */}
-      <div className="fixed bottom-[60px] md:right-[40px] right-[15px] ">
+      {/* <div className="fixed bottom-[60px] md:right-[40px] right-[15px] ">
         <div className="w-[40px] h-[40px] flex items-center justify-center cursor-pointer transition-all hover:-translate-y-1">
           <Image src="/images/chat_icon.png" width="40" height="40" className="w-full h-full object-cover" alt="chat_icon" />
         </div>
-      </div>
+      </div> */}
+      <Script id="zoho-init" strategy="afterInteractive">
+        {`window.$zoho = window.$zoho || {};
+          $zoho.salesiq = $zoho.salesiq || { ready: function() {} };
+        `}
+      </Script>
+
+      <Script
+        id="zoho-salesiq"
+        src="https://salesiq.zohopublic.com/widget?wc=siqed953e1b49e39ca20576f0bb91bae38ba97bf7f0fa471ea161411f81335df6e5"
+        strategy="afterInteractive"
+      />
+
+
     </section>
   );
 }
