@@ -52,7 +52,7 @@ const SocialLinks = [
   },
   {
     icon: "/images/whtap.png",
-    name: "Whatsapp",
+    name: "WhatsApp",
     colorCode: "#25D366",
     link: "https://wa.me/1234567890",
   },
