@@ -59,6 +59,8 @@ const SocialLinks = [
 ];
 
 export default function InventoryDetailSection({ carDetails, specs, contactData = SocialLinks }) {
+  console.log(specs);
+
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   const thumbsPrevRef = useRef(null);
@@ -85,8 +87,10 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
             <div className="3xl:w-[calc(100%-400px)] 2xl:w-[calc(100%-300px)] md:w-[calc(100%-245px)] w-full 3xl:pr-[50px] 2xl:pr-[40px] md:pr-[30px] max-md:mb-[15px]">
               <div className="flex flex-col lg:flex-row w-full">
                 {/* Main Slider */}
-                <div className="w-full 3xl:w-[calc(100%-110px)] 2xl:w-[calc(100%-80px)] lg:w-[calc(100%-70px)] 3xl:mr-[50px] mr-[30px] overflow-hidden relative
-                 ">
+                <div
+                  className="w-full 3xl:w-[calc(100%-110px)] 2xl:w-[calc(100%-80px)] lg:w-[calc(100%-70px)] 3xl:mr-[50px] mr-[30px] overflow-hidden relative
+                 "
+                >
                   {/* <div className="absolute 3xl:top-[50px] md:top-[30px] top-[15px] 3xl:left-[50px] md:left-[30px] left-[15px] flex items-center 3xl:p-[15px] 2xl:p-[10px]
                                  p-[5px] bg-[#2E4C99] rounded-[10px] z-9">
                                     <div className="3xl:w-[30px] 2xl:w-[25px] w-[20px] flex">
@@ -99,7 +103,7 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                                     </div>
                                     <span className="3xl:text-[20px] text-[15px] text-white w-[calc(100%-30px)] 3xl:px-[15px] 2xl:px-[10px] px-[5px]">{carDetails[0].model}</span>
                                 </div> */}
-                  <div className="relative w-full 3xl:h-[calc(100%-190px)] 2xl:h-[calc(100%-140px)] sm:h-[calc(100%-120px)] h-[calc(100%-90px)] sm:mb-[20px] mb-[10px]">
+                  <div className="relative w-full 3xl:h-[calc(100%-200px)] 2xl:h-[calc(100%-160px)] sm:h-[calc(100%-140px)] h-[calc(100%-120px)] sm:mb-[20px] mb-[10px]">
                     <Swiper
                       modules={[Thumbs, EffectFade, Navigation]}
                       spaceBetween={10}
@@ -120,21 +124,21 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                       {carImages?.map((img, index) => (
                         <SwiperSlide key={index}>
                           {/* <div className="relative w-full 3xl:h-[570px] 2xl:h-[465px] xl:h-[425px] sm:h-[370px] 3xs:h-[230px] h-[200px] bg-white"> */}
-                         <div className="relative w-full h-full bg-white">  
+                          <div className="relative w-full h-full bg-white">
                             {/* <Image
                                                     src={img}
                                                     alt={`car-${index}`}
                                                     fill
                                                     className="2xl:max-w-[900px] lg:max-w-[650px] max-w-[300px] w-full h-full object-contain m-auto"
                                                 /> */}
-                           <div className="w-full h-full aspect-[16/9]">
-                             <Image
-                              src={img ? `${mediaUrl}${img}` : "/images/no-image.png"}
-                              alt={`car-${index}`}
-                              fill
-                              className="max-w-full w-full h-full object-cover m-auto"
-                            />
-                           </div>
+                            <div className="w-full h-full aspect-[16/9]">
+                              <Image
+                                src={img ? `${mediaUrl}${img}` : "/images/no-image.png"}
+                                alt={`car-${index}`}
+                                fill
+                                className="max-w-full w-full h-full object-cover m-auto"
+                              />
+                            </div>
                           </div>
                         </SwiperSlide>
                       ))}
@@ -165,7 +169,7 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                   </div>
 
                   {/* Thumbnail Slider */}
-                  <div className="relative 3xl:h-[150px] 2xl:h-[110px] sm:h-[90px] h-[70px] ">
+                  <div className="relative 3xl:h-[170px] 2xl:h-[130px] xl:h-[110px] 3xs:h-[80px] h-[50px] ">
                     <Swiper
                       onSwiper={setThumbsSwiper}
                       spaceBetween={10}
@@ -193,8 +197,8 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                       {carImages?.map((img, index) => (
                         <SwiperSlide key={`thumb-${index}`} className="group">
                           <div
-                            className="relative w-full h-full cursor-pointer bg-[#F5F9FF]
-                                                 rounded-[10px] overflow-hidden shadow transition-opacity duration-00 opacity-90 group-[.swiper-slide-thumb-active]:opacity-100"
+                            className="relative w-full h-full cursor-pointer bg-[#F5F9FF] aspect-[4/4]
+                                               rounded-[5px]  lg:rounded-[10px] overflow-hidden shadow transition-opacity duration-00 opacity-90 group-[.swiper-slide-thumb-active]:opacity-100"
                           >
                             <Image
                               src={img ? `${mediaUrl}${img}` : "/images/no-image.png"}
@@ -333,8 +337,12 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                   <Heading size="heading5" as="div" className="text-black uppercase font-semibold xl:mb-[10px]">
                     Reserve Your Ride
                   </Heading>
-                  <iframe aria-label='Reserve Your Ride' frameborder="0" className="w-full h-full min-h-[550px] !bg-[#F5F9FF]"
-                    src='https://forms.zohopublic.com/shayanroyalgeneraltradingllc/form/ReserveYourRide/formperma/loe0YejjSZ42uy-lJjv2mgfhpKrx_H-Y9KhPpdVtNvA'></iframe>
+                  <iframe
+                    aria-label="Reserve Your Ride"
+                    frameborder="0"
+                    className="w-full h-full min-h-[550px] !bg-[#F5F9FF]"
+                    src="https://forms.zohopublic.com/shayanroyalgeneraltradingllc/form/ReserveYourRide/formperma/loe0YejjSZ42uy-lJjv2mgfhpKrx_H-Y9KhPpdVtNvA"
+                  ></iframe>
                 </div>
               </div>
             </div>
