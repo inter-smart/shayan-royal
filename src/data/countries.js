@@ -60,7 +60,7 @@ export const countries = [
     code: 'AQ',
     timezone: 'Pacific SA Standard Time',
     utc: 'UTC-03:00',
-    mobileCode: '+',
+    mobileCode: '+672',
   },
   {
     name: 'Antigua and Barbuda',
@@ -216,13 +216,13 @@ export const countries = [
     utc: 'UTC+02:00',
     mobileCode: '+267',
   },
-  {
-    name: 'Bouvet Island',
-    code: 'BV',
-    timezone: 'UTC',
-    utc: 'UTC',
-    mobileCode: '+',
-  },
+  // {
+  //   name: 'Bouvet Island',
+  //   code: 'BV',
+  //   timezone: 'UTC',
+  //   utc: 'UTC',
+  //   mobileCode: '+',
+  // },
   {
     name: 'Brazil',
     code: 'BR',
@@ -1467,7 +1467,7 @@ export const countries = [
     code: 'GS',
     timezone: 'UTC-02',
     utc: 'UTC-02:00',
-    mobileCode: '+',
+    mobileCode: '+500',
   },
   {
     name: 'South Sudan',
