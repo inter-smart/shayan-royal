@@ -6,7 +6,8 @@ import FitmentServiceSection from "@/components/features/service/FitmentServiceS
 import FitmentTypeServiceSection from "@/components/features/service/FitmentTypeServiceSection";
 import WorkinActionSection from "@/components/features/service/WorkinActionSection";
 import { fetchFromAPI } from "@/lib/api";
-import { mediaUrl } from "@/lib/constants";
+import { defaultMeta, mediaUrl } from "@/lib/constants";
+import { notFound } from "next/navigation";
 
 async function getMetaData(slug) {
   try {
@@ -106,7 +107,7 @@ export default async function page({ params }) {
   const { data, error } = await fetchFromAPI(`service-fitment/${slug}`);
 
   if (error) {
-    return <div>Something went wrong</div>;
+    return notFound();
   }
 
   if (!data) {
