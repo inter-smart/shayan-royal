@@ -15,7 +15,6 @@ export default function NotFound() {
             <Search className="w-8 h-8 text-gray-400" />
           </div>
           <h1 className="text-2xl font-bold text-white mb-2">Page Not Found</h1>
-          <p className="text-gray-400 text-sm">The page you're looking for doesn't exist or has been moved.</p>
         </div>
 
         {/* 404 Visual */}
@@ -45,7 +44,7 @@ export default function NotFound() {
         {/* Helpful Links */}
         <div className="text-center mt-6">
           <p className="text-xs text-gray-500">
-            Need help?{" "}
+            Need help?
             <a href="/contact" className="text-gray-300 hover:text-white underline">
               Contact Support
             </a>
