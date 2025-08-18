@@ -36,8 +36,6 @@ const items = [
 ];
 
 export default function ExpertiseSection({ title, expertise }) {
-  console.log(expertise);
-
   return (
     <section className="w-full h-auto bg-[#F5F9FF] 3xl:py-[80px] 2xl:py-[60px] xl:py-[50px] lg:py-[50px] py-[40px] block overflow-hidden relative z-0">
       <div className="absolute -z-1 left-0 top-0 right-0 w-[45%] h-full m-auto pointer-events-none">

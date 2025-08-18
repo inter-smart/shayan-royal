@@ -123,10 +123,6 @@ export default async function Home() {
     faqs,
   } = data;
 
-  console.log(firstProductList);
-  console.log(lastProductList);
-  console.log(productLists);
-
   return (
     <>
       <BannerSection homeBanners={homeBanners} />

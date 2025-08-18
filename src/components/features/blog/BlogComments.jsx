@@ -52,7 +52,6 @@ function BlogComments({ slug }) {
       const result = await response.json();
 
       if (response.ok && result.success) {
-        console.log("RES", result);
         toast.success(result?.message || "Your comment has been submitted!");
         setName("");
         setComment("");
