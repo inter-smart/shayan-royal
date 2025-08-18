@@ -1,7 +1,7 @@
 "use client";
 import { mediaUrl } from "@/lib/constants";
 import dayjs from "dayjs";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { toast } from "sonner";
 
@@ -14,64 +14,91 @@ function BlogComments({ slug }) {
 
   const { executeRecaptcha } = useGoogleReCaptcha();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // Use useCallback to memoize handleSubmit and prevent unnecessary re-renders
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault(); // Prevent default form submission behavior
 
-    if (!name.trim()) {
-      toast.warning("Please enter name.");
-      return;
-    }
+      if (loading) return; // Prevent multiple submissions
 
-    if (!comment.trim()) {
-      toast.warning("Please enter commect.");
-      return;
-    }
-
-    if (name.trim().length > 100) {
-      toast.warning("Name must be less than 100 characters.");
-      return;
-    }
-
-    const recaptchaToken = await executeRecaptcha("comments");
-    if (!recaptchaToken) {
-      toast.error("Failed to get reCAPTCHA token. Please try again.");
-      setLoading(false);
-      return;
-    }
-
-    setLoading(true);
-    try {
-      const response = await fetch(`${mediaUrl}/api/comments`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, content: comment, status: "active", slug, recaptchaToken }),
-      });
-
-      const result = await response.json();
-
-      if (response.ok && result.success) {
-        toast.success(result?.message || "Your comment has been submitted!");
-        setName("");
-        setComment("");
-      } else {
-        toast.error(result.message || "Submission failed.");
+      if (!name.trim()) {
+        toast.warning("Please enter name.");
+        return;
       }
-    } catch (error) {
-      console.error("Comment submission error:", error);
-      toast.error("Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
+
+      if (!comment.trim()) {
+        toast.warning("Please enter comment.");
+        return;
+      }
+
+      if (name.trim().length > 100) {
+        toast.warning("Name must be less than 100 characters.");
+        return;
+      }
+
+      if (!executeRecaptcha) {
+        toast.error("reCAPTCHA not loaded. Please try again.");
+        return;
+      }
+
+      setLoading(true); // Set loading immediately to block further submissions
+
+      try {
+        const recaptchaToken = await executeRecaptcha("comments");
+        if (!recaptchaToken) {
+          toast.error("Failed to get reCAPTCHA token. Please try again.");
+          return;
+        }
+
+        const response = await fetch(`${mediaUrl}/api/comments`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            content: comment,
+            status: "active",
+            slug,
+            recaptchaToken,
+          }),
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          toast.success(result?.message || "Your comment has been submitted!");
+          setName("");
+          setComment("");
+          // Optionally refetch comments to update the list
+          const res = await fetch(
+            `${mediaUrl}/api/comments/get-comments?slug=${slug}`
+          );
+          const data = await res.json();
+          if (data.success) {
+            setFetchedComments(Array.isArray(data.data) ? data.data : []);
+          }
+        } else {
+          toast.error(result.message || "Submission failed.");
+        }
+      } catch (error) {
+        console.error("Comment submission error:", error);
+        toast.error("Something went wrong. Please try again.");
+      } finally {
+        setLoading(false); // Reset loading state
+      }
+    },
+    [loading, name, comment, slug, executeRecaptcha]
+  );
 
   useEffect(() => {
     if (!slug) return;
     const fetchComments = async () => {
       setFetching(true);
       try {
-        const res = await fetch(`${mediaUrl}/api/comments/get-comments?slug=${slug}`);
+        const res = await fetch(
+          `${mediaUrl}/api/comments/get-comments?slug=${slug}`
+        );
         const data = await res.json();
         if (data.success) {
           setFetchedComments(Array.isArray(data.data) ? data.data : []);
@@ -88,6 +115,7 @@ function BlogComments({ slug }) {
 
     fetchComments();
   }, [slug]);
+
   return (
     <>
       <div className="flex flex-wrap mt-10 2xl:pt-[65px] xl:pt-[45px] pt-[25px] 2xl:pb-[50px] pb-[30px] border-t border-b border-[#D0D0D0]">
@@ -98,11 +126,16 @@ function BlogComments({ slug }) {
           <p className="3xl:text-[20px] 2xl:text-[18px] xl:text-[16px] text-[14px] text-[#262626] mb-[40px]">
             Share your feedback, questions, or insights in the comments below.
           </p>
-          {/* Comment Count with Conditional Icon */}
           <div className="flex items-center">
             {fetchedComments.length > 0 && (
               <div className="w-[17px] h-[17px] mr-2">
-                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg
+                  width="17"
+                  height="17"
+                  viewBox="0 0 17 17"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <path
                     fillRule="evenodd"
                     clipRule="evenodd"
@@ -113,8 +146,12 @@ function BlogComments({ slug }) {
               </div>
             )}
             <div className="flex items-center">
-              <span className="3xl:text-[20px] 2xl:text-[18px] xl:text-[16px] text-[14px] text-[#262626] pr-[2px]">{fetchedComments.length}</span>
-              <div className="3xl:text-[20px] 2xl:text-[18px] xl:text-[16px] text-[14px] text-[#262626]">Comments</div>
+              <span className="3xl:text-[20px] 2xl:text-[18px] xl:text-[16px] text-[14px] text-[#262626] pr-[2px]">
+                {fetchedComments.length}
+              </span>
+              <div className="3xl:text-[20px] 2xl:text-[18px] xl:text-[16px] text-[14px] text-[#262626]">
+                Comments
+              </div>
             </div>
           </div>
         </div>
@@ -127,7 +164,8 @@ function BlogComments({ slug }) {
               onChange={(e) => setName(e.target.value)}
               placeholder="Name*"
               required
-              className="w-full bg-[#eeeeee] rounded-md px-4 py-3 text-sm outline-none 2xl:h-[60px] h-[50px] 2xl:placeholder:text-[16px] placeholder:text-[14px]"
+              disabled={loading} // Disable input during submission
+              className="w-full bg-[#eeeeee] rounded-md px-4 py-3 text-sm outline-none 2xl:h-[60px] h-[50px] 2xl:placeholder:text-[16px] placeholder:text-[14px] disabled:opacity-50"
             />
             <textarea
               value={comment}
@@ -135,14 +173,18 @@ function BlogComments({ slug }) {
               placeholder="Comment*"
               rows={4}
               required
-              className="w-full bg-[#eeeeee] rounded-md px-4 py-3 text-sm outline-none resize-none 2xl:h-[120px] h-[100px] 2xl:placeholder:text-[16px] placeholder:text-[14px]"
+              disabled={loading} // Disable textarea during submission
+              className="w-full bg-[#eeeeee] rounded-md px-4 py-3 text-sm outline-none resize-none 2xl:h-[120px] h-[100px] 2xl:placeholder:text-[16px] placeholder:text-[14px] disabled:opacity-50"
             />
             <div className="flex justify-end">
               <button
                 type="submit"
-                className="bg-[#2E4C99] xl:mt-[25px] mt-[15px] 3xl:text-[16px] 2xl:text-[14px] text-[12px] text-white text-xs font-medium px-5 py-2 rounded-[50px] hover:bg-[#1d397e] transition xl:w-[178px] w-[165px] xl:h-[40px] h-[35px] flex items-center justify-center"
+                disabled={loading} // Disable button during submission
+                className={`bg-[#2E4C99] xl:mt-[25px] mt-[15px] 3xl:text-[16px] 2xl:text-[14px] text-[12px] text-white text-xs font-medium px-5 py-2 rounded-[50px] hover:bg-[#1d397e] transition xl:w-[178px] w-[165px] xl:h-[40px] h-[35px] flex items-center justify-center ${
+                  loading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
               >
-                POST COMMENT
+                {loading ? "Submitting..." : "POST COMMENT"}
               </button>
             </div>
           </form>
@@ -150,17 +192,30 @@ function BlogComments({ slug }) {
       </div>
 
       {/* Comment List */}
-      {fetchedComments.map((comment, idx) => (
-        <div key={idx} className="pt-[15px] xl:pt-[25px] 2xl:pt-[35px] pb-[20px] xl:pb-[30px] 2xl:pb-[40px] border-b border-[#D0D0D0] flex">
-          <div className="w-full">
-            <h6 className="text-[16px] md:text-[18px] 3xl:text-[20px] font-medium text-[#262626] mb-[2px] xl:mb-[5px]">
-              {comment.name}{" "}
-              <span className="text-[#7E7E7E] text-[11px] md:text-[12px] 3xl:text-[14px] font-normal">{dayjs(comment.created_at).fromNow()}</span>
-            </h6>
-            <p className="text-[12px] md:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[20px] text-[#262626] mt-2">{comment.content}</p>
+      {fetching ? (
+        <p>Loading comments...</p>
+      ) : fetchedComments.length === 0 ? (
+        <p>No comments yet.</p>
+      ) : (
+        fetchedComments.map((comment, idx) => (
+          <div
+            key={idx}
+            className="pt-[15px] xl:pt-[25px] 2xl:pt-[35px] pb-[20px] xl:pb-[30px] 2xl:pb-[40px] border-b border-[#D0D0D0] flex"
+          >
+            <div className="w-full">
+              <h6 className="text-[16px] md:text-[18px] 3xl:text-[20px] font-medium text-[#262626] mb-[2px] xl:mb-[5px]">
+                {comment.name}{" "}
+                <span className="text-[#7E7E7E] text-[11px] md:text-[12px] 3xl:text-[14px] font-normal">
+                  {dayjs(comment.created_at).fromNow()}
+                </span>
+              </h6>
+              <p className="text-[12px] md:text-[14px] xl:text-[16px] 2xl:text-[18px] 3xl:text-[20px] text-[#262626] mt-2">
+                {comment.content}
+              </p>
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      )}
     </>
   );
 }

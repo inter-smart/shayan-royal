@@ -200,7 +200,7 @@ export default function ResponsiveTabsWithSwiper({ specList = detailsData }) {
                       </div>
                     ))
                   ) : (
-                    <div className="text-gray-500 text-center italic mx-[10px] lg:mx-[20px]">No features</div>
+                    <div className="text-gray-500 text-center italic mx-[10px] lg:mx-[20px]"></div>
                   )}
                 </div>
               )}
