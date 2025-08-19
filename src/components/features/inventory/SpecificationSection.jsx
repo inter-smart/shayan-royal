@@ -157,9 +157,8 @@ export default function ResponsiveTabsWithSwiper({ specList = detailsData }) {
         <Tabs
           defaultValue={tabs[0]}
           value={activeTab}
-          className="w-full bg-[#F5F9FF] rounded-[15px] p-[25px_10px] 3xl:p-[45px_20px] overflow-hidden relative
-           before:absolute after:content-[''] before:top-0 before:left-0 before:w-[20px] 2xl:before:w-[30px] 
-          before:h-full before:bg-[#F5F9FF]"
+          className={`w-full ${specList[tabs.indexOf(activeTab)]?.length > 0 ? "bg-[#F5F9FF]" : "bg-transparent"} rounded-[15px] p-[25px_10px] 3xl:p-[45px_20px] overflow-hidden relativebefore:absolute after:content-[''] before:top-0 before:left-0 before:w-[20px] 2xl:before:w-[30px] 
+          before:h-full before:bg-[#F5F9FF]`}
         >
           {tabs.map((tab, index) => (
             <TabsContent key={tab} value={tab} className="w-full h-full">
