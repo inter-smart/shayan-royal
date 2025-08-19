@@ -25,9 +25,35 @@ function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, isScr
       <NavigationMenu className="max-lg:hidden">
         <NavigationMenuList className="flex items-center gap-0">
           {menuItems.map((item) => {
-            const isActive = pathname === item.href;
+            let isActive = pathname === item.href;
+            
+            switch (item.sublabel) {
+              case "inv":
+                if (pathname.startsWith("/inventory")) {
+                  isActive = true;
+                }
+                break;
 
-            const menuLinkClass = `
+              case "blog":
+                if (pathname.startsWith("/blog")) {
+                  isActive = true;
+                }
+                break;
+
+              case "ser":
+                if (
+                  pathname.startsWith("/service-detail") ||
+                  pathname.startsWith("/service-fitment")
+                ) {
+                  isActive = true;
+                }
+                break;
+
+              default:
+                break;
+            }
+
+              const menuLinkClass = `
                    text-[9px]  xl:text-[11px] 2xl:text-[13px] 3xl:text-[18px] font-medium uppercase tracking-[1px] transition-all
                     ${isInnerPage ? "lg:text-white text-black" : "text-[rgba(0,0,0,0.9)]"}
                     flex items-center justify-center 3xl:px-[25px] 2xl:px-[20px] px-[15px] 
