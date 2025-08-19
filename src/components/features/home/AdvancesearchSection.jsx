@@ -120,6 +120,7 @@ export default function CarSearchForm() {
     } catch (error) {
       console.error("Error during form submission:", error);
       // show fallback navigation
+     
       await router.push("/inventory");
     }
   };
@@ -140,6 +141,11 @@ export default function CarSearchForm() {
       seats: "",
     });
 
+     // if in home page do not navigate to inventory
+      if (window.location.pathname === "/") {
+        return;
+      }
+      
     setMakeId(null);
     router.push("/inventory?");
   };
