@@ -23,7 +23,7 @@ export default function ProductCardHome({ car, variant }) {
 
   return (
     <Link
-      href={car?.slug ? `/inventory/${car?.slug}` : "#"}
+      href={car?.shayan_code ? `/inventory/srcode=${car?.shayan_code}` : "#"}
       aria-label={car?.type}
       className={`w-full h-full flex cursor-pointer group ${paddingClass}`}
     >

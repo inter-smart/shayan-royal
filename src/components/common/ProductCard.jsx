@@ -21,9 +21,10 @@ export default function ProductCard({ car, variant }) {
 
   const specs = [car?.regional_spec, toTitleCase(car?.fueltype), toTitleCase(car?.gearbox), car?.year];
 
+  console.log(car)
   return (
     <Link
-      href={car?.slug ? `/inventory/${car?.slug}` : "#"}
+      href={car?.shayan_code ? `/inventory/srcode=${car?.shayan_code}` : "#"}
       aria-label={car?.type}
       className={`w-full h-full flex cursor-pointer group ${paddingClass}`}
     >
