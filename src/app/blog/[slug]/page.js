@@ -16,15 +16,6 @@ async function getMetaData(slug) {
     const metaDescription = defaultMeta.blog.description;
     const metaKeywords = defaultMeta.blog.keywords;
 
-
-  if (!meta) {
-    return {
-      title: "404 - Blog Not Found",
-      description: "Sorry, this blog post could not be found.",
-      robots: { index: false },
-    };
-  }
-
     if (result.status === "success") {
       return {
         title: meta?.meta_title || metaTitle,
