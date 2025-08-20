@@ -127,7 +127,7 @@ export default async function page({ params }) {
         items={[
           { label: "HOME", href: "/" },
           { label: "SERVICES", href: "/service" },
-          { label: "ADDITIONAL FITMENT SERVICES", isCurrent: true },
+          { label: service?.title.toUpperCase(), isCurrent: true },
         ]}
       />
       <FitmentServiceSection title={service?.title} desc={service?.description} image={service?.image} />

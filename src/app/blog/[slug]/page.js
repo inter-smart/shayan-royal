@@ -124,7 +124,7 @@ export default async function Page({ params }) {
         items={[
           { label: "HOME", href: "/" },
           { label: "BLOGS", href: "/blog" },
-          { label: blog?.title, isCurrent: true },
+          { label: blog?.title.toUpperCase(), isCurrent: true },
         ]}
       />
       <BlogDetailSection blog={blog} recentBlogs={recentBlogs} slug={slug} />

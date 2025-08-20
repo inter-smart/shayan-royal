@@ -130,7 +130,7 @@ export default async function page({ params }) {
         items={[
           { label: "HOME", href: "/" },
           { label: "INVENTORY", href: "/inventory" },
-          { label: "Camry Hybrid", isCurrent: true },
+          { label: banner?.title.toUpperCase(), isCurrent: true },
         ]}
       />
       <InventoryDetailSection carDetails={carDetails} specs={specs} contactData={contactData} />
