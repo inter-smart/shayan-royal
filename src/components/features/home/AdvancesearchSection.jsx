@@ -87,14 +87,19 @@ export default function CarSearchForm() {
 
   const onSubmit = async (values) => {
     try {
-      if (!values) {
-        console.warn("No form values provided");
+      // if (!values) {
+      //   console.warn("No form values provided");
+      //   return;
+      // }
+// when no values do not navigate to nventry page
+
+      if (Object.values(values).every((value) => value === "")) {
+        if (window.location.pathname === "/" || window.location.pathname === "/inventory") {
+          return; // Do not navigate if on home page
+        }
+        await router.push("/inventory");
         return;
       }
-
-      // Map carType name to ID
-
-      // disable submit via react-hook-form isSubmitting (automatic) and use async handler
 
       const params = {
         make_id: values.make,

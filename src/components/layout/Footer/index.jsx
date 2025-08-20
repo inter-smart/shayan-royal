@@ -19,6 +19,7 @@ export default async function footer() {
 
   const { socialMediaLinks, footerContents } = data;
 
+  console.log( `https://wa.me/${footerContents?.footer_whtsapp.replace(/[ +]/g, "")}`)
   if (error) {
     return <div>Something went wrong</div>;
   }
@@ -192,7 +193,7 @@ export default async function footer() {
               <div className="3xl:pl-[60px] 2xl:pl-[40px] md:pl-[25px] sm:pl-[20px] 2xs:pl-[25px] 2xs:w-auto w-full">
                 <div className="text-[10px] xl:text-[13px] 2xl:text-[16px] 3xl:text-[20px] font-medium text-white">WHATSAPP</div>
                 <a
-                  href={footerContents?.footer_whtsapp ? `https://wa.me/${footerContents?.footer_whtsapp}` : "https://wa.me/971505286045"}
+                  href={footerContents?.footer_whtsapp ? `https://wa.me/${footerContents?.footer_whtsapp.replace(/[ +]/g, "")}` : "https://wa.me/971505286045"}
                   target="_blank"
                   className="text-[10px] xl:text-[13px] 2xl:text-[16px] 3xl:text-[20px] block text-white hover:text-[#BE1E2D]"
                 >
