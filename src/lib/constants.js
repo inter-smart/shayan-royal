@@ -56,4 +56,18 @@ export const defaultMeta = {
       "Discover the world-class car brands available at Shayan Royal, from elite sports cars to luxury sedans.",
     keywords: "luxury car brands, premium vehicles, sports cars, shayan royal",
   },
+    terms: {
+    title: "Terms & Conditions | Shayan Royal",
+    description:
+      "Read Shayan Royal’s Terms & Conditions to understand the policies, guidelines, and legal agreements governing our services.",
+    keywords:
+      "shayan royal terms and conditions, car dealership policies, service terms, user agreement",
+  },
+  privacy: {
+    title: "Privacy Policy | Shayan Royal",
+    description:
+      "Learn how Shayan Royal collects, uses, and protects your personal data. Your privacy and trust are our top priorities.",
+    keywords:
+      "shayan royal privacy policy, data protection, customer privacy, personal data security",
+  },
 };
