@@ -148,6 +148,7 @@ export default function CarSearchForm() {
 
      // if in home page do not navigate to inventory
       if (window.location.pathname === "/") {
+        setMakeId(null);
         return;
       }
       
