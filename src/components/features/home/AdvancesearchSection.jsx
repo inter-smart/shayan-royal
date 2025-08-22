@@ -93,13 +93,13 @@ export default function CarSearchForm() {
       // }
 // when no values do not navigate to nventry page
 
-      if (Object.values(values).every((value) => value === "")) {
-        if (window.location.pathname === "/" || window.location.pathname === "/inventory") {
-          return; // Do not navigate if on home page
-        }
-        await router.push("/inventory");
-        return;
-      }
+      // if (Object.values(values).every((value) => value === "")) {
+      //   if (window.location.pathname === "/" || window.location.pathname === "/inventory") {
+      //     return; // Do not navigate if on home page
+      //   }
+      //   await router.push("/inventory");
+      //   return;
+      // }
 
       const params = {
         make_id: values.make,
