@@ -19,7 +19,7 @@ import Image from "next/image";
 import { mediaUrl } from "@/lib/constants";
 import { toast } from "sonner";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
-import PhoneInput from "@/components/ui/phone-input";
+  import PhoneInput from "@/components/ui/phone-input";
 
 // Tailwind Classes
 const menuLinkClass =

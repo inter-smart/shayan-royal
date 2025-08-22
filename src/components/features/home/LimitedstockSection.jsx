@@ -7,8 +7,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Heading } from "@/components/layout/Heading";
-import { Text } from "@/components/layout/Text";
-import ProductCard from "@/components/common/ProductCard";
+import { Text } from "@/components/layout/Text"; 
 import ProductCardHome from "@/components/common/ProductCardHome";
 
 const carData = [

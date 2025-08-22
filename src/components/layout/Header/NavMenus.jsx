@@ -34,7 +34,7 @@ function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, isScr
                     ${isScrolled ? "py-[20px] text-white" : "3xl:py-[43px] 2xl:py-[35px] py-[30px]"} 
                     ${
                       isActive
-                        ? "!font-semibold after:absolute after:content-[''] after:bottom-[-1px] after:left-0 after:right-0 after:m-auto after:w-[70%] after:h-[2px] after:bg-white"
+                        ? "!font-semibold after:absolute after:content-[''] text-black after:bottom-[-1px] after:left-0 after:right-0 after:m-auto after:w-[70%] after:h-[2px] after:bg-white"
                         : ""
                     }
                     ${isPrivacyPage ? "!text-black hover:!text-[#BE1E2D]" : ""}

@@ -45,7 +45,7 @@ export default function FaqSection({ faqs, title, description, image }) {
       </div>
 
       <div className="container">
-        <div className="flex flex-wrap m-[-10px]">
+        <div className="flex flex-wrap m-[-10px] ">
           {/* Left Block */}
           <motion.div
             ref={leftRef}
@@ -54,7 +54,7 @@ export default function FaqSection({ faqs, title, description, image }) {
             transition={{ duration: 1, ease: "easeOut" }}
             className="lg:w-1/2 w-full p-[10px]"
           >
-            <div className="xl:max-w-[85%]">
+            <div className="xl:max-w-[85%] ">
               <div className="mb-[15px] 2xl:mb-[30px]">
                 <Heading size="heading2" as="h2" className="text-black uppercase mb-[10px]">
                   {title ? title : "Frequently Asked Questions"}
@@ -89,7 +89,7 @@ export default function FaqSection({ faqs, title, description, image }) {
             initial={{ x: 150, opacity: 0 }}
             animate={rightInView ? { x: 0, opacity: 1 } : {}}
             transition={{ duration: 3, ease: "easeOut" }}
-            className="lg:w-1/2 w-full p-[10px] flex items-end"
+            className="lg:w-1/2 w-full p-[10px] flex items-start lg:pt-[10%]"
           >
             <div className="w-full max-w-[1040px] flex item-center justify-end ml-auto">
               <Image

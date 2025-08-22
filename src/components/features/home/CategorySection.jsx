@@ -94,8 +94,8 @@ export default function CategorySection({ title, description, categories }) {
                 centeredSlides: true,
               },
               1024: {
-                slidesPerView: 4,
-                spaceBetween: 25,
+                slidesPerView: 5,
+                spaceBetween: 15,
                 centeredSlides: true,
               },
               1280: {
