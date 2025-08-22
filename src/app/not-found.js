@@ -53,7 +53,7 @@ export default function NotFound() {
         {/* Helpful Links */}
         <div className="text-center mt-6">
           <p className="text-xs text-gray-500">
-            Need help?
+            Need help?{" "}
             <a href="/contact" className="text-gray-300 hover:text-white underline">
               Contact Support
             </a>
