@@ -82,7 +82,7 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
             {carDetails?.carName}
           </Heading>
           <div className="flex flex-wrap w-full">
-            <div className="3xl:w-[calc(100%-400px)] 2xl:w-[calc(100%-300px)] md:w-[calc(100%-245px)] w-full 3xl:pr-[50px] 2xl:pr-[40px] md:pr-[30px] max-md:mb-[15px]">
+            <div className="3xl:w-[calc(100%-400px)] 2xl:w-[calc(100%-300px)] xl:w-[calc(100%-275px)]  md:w-[calc(100%-245px)] w-full 3xl:pr-[50px] 2xl:pr-[40px] md:pr-[30px] max-md:mb-[15px]">
               <div className="flex flex-col lg:flex-row w-full">
                 {/* Main Slider */}
                 <div
@@ -302,7 +302,7 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
             </div>
 
             {/* Right Section */}
-            <div className="3xl:w-[400px] 2xl:w-[300px] md:w-[245px] w-full">
+            <div className="3xl:w-[400px] 2xl:w-[300px] xl:w-[275px]  md:w-[245px] w-full">
               <div className="w-full h-full">
                 <Heading size="heading3" as="div" className="text-black font-semibold md:mb-[15px] mb-[10px] hidden md:block">
                   Ask for the price
@@ -338,7 +338,7 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                   <iframe
                     aria-label="Reserve Your Ride"
                     frameborder="0"
-                    className="w-full h-full min-h-[550px] !bg-[#F5F9FF]"
+                    className="w-full h-full min-h-[370px] md:min-h-[350px] xl:min-h-[370px] 2xl:min-h-[370px] 3xl:min-h-[410px] !bg-[#F5F9FF]"
                     src={`https://forms.zohopublic.com/shayanroyalgeneraltradingllc/form/ReserveYourRide/formperma/loe0YejjSZ42uy-lJjv2mgfhpKrx_H-Y9KhPpdVtNvA?srcode=${carDetails?.sr_code}`}
                   ></iframe>
                 </div>

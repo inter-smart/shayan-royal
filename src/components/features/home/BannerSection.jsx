@@ -128,15 +128,15 @@ export default function BannerSection({ homeBanners }) {
           <Swiper
             modules={[Thumbs, EffectFade, Autoplay]}
             speed={900}
-            loop={false}
+            loop={true}
             navigation={{ nextEl: ".custom-next", prevEl: ".custom-prev" }}
             onBeforeInit={(swiper) => {
               swiperRef.current = swiper;
             }}
-            // autoplay={{
-            //   delay: 5000,
-            //   disableOnInteraction: false,
-            // }}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+            }}
             breakpoints={{
               992: {
                 speed: 1500,
@@ -202,12 +202,11 @@ export default function BannerSection({ homeBanners }) {
           <div className="flex items-center justify-center absolute top-0 bottom-0 w-full ">
             <button
               className="custom-prev  absolute left-0 z-1 sm:-translate-y-1/2 cursor-pointer
-                disabled:pointer-events-none disabled:opacity-[0.2]   w-[30px] h-[30px] 
-                flex items-center justify-center 
-                 "
-              onClick={handlePrev}
+                disabled:pointer-events-none disabled:opacity-[0.2] w-[30px] h-[30px] 
+                flex items-center justify-center"
+                 onClick={handlePrev}
             >
-              <svg className="xl:w-[18px] xl:h-[18px] w-[10px] h-[10px] flex" viewBox="0 0 10 18" fill="none">
+              <svg className="xl:w-[8px] xl:h-[18px] w-[10px] h-[10px] flex" viewBox="0 0 10 18" fill="none">
                 <path
                   d="M9 17L1.41948 9.94278C0.860173 9.42208 0.860172 8.57786 1.41948 8.05716L9 0.999969"
                   stroke="#0D0D0D"
@@ -223,7 +222,7 @@ export default function BannerSection({ homeBanners }) {
                  "
               onClick={handleNext}
             >
-              <svg className="xl:w-[18px] xl:h-[18px] w-[10px] h-[10px] flex" viewBox="0 0 10 18" fill="none">
+              <svg className="xl:w-[8px] xl:h-[18px] w-[10px] h-[10px] flex" viewBox="0 0 10 18" fill="none">
                 <path
                   d="M1 17L8.58052 9.94278C9.13983 9.42208 9.13983 8.57786 8.58052 8.05716L1 0.999969"
                   stroke="#0D0D0D"
