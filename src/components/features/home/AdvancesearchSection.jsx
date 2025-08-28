@@ -60,8 +60,15 @@ export default function CarSearchForm() {
 
   // Auto-expand advanced search if car type is present in URL
   const shouldAutoExpand = useMemo(() => {
-    return !!(queryValues.carType || queryValues.regionalSpec || queryValues.yearFrom || 
-             queryValues.yearTo || queryValues.steeringSide || queryValues.cylinders || queryValues.seats);
+    return !!(
+      queryValues.carType ||
+      queryValues.regionalSpec ||
+      queryValues.yearFrom ||
+      queryValues.yearTo ||
+      queryValues.steeringSide ||
+      queryValues.cylinders ||
+      queryValues.seats
+    );
   }, [queryValues]);
 
   const form = useForm({
@@ -91,7 +98,7 @@ export default function CarSearchForm() {
       //   console.warn("No form values provided");
       //   return;
       // }
-// when no values do not navigate to nventry page
+      // when no values do not navigate to nventry page
 
       // if (Object.values(values).every((value) => value === "")) {
       //   if (window.location.pathname === "/" || window.location.pathname === "/inventory") {
@@ -119,13 +126,16 @@ export default function CarSearchForm() {
       // Filter out empty or undefined values
       const filteredParams = Object.fromEntries(Object.entries(params).filter(([_, v]) => v !== "" && v !== undefined));
 
+      console.log("filteredParams", filteredParams);
+
       const query = new URLSearchParams(filteredParams).toString();
+      console.log("filteredParams", query);
       // await router.push so we can rely on isSubmitting during navigation
       await router.push(`/inventory?${query}`);
     } catch (error) {
       console.error("Error during form submission:", error);
       // show fallback navigation
-     
+
       await router.push("/inventory");
     }
   };
@@ -146,12 +156,12 @@ export default function CarSearchForm() {
       seats: "",
     });
 
-     // if in home page do not navigate to inventory
-      if (window.location.pathname === "/") {
-        setMakeId(null);
-        return;
-      }
-      
+    // if in home page do not navigate to inventory
+    if (window.location.pathname === "/") {
+      setMakeId(null);
+      return;
+    }
+
     setMakeId(null);
     router.push("/inventory?");
   };
