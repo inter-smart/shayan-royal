@@ -90,7 +90,7 @@ function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, isScr
 
       <NavigationMenuItem className="lg:hidden list-none">
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
-          <SheetTrigger className="text-white font-medium flex items-center cursor-pointer">
+          <SheetTrigger aria-label="Open menu"  className="text-white font-medium flex items-center cursor-pointer">
             <svg height="25" width="25" viewBox="0 0 512 512" className="fill-[#2E4C99]">
               <path d="M128 102.4c0-14.138 11.462-25.6 25.6-25.6h332.8c14.138 0 25.6 11.462 25.6 25.6s-11.462 25.6-25.6 25.6h-332.8c-14.138 0-25.6-11.463-25.6-25.6zm358.4 128h-460.8c-14.138 0-25.6 11.463-25.6 25.6 0 14.138 11.462 25.6 25.6 25.6h460.8c14.138 0 25.6-11.462 25.6-25.6 0-14.137-11.462-25.6-25.6-25.6zm0 153.6h-230.4c-14.137 0-25.6 11.462-25.6 25.6 0 14.137 11.463 25.6 25.6 25.6h230.4c14.138 0 25.6-11.463 25.6-25.6 0-14.138-11.462-25.6-25.6-25.6z" />
             </svg>
