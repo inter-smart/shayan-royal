@@ -205,7 +205,7 @@ export default function BannerSection({ homeBanners }) {
                 disabled:pointer-events-none disabled:opacity-[0.2] w-[30px] h-[30px] 
                 flex items-center justify-center"
                  onClick={handlePrev}
-            >
+                 aria-label="Previous slide">
               <svg className="xl:w-[8px] xl:h-[18px] w-[10px] h-[10px] flex" viewBox="0 0 10 18" fill="none">
                 <path
                   d="M9 17L1.41948 9.94278C0.860173 9.42208 0.860172 8.57786 1.41948 8.05716L9 0.999969"
@@ -220,6 +220,7 @@ export default function BannerSection({ homeBanners }) {
                 disabled:pointer-events-none disabled:opacity-[0.2]  w-[30px] h-[30px]
                 flex items-center justify-center  
                  "
+                 aria-label="Next slide"
               onClick={handleNext}
             >
               <svg className="xl:w-[8px] xl:h-[18px] w-[10px] h-[10px] flex" viewBox="0 0 10 18" fill="none">

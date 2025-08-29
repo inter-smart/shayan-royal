@@ -56,7 +56,7 @@ export default async function WidgetSection() {
                     width="13"
                     height="13"
                     className="object-contain"
-                    alt={button?.title}
+                    alt={button?.alt}
                   />
                 </div>
               </a>
