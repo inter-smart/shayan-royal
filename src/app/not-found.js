@@ -1,34 +1,6 @@
 import NotFoundButton from "@/components/common/NotFoundButton";
 import { Search } from "lucide-react";
 
-export const metadata = {
-  title: '404 - Page Not Found',
-  description: 'The page you are looking for could not be found. It may have been moved, deleted, or you entered the wrong URL.',
-  keywords: '404, not found, page not found, error, missing page',
-  robots: {
-    index: false,
-    follow: false,
-    noarchive: true,
-    nosnippet: true,
-    noimageindex: true,
-  },
-  
-  openGraph: {
-    title: '404 - Page Not Found',
-    description: 'Sorry, the page you are looking for could not be found.',
-    type: 'website',
-  },
-  
-  twitter: {
-    card: 'summary',
-    title: '404 - Page Not Found',
-    description: 'Sorry, the page you are looking for could not be found.',
-  },
-  
-  other: {
-    'http-equiv': 'refresh',
-  },
-}
 
 export default function NotFound() {
   
