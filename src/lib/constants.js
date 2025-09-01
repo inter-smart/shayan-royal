@@ -70,4 +70,11 @@ export const defaultMeta = {
     keywords:
       "shayan royal privacy policy, data protection, customer privacy, personal data security",
   },
+  notfoundPage:{
+     title: "Privacy Policy | Shayan Royal",
+    description:
+      "Learn how Shayan Royal collects, uses, and protects your personal data. Your privacy and trust are our top priorities.",
+    keywords:
+      "shayan royal privacy policy, data protection, customer privacy, personal data security",
+  },
 };

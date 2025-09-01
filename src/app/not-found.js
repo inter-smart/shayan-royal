@@ -33,6 +33,15 @@ export const metadata = {
 export default function NotFound() {
   
   return (
+    <>
+        <head>
+        <title>404 - Page Not Found</title>
+        <meta
+          name="description"
+          content="The page you are looking for could not be found. It may have been moved, deleted, or you entered the wrong URL."
+        />
+        <meta name="robots" content="noindex, nofollow" />
+      </head>
     <div className="min-h-screen bg-black flex items-center justify-center p-4">
       <div className="max-w-md w-full">
         {/* 404 Icon */}
@@ -61,5 +70,7 @@ export default function NotFound() {
         </div>
       </div>
     </div>
+    </>
+
   );
 }
