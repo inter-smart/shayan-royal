@@ -203,7 +203,7 @@ export default function CarSearchForm() {
     "3xl:text-[18px] 2xl:text-[16px] xl:text-[12px] md:text-[10px] text-[6px] bg-white border border-[#CCCCCC] rounded-md shadow-md font-normal uppercase placeholder:!text-black max-h-[210px] overflow-auto";
 
   const itemClass =
-    "3xl:text-[18px] 2xl:text-[16px] xl:text-[12px] md:text-[10px] text-[6px] 3xl:py-[10px] 3xl:px-4 px-[7px] hover:bg-[#e4f0fe] focus:bg-[#e4f0fe] focus:text-black cursor-pointer font-normal !uppercase placeholder:!text-black transition-none duration-20";
+    "3xl:text-[14px] 2xl:text-[12px] xl:text-[10px] md:text-[8px] text-[6px]  3xl:py-[10px] 3xl:px-4 px-[7px] hover:bg-[#e4f0fe] focus:bg-[#e4f0fe] focus:text-black cursor-pointer font-normal !uppercase placeholder:!text-black transition-none duration-20";
 
   // small inline SVG spinner used in buttons / triggers
   const Spinner = ({ className = "inline-block h-4 w-4 mr-2 align-middle" }) => (
