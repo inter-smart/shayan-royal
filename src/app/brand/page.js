@@ -12,7 +12,7 @@ async function getMetaData() {
     const result = await response.json();
 
     const meta = result.data;
-    const metaTitle = defaultMeta.brands.title
+    const metaTitle = defaultMeta.brands.title;
     const metaDescription = defaultMeta.brands.description;
     const metaKeywords = defaultMeta.brands.keywords;
 
@@ -133,7 +133,7 @@ export default async function Page() {
         brandCount={contents?.brand_count}
       />
       <PremiumBrandsSection title={contents?.brand_title} brands={brands} />
-      <EnquiryFormSection image={contents?.enquiry_image} />
+      <EnquiryFormSection image={contents?.enquiry_image} title={contents?.enquiry_title} subTitle={contents?.enquiry_sub_title} />
     </>
   );
 }
