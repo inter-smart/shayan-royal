@@ -66,9 +66,9 @@ export default function BlogDetailSection({ blog, recentBlogs, slug }) {
 
               <div className="flex flex-wrap items-center justify-between py-[20px] gap-1">
                 <h2 className="m-0">{blog?.title || ""}</h2>
-                <div className="2xl:text-[20px] md:text-[14px] font-medium text-[#262626]  relative z-0 ">
+                {/* <div className="2xl:text-[20px] md:text-[14px] font-medium text-[#262626]  relative z-0 ">
                   {blog?.published_at ? formatPostTime(blog?.published_at) : ""}
-                </div>
+                </div> */}
               </div>
               {blog?.content ? parse(blog?.content) : ""}
             </div>
