@@ -15,24 +15,27 @@ async function getMetaData() {
     const result = await response.json();
 
     const meta = result.data;
+    const metaTitle = defaultMeta.about.title
+    const metaDescription = defaultMeta.about.description;
+    const metaKeywords = defaultMeta.about.keywords;
 
     if (result.status === "success") {
       return {
-        title: meta?.meta_title || defaultMeta.title,
-        description: meta?.meta_description || defaultMeta.description,
-        keywords: meta?.meta_keywords || defaultMeta.keywords,
+        title: meta?.meta_title || metaTitle,
+        description: meta?.meta_description || metaDescription,
+        keywords: meta?.meta_keywords || metaKeywords,
         // Enhanced SEO fields
         openGraph: {
-          title: meta?.og_title || meta?.meta_title || defaultMeta.title,
-          description: meta?.og_description || meta?.meta_description || defaultMeta.description,
+          title: meta?.og_title || meta?.meta_title || metaTitle,
+          description: meta?.og_description || meta?.meta_description || metaDescription,
           images: meta?.og_image ? [{ url: meta.og_image, width: 1200, height: 630 }] : [],
           type: "website",
           url: `${process.env.NEXT_PUBLIC_SITE_URL}/about`,
         },
         twitter: {
           card: "summary_large_image",
-          title: meta?.twitter_title || meta?.meta_title || defaultMeta.title,
-          description: meta?.twitter_description || meta?.meta_description || defaultMeta.description,
+          title: meta?.twitter_title || meta?.meta_title || metaTitle,
+          description: meta?.twitter_description || meta?.meta_description || metaDescription,
           images: meta?.twitter_image ? [meta.twitter_image] : [],
         },
         alternates: {
@@ -42,19 +45,19 @@ async function getMetaData() {
       };
     }
     return {
-      title: defaultMeta.title,
-      description: defaultMeta.description,
-      keywords: defaultMeta.keywords,
+      title: metaTitle,
+      description: metaDescription,
+      keywords: metaKeywords,
       openGraph: {
-        title: defaultMeta.title,
-        description: defaultMeta.description,
+        title: metaTitle,
+        description: metaDescription,
         type: "website",
         url: `${process.env.NEXT_PUBLIC_SITE_URL}/about`,
       },
       twitter: {
         card: "summary_large_image",
-        title: defaultMeta.title,
-        description: defaultMeta.description,
+        title: metaTitle,
+        description: metaDescription,
       },
       alternates: {
         canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/about`,
@@ -63,19 +66,19 @@ async function getMetaData() {
     };
   } catch (error) {
     return {
-      title: defaultMeta.title,
-      description: defaultMeta.description,
-      keywords: defaultMeta.keywords,
+      title: metaTitle,
+      description: metaDescription,
+      keywords: metaKeywords,
       openGraph: {
-        title: defaultMeta.title,
-        description: defaultMeta.description,
+        title: metaTitle,
+        description: metaDescription,
         type: "website",
         url: `${process.env.NEXT_PUBLIC_SITE_URL}/about`,
       },
       twitter: {
         card: "summary_large_image",
-        title: defaultMeta.title,
-        description: defaultMeta.description,
+        title: metaTitle,
+        description: metaDescription,
       },
       alternates: {
         canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/about`,

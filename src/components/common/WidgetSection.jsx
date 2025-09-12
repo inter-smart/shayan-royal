@@ -48,7 +48,7 @@ export default async function WidgetSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`${menuLinkClass} ${bgClass} cursor-pointer`}
-                aria-label={button?.title}
+                aria-label={button?.alt}
               >
                 <div className="lg:max-w-[13px] max-w-[10px] flex">
                   <Image
@@ -56,7 +56,7 @@ export default async function WidgetSection() {
                     width="13"
                     height="13"
                     className="object-contain"
-                    alt={button?.title}
+                    alt={button?.alt}
                   />
                 </div>
               </a>

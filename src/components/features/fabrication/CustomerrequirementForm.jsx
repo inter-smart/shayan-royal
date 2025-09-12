@@ -52,15 +52,7 @@ const formSchema = z.object({
   modelYear: z.string().optional(),
   vehicleType: z.string().optional(),
   additionalNotes: z.string().optional(),
-  samplePictures: z
-    .any()
-    .refine(
-      (files) =>
-        !files || (Array.isArray(files) && files.length > 0 && files.every((file) => file instanceof File && imageMimeTypes.includes(file.type))),
-      {
-        message: "Only image files are allowed (jpg, jpeg, png, webp, gif)",
-      }
-    ),
+  samplePictures: z.any().optional(),
   budgetRange: z.string().optional(),
   deliveryDate: z.date().optional(),
 });
@@ -71,6 +63,8 @@ export default function CustomerrequirementForm({ title, type }) {
   const [dropdownData, setDropdownData] = useState([]);
   const [makeId, setMakeId] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [selectedFiles, setSelectedFiles] = useState([]);
+  const inputRef = useRef(null); // for resetting input if needed
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -121,7 +115,6 @@ export default function CustomerrequirementForm({ title, type }) {
       setLoading(false);
       return;
     }
-    console.log(values);
 
     try {
       // Extract country code from phone number
@@ -139,10 +132,10 @@ export default function CustomerrequirementForm({ title, type }) {
       formData.append("address", values.address);
       formData.append("fabricationType", values.fabricationType);
       formData.append("finalDestination", values.finalDestination);
-      formData.append("make_id", values.make_id || "");
-      formData.append("model_id", values.model_id || "");
-      formData.append("modelYear", values.modelYear);
-      formData.append("vehicleType", values.vehicleType);
+      if (values.make_id) formData.append("make_id", values.make_id);
+      if (values.model_id) formData.append("model_id", values.model_id);
+      if (values.modelYear) formData.append("modelYear", values.modelYear);
+      if (values.vehicleType) formData.append("vehicleType", values.vehicleType);
       formData.append("country", country?.code || "");
       formData.append("additionalNotes", values.additionalNotes || "");
       formData.append("budgetRange", values.budgetRange);
@@ -154,13 +147,20 @@ export default function CustomerrequirementForm({ title, type }) {
       }
       formData.append("recaptchaToken", token);
 
-      // Append file if exists
-      if (values.samplePictures instanceof File) {
-        formData.append("samplePictures", values.samplePictures);
+      // Append files if exists and is an array
+      if (Array.isArray(values.samplePictures) && values.samplePictures.length) {
+        values.samplePictures.forEach((file) => {
+          if (file instanceof File) {
+            formData.append("samplePictures", file);
+          }
+        });
       }
 
       const response = await fetch(`${mediaUrl}/api/customer-requirements`, {
         method: "POST",
+        headers: {
+          Accept: "multipart/form-data",
+        },
         body: formData,
       });
 
@@ -172,6 +172,10 @@ export default function CustomerrequirementForm({ title, type }) {
 
       toast.success("Form submitted successfully!");
       form.reset();
+      setSelectedFiles([]);
+      if (inputRef.current) {
+        inputRef.current.value = null; // clears the <input type="file">
+      }
     } catch (error) {
       console.error("Form submission failed:", error);
       toast.error("Submission failed. Please try again.");
@@ -494,9 +498,6 @@ export default function CustomerrequirementForm({ title, type }) {
                 control={form.control}
                 name="samplePictures"
                 render={({ field }) => {
-                  const [selectedFiles, setSelectedFiles] = useState([]);
-                  const inputRef = useRef(null); // for resetting input if needed
-
                   const handleFileChange = (e) => {
                     const files = Array.from(e.target.files || []);
                     const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp", "image/gif"];

@@ -21,7 +21,7 @@ const formSchema = z.object({
   phone: z.string().regex(/^((\+971|0)?(5[024568][0-9]{7}|4[0-9]{7}))$/, {
     message: "Enter a valid UAE mobile number.",
   }),
-  message: z.string().optional()
+  message: z.string().optional(),
 });
 
 const items = [
@@ -115,12 +115,19 @@ export default function EnquiryForm({ image, Formtitle, Formsubtitle, type }) {
         <Image src={image} alt="brand" width={915} height={567} className="w-full h-full object-cover lg:rounded-l-[10px]" />
       </div>
       <div className="w-full lg:w-[45%] bg-[#07163D] lg:rounded-r-[10px] 2xl:pt-[45px] xl:pt-[30px] 2xs:pt-[20px] pt-[15px] 2xl:pr-[75px] xl:pr-[55px] 2xs:pr-[35px] pr-[15px] 2xl:pb-[55px] xl:pb-[45px] 2xs:pb-[35px] pb-[25px] 2xl:pl-[75px] xl:pl-[55px] 2xs:pl-[35px] pl-[15px] relative after:content-[''] after:absolute after:top-0 after:right-0 after:bg-[url('/images/form-bg2.webp')] after:bg-no-repeat xl:after:w-[320px] after:w-[220px] xl:after:h-[185px] after:h-[135px] after:bg-contain before:content-[''] before:absolute before:bottom-0 before:left-0 before:bg-[url('/images/form-bg.webp')] before:bg-no-repeat xl:before:w-[330px] before:w-[240px] xl:before:h-[155px] before:h-[115px] before:bg-contain before:pointer-events-none after:pointer-events-none">
-        <div className="text-white 2xl:text-[20px] text-[15px] font-base1 mb-[0px]">{Formsubtitle}</div>
-        <div className="text-white 3xl:text-[35px] 2xl:text-[30px] text-[20px] font-base1 font-medium uppercase 2xl:mb-[35px] 2xs:mb-[25px] mb-[15px]">
-          {Formtitle}
-        </div>
-        <iframe aria-label='Enquiry Form' frameborder="0" className="w-full h-full max-h-[560px]"
-        src='https://forms.zohopublic.com/shayanroyalgeneraltradingllc/form/ContactUsNewWebsite1/formperma/G5-Ji1DZ_v0_EuNCKtGR-gcC09dSpxx42JE3D1MqwNo'></iframe>
+        {Formsubtitle && <div className="text-white 2xl:text-[20px] text-[15px] font-base1 mb-[0px]">{Formsubtitle}</div>}
+
+        {Formtitle && (
+          <div className="text-white 3xl:text-[35px] 2xl:text-[30px] text-[20px] font-base1 font-medium uppercase 2xl:mb-[35px] 2xs:mb-[25px] mb-[15px]">
+            {Formtitle}
+          </div>
+        )}
+        <iframe
+          aria-label="Enquiry Form"
+          frameborder="0"
+          className="w-full h-full max-h-[560px]"
+          src="https://forms.zohopublic.com/shayanroyalgeneraltradingllc/form/ContactUsNewWebsite1/formperma/G5-Ji1DZ_v0_EuNCKtGR-gcC09dSpxx42JE3D1MqwNo"
+        ></iframe>
         {/* <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} autoComplete="off">
             {items.map((item) => (

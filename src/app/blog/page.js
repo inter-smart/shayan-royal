@@ -13,21 +13,21 @@ async function getMetaData() {
 
     if (result.status === "success") {
       return {
-        title: meta?.meta_title || defaultMeta.title,
-        description: meta?.meta_description || defaultMeta.description,
-        keywords: meta?.meta_keywords || defaultMeta.keywords,
+        title: meta?.meta_title || defaultMeta.blog.title,
+        description: meta?.meta_description || defaultMeta.blog.description,
+        keywords: meta?.meta_keywords || defaultMeta.blog.keywords,
         // Enhanced SEO fields
         openGraph: {
-          title: meta?.og_title || meta?.meta_title || defaultMeta.title,
-          description: meta?.og_description || meta?.meta_description || defaultMeta.description,
+          title: meta?.og_title || meta?.meta_title || defaultMeta.blog.title,
+          description: meta?.og_description || meta?.meta_description || defaultMeta.blog.description,
           images: meta?.og_image ? [{ url: meta.og_image, width: 1200, height: 630 }] : [],
           type: "website",
           url: `${process.env.NEXT_PUBLIC_SITE_URL}/blog`,
         },
         twitter: {
           card: "summary_large_image",
-          title: meta?.twitter_title || meta?.meta_title || defaultMeta.title,
-          description: meta?.twitter_description || meta?.meta_description || defaultMeta.description,
+          title: meta?.twitter_title || meta?.meta_title || defaultMeta.blog.title,
+          description: meta?.twitter_description || meta?.meta_description || defaultMeta.blog.description,
           images: meta?.twitter_image ? [meta.twitter_image] : [],
         },
         alternates: {
@@ -37,19 +37,19 @@ async function getMetaData() {
       };
     }
     return {
-      title: defaultMeta.title,
-      description: defaultMeta.description,
-      keywords: defaultMeta.keywords,
+      title: defaultMeta.blog.title,
+      description: defaultMeta.blog.description,
+      keywords: defaultMeta.blog.keywords,
       openGraph: {
-        title: defaultMeta.title,
-        description: defaultMeta.description,
+        title: defaultMeta.blog.title,
+        description: defaultMeta.blog.description,
         type: "website",
         url: `${process.env.NEXT_PUBLIC_SITE_URL}/blog`,
       },
       twitter: {
         card: "summary_large_image",
-        title: defaultMeta.title,
-        description: defaultMeta.description,
+        title: defaultMeta.blog.title,
+        description: defaultMeta.blog.description,
       },
       alternates: {
         canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/blog`,
@@ -58,19 +58,19 @@ async function getMetaData() {
     };
   } catch (error) {
     return {
-      title: defaultMeta.title,
-      description: defaultMeta.description,
-      keywords: defaultMeta.keywords,
+      title: defaultMeta.blog.title,
+      description: defaultMeta.blog.description,
+      keywords: defaultMeta.blog.keywords,
       openGraph: {
-        title: defaultMeta.title,
-        description: defaultMeta.description,
+        title: defaultMeta.blog.title,
+        description: defaultMeta.blog.description,
         type: "website",
         url: `${process.env.NEXT_PUBLIC_SITE_URL}/blog`,
       },
       twitter: {
         card: "summary_large_image",
-        title: defaultMeta.title,
-        description: defaultMeta.description,
+        title: defaultMeta.blog.title,
+        description: defaultMeta.blog.description,
       },
       alternates: {
         canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/blog`,

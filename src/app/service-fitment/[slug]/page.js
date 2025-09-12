@@ -6,7 +6,8 @@ import FitmentServiceSection from "@/components/features/service/FitmentServiceS
 import FitmentTypeServiceSection from "@/components/features/service/FitmentTypeServiceSection";
 import WorkinActionSection from "@/components/features/service/WorkinActionSection";
 import { fetchFromAPI } from "@/lib/api";
-import { mediaUrl } from "@/lib/constants";
+import { defaultMeta, mediaUrl } from "@/lib/constants";
+import { notFound } from "next/navigation";
 
 async function getMetaData(slug) {
   try {
@@ -14,24 +15,27 @@ async function getMetaData(slug) {
     const result = await response.json();
 
     const meta = result.data;
+   const metaTitle = defaultMeta.services.title
+    const metaDescription = defaultMeta.services.description;
+    const metaKeywords = defaultMeta.services.keywords;
 
     if (result.status === "success") {
       return {
-        title: meta?.meta_title || defaultMeta.title,
-        description: meta?.meta_description || defaultMeta.description,
-        keywords: meta?.meta_keywords || defaultMeta.keywords,
+        title: meta?.meta_title || metaTitle,
+        description: meta?.meta_description || metaDescription,
+        keywords: meta?.meta_keywords || metaKeywords,
         // Enhanced SEO fields
         openGraph: {
-          title: meta?.og_title || meta?.meta_title || defaultMeta.title,
-          description: meta?.og_description || meta?.meta_description || defaultMeta.description,
+          title: meta?.og_title || meta?.meta_title || metaTitle,
+          description: meta?.og_description || meta?.meta_description || metaDescription,
           images: meta?.og_image ? [{ url: meta.og_image, width: 1200, height: 630 }] : [],
           type: "website",
           url: `${process.env.NEXT_PUBLIC_SITE_URL}/service-fitment/${slug}`,
         },
         twitter: {
           card: "summary_large_image",
-          title: meta?.twitter_title || meta?.meta_title || defaultMeta.title,
-          description: meta?.twitter_description || meta?.meta_description || defaultMeta.description,
+          title: meta?.twitter_title || meta?.meta_title || metaTitle,
+          description: meta?.twitter_description || meta?.meta_description || metaDescription,
           images: meta?.twitter_image ? [meta.twitter_image] : [],
         },
         alternates: {
@@ -41,19 +45,19 @@ async function getMetaData(slug) {
       };
     }
     return {
-      title: defaultMeta.title,
-      description: defaultMeta.description,
-      keywords: defaultMeta.keywords,
+      title: metaTitle,
+      description: metaDescription,
+      keywords: metaKeywords,
       openGraph: {
-        title: defaultMeta.title,
-        description: defaultMeta.description,
+        title: metaTitle,
+        description: metaDescription,
         type: "website",
         url: `${process.env.NEXT_PUBLIC_SITE_URL}/service-fitment/${slug}`,
       },
       twitter: {
         card: "summary_large_image",
-        title: defaultMeta.title,
-        description: defaultMeta.description,
+        title: metaTitle,
+        description: metaDescription,
       },
       alternates: {
         canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/service-fitment/${slug}`,
@@ -62,19 +66,19 @@ async function getMetaData(slug) {
     };
   } catch (error) {
     return {
-      title: defaultMeta.title,
-      description: defaultMeta.description,
-      keywords: defaultMeta.keywords,
+      title: metaTitle,
+      description: metaDescription,
+      keywords: metaKeywords,
       openGraph: {
-        title: defaultMeta.title,
-        description: defaultMeta.description,
+        title: metaTitle,
+        description: metaDescription,
         type: "website",
         url: `${process.env.NEXT_PUBLIC_SITE_URL}/service-fitment/${slug}`,
       },
       twitter: {
         card: "summary_large_image",
-        title: defaultMeta.title,
-        description: defaultMeta.description,
+        title: metaTitle,
+        description: metaDescription,
       },
       alternates: {
         canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/service-fitment/${slug}`,
@@ -103,10 +107,11 @@ export default async function page({ params }) {
   const resolvedParamms = await params;
   const { slug } = resolvedParamms;
 
+
   const { data, error } = await fetchFromAPI(`service-fitment/${slug}`);
 
   if (error) {
-    return <div>Something went wrong</div>;
+    return notFound();
   }
 
   if (!data) {
@@ -126,7 +131,7 @@ export default async function page({ params }) {
         items={[
           { label: "HOME", href: "/" },
           { label: "SERVICES", href: "/service" },
-          { label: "ADDITIONAL FITMENT SERVICES", isCurrent: true },
+          { label: service?.title.toUpperCase(), isCurrent: true },
         ]}
       />
       <FitmentServiceSection title={service?.title} desc={service?.description} image={service?.image} />

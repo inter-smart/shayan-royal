@@ -85,8 +85,10 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
             <div className="3xl:w-[calc(100%-400px)] 2xl:w-[calc(100%-300px)] xl:w-[calc(100%-275px)]  md:w-[calc(100%-245px)] w-full 3xl:pr-[50px] 2xl:pr-[40px] md:pr-[30px] max-md:mb-[15px]">
               <div className="flex flex-col lg:flex-row w-full">
                 {/* Main Slider */}
-                <div className="w-full 3xl:w-[calc(100%-110px)] 2xl:w-[calc(100%-80px)] lg:w-[calc(100%-70px)] 3xl:mr-[50px] mr-[30px] overflow-hidden relative
-                 ">
+                <div
+                  className="w-full 3xl:w-[calc(100%-110px)] 2xl:w-[calc(100%-80px)] lg:w-[calc(100%-70px)] 3xl:mr-[50px] mr-[30px] overflow-hidden relative
+                 "
+                >
                   {/* <div className="absolute 3xl:top-[50px] md:top-[30px] top-[15px] 3xl:left-[50px] md:left-[30px] left-[15px] flex items-center 3xl:p-[15px] 2xl:p-[10px]
                                  p-[5px] bg-[#2E4C99] rounded-[10px] z-9">
                                     <div className="3xl:w-[30px] 2xl:w-[25px] w-[20px] flex">
@@ -120,21 +122,21 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                       {carImages?.map((img, index) => (
                         <SwiperSlide key={index}>
                           {/* <div className="relative w-full 3xl:h-[570px] 2xl:h-[465px] xl:h-[425px] sm:h-[370px] 3xs:h-[230px] h-[200px] bg-white"> */}
-                         <div className="relative w-full h-full bg-white">  
+                          <div className="relative w-full h-full bg-white">
                             {/* <Image
                                                     src={img}
                                                     alt={`car-${index}`}
                                                     fill
                                                     className="2xl:max-w-[900px] lg:max-w-[650px] max-w-[300px] w-full h-full object-contain m-auto"
                                                 /> */}
-                           <div className="w-full h-full aspect-[16/9]">
-                             <Image
-                              src={img ? `${mediaUrl}${img}` : "/images/no-image.png"}
-                              alt={`car-${index}`}
-                              fill
-                              className="max-w-full w-full h-full object-cover m-auto"
-                            />
-                           </div>
+                            <div className="w-full h-full aspect-[16/9]">
+                              <Image
+                                src={img ? `${mediaUrl}${img}` : "/images/no-image.png"}
+                                alt={`car-${index}`}
+                                fill
+                                className="max-w-full w-full h-full object-cover m-auto"
+                              />
+                            </div>
                           </div>
                         </SwiperSlide>
                       ))}
@@ -333,8 +335,12 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                   <Heading size="heading5" as="div" className="text-black uppercase font-semibold xl:mb-[10px]">
                     Reserve Your Ride
                   </Heading>
-                  <iframe aria-label='Reserve Your Ride' frameborder="0" className="w-full h-full min-h-[370px] md:min-h-[350px] xl:min-h-[370px] 2xl:min-h-[370px] 3xl:min-h-[410px] !bg-[#F5F9FF]"
-                    src='https://forms.zohopublic.com/shayanroyalgeneraltradingllc/form/ReserveYourRide/formperma/loe0YejjSZ42uy-lJjv2mgfhpKrx_H-Y9KhPpdVtNvA'></iframe>
+                  <iframe
+                    aria-label="Reserve Your Ride"
+                    frameborder="0"
+                    className="w-full h-full min-h-[370px] md:min-h-[350px] xl:min-h-[370px] 2xl:min-h-[370px] 3xl:min-h-[410px] !bg-[#F5F9FF]"
+                    src={`https://forms.zohopublic.com/shayanroyalgeneraltradingllc/form/ReserveYourRide/formperma/loe0YejjSZ42uy-lJjv2mgfhpKrx_H-Y9KhPpdVtNvA?srcode=${carDetails?.sr_code}`}
+                  ></iframe>
                 </div>
               </div>
             </div>

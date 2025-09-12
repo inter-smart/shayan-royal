@@ -19,11 +19,12 @@ export default function ProductCard({ car, variant }) {
   const defaultPadding = "px-[10px] 3xl:py-[25px] py-[15px]";
   const paddingClass = variant ? variants[variant] || defaultPadding : defaultPadding;
 
-  const specs = [toTitleCase(car?.regional_spec), toTitleCase(car?.fueltype), toTitleCase(car?.gearbox), car?.year];
+  const specs = [car?.regional_spec, toTitleCase(car?.fueltype), toTitleCase(car?.gearbox), car?.year];
 
+  console.log(car)
   return (
     <Link
-      href={car?.slug ? `/inventory/${car?.slug}` : "#"}
+      href={car?.shayan_code ? `/inventory/srcode=${car?.shayan_code}` : "#"}
       aria-label={car?.type}
       className={`w-full h-full flex cursor-pointer group ${paddingClass}`}
     >
