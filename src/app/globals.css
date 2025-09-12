@@ -396,7 +396,7 @@ body[data-scroll-locked] {
   backdrop-filter: blur(30px);
   box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
   border: 0 !important;
-  z-index: 2;
+  z-index: 999;
 }
 
 .zfErrorDiv{
