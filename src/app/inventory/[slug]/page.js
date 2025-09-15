@@ -103,6 +103,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function page({ params }) {
+
   const resolvedSlug = await params;
   const slug = resolvedSlug.slug;
 
@@ -118,13 +119,17 @@ export default async function page({ params }) {
 
   const { carDetails, specs, specs2, faqs, colorVariants, banner, specList, specDoc, contactData, productLists } = data;
 
+  const nobanner = false;
+
   return (
     <>
-      <InnerBanner
-        title={banner?.title ? banner?.title : "Our Car"}
-        image={banner?.image ? `${mediaUrl}${banner?.image}` : "/images/inventoryDetailBanner.jpg"}
-        alt={banner?.title ? banner?.title : "inventory-banner"}
-      />
+      {nobanner &&
+        <InnerBanner
+          title={banner?.title ? banner?.title : "Our Car"}
+          image={banner?.image ? `${mediaUrl}${banner?.image}` : "/images/inventoryDetailBanner.jpg"}
+          alt={banner?.title ? banner?.title : "inventory-banner"}
+        />
+      }
 
       <BreadCrumb
         items={[
