@@ -103,6 +103,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function page({ params }) {
+
   const resolvedSlug = await params;
   const slug = resolvedSlug.slug;
 

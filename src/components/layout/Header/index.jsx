@@ -17,7 +17,7 @@ export default async function Header() {
 
   return (
     <header>
-      <Contents data={data} />
+      <Contents data={data}/>
     </header>
   );
 }

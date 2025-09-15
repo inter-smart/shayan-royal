@@ -10,7 +10,19 @@ import { MEDIA_URL } from "@/lib/api";
 function Contents({ data }) {
   const pathname = usePathname();
   const isInnerPage = pathname !== "/";
-  const isPrivacyPage = ["/privacy-policy", "/terms-conditions"].includes(pathname);
+  const isPrivacyPage = ["/privacy-policy", "/terms-conditions,"].includes(pathname);
+  const staticHeader = false;
+  // const isPrivacyPage =
+  //   ["/privacy-policy", "/terms-conditions"].includes(pathname) ||
+  //   (pathname.startsWith("/inventory/") && !hasBanner);
+
+
+  // const isPrivacyPage =
+  //   ["/privacy-policy", "/terms-conditions"].includes(pathname) ||
+  //   pathname.startsWith("/inventory/");
+
+  // Example: pathname = "/inventory/some-slug"
+
 
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -25,21 +37,19 @@ function Contents({ data }) {
 
   return (
     <div
-      className={`${isPrivacyPage ? "relative bg-white" : "absolute bg-transparent"}  ${
-        isScrolled ? "stickyHeader" : ""
-      } w-full  top-0 left-0 z-10 bg-transparent `}
+      className={`${isPrivacyPage || staticHeader ? "relative bg-white" : "absolute bg-transparent"}  ${isScrolled ? "stickyHeader" : ""
+        } w-full  top-0 left-0 z-10 bg-transparent `}
     >
       <div className="container">
         <div
-          className={`w-full flex flex-wrap items-center justify-between py-[15px_0] 2xl:py-[20px_0] 3xl:py-[25px_0] ${
-            isInnerPage ? "lg:border-b lg:border-[rgba(217,217,217,0.2)]" : ""
-          }`}
+          className={`w-full flex flex-wrap items-center justify-between  
+              ${isInnerPage ? "lg:border-b lg:border-[rgba(217,217,217,0.2)]" : ""} 
+              ${isScrolled ? "py-[10px_0]" : "py-[15px_0] 2xl:py-[20px_0] 3xl:py-[25px_0]"}`}
         >
           {/* Logo */}
           <div
-            className={`  ${
-              isScrolled ? "w-[110px] lg:w-[130px] 2xl:w-[150px]" : "3xl:w-[260px] 2xl:w-[195px] xl:w-[175px] lg:w-[140px] w-[135px]"
-            } transition-all flex items-center justify-center pb-[5px]`}
+            className={`  ${isScrolled ? "w-[110px] lg:w-[130px] 2xl:w-[150px]" : "3xl:w-[260px] 2xl:w-[195px] xl:w-[175px] lg:w-[140px] w-[135px]"
+              } transition-all flex items-center justify-center pb-[5px]`}
           >
             <Link href="/" className="block w-full h-full">
               <Image
@@ -51,7 +61,7 @@ function Contents({ data }) {
               />
             </Link>
           </div>
-          <NavMenus isInnerPage={isInnerPage} pathname={pathname} data={data} isPrivacyPage={isPrivacyPage} isScrolled={isScrolled} />
+          <NavMenus isInnerPage={isInnerPage} pathname={pathname} data={data} staticHeader={staticHeader} isPrivacyPage={isPrivacyPage} isScrolled={isScrolled} />
         </div>
       </div>
     </div>
