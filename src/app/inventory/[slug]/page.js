@@ -103,7 +103,6 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function page({ params }) {
-
   const resolvedSlug = await params;
   const slug = resolvedSlug.slug;
 
@@ -121,13 +120,13 @@ export default async function page({ params }) {
 
   return (
     <>
-      {bannerSettings?.status == "active" && (
-        <InnerBanner
-          title={banner?.title ? banner?.title : "Our Car"}
-          image={banner?.image ? `${mediaUrl}${banner?.image}` : "/images/inventoryDetailBanner.jpg"}
-          alt={banner?.title ? banner?.title : "inventory-banner"}
-        />
-      )}
+      {/* {bannerSettings?.status == "active" && ( */}
+      <InnerBanner
+        title={banner?.title ? banner?.title : "Our Car"}
+        image={banner?.image ? `${mediaUrl}${banner?.image}` : "/images/inventoryDetailBanner.jpg"}
+        alt={banner?.title ? banner?.title : "inventory-banner"}
+      />
+      {/* )} */}
 
       <BreadCrumb
         items={[

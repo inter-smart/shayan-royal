@@ -16,13 +16,11 @@ function Contents({ data }) {
   //   ["/privacy-policy", "/terms-conditions"].includes(pathname) ||
   //   (pathname.startsWith("/inventory/") && !hasBanner);
 
-
   // const isPrivacyPage =
   //   ["/privacy-policy", "/terms-conditions"].includes(pathname) ||
   //   pathname.startsWith("/inventory/");
 
   // Example: pathname = "/inventory/some-slug"
-
 
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -37,8 +35,9 @@ function Contents({ data }) {
 
   return (
     <div
-      className={`${isPrivacyPage || staticHeader ? "relative bg-white" : "absolute bg-transparent"}  ${isScrolled ? "stickyHeader" : ""
-        } w-full  top-0 left-0 z-10 bg-transparent `}
+      className={`${isPrivacyPage || staticHeader ? "relative bg-white" : "absolute bg-transparent"}  ${
+        isScrolled ? "stickyHeader" : ""
+      } w-full  top-0 left-0 z-10 bg-transparent `}
     >
       <div className="container">
         <div
@@ -48,8 +47,9 @@ function Contents({ data }) {
         >
           {/* Logo */}
           <div
-            className={`  ${isScrolled ? "w-[110px] lg:w-[130px] 2xl:w-[150px]" : "3xl:w-[260px] 2xl:w-[195px] xl:w-[175px] lg:w-[140px] w-[135px]"
-              } transition-all flex items-center justify-center pb-[5px]`}
+            className={`  ${
+              isScrolled ? "w-[110px] lg:w-[130px] 2xl:w-[150px]" : "3xl:w-[260px] 2xl:w-[195px] xl:w-[175px] lg:w-[140px] w-[135px]"
+            } transition-all flex items-center justify-center pb-[5px]`}
           >
             <Link href="/" className="block w-full h-full">
               <Image
@@ -61,7 +61,14 @@ function Contents({ data }) {
               />
             </Link>
           </div>
-          <NavMenus isInnerPage={isInnerPage} pathname={pathname} data={data} staticHeader={staticHeader} isPrivacyPage={isPrivacyPage} isScrolled={isScrolled} />
+          <NavMenus
+            isInnerPage={isInnerPage}
+            pathname={pathname}
+            data={data}
+            staticHeader={staticHeader}
+            isPrivacyPage={isPrivacyPage}
+            isScrolled={isScrolled}
+          />
         </div>
       </div>
     </div>
