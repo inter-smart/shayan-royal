@@ -19,7 +19,7 @@ export default async function footer() {
 
   const { socialMediaLinks, footerContents } = data;
 
-  console.log( `https://wa.me/${footerContents?.footer_whtsapp.replace(/[ +]/g, "")}`)
+  console.log(`https://wa.me/${footerContents?.footer_whtsapp.replace(/[ +]/g, "")}`);
   if (error) {
     return <div>Something went wrong</div>;
   }
@@ -98,9 +98,12 @@ export default async function footer() {
               <div className="w-full sm:w-1/2 ">
                 <div className={`${footerHeading}`}>visit us</div>
                 <div className="w-full 3xl:max-w-[380px] 2xl:max-w-[320px] xl:max-w-[250px] lg:max-w-[220px] md:max-w-[180px] sm:max-w-[250px]">
-                  <p className={`${footerLink} line-clamp-3 !mb-[15px] md:!mb-[50px] 2xl:!mb-[60px] 3xl:!mb-[80px]`}>
+                  <Link
+                    href={footerContents?.map_link || "/"}
+                    className={`${footerLink} line-clamp-3 !mb-[15px] md:!mb-[50px] 2xl:!mb-[60px] 3xl:!mb-[80px]`}
+                  >
                     {footerContents?.footer_address || "Centurion Star Tower, behind Day To Day,Port Saeed 34 St. Deira. Dubai, United Arab Emirates"}
-                  </p>
+                  </Link>
                   <div className={`${footerHeading} !mb-[10px]`}>
                     {" "}
                     {footerContents?.footer_news_letter_title ? footerContents?.footer_news_letter_title : "Stay in the loop."}
@@ -193,7 +196,11 @@ export default async function footer() {
               <div className="3xl:pl-[60px] 2xl:pl-[40px] md:pl-[25px] sm:pl-[20px] 2xs:pl-[25px] 2xs:w-auto w-full">
                 <div className="text-[10px] xl:text-[13px] 2xl:text-[16px] 3xl:text-[20px] font-medium text-white">WHATSAPP</div>
                 <a
-                  href={footerContents?.footer_whtsapp ? `https://wa.me/${footerContents?.footer_whtsapp.replace(/[ +]/g, "")}` : "https://wa.me/971505286045"}
+                  href={
+                    footerContents?.footer_whtsapp
+                      ? `https://wa.me/${footerContents?.footer_whtsapp.replace(/[ +]/g, "")}`
+                      : "https://wa.me/971505286045"
+                  }
                   target="_blank"
                   className="text-[10px] xl:text-[13px] 2xl:text-[16px] 3xl:text-[20px] block text-white hover:text-[#BE1E2D]"
                 >

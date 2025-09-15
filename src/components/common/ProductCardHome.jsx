@@ -21,6 +21,8 @@ export default function ProductCardHome({ car, variant }) {
 
   const specs = car?.specs;
 
+  console.log(specs);
+
   return (
     <Link
       href={car?.shayan_code ? `/inventory/srcode=${car?.shayan_code}` : "#"}

@@ -38,24 +38,28 @@ export default function ContactInfo({ footer }) {
         {
           title: "Address",
           value: footer?.footer_address || "Centurion Star Tower, behind Day To Day, Port Saeed 34 St. Deira. Dubai, United Arab Emirates",
-          isLink: false,
+          isLink: true,
+          href: `${footer?.map_link || "/"}`,
         },
         {
           title: "Email Us",
           value: footer?.footer_email || "sales@shayan.ae",
           isLink: true,
+          className: "2xl:text-[20px] sm:text-[14px] leading-[1] font-semibold text-black hover:text-[#BE1E2D] transition-colors duration-300",
           href: `mailto:${footer?.footer_email || "sales@shayan.ae"}`,
         },
         {
           title: "Telephone",
           value: footer?.footer_tel || "+971 4 272 8150",
           isLink: true,
+          className: "2xl:text-[20px] sm:text-[14px] leading-[1] font-semibold text-black hover:text-[#BE1E2D] transition-colors duration-300",
           href: `tel:${footer?.footer_tel || "+971 4 272 8150"}`,
         },
         {
           title: "Whatsapp",
           value: footer?.footer_whtsapp || "+971 4 272 8150",
           isLink: true,
+          className: "2xl:text-[20px] sm:text-[14px] leading-[1] font-semibold text-black hover:text-[#BE1E2D] transition-colors duration-300",
           href: `https://wa.me/${footer?.footer_whtsapp || "+971 4 272 8150"}`,
         },
       ]
@@ -81,10 +85,7 @@ export default function ContactInfo({ footer }) {
           </Heading>
           <div className="3xl:text-[18px] 2xl:text-[16px] text-[12px] leading-[1.1] font-normal text-black">
             {item.isLink && item.href ? (
-              <a
-                href={item.href}
-                className="2xl:text-[20px] sm:text-[14px] leading-[1] font-semibold text-black hover:text-[#BE1E2D] transition-colors duration-300"
-              >
+              <a href={item.href} className={item?.className || ""}>
                 {item.value}
               </a>
             ) : (

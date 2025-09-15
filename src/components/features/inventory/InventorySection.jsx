@@ -316,6 +316,8 @@ export default function InventorySection() {
   // Empty state
   if (!loading && cars && cars.length === 0) return <InventorySectionEmpty />;
 
+  console.log(cars);
+
   return (
     <section className="w-full h-auto block 3xl:py-[0px_130px] lg:py-[10px_90px] sm:py-[10px_70px] py-[10px_40px]">
       <div className="container">

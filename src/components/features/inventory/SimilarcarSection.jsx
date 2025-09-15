@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Heading } from "@/components/layout/Heading"; 
+import { Heading } from "@/components/layout/Heading";
 import ProductCard from "@/components/common/ProductCard";
 import ProductCardHome from "@/components/common/ProductCardHome";
 
@@ -52,7 +52,7 @@ export default function SimilarcarSection({ productLists = carData }) {
       <div className="container">
         <div className="max-w-[85%] m-auto 3xl:mb-[50px] 2xl:mb-[30px] mb-[15px]">
           <Heading size="heading2" as="h2" className="text-[#B4BACA] text-center uppercase mb-[10px]">
-            Limited stock
+            Similiar Cars
           </Heading>
         </div>
 

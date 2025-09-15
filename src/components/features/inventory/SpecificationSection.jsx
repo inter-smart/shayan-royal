@@ -7,7 +7,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-const tabs = ["Specifications", "Description", "Interior Features", "Exterior Features", "Security & Environment"];
+const tabs = ["Description", "Specifications", "Interior Features", "Exterior Features", "Security & Environment"];
 
 const detailsData = [
   // Specifications tab (first)
@@ -63,8 +63,11 @@ export default function ResponsiveTabsWithSwiper({ specList = detailsData }) {
     return tabData && tabData.length > 0;
   });
 
+  console.log(availableTabs);
+
   const [activeTab, setActiveTab] = useState(availableTabs[0] || tabs[0]);
   const [activeIndex, setActiveIndex] = useState(0);
+  console.log(activeTab);
 
   // Helper function to get the original index of a tab
   const getOriginalTabIndex = (tabName) => {
@@ -80,7 +83,7 @@ export default function ResponsiveTabsWithSwiper({ specList = detailsData }) {
         578: { slidesPerView: Math.min(3, availableCount) },
         768: { slidesPerView: Math.min(4, availableCount) },
         1024: { slidesPerView: Math.min(5, availableCount) },
-      }
+      },
     };
   };
 
@@ -151,14 +154,16 @@ export default function ResponsiveTabsWithSwiper({ specList = detailsData }) {
         <Tabs
           defaultValue={availableTabs[0] || tabs[0]}
           value={activeTab}
-          className={`w-full ${specList[getOriginalTabIndex(activeTab)]?.length > 0 ? "bg-[#F5F9FF]" : "bg-transparent"} rounded-[15px] p-[25px_10px] 3xl:p-[45px_20px] overflow-hidden relativebefore:absolute after:content-[''] before:top-0 before:left-0 before:w-[20px] 2xl:before:w-[30px] 
+          className={`w-full ${
+            specList[getOriginalTabIndex(activeTab)]?.length > 0 ? "bg-[#F5F9FF]" : "bg-transparent"
+          } rounded-[15px] p-[25px_10px] 3xl:p-[45px_20px] overflow-hidden relativebefore:absolute after:content-[''] before:top-0 before:left-0 before:w-[20px] 2xl:before:w-[30px] 
           before:h-full before:bg-[#F5F9FF]`}
         >
           {availableTabs.map((tab) => {
             const originalIndex = getOriginalTabIndex(tab);
             return (
               <TabsContent key={tab} value={tab} className="w-full h-full">
-                {originalIndex === 0 ? (
+                {originalIndex === 1 ? (
                   // Specifications layout
                   <div className="flex flex-wrap">
                     {(specList?.[originalIndex] || []).map((item, idx) => (
@@ -172,7 +177,7 @@ export default function ResponsiveTabsWithSwiper({ specList = detailsData }) {
                       </div>
                     ))}
                   </div>
-                ) : originalIndex === 1 ? (
+                ) : originalIndex === 0 ? (
                   // Description layout
                   <p className="text-[14px] text-[#4B4B4B] font-base1 leading-relaxed px-[30px]">
                     {specList?.[originalIndex]?.[0]?.value || "No description available."}

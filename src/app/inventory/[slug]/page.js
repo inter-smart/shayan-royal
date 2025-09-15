@@ -116,15 +116,17 @@ export default async function page({ params }) {
     return <div>No data</div>;
   }
 
-  const { carDetails, specs, specs2, faqs, colorVariants, banner, specList, specDoc, contactData, productLists } = data;
+  const { carDetails, specs, specs2, faqs, colorVariants, banner, specList, specDoc, contactData, productLists, bannerSettings, price } = data;
 
   return (
     <>
-      <InnerBanner
-        title={banner?.title ? banner?.title : "Our Car"}
-        image={banner?.image ? `${mediaUrl}${banner?.image}` : "/images/inventoryDetailBanner.jpg"}
-        alt={banner?.title ? banner?.title : "inventory-banner"}
-      />
+      {bannerSettings?.status == "active" && (
+        <InnerBanner
+          title={banner?.title ? banner?.title : "Our Car"}
+          image={banner?.image ? `${mediaUrl}${banner?.image}` : "/images/inventoryDetailBanner.jpg"}
+          alt={banner?.title ? banner?.title : "inventory-banner"}
+        />
+      )}
 
       <BreadCrumb
         items={[
@@ -133,10 +135,10 @@ export default async function page({ params }) {
           { label: banner?.title.toUpperCase(), isCurrent: true },
         ]}
       />
-      <InventoryDetailSection carDetails={carDetails} specs={specs} contactData={contactData} />
+      <InventoryDetailSection carDetails={carDetails} specs={specs} contactData={contactData} price={price} />
       <SpecificationSection specList={specList} />
-      {colorVariants.length > 0 && <ColorSection colorVariants={colorVariants} specs2={specs2} />}
       {specDoc && <PDFViewerSection fileUrl={`${mediaUrl}${specDoc}`} />}
+      {colorVariants.length > 0 && <ColorSection colorVariants={colorVariants} specs2={specs2} />}
       {productLists.length > 0 && <SimilarcarSection productLists={productLists} />}
       <FaqSection faqs={faqs} />
       {/* <LogoScrollSection /> */}

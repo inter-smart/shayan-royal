@@ -58,7 +58,7 @@ const SocialLinks = [
   },
 ];
 
-export default function InventoryDetailSection({ carDetails, specs, contactData = SocialLinks }) {
+export default function InventoryDetailSection({ carDetails, specs, contactData = SocialLinks, price }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   const thumbsPrevRef = useRef(null);
@@ -305,7 +305,7 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
             <div className="3xl:w-[400px] 2xl:w-[300px] xl:w-[275px]  md:w-[245px] w-full">
               <div className="w-full h-full">
                 <Heading size="heading3" as="div" className="text-black font-semibold md:mb-[15px] mb-[10px] hidden md:block">
-                  Ask for the price
+                  {price ? `AED ${price}` : "Ask for the price"}
                 </Heading>
                 <div className="w-full 3xl:mb-[35px] mb-[25px] hidden md:block">
                   <div className="w-full">

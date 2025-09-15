@@ -19,7 +19,7 @@ import Image from "next/image";
 import { mediaUrl } from "@/lib/constants";
 import { toast } from "sonner";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
-  import PhoneInput from "@/components/ui/phone-input";
+import PhoneInput from "@/components/ui/phone-input";
 
 // Tailwind Classes
 const menuLinkClass =
@@ -611,7 +611,7 @@ export default function CustomerrequirementForm({ title, type }) {
                 render={({ field }) => (
                   <FormItem className="w-full md:w-1/2 lg:p-[15px] p-[8px] relative">
                     <FormControl>
-                      <Select onValueChange={field.onChange} value={field.value}>
+                      {/* <Select onValueChange={field.onChange} value={field.value}>
                         <SelectTrigger className={menuLinkClass}>
                           <SelectValue placeholder="Budget Range" />
                         </SelectTrigger>
@@ -622,7 +622,10 @@ export default function CustomerrequirementForm({ title, type }) {
                             </SelectItem>
                           ))}
                         </SelectContent>
-                      </Select>
+                      </Select> */}
+                      <FormControl>
+                        <Input placeholder="Budget Range " {...field} className={menuLinkClass} />
+                      </FormControl>
                     </FormControl>
                     <FormMessage className={errorMessage} />
                   </FormItem>
