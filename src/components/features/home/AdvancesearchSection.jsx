@@ -13,10 +13,6 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { mediaUrl } from "@/lib/constants";
 
-import { Check, ChevronsUpDown } from "lucide-react";
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-
 // Form validation schema
 const formSchema = z.object({
   make: z.string(), //.nonempty("Select make"),
@@ -35,20 +31,6 @@ const formSchema = z.object({
 
 export default function CarSearchForm() {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [open, setOpen] = useState({
-    make: false,
-    model: false,
-    fuel: false,
-    gearbox: false,
-    yearTo: false,
-    body: false,
-    regionalSpec: false,
-    yearFrom: false,
-    steeringSide: false,
-    carType: false,
-    cylinders: false,
-    seats: false,
-  });
   const [dropdownData, setDropdownData] = useState(null);
   const [makeId, setMakeId] = useState(null);
 
@@ -218,7 +200,7 @@ export default function CarSearchForm() {
     "3xl:!text-[14px] 2xl:!text-[12px] md:!text-[10px] !text-[8px] text-black max-w-full min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px] text-black uppercase font-normal placeholder:!text-black placeholder:font-normal !w-full px-[12px] border !border-[rgba(46,76,153,0.34)] bg-white rounded-[3px] xl:rounded-[3px] 2xl:rounded-[4px] 3xl:rounded-[5px] font-normal outline-none shadow-none focus:outline-none focus:ring-0 focus:border-[#CCCCCC] focus:shadow-none data-[state=open]:border-[#00095b] data-[state=open]:shadow-none [&>svg]:hidden relative after:absolute after:top-0 after:right-[15px] after:bottom-0 after:content-[''] after:w-[10px] after:h-[5px] after:w-[10px] 2xl:w-[15px] 2xl:h-[8px] after:3xl:w-[15px] after:3xl:h-[7px] after:[background-image:url('/images/selectArrow.png')] after:bg-no-repeat after:bg-center after:bg-contain after:m-auto";
 
   const contentClass =
-    "3xl:text-[18px] 2xl:text-[16px] xl:text-[12px] md:text-[10px] text-[6px] bg-white border border-[#CCCCCC] rounded-md shadow-md font-normal uppercase placeholder:!text-black ";
+    "3xl:text-[18px] 2xl:text-[16px] xl:text-[12px] md:text-[10px] text-[6px] bg-white border border-[#CCCCCC] rounded-md shadow-md font-normal uppercase placeholder:!text-black max-h-[210px] overflow-auto";
 
   const itemClass =
     "3xl:text-[14px] 2xl:text-[12px] xl:text-[10px] md:text-[8px] text-[6px]  3xl:py-[10px] 3xl:px-4 px-[7px] hover:bg-[#e4f0fe] focus:bg-[#e4f0fe] focus:text-black cursor-pointer font-normal !uppercase placeholder:!text-black transition-none duration-20";
@@ -254,72 +236,47 @@ export default function CarSearchForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Popover open={open?.make} onOpenChange={setOpen({ ...open, make: !open?.make })}>
-                      <PopoverTrigger asChild>
-                        <Button
-                          variant="outline"
-                          role="combobox"
-                          aria-expanded={open?.make}
-                          className={`${menuLinkClass} placeholder:!text-black placeholder:!font-regular !text-black uppercase w-full justify-between`}
-                          aria-label="Select make"
-                          disabled={dropdownLoading}
-                        >
-                          {/* Show spinner, selected value, or placeholder */}
-                          {dropdownLoading ? (
-                            <>
-                              <Spinner className="inline-block h-4 w-4 mr-2" />
-                              <span className="align-middle">LOADING...</span>
-                            </>
-                          ) : field.value ? (
-                            // Display selected make name
-                            dropdownData?.data?.makes?.find((make) => String(make.id) === field.value)?.name || "MAKE"
-                          ) : (
-                            "MAKE"
-                          )}
-                          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className={`${contentClass} p-0 max-h-60 w-[var(--radix-popover-trigger-width)] overflow-y-auto`}>
-                        <Command>
-                          <CommandInput placeholder="Search makes..." className="h-9" />
-                          <CommandList className="max-h-52 overflow-y-auto">
-                            <CommandEmpty>No make found.</CommandEmpty>
-                            <CommandGroup>
-                              {dropdownLoading ? (
-                                // Skeleton placeholders while loading
-                                <div className="p-2 space-y-2">
-                                  {[1, 2, 3, 4, 5].map((n) => (
-                                    <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
-                                  ))}
-                                </div>
-                              ) : (
-                                dropdownData?.data?.makes?.map((make) => (
-                                  <CommandItem
-                                    key={make.id}
-                                    value={make.name}
-                                    onSelect={(currentValue) => {
-                                      const selectedMake = dropdownData?.data?.makes?.find(
-                                        (make) => make.name.toLowerCase() === currentValue.toLowerCase()
-                                      );
-                                      if (selectedMake) {
-                                        field.onChange(String(selectedMake.id));
-                                        setMakeId(String(selectedMake.id));
-                                        form.setValue("model", ""); // Reset model when make changes
-                                      }
-                                      setOpen(false);
-                                    }}
-                                    className={itemClass}
-                                  >
-                                    <Check className={`mr-2 h-4 w-4 ${field.value === String(make.id) ? "opacity-100" : "opacity-0"}`} />
-                                    {make.name}
-                                  </CommandItem>
-                                ))
-                              )}
-                            </CommandGroup>
-                          </CommandList>
-                        </Command>
-                      </PopoverContent>
-                    </Popover>
+                    <Select
+                      value={field.value}
+                      onValueChange={(value) => {
+                        field.onChange(value);
+                        setMakeId(value);
+                        form.setValue("model", ""); // Reset model when make changes
+                      }}
+                      // when dropdowns are loading disable make select to avoid confusion
+                      disabled={dropdownLoading}
+                    >
+                      <SelectTrigger
+                        className={`${menuLinkClass} placeholder:!text-black placeholder:!font-regular !text-black uppercase`}
+                        aria-label="Select make"
+                      >
+                        {/* show spinner or default placeholder */}
+                        {dropdownLoading ? (
+                          <>
+                            <Spinner className="inline-block h-4 w-4 mr-2" />
+                            <span className="align-middle">LOADING...</span>
+                          </>
+                        ) : (
+                          <SelectValue placeholder="MAKE" className="text-black" />
+                        )}
+                      </SelectTrigger>
+                      <SelectContent className={contentClass}>
+                        {dropdownLoading ? (
+                          // skeleton placeholders while loading
+                          <div className="p-2 space-y-2">
+                            {[1, 2, 3, 4, 5].map((n) => (
+                              <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
+                            ))}
+                          </div>
+                        ) : (
+                          dropdownData?.data?.makes?.map((make) => (
+                            <SelectItem key={make.id} value={String(make.id)} className={itemClass}>
+                              {make.name}
+                            </SelectItem>
+                          ))
+                        )}
+                      </SelectContent>
+                    </Select>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -335,75 +292,41 @@ export default function CarSearchForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Popover open={open?.model} onOpenChange={setOpen({ ...open, model: !open?.model })}>
-                      <PopoverTrigger asChild>
-                        <Button
-                          variant="outline"
-                          role="combobox"
-                          aria-expanded={open?.model}
-                          className={`${menuLinkClass} placeholder:!text-black !text-black w-full justify-between`}
-                          aria-label="Select model"
-                          disabled={dropdownLoading || !makeId}
-                        >
-                          {/* Show contextual placeholder/value */}
-                          {!makeId ? (
-                            <span className="text-black">MODEL</span>
-                          ) : dropdownLoading ? (
-                            <>
-                              <Spinner className="inline-block h-4 w-4 mr-2" />
-                              <span className="align-middle">LOADING...</span>
-                            </>
-                          ) : field.value ? (
-                            // Display selected model name
-                            models?.find((model) => String(model.id) === field.value)?.name || "MODEL"
-                          ) : (
-                            "MODEL"
-                          )}
-                          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className={`${contentClass} p-0`}>
-                        <Command>
-                          <CommandInput placeholder="Search models..." className="h-9" disabled={!makeId} />
-                          <CommandList>
-                            {!makeId ? (
-                              <CommandEmpty>Choose a make first</CommandEmpty>
-                            ) : dropdownLoading ? (
-                              <div className="p-2 space-y-2">
-                                {[1, 2, 3].map((n) => (
-                                  <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
-                                ))}
-                              </div>
-                            ) : models?.length > 0 ? (
-                              <>
-                                <CommandEmpty>No model found.</CommandEmpty>
-                                <CommandGroup>
-                                  {models.map((model) => (
-                                    <CommandItem
-                                      key={model.id}
-                                      value={model.name}
-                                      onSelect={(currentValue) => {
-                                        const selectedModel = models.find((model) => model.name.toLowerCase() === currentValue.toLowerCase());
-                                        if (selectedModel) {
-                                          field.onChange(String(selectedModel.id));
-                                        }
-                                        setModelOpen(false);
-                                      }}
-                                      className={itemClass}
-                                    >
-                                      <Check className={`mr-2 h-4 w-4 ${field.value === String(model.id) ? "opacity-100" : "opacity-0"}`} />
-                                      {model.name}
-                                    </CommandItem>
-                                  ))}
-                                </CommandGroup>
-                              </>
-                            ) : (
-                              <CommandEmpty>No models available</CommandEmpty>
-                            )}
-                          </CommandList>
-                        </Command>
-                      </PopoverContent>
-                    </Popover>
+                    <Select onValueChange={field.onChange} value={field.value} disabled={dropdownLoading}>
+                      <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black`} aria-label="Select model">
+                        {/* show contextual placeholder */}
+                        {!makeId ? (
+                          <span className="text-black">MODEL</span>
+                        ) : dropdownLoading ? (
+                          <>
+                            <Spinner className="inline-block h-4 w-4 mr-2" />
+                            <span className="align-middle">LOADING...</span>
+                          </>
+                        ) : (
+                          <SelectValue placeholder="MODEL" className="!text-black placeholder:!text-black" />
+                        )}
+                      </SelectTrigger>
+
+                      <SelectContent className={contentClass}>
+                        {dropdownLoading ? (
+                          <div className="p-2 space-y-2">
+                            {[1, 2, 3].map((n) => (
+                              <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
+                            ))}
+                          </div>
+                        ) : models?.length > 0 ? (
+                          models.map((model) => (
+                            <SelectItem key={model.id} value={String(model.id)} className={itemClass}>
+                              {model.name}
+                            </SelectItem>
+                          ))
+                        ) : !makeId ? (
+                          <div className="p-2 text-sm text-gray-500">Choose a make first</div>
+                        ) : (
+                          <div className="p-2 text-sm text-gray-500">No models available</div>
+                        )}
+                      </SelectContent>
+                    </Select>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
