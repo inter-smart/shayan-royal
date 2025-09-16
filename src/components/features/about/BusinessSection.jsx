@@ -38,7 +38,7 @@ export default function BusinessSection({ title, description1, description2, ima
           />
         </div>
         <div className="flex flex-wrap">
-          <div className="3xl:w-[955px] 2xl:w-[740px] xl:w-[620px] lg:w-[520px] w-full pt-[70px] sm:pt-[100px] lg:pt-[190px] overflow-hidden relative z-0">
+          <div className="3xl:w-[955px] 2xl:w-[740px] xl:w-[620px] lg:w-[520px] w-full pt-[70px] sm:pt-[100px] lg:pt-[190px] relative z-0">
             <div className="absolute top-[10%] right-[15%]  m-auto max-w-[150px] 2xl:max-w-[250px] 3xl:max-w-[300px] w-full h-fit">
               <Image src={"/images/aboutLogo.png"} alt="Business logo" width={1250} height={550} priority className="w-full object-cover" />
             </div>
