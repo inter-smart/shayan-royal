@@ -3,7 +3,7 @@ import Contents from "./Contents";
 import { fetchFromAPI } from "@/lib/api";
 import { notFound } from "next/navigation";
 
-export default async function Header() {
+export default async function Header({ bannerStatus }) {
   const headerData = await fetchFromAPI("header");
   const { data, error } = headerData;
 
@@ -17,7 +17,7 @@ export default async function Header() {
 
   return (
     <header>
-      <Contents data={data}/>
+      <Contents data={data} isBannerActive={bannerStatus} />
     </header>
   );
 }

@@ -7,11 +7,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { MEDIA_URL } from "@/lib/api";
 
-function Contents({ data }) {
+function Contents({ data, isBannerActive }) {
   const pathname = usePathname();
   const isInnerPage = pathname !== "/";
   const isPrivacyPage = ["/privacy-policy", "/terms-conditions,"].includes(pathname);
   const staticHeader = false;
+  
+  // Check if it's an inventory detail page (has slug after /inventory/)
+  const isInventoryDetailPage = pathname.startsWith("/inventory/") && pathname !== "/inventory";
   // const isPrivacyPage =
   //   ["/privacy-policy", "/terms-conditions"].includes(pathname) ||
   //   (pathname.startsWith("/inventory/") && !hasBanner);
@@ -35,7 +38,13 @@ function Contents({ data }) {
 
   return (
     <div
-      className={`${isPrivacyPage || staticHeader ? "relative bg-white" : "absolute bg-transparent"}  ${
+      className={`${
+        isPrivacyPage || staticHeader 
+          ? "relative bg-white" 
+          : isInventoryDetailPage 
+            ? (isBannerActive ? "absolute bg-transparent" : "relative bg-transparent")
+            : "absolute bg-transparent"
+      }  ${
         isScrolled ? "stickyHeader" : ""
       } w-full  top-0 left-0 z-10 bg-transparent `}
     >
@@ -68,6 +77,7 @@ function Contents({ data }) {
             staticHeader={staticHeader}
             isPrivacyPage={isPrivacyPage}
             isScrolled={isScrolled}
+            isBannerActive={isBannerActive}
           />
         </div>
       </div>
