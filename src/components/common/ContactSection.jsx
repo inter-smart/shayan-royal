@@ -33,7 +33,7 @@ export default function ContactSection({ backgroundImage, description, title, al
             <Link
               href={ buttonLink ? buttonLink : "/contact"}
               aria-label="get in touch"
-              className="2xl:text-[16px] md:text-[12px] text-[11px] leading-normal font-medium text-white min-w-[70px] w-fit 2xl:h-[40px] md:h-[30px] 2xl:p-[10px_20px] sm:p-[7px_15px] p-[5px_10px] 2xl:mt-[25px] mt-[15px] rounded-[5px] bg-[#BE1E2D] flex items-center justify-center hover:bg-base1 transition-colors duration-300 ease-in-out"
+              className="2xl:text-[16px] md:text-[12px] text-[11px] leading-normal font-medium text-white min-w-[70px] w-fit 2xl:h-[40px] md:h-[30px] 2xl:p-[10px_20px] sm:p-[7px_15px] p-[5px_10px] 2xl:mt-[25px] mt-[15px] rounded-[5px] bg-[#BE1E2D] flex items-center justify-center hover:bg-[#e4f0fe] hover:text-[#BE1E2D] transition-colors duration-300 ease-in-out"
               color="black"
             >
               {buttonText ? buttonText : "Get in Touch"}

@@ -353,11 +353,13 @@ body[data-scroll-locked] {
   cursor: pointer;
   transition: transform 0.5s ease;
   transform-box: fill-box;
+  -webkit-transform-box: fill-box;
+  transform-origin: center center;
 }
 
 .cls-2:hover {
 
-  transform: translateY(-10px);
+  transform: scale(1.3);
 
 }
 
@@ -366,10 +368,12 @@ body[data-scroll-locked] {
   transition: transform 0.5s ease;
   transform-box: fill-box;
   fill: #a2a3a7b5;
+  -webkit-transform-box: fill-box;
+  transform-origin: center center;
 }
 
 .cls-3:hover {
-  transform: translateY(-10px);
+  transform: scale(1.3);
 
 }
 
