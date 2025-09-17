@@ -10,6 +10,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Form, FormField, FormItem, FormControl, FormMessage } from "@/components/ui/form";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import { SearchableSelect } from "@/components/ui/searchable-select";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { mediaUrl } from "@/lib/constants";
 
@@ -196,6 +197,72 @@ export default function CarSearchForm() {
 
   const models = makeId ? dropdownData?.data?.models?.filter((model) => model.make_id == Number(makeId)) : [];
 
+  // Helper functions to transform data for SearchableSelect
+  const transformToOptions = (data, labelKey = 'name', valueKey = 'id') => {
+    if (!data) return [];
+    return data.map(item => ({
+      label: item[labelKey],
+      value: String(item[valueKey] || item[labelKey])
+    }));
+  };
+
+  // Special transform for fuel types and gearboxes (they use name as value)
+  const transformFuelTypesToOptions = (data) => {
+    if (!data) return [];
+    return data.map(item => ({
+      label: item.name,
+      value: item.name
+    }));
+  };
+
+  const transformGearboxesToOptions = (data) => {
+    if (!data) return [];
+    return data.map(item => ({
+      label: item.name,
+      value: item.name
+    }));
+  };
+
+  const transformRegionalSpecsToOptions = (data) => {
+    if (!data) return [];
+    return data.map(item => ({
+      label: item.name,
+      value: item.name
+    }));
+  };
+
+  const transformSteeringTypesToOptions = (data) => {
+    if (!data) return [];
+    return data.map(item => ({
+      label: item.name,
+      value: item.name
+    }));
+  };
+
+  const transformYearsToOptions = (years) => {
+    if (!years) return [];
+    return years.map(year => ({
+      label: year.toString(),
+      value: year.toString()
+    }));
+  };
+
+  const transformCylindersToOptions = (cylinders) => {
+    if (!cylinders) return [];
+    return cylinders.map(cylinder => ({
+      label: cylinder.count,
+      value: cylinder.count
+    }));
+  };
+
+  const transformSeatsToOptions = (seats) => {
+    if (!seats) return [];
+    return seats.map(seat => ({
+      label: seat.count,
+      value: seat.count
+    }));
+  };
+
   const menuLinkClass =
     "3xl:!text-[14px] 2xl:!text-[12px] md:!text-[10px] !text-[8px] text-black max-w-full min-h-[35px] lg:min-h-[40px] 2xl:min-h-[50px] 3xl:min-h-[60px] text-black uppercase font-normal placeholder:!text-black placeholder:font-normal !w-full px-[12px] border !border-[rgba(46,76,153,0.34)] bg-white rounded-[3px] xl:rounded-[3px] 2xl:rounded-[4px] 3xl:rounded-[5px] font-normal outline-none shadow-none focus:outline-none focus:ring-0 focus:border-[#CCCCCC] focus:shadow-none data-[state=open]:border-[#00095b] data-[state=open]:shadow-none [&>svg]:hidden relative after:absolute after:top-0 after:right-[15px] after:bottom-0 after:content-[''] after:w-[10px] after:h-[5px] after:w-[10px] 2xl:w-[15px] 2xl:h-[8px] after:3xl:w-[15px] after:3xl:h-[7px] after:[background-image:url('/images/selectArrow.png')] after:bg-no-repeat after:bg-center after:bg-contain after:m-auto";
 
@@ -236,47 +303,24 @@ export default function CarSearchForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Select
+                    <SearchableSelect
+                      options={transformToOptions(dropdownData?.data?.makes)}
                       value={field.value}
                       onValueChange={(value) => {
                         field.onChange(value);
                         setMakeId(value);
                         form.setValue("model", ""); // Reset model when make changes
                       }}
-                      // when dropdowns are loading disable make select to avoid confusion
+                      placeholder="MAKE"
+                      searchPlaceholder="Search makes..."
+                      emptyText="No makes found"
                       disabled={dropdownLoading}
-                    >
-                      <SelectTrigger
+                      loading={dropdownLoading}
+                      loadingText="LOADING..."
                         className={`${menuLinkClass} placeholder:!text-black placeholder:!font-regular !text-black uppercase`}
-                        aria-label="Select make"
-                      >
-                        {/* show spinner or default placeholder */}
-                        {dropdownLoading ? (
-                          <>
-                            <Spinner className="inline-block h-4 w-4 mr-2" />
-                            <span className="align-middle">LOADING...</span>
-                          </>
-                        ) : (
-                          <SelectValue placeholder="MAKE" className="text-black" />
-                        )}
-                      </SelectTrigger>
-                      <SelectContent className={contentClass}>
-                        {dropdownLoading ? (
-                          // skeleton placeholders while loading
-                          <div className="p-2 space-y-2">
-                            {[1, 2, 3, 4, 5].map((n) => (
-                              <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
-                            ))}
-                          </div>
-                        ) : (
-                          dropdownData?.data?.makes?.map((make) => (
-                            <SelectItem key={make.id} value={String(make.id)} className={itemClass}>
-                              {make.name}
-                            </SelectItem>
-                          ))
-                        )}
-                      </SelectContent>
-                    </Select>
+                      contentClassName={contentClass}
+                      itemClassName={itemClass}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -292,41 +336,20 @@ export default function CarSearchForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Select onValueChange={field.onChange} value={field.value} disabled={dropdownLoading}>
-                      <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black`} aria-label="Select model">
-                        {/* show contextual placeholder */}
-                        {!makeId ? (
-                          <span className="text-black">MODEL</span>
-                        ) : dropdownLoading ? (
-                          <>
-                            <Spinner className="inline-block h-4 w-4 mr-2" />
-                            <span className="align-middle">LOADING...</span>
-                          </>
-                        ) : (
-                          <SelectValue placeholder="MODEL" className="!text-black placeholder:!text-black" />
-                        )}
-                      </SelectTrigger>
-
-                      <SelectContent className={contentClass}>
-                        {dropdownLoading ? (
-                          <div className="p-2 space-y-2">
-                            {[1, 2, 3].map((n) => (
-                              <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
-                            ))}
-                          </div>
-                        ) : models?.length > 0 ? (
-                          models.map((model) => (
-                            <SelectItem key={model.id} value={String(model.id)} className={itemClass}>
-                              {model.name}
-                            </SelectItem>
-                          ))
-                        ) : !makeId ? (
-                          <div className="p-2 text-sm text-gray-500">Choose a make first</div>
-                        ) : (
-                          <div className="p-2 text-sm text-gray-500">No models available</div>
-                        )}
-                      </SelectContent>
-                    </Select>
+                    <SearchableSelect
+                      options={!makeId ? [] : transformToOptions(models)}
+                      value={field.value}
+                      onValueChange={field.onChange}
+                      placeholder="MODEL"
+                      searchPlaceholder="Search models..."
+                      emptyText={!makeId ? "Choose a make first" : "No models available"}
+                      disabled={dropdownLoading}
+                      loading={dropdownLoading}
+                      loadingText="LOADING..."
+                      className={`${menuLinkClass} placeholder:!text-black !text-black`}
+                      contentClassName={contentClass}
+                      itemClassName={itemClass}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -342,33 +365,20 @@ export default function CarSearchForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Select onValueChange={field.onChange} value={field.value} disabled={dropdownLoading}>
-                      <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black`} aria-label="Select fuel">
-                        {dropdownLoading ? (
-                          <>
-                            <Spinner className="inline-block h-4 w-4 mr-2" />
-                            <span className="align-middle">LOADING...</span>
-                          </>
-                        ) : (
-                          <SelectValue placeholder="FUEL" className="text-black" />
-                        )}
-                      </SelectTrigger>
-                      <SelectContent className={contentClass}>
-                        {dropdownLoading ? (
-                          <div className="p-2 space-y-2">
-                            {[1, 2, 3].map((n) => (
-                              <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
-                            ))}
-                          </div>
-                        ) : (
-                          dropdownData?.data?.fuelTypes?.map((fuel) => (
-                            <SelectItem key={fuel?.id} value={fuel?.name} className={itemClass}>
-                              {fuel?.name}
-                            </SelectItem>
-                          ))
-                        )}
-                      </SelectContent>
-                    </Select>
+                    <SearchableSelect
+                      options={transformFuelTypesToOptions(dropdownData?.data?.fuelTypes)}
+                      value={field.value}
+                      onValueChange={field.onChange}
+                      placeholder="FUEL"
+                      searchPlaceholder="Search fuel types..."
+                      emptyText="No fuel types found"
+                      disabled={dropdownLoading}
+                      loading={dropdownLoading}
+                      loadingText="LOADING..."
+                      className={`${menuLinkClass} placeholder:!text-black !text-black`}
+                      contentClassName={contentClass}
+                      itemClassName={itemClass}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -384,33 +394,20 @@ export default function CarSearchForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Select onValueChange={field.onChange} value={field.value} disabled={dropdownLoading}>
-                      <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black `} aria-label="Select gearbox">
-                        {dropdownLoading ? (
-                          <>
-                            <Spinner className="inline-block h-4 w-4 mr-2" />
-                            <span className="align-middle">LOADING...</span>
-                          </>
-                        ) : (
-                          <SelectValue placeholder="GEARBOX" className="text-black" />
-                        )}
-                      </SelectTrigger>
-                      <SelectContent className={contentClass}>
-                        {dropdownLoading ? (
-                          <div className="p-2 space-y-2">
-                            {[1, 2, 3].map((n) => (
-                              <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
-                            ))}
-                          </div>
-                        ) : (
-                          dropdownData?.data?.gearboxes?.map((gearbox) => (
-                            <SelectItem key={gearbox?.id} value={gearbox?.name} className={itemClass}>
-                              {gearbox?.name}
-                            </SelectItem>
-                          ))
-                        )}
-                      </SelectContent>
-                    </Select>
+                    <SearchableSelect
+                      options={transformGearboxesToOptions(dropdownData?.data?.gearboxes)}
+                      value={field.value}
+                      onValueChange={field.onChange}
+                      placeholder="GEARBOX"
+                      searchPlaceholder="Search gearboxes..."
+                      emptyText="No gearboxes found"
+                      disabled={dropdownLoading}
+                      loading={dropdownLoading}
+                      loadingText="LOADING..."
+                      className={`${menuLinkClass} placeholder:!text-black !text-black`}
+                      contentClassName={contentClass}
+                      itemClassName={itemClass}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -507,33 +504,20 @@ export default function CarSearchForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Select onValueChange={field.onChange} value={field.value} disabled={dropdownLoading}>
-                            <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}>
-                              {dropdownLoading ? (
-                                <>
-                                  <Spinner className="inline-block h-4 w-4 mr-2" />
-                                  <span className="align-middle">LOADING...</span>
-                                </>
-                              ) : (
-                                <SelectValue placeholder="Regional Spec" className="text-black" />
-                              )}
-                            </SelectTrigger>
-                            <SelectContent className={contentClass}>
-                              {dropdownLoading ? (
-                                <div className="p-2 space-y-2">
-                                  {[1, 2].map((n) => (
-                                    <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
-                                  ))}
-                                </div>
-                              ) : (
-                                dropdownData?.data?.regional_specs?.map((spec) => (
-                                  <SelectItem key={spec?.id} value={spec?.name} className={itemClass}>
-                                    {spec?.name}
-                                  </SelectItem>
-                                ))
-                              )}
-                            </SelectContent>
-                          </Select>
+                          <SearchableSelect
+                            options={transformRegionalSpecsToOptions(dropdownData?.data?.regional_specs)}
+                            value={field.value}
+                            onValueChange={field.onChange}
+                            placeholder="Regional Spec"
+                            searchPlaceholder="Search regional specs..."
+                            emptyText="No regional specs found"
+                            disabled={dropdownLoading}
+                            loading={dropdownLoading}
+                            loadingText="LOADING..."
+                            className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}
+                            contentClassName={contentClass}
+                            itemClassName={itemClass}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -549,33 +533,20 @@ export default function CarSearchForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Select onValueChange={field.onChange} value={field.value} disabled={dropdownLoading}>
-                            <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}>
-                              {dropdownLoading ? (
-                                <>
-                                  <Spinner className="inline-block h-4 w-4 mr-2" />
-                                  <span className="align-middle">LOADING...</span>
-                                </>
-                              ) : (
-                                <SelectValue placeholder="YEAR FROM" className="text-black" />
-                              )}
-                            </SelectTrigger>
-                            <SelectContent className={contentClass}>
-                              {dropdownLoading ? (
-                                <div className="p-2 space-y-2">
-                                  {[1, 2, 3].map((n) => (
-                                    <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
-                                  ))}
-                                </div>
-                              ) : (
-                                dropdownData?.data?.years?.map((year) => (
-                                  <SelectItem key={year} value={year.toString()} className={itemClass}>
-                                    {year}
-                                  </SelectItem>
-                                ))
-                              )}
-                            </SelectContent>
-                          </Select>
+                          <SearchableSelect
+                            options={transformYearsToOptions(dropdownData?.data?.years)}
+                            value={field.value}
+                            onValueChange={field.onChange}
+                            placeholder="YEAR FROM"
+                            searchPlaceholder="Search years..."
+                            emptyText="No years found"
+                            disabled={dropdownLoading}
+                            loading={dropdownLoading}
+                            loadingText="LOADING..."
+                            className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}
+                            contentClassName={contentClass}
+                            itemClassName={itemClass}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -590,33 +561,20 @@ export default function CarSearchForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Select onValueChange={field.onChange} value={field.value} disabled={dropdownLoading}>
-                            <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}>
-                              {dropdownLoading ? (
-                                <>
-                                  <Spinner className="inline-block h-4 w-4 mr-2" />
-                                  <span className="align-middle">LOADING...</span>
-                                </>
-                              ) : (
-                                <SelectValue placeholder="YEAR TO" className="text-black uppercase placeholder:!uppercase" />
-                              )}
-                            </SelectTrigger>
-                            <SelectContent className={contentClass}>
-                              {dropdownLoading ? (
-                                <div className="p-2 space-y-2">
-                                  {[1, 2, 3].map((n) => (
-                                    <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
-                                  ))}
-                                </div>
-                              ) : (
-                                dropdownData?.data?.years?.map((year) => (
-                                  <SelectItem key={year} value={year.toString()} className={itemClass}>
-                                    {year}
-                                  </SelectItem>
-                                ))
-                              )}
-                            </SelectContent>
-                          </Select>
+                          <SearchableSelect
+                            options={transformYearsToOptions(dropdownData?.data?.years)}
+                            value={field.value}
+                            onValueChange={field.onChange}
+                            placeholder="YEAR TO"
+                            searchPlaceholder="Search years..."
+                            emptyText="No years found"
+                            disabled={dropdownLoading}
+                            loading={dropdownLoading}
+                            loadingText="LOADING..."
+                            className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}
+                            contentClassName={contentClass}
+                            itemClassName={itemClass}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -632,33 +590,20 @@ export default function CarSearchForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Select onValueChange={field.onChange} value={field.value} disabled={dropdownLoading}>
-                            <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}>
-                              {dropdownLoading ? (
-                                <>
-                                  <Spinner className="inline-block h-4 w-4 mr-2" />
-                                  <span className="align-middle">LOADING...</span>
-                                </>
-                              ) : (
-                                <SelectValue placeholder="STEERING TYPE" className="text-black uppercase" />
-                              )}
-                            </SelectTrigger>
-                            <SelectContent className={contentClass}>
-                              {dropdownLoading ? (
-                                <div className="p-2 space-y-2">
-                                  {[1, 2].map((n) => (
-                                    <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
-                                  ))}
-                                </div>
-                              ) : (
-                                dropdownData?.data?.steeringTypes?.map((steering) => (
-                                  <SelectItem key={steering?.id} value={steering?.name} className={itemClass}>
-                                    {steering?.name}
-                                  </SelectItem>
-                                ))
-                              )}
-                            </SelectContent>
-                          </Select>
+                          <SearchableSelect
+                            options={transformSteeringTypesToOptions(dropdownData?.data?.steeringTypes)}
+                            value={field.value}
+                            onValueChange={field.onChange}
+                            placeholder="STEERING TYPE"
+                            searchPlaceholder="Search steering types..."
+                            emptyText="No steering types found"
+                            disabled={dropdownLoading}
+                            loading={dropdownLoading}
+                            loadingText="LOADING..."
+                            className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}
+                            contentClassName={contentClass}
+                            itemClassName={itemClass}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -674,33 +619,20 @@ export default function CarSearchForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Select onValueChange={field.onChange} value={field.value} disabled={dropdownLoading}>
-                            <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}>
-                              {dropdownLoading ? (
-                                <>
-                                  <Spinner className="inline-block h-4 w-4 mr-2" />
-                                  <span className="align-middle">LOADING...</span>
-                                </>
-                              ) : (
-                                <SelectValue placeholder="CAR TYPE" className="text-black" />
-                              )}
-                            </SelectTrigger>
-                            <SelectContent className={contentClass}>
-                              {dropdownLoading ? (
-                                <div className="p-2 space-y-2">
-                                  {[1, 2, 3].map((n) => (
-                                    <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
-                                  ))}
-                                </div>
-                              ) : (
-                                dropdownData?.data?.carTypes?.map((type) => (
-                                  <SelectItem key={type.id} value={String(type.id)} className={itemClass}>
-                                    {type.name}
-                                  </SelectItem>
-                                ))
-                              )}
-                            </SelectContent>
-                          </Select>
+                          <SearchableSelect
+                            options={transformToOptions(dropdownData?.data?.carTypes)}
+                            value={field.value}
+                            onValueChange={field.onChange}
+                            placeholder="CAR TYPE"
+                            searchPlaceholder="Search car types..."
+                            emptyText="No car types found"
+                            disabled={dropdownLoading}
+                            loading={dropdownLoading}
+                            loadingText="LOADING..."
+                            className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}
+                            contentClassName={contentClass}
+                            itemClassName={itemClass}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -715,33 +647,20 @@ export default function CarSearchForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Select onValueChange={field.onChange} value={field.value} disabled={dropdownLoading}>
-                            <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}>
-                              {dropdownLoading ? (
-                                <>
-                                  <Spinner className="inline-block h-4 w-4 mr-2" />
-                                  <span className="align-middle">LOADING...</span>
-                                </>
-                              ) : (
-                                <SelectValue placeholder="CYLINDERS" className="text-black" />
-                              )}
-                            </SelectTrigger>
-                            <SelectContent className={contentClass}>
-                              {dropdownLoading ? (
-                                <div className="p-2 space-y-2">
-                                  {[1, 2].map((n) => (
-                                    <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
-                                  ))}
-                                </div>
-                              ) : (
-                                dropdownData?.data?.cylinders?.map((cylinder) => (
-                                  <SelectItem key={cylinder?.id} value={cylinder.count} className={itemClass}>
-                                    {cylinder?.count}
-                                  </SelectItem>
-                                ))
-                              )}
-                            </SelectContent>
-                          </Select>
+                          <SearchableSelect
+                            options={transformCylindersToOptions(dropdownData?.data?.cylinders)}
+                            value={field.value}
+                            onValueChange={field.onChange}
+                            placeholder="CYLINDERS"
+                            searchPlaceholder="Search cylinders..."
+                            emptyText="No cylinders found"
+                            disabled={dropdownLoading}
+                            loading={dropdownLoading}
+                            loadingText="LOADING..."
+                            className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}
+                            contentClassName={contentClass}
+                            itemClassName={itemClass}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -756,33 +675,20 @@ export default function CarSearchForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <Select onValueChange={field.onChange} value={field.value} disabled={dropdownLoading}>
-                            <SelectTrigger className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}>
-                              {dropdownLoading ? (
-                                <>
-                                  <Spinner className="inline-block h-4 w-4 mr-2" />
-                                  <span className="align-middle">LOADING...</span>
-                                </>
-                              ) : (
-                                <SelectValue placeholder="NUMBER OF SEATS" className="text-black" />
-                              )}
-                            </SelectTrigger>
-                            <SelectContent className={contentClass}>
-                              {dropdownLoading ? (
-                                <div className="p-2 space-y-2">
-                                  {[1, 2].map((n) => (
-                                    <div key={n} className="h-4 rounded animate-pulse bg-[#f0f0f0]" />
-                                  ))}
-                                </div>
-                              ) : (
-                                dropdownData?.data?.seats?.map((seat) => (
-                                  <SelectItem key={seat?.id} value={seat.count} className={itemClass}>
-                                    {seat?.count}
-                                  </SelectItem>
-                                ))
-                              )}
-                            </SelectContent>
-                          </Select>
+                          <SearchableSelect
+                            options={transformSeatsToOptions(dropdownData?.data?.seats)}
+                            value={field.value}
+                            onValueChange={field.onChange}
+                            placeholder="NUMBER OF SEATS"
+                            searchPlaceholder="Search seats..."
+                            emptyText="No seats found"
+                            disabled={dropdownLoading}
+                            loading={dropdownLoading}
+                            loadingText="LOADING..."
+                            className={`${menuLinkClass} placeholder:!text-black !text-black uppercase`}
+                            contentClassName={contentClass}
+                            itemClassName={itemClass}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
