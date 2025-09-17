@@ -73,7 +73,7 @@ function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, stati
               const menuLinkClass = `
                    text-[9px]  xl:text-[11px] 2xl:text-[13px] 3xl:text-[18px] font-medium uppercase tracking-[1px] transition-all
                    flex items-center justify-center 3xl:px-[25px] 2xl:px-[20px] px-[15px] 
-                  ${isInnerPage ? (isScrolled ? "py-[30px]" : "3xl:py-[43px] 2xl:py-[35px] py-[30px]") : (isScrolled ? "py-[30px]" : "3xl:py-[43px] 2xl:py-[35px] py-[30px]")}
+                  ${isInnerPage ? (isScrolled ? "py-[35px]" : "3xl:py-[43px] 2xl:py-[35px] py-[30px]") : (isScrolled ? "py-[30px]" : "3xl:py-[43px] 2xl:py-[35px] py-[30px]")}
                     ${isScrolled ? "py-[30px]" : "3xl:py-[55px] 2xl:py-[45px] py-[40px]"} 
                     ${textColorClass}
                     ${
