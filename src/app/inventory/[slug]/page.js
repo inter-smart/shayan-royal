@@ -5,6 +5,7 @@ import ColorSection from "@/components/features/inventory/ColorSection";
 import FaqSection from "@/components/features/inventory/FaqSection";
 import SpecificationSection from "@/components/features/inventory/SpecificationSection";
 import SimilarcarSection from "@/components/features/inventory/SimilarcarSection";
+import { fetchFromAPI } from "@/lib/api";
 import { defaultMeta, mediaUrl } from "@/lib/constants";
 import PDFViewerSection from "@/components/features/inventory/PDFViewerSection";
 // import LogoScrollSection from "@/components/features/inventory/LogoScrollSection";
@@ -99,40 +100,6 @@ export async function generateMetadata({ params }) {
     openGraph,
     alternates,
   };
-}
-
-export async function fetchFromAPI() {
-  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}api/web/inventory/${slug}}`;
-
-  const defaultOptions = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    cache: "no-store",
-  };
-
-  try {
-    const response = await fetch(url, defaultOptions);
-
-    if (!response.ok) {
-      return {
-        data: null,
-        error: true,
-      };
-    }
-
-    const data = await response.json();
-
-    return {
-      data: data?.success ? data?.data : null,
-      error: !data?.success,
-    };
-  } catch (error) {
-    return {
-      data: null,
-      error: true,
-    };
-  }
 }
 
 export default async function page({ params }) {
