@@ -106,7 +106,9 @@ export default async function page({ params }) {
   const resolvedSlug = await params;
   const slug = resolvedSlug.slug;
 
-  const { data, error } = await fetchFromAPI(`inventory/${slug}`);
+  const { data, error } = await fetchFromAPI(`inventory/${slug}`, {
+    cache: "no-store",
+  });
 
   if (error) {
     return notFound();
