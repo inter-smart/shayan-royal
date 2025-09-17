@@ -8,6 +8,8 @@ import { useInView } from "react-intersection-observer";
 import { BreadCrumb } from "@/components/common/BreadCrumb";
 import { mediaUrl } from "@/lib/constants";
 import parse from "html-react-parser";
+import { useState, useEffect } from "react";
+
 
 const item = {
   years: 30,
@@ -21,10 +23,18 @@ const item = {
 };
 
 export default function BusinessSection({ title, description1, description2, image, alt, year, year_title }) {
-  const { ref, inView } = useInView({ threshold: 0.4 });
+ const { ref, inView } = useInView({
+  threshold: 0.4,
+  triggerOnce: true,
+});
 
+  const [startCount, setStartCount] = useState(false);
+
+  useEffect(() => {
+    if (inView) setStartCount(true);
+  }, [inView]);
   return (
-    <section className="w-full h-auto 3xl:pb-[120px] 2xl:pb-[80px] xl:pb-[50px] md:pb-[70px] sm:pb-[50px] pb-[40px] block relative z-0">
+    <section className="w-full h-auto 3xl:pb-[120px] 2xl:pb-[80px] xl:pb-[50px] md:pb-[70px] sm:pb-[50px] pb-[40px] block relative z-0 overflow-hidden">
       <div className="absolute -z-1 left-0 top-0 bottom-0 lg:w-[70%] w-full h-full m-auto pointer-events-none">
         <Image src={"/images/business_section_bg.png"} alt="Business background" fill style={{ objectFit: "cover" }} priority />
       </div>
@@ -47,7 +57,7 @@ export default function BusinessSection({ title, description1, description2, ima
               initial={{ x: "-10%", opacity: 1 }}
               animate={inView ? { x: "0%", opacity: 1 } : { x: "-10%", opacity: 1 }}
               transition={{ duration: 1, ease: "easeOut" }}
-              className="w-full flex items-center max-w-[1270px]"
+              className="w-full flex items-center max-w-[1270px] relative md:left-[-100px]"
             >
               <Image
                 src={image ? `${mediaUrl}${image}` : item.image}
@@ -61,14 +71,21 @@ export default function BusinessSection({ title, description1, description2, ima
             <motion.div
               ref={ref}
               className="absolute -z-1 top-0 right-0 md:right-[25%] 2xl:max-w-[210px] xl:max-w-[170px] lg:max-w-[140px] sm:max-w-[120px] max-w-[100px] md:h-[300px] 3xl:h-[430px] 
-                            bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]"
-              initial={{ y: "-5%", opacity: 0.7 }}
-              animate={inView ? { y: "0%", opacity: 1 } : { y: "-20%", opacity: 0.7 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+                 bg-gradient-to-b from-[#2E4C99] to-[#0E1D44]"
+              initial={{ y: "-5%", opacity: 0 }}
+              animate={inView ? { y: "0%", opacity: 1 } : { y: "-50%", opacity: 0.7 }}
+              transition={{ duration: 1.3, ease: "easeOut" }}
             >
               <div className="w-full h-full lg:p-[30px_20px] sm:p-[20px] p-[10px]">
                 <div className="3xl:text-[100px] 2xl:text-[74px] xl:text-[66px] lg:text-[54px] sm:text-[38px] text-[28px] mb-[8px] leading-none font-bold text-white font-base1">
-                  <CountUp start={0} end={inView ? (year ? year : item.years) : 0} duration={1.5} separator="," />
+                  {startCount && (
+                    <CountUp
+                      start={0}
+                      end={year ? year : item.years}
+                      duration={3}
+                      separator=","
+                    />
+                  )}
                   <span className="leading-none font-bold text-[#BE1E2D]">+</span>
                 </div>
                 <div className="3xl:text-[38px] 2xl:text-[30px] xl:text-[26px] lg:text-[18px] sm:text-[16px] text-[14px] leading-none font-normal text-white line-clamp-2">

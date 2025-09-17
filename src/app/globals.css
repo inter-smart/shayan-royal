@@ -349,17 +349,28 @@ body[data-scroll-locked] {
 }
 
 .cls-2 {
-  fill: #2e4c99;
+  fill: #BE1E2D;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+  transform-box: fill-box;
+}
+
+.cls-2:hover {
+
+  transform: translateY(-10px);
+
 }
 
 .cls-3 {
-  fill: #be1e2d;
   cursor: pointer;
-  transition: all 0.5s;
+  transition: transform 0.5s ease;
+  transform-box: fill-box;
+  fill: #a2a3a7b5;
 }
 
 .cls-3:hover {
-  transform: translateY(10px);
+  transform: translateY(-10px);
+
 }
 
 @keyframes jump {
@@ -399,10 +410,11 @@ body[data-scroll-locked] {
   z-index: 999;
 }
 
-.zfErrorDiv{
+.zfErrorDiv {
   font-size: 10px !important;
 }
-.zsiq-float { 
-    bottom: 35px !important;   
-    right: 20px !important;
-  }
+
+.zsiq-float {
+  bottom: 35px !important;
+  right: 20px !important;
+}
