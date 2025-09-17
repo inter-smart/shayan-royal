@@ -52,7 +52,7 @@ export default function SimilarcarSection({ productLists = carData }) {
       <div className="container">
         <div className="max-w-[85%] m-auto 3xl:mb-[50px] 2xl:mb-[30px] mb-[15px]">
           <Heading size="heading2" as="h2" className="text-[#B4BACA] text-center uppercase mb-[10px]">
-            Similiar Cars
+            Similar Cars
           </Heading>
         </div>
 
