@@ -43,7 +43,7 @@ function Contents({ data }) {
         <div
           className={`w-full flex flex-wrap items-center justify-between  
               ${isInnerPage ? "lg:border-b lg:border-[rgba(217,217,217,0.2)]" : ""} 
-              ${isScrolled ? "py-[10px_0]" : "py-[15px_0] 2xl:py-[20px_0] 3xl:py-[25px_0]"}`}
+              ${isScrolled ? "py-[10px_0]" : "py-[0px_0] "}`}
         >
           {/* Logo */}
           <div
@@ -51,7 +51,7 @@ function Contents({ data }) {
               isScrolled ? "w-[110px] lg:w-[130px] 2xl:w-[150px]" : "3xl:w-[260px] 2xl:w-[195px] xl:w-[175px] lg:w-[140px] w-[135px]"
             } transition-all flex items-center justify-center pb-[5px]`}
           >
-            <Link href="/" className="block w-full h-full">
+            <Link href="/" className="block w-full h-full p-[10px_0]">
               <Image
                 src={data?.header_logo ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${data?.header_logo}` : "/images/logo.svg"}
                 alt="shayan Logo"

@@ -57,7 +57,7 @@ function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, stati
                    text-[9px]  xl:text-[11px] 2xl:text-[13px] 3xl:text-[18px] font-medium uppercase tracking-[1px] transition-all
                    flex items-center justify-center 3xl:px-[25px] 2xl:px-[20px] px-[15px] 
                   ${isInnerPage ? (isScrolled ? "text-black py-[30px]" : "lg:text-white text-black 3xl:py-[43px] 2xl:py-[35px] py-[30px]") : (isScrolled ? "text-black py-[30px]" : "text-[rgba(0,0,0,0.9)] 3xl:py-[43px] 2xl:py-[35px] py-[30px]")}
-                    ${isScrolled ? "py-[30px] text-black" : "3xl:py-[43px] 2xl:py-[35px] py-[30px] text-black"} 
+                    ${isScrolled ? "py-[30px] text-black" : "3xl:py-[55px] 2xl:py-[45px] py-[40px] text-black"} 
                     ${
                       isActive
                         ? "!font-semibold after:absolute after:content-[''] text-black after:bottom-[-1px] after:left-0 after:right-0 after:m-auto after:w-[70%] after:h-[2px] after:bg-[#be1e2d]"
