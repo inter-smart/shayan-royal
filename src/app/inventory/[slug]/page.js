@@ -106,7 +106,9 @@ export default async function page({ params }) {
   const resolvedSlug = await params;
   const slug = resolvedSlug.slug;
 
-  const { data, error } = await fetchFromAPI(`inventory/${slug}`);
+  const { data, error } = await fetchFromAPI(`inventory/${slug}`, {
+    cache: "no-store",
+  });
 
   if (error) {
     return notFound();
@@ -120,13 +122,13 @@ export default async function page({ params }) {
 
   return (
     <>
-      {/* {bannerSettings?.status == "active" && ( */}
+      {bannerSettings?.status == "active" && (
       <InnerBanner
         title={banner?.title ? banner?.title : "Our Car"}
         image={banner?.image ? `${mediaUrl}${banner?.image}` : "/images/inventoryDetailBanner.jpg"}
         alt={banner?.title ? banner?.title : "inventory-banner"}
       />
-      {/* )} */}
+      )}
 
       <BreadCrumb
         items={[
