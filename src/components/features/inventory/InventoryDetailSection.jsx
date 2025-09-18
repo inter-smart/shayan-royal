@@ -78,7 +78,9 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
 
       <section className="w-full h-auto block 3xl:py-[40px_100px] xl:py-[30px_50px] sm:py-[20px_30px] py-[15px_30px] overflow-hidden">
         <div className="container">
-          <Heading size="heading2" as="h2" className="text-black uppercase font-normal 3xl:mb-[40px] 2xl:mb-[25px] md:mb-[15px] mb-[10px]">
+          <Heading size="heading2" as="h2" className="!text-[16px] md:!text-[18px] xl:!text-[22px] 2xl:!text-[25px] 3xl:!text-[35px] text-black uppercase font-normal w-full 
+          md:w-[calc(100%-275px)] 2xl:w-[calc(100%-420px)] 3xl:w-[calc(100%-570px)] 
+          3xl:mb-[40px] 2xl:mb-[25px] md:mb-[15px] mb-[10px]">
             {carDetails?.carName}
           </Heading>
           <div className="flex flex-wrap w-full">
@@ -304,7 +306,7 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
             {/* Right Section */}
             <div className="3xl:w-[400px] 2xl:w-[300px] xl:w-[275px]  md:w-[245px] w-full">
               <div className="w-full h-full">
-                <Heading size="heading3" as="div" className="text-black font-semibold md:mb-[15px] mb-[10px] hidden md:block">
+                <Heading size="heading3" as="div" className="text-black text-center font-semibold md:mb-[15px] mb-[10px] hidden md:block">
                   {price ? `AED ${price}` : "Ask for the price"}
                 </Heading>
                 <div className="w-full 3xl:mb-[35px] mb-[25px] hidden md:block">
