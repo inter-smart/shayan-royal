@@ -32,6 +32,7 @@
     "lucide-react": "^0.513.0",
     "motion": "^12.18.1",
     "next": "15.3.8",
+    "nuqs": "^2.8.6",
     "pdfjs-dist": "^5.3.31",
     "react": "^19.0.0",
     "react-countup": "^6.5.3",

@@ -78,9 +78,13 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
 
       <section className="w-full h-auto block 3xl:py-[40px_100px] xl:py-[30px_50px] sm:py-[20px_30px] py-[15px_30px] overflow-hidden">
         <div className="container">
-          <Heading size="heading2" as="h2" className="!text-[16px] md:!text-[18px] xl:!text-[22px] 2xl:!text-[25px] 3xl:!text-[35px] text-black !font-medium w-full 
+          <Heading
+            size="heading2"
+            as="h2"
+            className="!text-[16px] md:!text-[18px] xl:!text-[22px] 2xl:!text-[25px] 3xl:!text-[35px] text-black !font-medium w-full 
           md:w-[calc(100%-275px)] 2xl:w-[calc(100%-420px)] 3xl:w-[calc(100%-570px)] 
-          3xl:mb-[40px] 2xl:mb-[25px] md:mb-[15px] mb-[10px]">
+          3xl:mb-[40px] 2xl:mb-[25px] md:mb-[15px] mb-[10px]"
+          >
             {carDetails?.carName}
           </Heading>
           <div className="flex flex-wrap w-full">

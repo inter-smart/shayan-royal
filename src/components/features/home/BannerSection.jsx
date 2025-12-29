@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import AdvancesearchSection from "@/components/features/home/AdvancesearchSection";
+import CarSearchForm from "./AdvancedSearchLatext";
 
 const slides = [
   { img: "/images/banner1.png", title: "Lexus LFA" },
@@ -204,8 +205,9 @@ export default function BannerSection({ homeBanners }) {
               className="custom-prev  absolute left-0 z-1 sm:-translate-y-1/2 cursor-pointer
                 disabled:pointer-events-none disabled:opacity-[0.2] w-[30px] h-[30px] 
                 flex items-center justify-center"
-                 onClick={handlePrev}
-                 aria-label="Previous slide">
+              onClick={handlePrev}
+              aria-label="Previous slide"
+            >
               <svg className="xl:w-[8px] xl:h-[18px] w-[10px] h-[10px] flex" viewBox="0 0 10 18" fill="none">
                 <path
                   d="M9 17L1.41948 9.94278C0.860173 9.42208 0.860172 8.57786 1.41948 8.05716L9 0.999969"
@@ -220,7 +222,7 @@ export default function BannerSection({ homeBanners }) {
                 disabled:pointer-events-none disabled:opacity-[0.2]  w-[30px] h-[30px]
                 flex items-center justify-center  
                  "
-                 aria-label="Next slide"
+              aria-label="Next slide"
               onClick={handleNext}
             >
               <svg className="xl:w-[8px] xl:h-[18px] w-[10px] h-[10px] flex" viewBox="0 0 10 18" fill="none">
@@ -243,7 +245,8 @@ export default function BannerSection({ homeBanners }) {
               </div>
             }
           >
-            <AdvancesearchSection />
+            {/* <AdvancesearchSection /> */}
+            <CarSearchForm />
           </Suspense>
         </div>
       </div>
