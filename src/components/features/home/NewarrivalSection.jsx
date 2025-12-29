@@ -10,173 +10,172 @@ import "swiper/css/navigation";
 import { Heading } from "@/components/layout/Heading";
 import { Text } from "@/components/layout/Text";
 import ProductCard from "@/components/common/ProductCard";
+import ProductCardHome from "@/components/common/ProductCardHome";
 
 const carData = [
-    {
-        brand: "Toyota",
-        logo: "/images/toyota.png",
-        image: "/images/NewArr1.png",
-        title: "Camry Hybrid",
-        specs: ["GCC", "Petrol", "Auto", "2024"],
-    },
-    {
-        brand: "Toyota",
-        logo: "/images/toyota.png",
-        image: "/images/NewArr2.png",
-        title: "Corolla Cross",
-        specs: ["GCC", "Petrol", "Auto", "2024"],
-    },
-    {
-        brand: "Lexus",
-        logo: "/images/toyota.png",
-        image: "/images/NewArr3.png",
-        title: "RX 350h Luxury",
-        specs: ["GCC", "Petrol", "Auto", "2024"],
-    },
-    {
-        brand: "Toyota",
-        logo: "/images/toyota.png",
-        image: "/images/NewArr4.png",
-        title: "Prado",
-        specs: ["GCC", "Petrol", "Auto", "2024"],
-    },
-    {
-        brand: "Lexus",
-        logo: "/images/toyota.png",
-        image: "/images/NewArr5.png",
-        title: "Lexus LC",
-        specs: ["GCC", "Petrol", "Auto", "2024"],
-    },
-    {
-        brand: "Lexus",
-        logo: "/images/toyota.png",
-        image: "/images/NewArr6.png",
-        title: "NX 350h F-Sport",
-        specs: ["GCC", "Petrol", "Auto", "2024"],
-    },
-    {
-        brand: "Lexus",
-        logo: "/images/toyota.png",
-        image: "/images/NewArr6.png",
-        title: "NX 350h F-Sport",
-        specs: ["GCC", "Petrol", "Auto", "2024"],
-    },
-    {
-        brand: "Lexus",
-        logo: "/images/toyota.png",
-        image: "/images/NewArr6.png",
-        title: "NX 350h F-Sport",
-        specs: ["GCC", "Petrol", "Auto", "2024"],
-    },
+  {
+    brand: "Toyota",
+    logo: "/images/toyota.png",
+    image: "/images/NewArr1.png",
+    title: "Camry Hybrid",
+    specs: ["GCC", "Petrol", "Auto", "2024"],
+  },
+  {
+    brand: "Toyota",
+    logo: "/images/toyota.png",
+    image: "/images/NewArr2.png",
+    title: "Corolla Cross",
+    specs: ["GCC", "Petrol", "Auto", "2024"],
+  },
+  {
+    brand: "Lexus",
+    logo: "/images/toyota.png",
+    image: "/images/NewArr3.png",
+    title: "RX 350h Luxury",
+    specs: ["GCC", "Petrol", "Auto", "2024"],
+  },
+  {
+    brand: "Toyota",
+    logo: "/images/toyota.png",
+    image: "/images/NewArr4.png",
+    title: "Prado",
+    specs: ["GCC", "Petrol", "Auto", "2024"],
+  },
+  {
+    brand: "Lexus",
+    logo: "/images/toyota.png",
+    image: "/images/NewArr5.png",
+    title: "Lexus LC",
+    specs: ["GCC", "Petrol", "Auto", "2024"],
+  },
+  {
+    brand: "Lexus",
+    logo: "/images/toyota.png",
+    image: "/images/NewArr6.png",
+    title: "NX 350h F-Sport",
+    specs: ["GCC", "Petrol", "Auto", "2024"],
+  },
+  {
+    brand: "Lexus",
+    logo: "/images/toyota.png",
+    image: "/images/NewArr6.png",
+    title: "NX 350h F-Sport",
+    specs: ["GCC", "Petrol", "Auto", "2024"],
+  },
+  {
+    brand: "Lexus",
+    logo: "/images/toyota.png",
+    image: "/images/NewArr6.png",
+    title: "NX 350h F-Sport",
+    specs: ["GCC", "Petrol", "Auto", "2024"],
+  },
 ];
 
-export default function NewarrivalSection() {
-    const [activeIndex, setActiveIndex] = useState(0);
-    return (
-        <section className="relative z-0 py-[40px] xl:py-[65px_80px] 2xl:py-[80px_100px] 3xl:py-[105px_130px] after:absolute after:content-[''] overflow-hidden
+export default function NewarrivalSection({ products }) {
+  const { inventories } = products;
+  const title = products?.title;
+  const description = products?.description;
+
+  const [activeIndex, setActiveIndex] = useState(0);
+  return (
+    <section
+      className="relative z-0 py-[30px] xl:py-[55px] 2xl:py-[65px] 3xl:py-[85px] after:absolute after:content-[''] overflow-hidden
             after:top-0 after:left-0 after:right-0 after:m-auto after:h-full after:w-[220px] after:skew-x-[-16deg]
-            after:bg-[linear-gradient(180deg,_#C1C6D2_-13.07%,_rgba(209,212,220,0.38)_100%)] after:z-[-1] after:opacity-20">
+            after:bg-[linear-gradient(180deg,_#C1C6D2_-13.07%,_rgba(209,212,220,0.38)_100%)] after:z-[-1] after:opacity-20"
+    >
+      <div className="container">
+        <div className="max-w-[85%] m-auto 3xl:mb-[50px] 2xl:mb-[30px] mb-[15px]">
+          <Heading size="heading2" as="h2" className="text-[#B4BACA] text-center uppercase mb-[10px]">
+            {title ? title : "New Arrivals"}
+          </Heading>
+          <Text size="text1" as="p" className="text-[#4B4B4B] mb-[15px] text-center">
+            {description ? description : "Lorem ipsum dolor sit amet consectetur adipiscing elit ut aliquam purus sit amet luctus venenatis"}
+          </Text>
+        </div>
 
-            <div className="container">
-                <div className="max-w-[85%] m-auto 3xl:mb-[50px] 2xl:mb-[30px] mb-[15px]">
-                    <Heading
-                        size="heading2"
-                        as="h2"
-                        className="text-[#B4BACA] text-center uppercase mb-[10px]"
-                    >
-                        New Arrivals
-                    </Heading>
-                    <Text
-                        size="text1"
-                        as="p"
-                        className="text-[#4B4B4B] mb-[15px] text-center"
-                    >
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                         Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                          when an unknown printer took a galley of type and scrambled it to make a type 
-                          specimen book. It has survived not only five centuries, but also the leap into electronic
-                           typesetting, remaining essentially unchanged. It was popularised in  Lorem Ipsum passages,
-                            and more recently with desktop publishing software like Aldus PageMaker including versions 
-                            of Lorem Ipsum.
-
-                    </Text>
-                </div>
-
-                <div className="relative z-1">
-                    <Swiper
-                        modules={[Navigation, Grid]}
-                        spaceBetween={0}
-                        autoplay={{
-                            delay: 3000,
-                            disableOnInteraction: false,
-                        }}
-                        speed={800}
-                        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
-                        onBeforeInit={(swiper) => setActiveIndex(swiper.realIndex)}
-                        navigation={{
-                            prevEl: ".btn-prev",
-                            nextEl: ".btn-next",
-                        }}
-
-                        breakpoints={{
-                            320: {
-                                slidesPerView: 1,
-
-                            },
-                            420: {
-                                slidesPerView: 1.3,
-                            },
-                            5780: {
-                                slidesPerView: 1.5,
-                            },
-                            768: {
-                                slidesPerView: 2,
-                                grid: { rows: 2, fill: "row" },
-                            },
-                            1024: {
-                                slidesPerView: 2,
-                                grid: { rows: 2, fill: "row" },
-                            },
-                            1280: {
-                                slidesPerView: 3,
-                                grid: { rows: 2, fill: "row" },
-                            },
-                            1661: {
-                                slidesPerView: 3,
-                                grid: { rows: 2, fill: "row" },
-                            },
-                        }}
-                        className=""
-                    >
-                        {carData.map((car, index) => (
-                            <SwiperSlide key={index}>
-                                <ProductCard car={car} />
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
-                    {/* Navigation Arrows */}
-                    <div className="flex items-center justify-center lg:absolute lg:top-0 lg:bottom-0 lg:w-full">
-                        <button className="btn-prev relative lg:absolute left-0 lg:left-[-35px] lg:top-1/2 lg:-translate-y-1/2 z-10
-                        bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] 
-                        shadow 3xl:w-[34px] 2xl:w-[25px] w-[20px] 3xl:h-[38px] 2xl:h-[30px] h-[25px] flex items-center justify-center rounded-[30px_0px_0px_30px] cursor-pointer group
-                         hover:bg-[#2E4C99] disabled:pointer-events-none disabled:opacity-[0.2]">
-
-                            <svg  viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]" >
-                                <path d="M6.14364 0.699707L0.769531 6.12544L6.14364 12.1834" stroke="black" />
-                            </svg>
-                        </button>
-                        <button className="btn-next relative lg:absolute right-0 lg:right-[-35px] lg:top-1/2 lg:-translate-y-1/2 z-10 
-                        bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]
-                        shadow 3xl:w-[34px] 2xl:w-[25px] w-[20px] 3xl:h-[38px] 2xl:h-[30px] h-[25px] flex items-center justify-center rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99] 
-                        disabled:pointer-events-none disabled:opacity-[0.2] ">
-
-                            <svg  viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]" >
-                                <path d="M0.817302 0.699707L6.19141 6.12544L0.817302 12.1834" stroke="black" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
+        <div className="relative z-1">
+          <Swiper
+            modules={[Navigation, Grid]}
+            spaceBetween={0}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
+            speed={800}
+            onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
+            onBeforeInit={(swiper) => setActiveIndex(swiper.realIndex)}
+            navigation={{
+              prevEl: ".btn-prev",
+              nextEl: ".btn-next",
+            }}
+            breakpoints={{
+              320: {
+                slidesPerView: 1,
+              },
+              420: {
+                slidesPerView: 1.3,
+              },
+              578: {
+                slidesPerView: 1.5,
+              },
+              768: {
+                slidesPerView: 2,
+                grid: { rows: 2, fill: "row" },
+              },
+              1024: {
+                slidesPerView: 2,
+                grid: { rows: 2, fill: "row" },
+              },
+              1280: {
+                slidesPerView: 3,
+                grid: { rows: 2, fill: "row" },
+              },
+              1661: {
+                slidesPerView: 3,
+                grid: { rows: 2, fill: "row" },
+              },
+            }}
+            className="!h-auto"
+          >
+            {inventories?.map((car, index) => (
+              <SwiperSlide key={index} className="!h-auto">
+                <ProductCardHome car={car} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          {/* Navigation Arrows */}
+          <div className="flex items-center justify-center absolute top-0 bottom-0 w-full">
+            <button
+              className="btn-prev  absolute left-[-25px] lg:left-[-35px] -translate-y-1/2 z-10 sm:bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)] 
+                        sm:shadow 3xl:w-[34px] 2xl:w-[25px] w-[35px] 3xl:h-[38px] h-[35px] flex items-center justify-center sm:rounded-[30px_0px_0px_30px]
+                         cursor-pointer group hover:bg-[#2E4C99]  disabled:pointer-events-none 
+                         disabled:opacity-[0.2]"
+            >
+              <svg
+                viewBox="0 0 7 13"
+                fill="none"
+                className="group-hover:invert-100 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]"
+              >
+                <path d="M6.14364 0.699707L0.769531 6.12544L6.14364 12.1834" stroke="black" />
+              </svg>
+            </button>
+            <button
+              className="btn-next  absolute right-[-25px] lg:right-[-35px]  -translate-y-1/2 z-10 sm:bg-[linear-gradient(270deg, #FFF -4.3%, #EBEBEB 100.24%)]
+                        sm:shadow 3xl:w-[34px] 2xl:w-[25px] w-[35px] 3xl:h-[38px]  h-[35px]   
+                        flex items-center justify-center sm:rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99]  disabled:pointer-events-none 
+                         disabled:opacity-[0.2]"
+            >
+              <svg
+                viewBox="0 0 7 13"
+                fill="none"
+                className="group-hover:invert-100 3xl:w-[7px] 2xl:w-[5px] w-[5px] 3xl:h-[13px] 2xl:h-[10px] h-[10px]"
+              >
+                <path d="M0.817302 0.699707L6.19141 6.12544L0.817302 12.1834" stroke="black" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

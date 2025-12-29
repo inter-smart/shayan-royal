@@ -1,6 +1,33 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Custom loader animations */
+@keyframes spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-reverse {
+  animation: spin-reverse 1s linear infinite;
+}
+
+/* Smooth loading transitions */
+.loading-fade-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.loading-fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -59,7 +86,7 @@
       transform: translateY(0);
     }
   }
-  
+
 
   --animate-right: bounce 1s ease-in-out infinite;
 
@@ -302,4 +329,96 @@ body {
   border-radius: 8px !important;
   background-color: #2E4C99 !important;
 }
- 
+
+.outlined-text {
+  -webkit-text-stroke: 1px rgba(74, 95, 112, 0.2);
+}
+
+body[data-scroll-locked] {
+  overflow: auto !important;
+}
+
+.react-pdf__Page__canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.cls-1 {
+  fill: #fff;
+
+}
+
+.cls-2 {
+  fill: #BE1E2D;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+  transform-box: fill-box;
+  -webkit-transform-box: fill-box;
+  transform-origin: center center;
+}
+
+.cls-2:hover {
+
+  transform: scale(1.3);
+
+}
+
+.cls-3 {
+  cursor: pointer;
+  transition: transform 0.5s ease;
+  transform-box: fill-box;
+  fill: #a2a3a7b5;
+  -webkit-transform-box: fill-box;
+  transform-origin: center center;
+}
+
+.cls-3:hover {
+  transform: scale(1.3);
+
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+  }
+
+  25% {
+    transform: translateY(-6px);
+  }
+
+  50% {
+    transform: translateY(6px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-jump {
+  animation: jump 2.5s infinite ease-in-out;
+}
+
+
+.stickyHeader {
+  position: fixed;
+  top: 0;
+  animation-name: fadeInDown;
+  animation-duration: .8s;
+  animation-fill-mode: both;
+  background: #fff;
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+  border: 0 !important;
+  z-index: 999;
+}
+
+.zfErrorDiv {
+  font-size: 10px !important;
+}
+
+.zsiq-float {
+  bottom: 35px !important;
+  right: 20px !important;
+}
