@@ -101,8 +101,8 @@ export default function ResponsiveTabsWithSwiper({ specList = detailsData }) {
             onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
             onSwiper={(swiper) => setActiveIndex(swiper.realIndex)}
             navigation={{
-              prevEl: ".btn-prev",
-              nextEl: ".btn-next",
+              prevEl: ".specialization-btn-prev",
+              nextEl: ".specialization-btn-next",
             }}
             className="border-b border-[#D9D9D9]"
           >
@@ -111,10 +111,9 @@ export default function ResponsiveTabsWithSwiper({ specList = detailsData }) {
                 <button
                   onClick={() => setActiveTab(tab)}
                   className={`relative text-[13px] sm:text-[16px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[25px] font-base1 w-full pb-2 text-left cursor-pointer transition-all hover:text-[#2E4C99] hover:font-semibold
-                    ${
-                      activeTab === tab
-                        ? "font-semibold text-black after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-1/2 after:bg-[#2E4C99]"
-                        : "text-[#4B4B4B]"
+                    ${activeTab === tab
+                      ? "font-semibold text-black after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-1/2 after:bg-[#2E4C99]"
+                      : "text-[#4B4B4B]"
                     }`}
                 >
                   {tab}
@@ -126,7 +125,7 @@ export default function ResponsiveTabsWithSwiper({ specList = detailsData }) {
           {availableTabs.length > 2 && (
             <div className="flex items-center justify-center absolute top-0 bottom-0 w-full lg:hidden">
               <button
-                className="btn-prev absolute left-[-30px] lg:left-[-55px] lg:top-1/2 lg:-translate-y-1/2 z-10
+                className="specialization-btn-prev absolute left-[-30px] lg:left-[-55px] lg:top-1/2 lg:-translate-y-1/2 z-10
                           lg:bg-gradient-to-r from-[#E4E4E4] to-[#FFFFFF] 
                           lg:shadow w-[34px] h-[38px] flex items-center justify-center rounded-[30px_0px_0px_30px] cursor-pointer group
                            hover:bg-[#2E4C99] disabled:pointer-events-none disabled:opacity-[0.2]"
@@ -136,7 +135,7 @@ export default function ResponsiveTabsWithSwiper({ specList = detailsData }) {
                 </svg>
               </button>
               <button
-                className="btn-next absolute right-[-30px] lg:right-[-55px] lg:top-1/2 lg:-translate-y-1/2 z-10 
+                className="specialization-btn-next absolute right-[-30px] lg:right-[-55px] lg:top-1/2 lg:-translate-y-1/2 z-10 
                           lg:bg-gradient-to-r from-[#E4E4E4] to-[#FFFFFF] 
                           lg:shadow w-[34px] h-[38px] flex items-center justify-center
                            rounded-[0px_30px_30px_0px] group cursor-pointer hover:bg-[#2E4C99] 
@@ -154,9 +153,8 @@ export default function ResponsiveTabsWithSwiper({ specList = detailsData }) {
         <Tabs
           defaultValue={availableTabs[0] || tabs[0]}
           value={activeTab}
-          className={`w-full ${
-            specList[getOriginalTabIndex(activeTab)]?.length > 0 ? "bg-[#F5F9FF]" : "bg-transparent"
-          } rounded-[15px] p-[25px_10px] 3xl:p-[45px_20px] overflow-hidden relativebefore:absolute after:content-[''] before:top-0 before:left-0 before:w-[20px] 2xl:before:w-[30px] 
+          className={`w-full ${specList[getOriginalTabIndex(activeTab)]?.length > 0 ? "bg-[#F5F9FF]" : "bg-transparent"
+            } rounded-[15px] p-[25px_10px] 3xl:p-[45px_20px] overflow-hidden relativebefore:absolute after:content-[''] before:top-0 before:left-0 before:w-[20px] 2xl:before:w-[30px] 
           before:h-full before:bg-[#F5F9FF]`}
         >
           {availableTabs.map((tab) => {
