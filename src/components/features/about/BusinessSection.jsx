@@ -18,7 +18,6 @@ const item = {
 
 export default function BusinessSection() {
     const { ref, inView } = useInView({ threshold: 0.4 });
-
     return (
         <section className="w-full h-auto 3xl:pb-[175px] 2xl:pb-[140px] xl:pb-[110px] md:pb-[70px] sm:pb-[50px] pb-[40px] block relative z-0">
             <div className="absolute -z-1 left-0 top-0 bottom-0 lg:w-[70%] w-full h-full m-auto pointer-events-none">
