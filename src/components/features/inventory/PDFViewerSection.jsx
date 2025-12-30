@@ -84,6 +84,7 @@ export default function PDFViewer({ fileUrl }) {
   };
 
   const goToPrevPage = () => {
+    console.log("Previous page clicked");
     setPageNumber((prev) => {
       const newPage = Math.max(1, prev - 1);
       scrollToPage(newPage);
@@ -92,6 +93,8 @@ export default function PDFViewer({ fileUrl }) {
   };
 
   const goToNextPage = () => {
+    console.log("Next page clicked");
+
     setPageNumber((prev) => {
       const newPage = Math.min(numPages, prev + 1);
       scrollToPage(newPage);
@@ -102,6 +105,9 @@ export default function PDFViewer({ fileUrl }) {
   const scrollToPage = (page) => {
     const pageElement = pageRefs.current[page];
     const container = documentRef.current;
+
+    console.log("Scrolling to page:", pageElement, container);
+
     if (pageElement && container) {
       const containerRect = container.getBoundingClientRect();
       const pageRect = pageElement.getBoundingClientRect();
@@ -142,43 +148,27 @@ export default function PDFViewer({ fileUrl }) {
           {/* Header with controls */}
           <div className="bg-[#3C3C3C] text-white p-4 flex items-center justify-between">
             <div className="flex items-center justify-between gap-3 w-full">
-              <div className="flex flex-wrap items-center">
-                <h3 className="text-[10px] xl:text-[12px] 2xl:text-[14px] 3xl:text-[16px] font-medium px-[10px]">Specification Document</h3>
-
-                <div className="flex items-center max-sm:hidden">
-                  {numPages && (
-                    <span className="text-[8px] xl:text-[10px] 2xl:text-[14px] opacity-80">
-                      <span className="bg-[#1E1E1E] p-[2px_10px] m-1">{pageNumber}</span> / <span className="p-[2px_10px]">{numPages}</span>
+              <div className="flex items-center gap-2 flex-nowrap whitespace-nowrap">
+                <h3 className="text-[8px] xl:text-[10px] 2xl:text-[12px] 3xl:text-[14px] font-medium px-[5px] shrink-0">Specification Document</h3>
+                {numPages && (
+                  <>
+                    <span className="text-[7px] xl:text-[9px] 2xl:text-[11px] 3xl:text-[13px] opacity-80 shrink-0">
+                      <span className="bg-[#1E1E1E] p-[2px_6px]">{pageNumber}</span> / <span className="p-[2px_6px]">{numPages}</span>
                     </span>
-                  )}
-                  {numPages && (
-                    <div className="flex items-center flex-col">
-                      <button
-                        onClick={goToPrevPage}
-                        disabled={pageNumber <= 1}
-                        className="flex items-center text-[12px] xl:text-[14px] font-medium rotate-90 bg-transparent transition-colors
-                       disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#1e1e1e] text-gray-700"
-                        aria-label="Previous page"
-                      >
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                    <div className="flex items-center gap-1 shrink-0">
+                      <button onClick={goToPrevPage} disabled={pageNumber <= 1} className="flex items-center justify-center w-5 h-5 md:w-6 md:h-6 rounded bg-white/10 text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/20 transition-all active:scale-95" aria-label="Previous page">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
                         </svg>
                       </button>
-
-                      <button
-                        onClick={goToNextPage}
-                        disabled={pageNumber >= numPages}
-                        className="flex items-center text-[12px] xl:text-[14px] font-medium rotate-90 bg-transparent transition-colors disabled:opacity-50 
-                      disabled:cursor-not-allowed hover:bg-[#1e1e1e] text-gray-700"
-                        aria-label="Next page"
-                      >
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                      <button onClick={goToNextPage} disabled={pageNumber >= numPages} className="flex items-center justify-center w-5 h-5 md:w-6 md:h-6 rounded bg-white/10 text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/20 transition-all active:scale-95" aria-label="Next page">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
                         </svg>
                       </button>
                     </div>
-                  )}
-                </div>
+                  </>
+                )}
               </div>
 
               <div className="flex items-center gap-2">
@@ -261,41 +251,6 @@ export default function PDFViewer({ fileUrl }) {
                       </div>
                     ))}
                 </Document>
-
-                {/* Mobile navigation controls */}
-                <div className="flex items-center sm:hidden mt-4 sticky bottom-0 bg-white p-3 rounded shadow-lg">
-                  {numPages && (
-                    <>
-                      <button
-                        onClick={goToPrevPage}
-                        disabled={pageNumber <= 1}
-                        className="flex items-center justify-center w-10 h-10 rounded bg-[#2E4C99] text-white disabled:opacity-50 
-                        disabled:cursor-not-allowed hover:bg-[#1e3a7a] transition-colors"
-                        aria-label="Previous page"
-                      >
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
-                        </svg>
-                      </button>
-
-                      <span className="text-sm mx-4 font-medium">
-                        {pageNumber} / {numPages}
-                      </span>
-
-                      <button
-                        onClick={goToNextPage}
-                        disabled={pageNumber >= numPages}
-                        className="flex items-center justify-center w-10 h-10 rounded bg-[#2E4C99] text-white disabled:opacity-50 
-                        disabled:cursor-not-allowed hover:bg-[#1e3a7a] transition-colors"
-                        aria-label="Next page"
-                      >
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
-                        </svg>
-                      </button>
-                    </>
-                  )}
-                </div>
               </div>
             </div>
           </div>
