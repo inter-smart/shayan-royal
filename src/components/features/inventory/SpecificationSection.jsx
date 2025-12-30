@@ -111,9 +111,10 @@ export default function ResponsiveTabsWithSwiper({ specList = detailsData }) {
                 <button
                   onClick={() => setActiveTab(tab)}
                   className={`relative text-[13px] sm:text-[16px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[25px] font-base1 w-full pb-2 text-left cursor-pointer transition-all hover:text-[#2E4C99] hover:font-semibold
-                    ${activeTab === tab
-                      ? "font-semibold text-black after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-1/2 after:bg-[#2E4C99]"
-                      : "text-[#4B4B4B]"
+                    ${
+                      activeTab === tab
+                        ? "font-semibold text-black after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-1/2 after:bg-[#2E4C99]"
+                        : "text-[#4B4B4B]"
                     }`}
                 >
                   {tab}
@@ -153,8 +154,9 @@ export default function ResponsiveTabsWithSwiper({ specList = detailsData }) {
         <Tabs
           defaultValue={availableTabs[0] || tabs[0]}
           value={activeTab}
-          className={`w-full ${specList[getOriginalTabIndex(activeTab)]?.length > 0 ? "bg-[#F5F9FF]" : "bg-transparent"
-            } rounded-[15px] p-[25px_10px] 3xl:p-[45px_20px] overflow-hidden relativebefore:absolute after:content-[''] before:top-0 before:left-0 before:w-[20px] 2xl:before:w-[30px] 
+          className={`w-full ${
+            specList[getOriginalTabIndex(activeTab)]?.length > 0 ? "bg-[#F5F9FF]" : "bg-transparent"
+          } rounded-[15px] p-[25px_10px] 3xl:p-[45px_20px] overflow-hidden relativebefore:absolute after:content-[''] before:top-0 before:left-0 before:w-[20px] 2xl:before:w-[30px] 
           before:h-full before:bg-[#F5F9FF]`}
         >
           {availableTabs.map((tab) => {
