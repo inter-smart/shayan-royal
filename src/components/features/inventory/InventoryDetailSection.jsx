@@ -65,6 +65,8 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
   const thumbsNextRef = useRef(null);
   const verticalPrevRef = useRef(null);
   const verticalNextRef = useRef(null);
+  const mainPrevRef = useRef(null);
+  const mainNextRef = useRef(null);
   const carImages = carDetails?.images;
 
   useEffect(() => {
@@ -114,16 +116,20 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                       effect="fade"
                       fadeEffect={{ crossFade: true }}
                       speed={800}
-                      loop={true}
-                      onBeforeInit={(swiper) => {
-                        swiper.params.navigation.prevEl = ".navBtn-prev";
-                        swiper.params.navigation.nextEl = ".navBtn-next";
-                      }}
+                      // loop={true}
                       navigation={{
-                        prevEl: ".navBtn-prev",
-                        nextEl: ".navBtn-next",
+                        prevEl: mainPrevRef.current,
+                        nextEl: mainNextRef.current,
                       }}
-                      thumbs={{ swiper: thumbsSwiper }}
+                      onBeforeInit={(swiper) => {
+                        setTimeout(() => {
+                          swiper.params.navigation.prevEl = mainPrevRef.current;
+                          swiper.params.navigation.nextEl = mainNextRef.current;
+                          swiper.navigation.init();
+                          swiper.navigation.update();
+                        });
+                      }}
+                      thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
                       className="border border-[rgba(46,76,153,0.3)] rounded-[10px] w-full h-full"
                     >
                       {carImages?.map((img, index) => (
@@ -154,7 +160,8 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                                             pointer-events-none"
                     >
                       <button
-                        className="navBtn-prev pointer-events-auto bg-white/40 rounded-full shadow 
+                        ref={mainPrevRef}
+                        className="navBtn-prev pointer-events-auto bg-white/40 backdrop-blur-sm rounded-full shadow 
                                             w-[20px] md:w-10 md:h-10 h-[20px]
                                                 flex items-center justify-center group hover:bg-[#2E4C99] relative left-[5px] md:left-[10px] cursor-pointer disabled:opacity-[0.5]"
                       >
@@ -163,7 +170,8 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                         </svg>
                       </button>
                       <button
-                        className="navBtn-next pointer-events-auto bg-white/40 rounded-full shadow  w-[20px] md:w-10 md:h-10 h-[20px]
+                        ref={mainNextRef}
+                        className="navBtn-next pointer-events-auto bg-white/40 backdrop-blur-sm rounded-full shadow  w-[20px] md:w-10 md:h-10 h-[20px]
                                             flex items-center justify-center group hover:bg-[#2E4C99] relative right-[5px] md:right-[10px] cursor-pointer disabled:opacity-[0.5]"
                       >
                         <svg viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 w-[7px] md:w-2 md:h-5 h-[8px]">
