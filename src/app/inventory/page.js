@@ -1,6 +1,8 @@
 import InnerBanner from "@/components/common/InnerBanner";
 import { BreadCrumb } from "@/components/common/BreadCrumb";
 import InventorySection from "@/components/features/inventory/InventorySection";
+import AdvancesearchSection from "@/components/features/home/AdvancesearchSection";
+import SimpleSearchBox from "@/components/common/SimpleSearchBox";
 import { Suspense } from "react";
 import { defaultMeta, mediaUrl } from "@/lib/constants";
 import { fetchFromAPI } from "@/lib/api";
@@ -130,12 +132,21 @@ export default async function Page() {
         }
         alt={banner?.title ? banner?.title : "inventory-banner"}
       />
+     
       <BreadCrumb
         items={[
           { label: "HOME", href: "/" },
           { label: "INVENTORY", isCurrent: true },
         ]}
       />
+       <Suspense fallback={<div className="h-20 w-full animate-pulse bg-gray-100 rounded-md"></div>}>
+        <SimpleSearchBox />
+      </Suspense>
+      <div className="container">
+        <Suspense fallback={<div className="h-20 w-full animate-pulse bg-gray-100 rounded-md"></div>}>
+          <AdvancesearchSection />
+        </Suspense>
+      </div>
       <Suspense fallback={<div>Loading...</div>}>
         <InventorySection />
       </Suspense>

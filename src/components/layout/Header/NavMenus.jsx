@@ -17,12 +17,24 @@ function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, stati
     { label: "Inventory", href: "/inventory", sublabel: "inv" },
     { label: "Brands", href: "/brand", sublabel: "brand" },
     { label: "Fabrication", href: "/fabrication", sublabel: "fab" },
-    { label: "Services", href: "/service", sublabel: "ser" },
+    {
+      label: "Services",
+      href: "/service",
+      sublabel: "ser",
+      submenus: [
+        { label: "Car Fitment", href: "/service-fitment" },
+        { label: "Maintenance", href: "/service-detail/maintenance" },
+        { label: "Repair Services", href: "/service-detail/repair" },
+        { label: "Custom Fabrication", href: "/fabrication" },
+      ],
+    },
     { label: "Blogs", href: "/blog", sublabel: "blog" },
     { label: data?.header_button_text, href: data?.header_button_link, sublabel: "Contact Us" },
   ];
 
   const [isOpen, setIsOpen] = useState(false); // State for sheet
+  const [showServicesDropdown, setShowServicesDropdown] = useState(false); // State for services dropdown
+  const [expandedMobileMenu, setExpandedMobileMenu] = useState(null); // State for mobile accordion
 
   return (
     <>
@@ -90,7 +102,12 @@ function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, stati
                 `;
 
             return (
-              <NavigationMenuItem key={item.label}>
+              <NavigationMenuItem
+                key={item.label}
+                className="relative"
+                onMouseEnter={() => item.sublabel === "ser" && setShowServicesDropdown(true)}
+                onMouseLeave={() => item.sublabel === "ser" && setShowServicesDropdown(false)}
+              >
                 <Link href={item.href} passHref>
                   <NavigationMenuLink asChild>
                     <span
@@ -100,10 +117,41 @@ function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, stati
                           : ""
                       }`}
                     >
-                      {item.label}
+                      <span className="inline-flex items-center gap-0.5">
+                        {item.label}
+                        {item.sublabel === "ser" && (
+                          <svg
+                            className={`w-2 h-2 xl:w-2.5 xl:h-2.5 2xl:w-3 2xl:h-3 transition-transform duration-200 ${
+                              showServicesDropdown ? "rotate-180" : ""
+                            }`}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        )}
+                      </span>
                     </span>
                   </NavigationMenuLink>
                 </Link>
+
+                {/* Services Dropdown - Desktop Only */}
+                {item.submenus && showServicesDropdown && (
+                  <div className="absolute top-full left-0 mt-0 min-w-[220px] bg-white/95 backdrop-blur-md border border-gray-200 rounded-b-lg shadow-xl z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                    <div className="py-2">
+                      {item.submenus.map((submenu) => (
+                        <Link
+                          key={submenu.label}
+                          href={submenu.href}
+                          className="block px-5 py-3 text-[13px] font-medium text-gray-700 hover:bg-[#BE1E2D] hover:text-white transition-all duration-200 border-b border-gray-100 last:border-b-0"
+                        >
+                          {submenu.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </NavigationMenuItem>
             );
           })}
@@ -125,14 +173,56 @@ function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, stati
               <ul className="space-y-4 mt-4">
                 {menuItems.map((item, i) => (
                   <li key={item.label} style={{ animationDelay: `${i * 80}ms` }}>
-                    <Link
-                      href={item.href}
-                      onClick={() => setIsOpen(false)} // 👈 Close Sheet on click
-                      className="relative block text-[16px] font-medium py-1 transition-all duration-300 group"
-                    >
-                      {item.label}
-                      <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#1577F0] transition-all duration-300 group-hover:w-full"></span>
-                    </Link>
+                    {item.submenus ? (
+                      // Menu item with submenus - Accordion behavior
+                      <div>
+                        <button
+                          onClick={() => setExpandedMobileMenu(expandedMobileMenu === item.label ? null : item.label)}
+                          className="relative w-full flex items-center justify-between text-[16px] font-medium py-1 transition-all duration-300 group"
+                        >
+                          <span>{item.label}</span>
+                          <svg
+                            className={`w-4 h-4 transition-transform duration-300 ${expandedMobileMenu === item.label ? "rotate-180" : ""}`}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </button>
+
+                        {/* Submenu items */}
+                        {expandedMobileMenu === item.label && (
+                          <ul className="mt-2 space-y-2 animate-in slide-in-from-top-2 duration-200 bg-white/5 rounded-md p-3 border-l-2 border-[#BE1E2D]">
+                            {item.submenus.map((submenu) => (
+                              <li key={submenu.label}>
+                                <Link
+                                  href={submenu.href}
+                                  onClick={() => {
+                                    setIsOpen(false);
+                                    setExpandedMobileMenu(null);
+                                  }}
+                                  className="relative block text-[14px] font-normal py-1 text-gray-300 hover:text-white transition-all duration-300 group"
+                                >
+                                  {submenu.label}
+                                  <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#BE1E2D] transition-all duration-300 group-hover:w-full"></span>
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    ) : (
+                      // Regular menu item without submenus
+                      <Link
+                        href={item.href}
+                        onClick={() => setIsOpen(false)}
+                        className="relative block text-[16px] font-medium py-1 transition-all duration-300 group"
+                      >
+                        {item.label}
+                        <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#1577F0] transition-all duration-300 group-hover:w-full"></span>
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>

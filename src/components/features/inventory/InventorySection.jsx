@@ -3,7 +3,6 @@
 import Link from "next/link";
 import PaginationNavigator from "@/components/common/PaginationNavigator";
 import ProductCard from "@/components/common/ProductCard";
-import AdvancesearchSection from "@/components/features/home/AdvancesearchSection";
 import { useEffect, useMemo, useState } from "react";
 import { mediaUrl } from "@/lib/constants";
 import { useSearchParams } from "next/navigation";
@@ -26,7 +25,6 @@ const InventorySectionLoader = () => (
   <section className="w-full h-auto block 3xl:py-[0px_130px] lg:py-[10px_90px] sm:py-[10px_70px] py-[10px_40px]">
     <div className="container">
       <div className="w-full h-auto mb-[10px] 3xl:p-[20px_15px] 2xl:p-[15px_12px] lg:p-[12px_10px] p-[8px_5px]">
-        <AdvancesearchSection />
         <Link
           href="/contact"
           className="3xl:text-[18px] sm:text-[14px] text-[13px] leading-[1.2] font-medium font-base1 text-center sm:text-right text-[#2E4C99] sm:w-1/2 w-full ml-auto sm:mt-[20px] mt-[40px] flex justify-end transition-colors duration-200 hover:text-base3"
@@ -60,7 +58,6 @@ const InventorySectionError = ({ onRetry }) => (
   <section className="w-full h-auto block 3xl:py-[0px_130px] lg:py-[10px_90px] sm:py-[10px_70px] py-[10px_40px]">
     <div className="container">
       <div className="w-full h-auto mb-[10px] 3xl:p-[20px_15px] 2xl:p-[15px_12px] lg:p-[12px_10px] p-[8px_5px]">
-        <AdvancesearchSection />
         <Link
           href="/contact"
           className="3xl:text-[18px] sm:text-[14px] text-[13px] leading-[1.2] font-medium font-base1 text-center sm:text-right text-[#2E4C99] sm:w-1/2 w-full ml-auto sm:mt-[20px] mt-[40px] flex justify-end transition-colors duration-200 hover:text-base3"
@@ -100,7 +97,6 @@ const InventorySectionEmpty = () => (
   <section className="w-full h-auto block 3xl:py-[0px_130px] lg:py-[10px_90px] sm:py-[10px_70px] py-[10px_40px]">
     <div className="container">
       <div className="w-full h-auto mb-[10px] 3xl:p-[20px_15px] 2xl:p-[15px_12px] lg:p-[12px_10px] p-[8px_5px]">
-        <AdvancesearchSection />
         <Link
           href="/contact"
           className="3xl:text-[18px] sm:text-[14px] text-[13px] leading-[1.2] font-medium font-base1 text-center sm:text-right text-[#2E4C99] sm:w-[75%] w-full ml-auto sm:mt-[20px] mt-[40px] flex justify-end transition-colors duration-200 hover:text-base3"
@@ -330,7 +326,6 @@ export default function InventorySection() {
           </div>
         )}
         <div className="w-full h-auto mb-[10px] 3xl:p-[20px_15px] 2xl:p-[15px_12px] lg:p-[12px_10px] p-[8px_5px]">
-          <AdvancesearchSection currentPage={currentPage} />
           <Link
             href="/contact"
             className="3xl:text-[18px] sm:text-[14px] text-[13px] leading-[1.2] font-medium font-base1 text-center sm:text-right text-[#2E4C99] sm:w-1/2 w-full ml-auto sm:mt-[20px] mt-[40px] flex justify-end transition-colors duration-200 hover:text-base3"

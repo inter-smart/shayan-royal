@@ -86,12 +86,12 @@ export function SearchableSelect({
         <Command>
           <CommandInput
             placeholder={searchPlaceholder}
-            className="h-9 3xl:text-[18px] 2xl:text-[16px] xl:text-[12px] md:text-[10px] text-[6px] font-normal uppercase placeholder:!text-black"
+            className="h-9 3xl:text-[18px] 2xl:text-[16px] xl:text-[12px] md:text-[10px] text-[14px] font-normal uppercase placeholder:!text-black"
           />
           <CommandList>
             {options.length > 0 ? (
               <>
-                <CommandEmpty className="3xl:py-[16px] 2xl:py-[14px] xl:py-[12px] md:py-[10px] py-[8px] 3xl:px-4 px-[7px] 3xl:text-[14px] 2xl:text-[12px] xl:text-[10px] md:text-[8px] text-[6px] font-normal uppercase text-gray-500">{emptyText}</CommandEmpty>
+                <CommandEmpty className="3xl:py-[16px] 2xl:py-[14px] xl:py-[12px] md:py-[10px] py-[10px] 3xl:px-4 px-[10px] 3xl:text-[14px] 2xl:text-[12px] xl:text-[10px] md:text-[8px] text-[14px] font-normal uppercase text-gray-500">{emptyText}</CommandEmpty>
                 <CommandGroup>
                   {options.map((option) => (
                     <CommandItem
@@ -115,7 +115,7 @@ export function SearchableSelect({
                 </CommandGroup>
               </>
             ) : (
-              <div className="3xl:py-[16px] 2xl:py-[14px] xl:py-[12px] md:py-[10px] py-[8px] 3xl:px-4 px-[7px] 3xl:text-[14px] 2xl:text-[12px] xl:text-[10px] md:text-[8px] text-[6px] font-normal uppercase text-gray-500 text-center">
+              <div className="3xl:py-[16px] 2xl:py-[14px] xl:py-[12px] md:py-[10px] py-[10px] 3xl:px-4 px-[10px] 3xl:text-[14px] 2xl:text-[12px] xl:text-[10px] md:text-[8px] text-[14px] font-normal uppercase text-gray-500 text-center">
                 {emptyText}
               </div>
             )}
