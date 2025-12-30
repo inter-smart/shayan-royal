@@ -40,7 +40,7 @@ export default function FaqSection({ faqs, title, description, image }) {
   return (
     <section className="relative z-0 bg-white py-[40px] xl:py-[70px_45px] 2xl:py-[90px_50px] 3xl:py-[110_125pxpx] overflow-hidden">
       {/* Background Logo */}
-      <div className="3xl:max-w-[690px] 2xl:max-w-[620px] xl:max-w-[520px] lg:max-w-[420px] md:max-w-[320px] max-w-[250px] w-full absolute top-[5%] right-0">
+      <div className="3xl:max-w-[690px] 2xl:max-w-[620px] xl:max-w-[520px] lg:max-w-[420px] md:max-w-[320px] max-w-[250px] w-full absolute max-xl:bottom-[20%] xl:top-[5%] right-0">
         <Image src="/images/faqLogo.png" alt="faqLogo" width={850} height={500} className="w-full h-full object-cover" />
       </div>
 
