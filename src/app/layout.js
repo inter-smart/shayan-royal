@@ -9,25 +9,6 @@ import { LoadingProvider } from "@/contexts/LoadingContext";
 import LoadingWrapper from "@/components/common/LoadingWrapper";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
-// Function to fetch banner status
-async function getBannerStatus() {
-  try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/inventories/banner-status`, {
-      cache: "no-store", // Ensure fresh data on each request
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch banner status");
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching banner status:", error);
-    return { success: false, data: { status: "inactive" } };
-  }
-}
-
 const stretchPro = localFont({
   src: [
     {
@@ -48,19 +29,13 @@ const barlow = Barlow({
   variable: "--font-barlow",
 });
 
-export default async function RootLayout({ children }) {
-  // Fetch banner status
-  const { data: bannerStatus } = await getBannerStatus();
-
-  // Convert status to boolean: true if active, false otherwise
-  const isBannerActive = bannerStatus?.status === "active";
-
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`font-base1 ${barlow.variable} ${stretchPro.variable}`}>
         <LoadingProvider>
           <LoadingWrapper>
-            <Header bannerStatus={isBannerActive} />
+            <Header />
             <NuqsAdapter>
               <main className="flex-grow">{children}</main>
             </NuqsAdapter>

@@ -1,17 +1,23 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, use } from "react";
 import NavMenus from "./NavMenus";
 import Image from "next/image";
 import Link from "next/link";
 import { MEDIA_URL } from "@/lib/api";
 
-function Contents({ data, isBannerActive }) {
+function Contents({ data, bannerStatus, services }) {
+  console.log("Header Contents bannerStatus:", bannerStatus);
+  console.log("Header Contents bannerStatus:", services);
+  console.log("Header Contents bannerStatus:", data);
+
   const pathname = usePathname();
   const isInnerPage = pathname !== "/";
   const isPrivacyPage = ["/privacy-policy", "/terms-conditions,"].includes(pathname);
   const staticHeader = false;
+
+  const isBannerActive = bannerStatus?.status == "active";
 
   // Check if it's an inventory detail page (has slug after /inventory/)
   const isInventoryDetailPage = pathname.startsWith("/inventory/") && pathname !== "/inventory";

@@ -3,9 +3,13 @@ import Contents from "./Contents";
 import { fetchFromAPI } from "@/lib/api";
 import { notFound } from "next/navigation";
 
-export default async function Header({ bannerStatus }) {
+export default async function Header() {
   const headerData = await fetchFromAPI("header");
   const { data, error } = headerData;
+
+  const headerDetails = data?.headerContents;
+  const services = data?.services;
+  const bannerStatus = data?.settings;
 
   if (error) {
     return <div>Something went wrong</div>;
@@ -17,7 +21,7 @@ export default async function Header({ bannerStatus }) {
 
   return (
     <header>
-      <Contents data={data} isBannerActive={bannerStatus} />
+      <Contents data={headerDetails} services={services} bannerStatus={bannerStatus} />
     </header>
   );
 }
