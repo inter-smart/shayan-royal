@@ -8,13 +8,9 @@ import Link from "next/link";
 import { MEDIA_URL } from "@/lib/api";
 
 function Contents({ data, bannerStatus, services }) {
-  console.log("Header Contents bannerStatus:", bannerStatus);
-  console.log("Header Contents bannerStatus:", services);
-  console.log("Header Contents bannerStatus:", data);
-
   const pathname = usePathname();
   const isInnerPage = pathname !== "/";
-  const isPrivacyPage = ["/privacy-policy", "/terms-conditions,"].includes(pathname);
+  const isPrivacyPage = ["/privacy-policy", "/terms-conditions"].includes(pathname);
   const staticHeader = false;
 
   const isBannerActive = bannerStatus?.status == "active";
@@ -79,6 +75,7 @@ function Contents({ data, bannerStatus, services }) {
           </div>
           <NavMenus
             isInnerPage={isInnerPage}
+            services={services}
             pathname={pathname}
             data={data}
             staticHeader={staticHeader}
