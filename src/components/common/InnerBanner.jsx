@@ -11,14 +11,7 @@ export default function InnerBanner({ title, image, alt = "InnerBanner" }) {
             after:absolute after:content-[''] after:top-0 after:left-0 after:w-full after:h-2/4 
             after:bg-[linear-gradient(180deg,_#000_43.28%,_rgba(0,0,0,0)_100%)] after:z-01 after:opacity-70"
     >
-      <Image
-        src={`https://crm.intersmarthosting.in/shayanroyal/uploads/about_page_common_content/1761909665044-549818830.png`}
-        alt={alt}
-        fill
-        sizes="100vw"
-        style={{ objectFit: "cover" }}
-        className="-z-2"
-      />
+      <Image src={image} alt={alt} fill sizes="100vw" style={{ objectFit: "cover" }} className="-z-2" priority />
       <div className="container w-full h-full">
         <div className="w-full h-full flex items-end">
           <Heading size="heading2" as="h1" className="!font-bold uppercase text-white">
