@@ -163,7 +163,7 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                         ref={mainPrevRef}
                         className="navBtn-prev pointer-events-auto bg-white/40 backdrop-blur-sm rounded-full shadow 
                                             w-[20px] md:w-10 md:h-10 h-[20px]
-                                                flex items-center justify-center group hover:bg-[#2E4C99] relative left-[5px] md:left-[10px] cursor-pointer disabled:opacity-[0.5]"
+                                                flex items-center justify-center group relative left-[5px] md:left-[10px] cursor-pointer disabled:opacity-[0.5]"
                       >
                         <svg viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 w-[7px] md:w-2 md:h-5 h-[8px]">
                           <path d="M6.14364 0.699707L0.769531 6.12544L6.14364 12.1834" stroke="black" />
@@ -172,7 +172,7 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                       <button
                         ref={mainNextRef}
                         className="navBtn-next pointer-events-auto bg-white/40 backdrop-blur-sm rounded-full shadow  w-[20px] md:w-10 md:h-10 h-[20px]
-                                            flex items-center justify-center group hover:bg-[#2E4C99] relative right-[5px] md:right-[10px] cursor-pointer disabled:opacity-[0.5]"
+                                            flex items-center justify-center group relative right-[5px] md:right-[10px] cursor-pointer disabled:opacity-[0.5]"
                       >
                         <svg viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 w-[7px] md:w-2 md:h-5 h-[8px]">
                           <path d="M0.817302 0.699707L6.19141 6.12544L0.817302 12.1834" stroke="black" />
