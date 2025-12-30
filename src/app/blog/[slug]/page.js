@@ -12,7 +12,7 @@ async function getMetaData(slug) {
     const result = await response.json();
 
     const meta = result.data;
-    const metaTitle = defaultMeta.blog.title
+    const metaTitle = defaultMeta.blog.title;
     const metaDescription = defaultMeta.blog.description;
     const metaKeywords = defaultMeta.blog.keywords;
 
@@ -106,7 +106,6 @@ export default async function Page({ params }) {
 
   const { data, error } = await fetchFromAPI(`blog?slug=${slug}`);
 
-  
   if (error) {
     return notFound();
   }
@@ -119,11 +118,11 @@ export default async function Page({ params }) {
 
   return (
     <>
-      <InnerBanner
+      {/* <InnerBanner
         title={blog?.title ? blog?.title : "Blogs"}
         image={blog?.cover_image ? `${mediaUrl}${blog?.cover_image}` : "/images/blog_banner.webp"}
         alt={blog?.title ? blog?.title : "blog-banner"}
-      />
+      /> */}
       <BreadCrumb
         items={[
           { label: "HOME", href: "/" },

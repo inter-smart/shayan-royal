@@ -4,10 +4,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    formats: ["image/webp", "image/avif"],
-    minimumCacheTTL: 31536000, // 1 year
-    dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    // formats: ["image/webp", "image/avif"],
+    // minimumCacheTTL: 31536000, // 1 year
+    // dangerouslyAllowSVG: true,
+    // contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
       {
         protocol: "http",
@@ -25,14 +25,14 @@ const nextConfig = {
       },
     ],
   },
-  webpack(config) {
-    config.module.rules.push({
-      test: /pdf\.worker(\.min)?\.js$/,
-      use: { loader: "file-loader", options: { name: "[name].[contenthash].[ext]" } },
-    });
+  // webpack(config) {
+  //   config.module.rules.push({
+  //     test: /pdf\.worker(\.min)?\.js$/,
+  //     use: { loader: "file-loader", options: { name: "[name].[contenthash].[ext]" } },
+  //   });
 
-    return config;
-  },
+  //   return config;
+  // },
 };
 
 export default nextConfig;

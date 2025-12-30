@@ -9,6 +9,8 @@ import Link from "next/link";
 function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, staticHeader, isScrolled, isBannerActive }) {
   // Check if it's an inventory detail page (has slug after /inventory/)
   const isInventoryDetailPage = pathname.startsWith("/inventory/") && pathname !== "/inventory";
+  const isBlogDetailPage = pathname.startsWith("/blog/") && pathname !== "/blog";
+
   const menuItems = [
     { label: "Home", href: "/", sublabel: "home" },
     { label: "About Us", href: "/about", sublabel: "about" },
@@ -43,10 +45,7 @@ function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, stati
                 break;
 
               case "ser":
-                if (
-                  pathname.startsWith("/service-detail") ||
-                  pathname.startsWith("/service-fitment")
-                ) {
+                if (pathname.startsWith("/service-detail") || pathname.startsWith("/service-fitment")) {
                   isActive = true;
                 }
                 break;
@@ -57,13 +56,11 @@ function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, stati
 
             // Determine text color based on page type and banner status
             let textColorClass = "";
-            if (isPrivacyPage || staticHeader) {
+            if (isPrivacyPage || isBlogDetailPage || staticHeader) {
               textColorClass = "!text-black hover:!text-[#BE1E2D]";
             } else if (isInventoryDetailPage) {
               // For inventory detail pages, use banner status to determine text color
-              textColorClass = isBannerActive
-                ? (isScrolled ? "text-black" : "lg:text-white text-black")
-                : "text-black";
+              textColorClass = isBannerActive ? (isScrolled ? "text-black" : "lg:text-white text-black") : "text-black";
             } else if (isInnerPage) {
               textColorClass = isScrolled ? "text-black" : "lg:text-white text-black";
             } else {
@@ -73,13 +70,22 @@ function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, stati
             const menuLinkClass = `
                   text-[9px]  xl:text-[11px] 2xl:text-[13px] 3xl:text-[18px] font-medium uppercase tracking-[1px] transition-all
                   flex items-center justify-center 3xl:px-[25px] 2xl:px-[20px] px-[15px] 
-                  ${isInnerPage ? (isScrolled ? "py-[35px]" : "3xl:py-[43px] 2xl:py-[35px] py-[30px]") : (isScrolled ? "py-[30px]" : "3xl:py-[43px] 2xl:py-[35px] py-[30px]")}
+                  ${
+                    isInnerPage
+                      ? isScrolled
+                        ? "py-[35px]"
+                        : "3xl:py-[43px] 2xl:py-[35px] py-[30px]"
+                      : isScrolled
+                      ? "py-[30px]"
+                      : "3xl:py-[43px] 2xl:py-[35px] py-[30px]"
+                  }
                     ${isScrolled ? "py-[30px]" : "3xl:py-[55px] 2xl:py-[45px] py-[40px]"} 
                     ${textColorClass}
-                    ${isActive
-                ? "!font-semibold after:absolute after:content-[''] text-black after:bottom-[-1px] after:left-0 after:right-0 after:m-auto after:w-[70%] after:h-[2px] after:bg-[#be1e2d]"
-                : ""
-              }
+                    ${
+                      isActive
+                        ? "!font-semibold after:absolute after:content-[''] text-black after:bottom-[-1px] after:left-0 after:right-0 after:m-auto after:w-[70%] after:h-[2px] after:bg-[#be1e2d]"
+                        : ""
+                    }
                     hover:!text-[#BE1E2D] hover:bg-transparent
                 `;
 
@@ -88,17 +94,17 @@ function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, stati
                 <Link href={item.href} passHref>
                   <NavigationMenuLink asChild>
                     <span
-                      className={`${menuLinkClass}  ${item.sublabel === "Contact Us"
-                        ? "!text-[9[px] ]xl:!text-[10px] 2xl:!text-[12px] 3xl:!text-[16px] !text-white !font-normal bg-[#2E4C99] 3xl:h-[40px] 2xl:h-[30px] h-[25px] min-w-[90px] !py-0 !rounded-[50px] after:hidden hover:!bg-[#BE1E2D] hover:!text-white"
-                        : ""
-                        }`}
+                      className={`${menuLinkClass}  ${
+                        item.sublabel === "Contact Us"
+                          ? "!text-[9[px] ]xl:!text-[10px] 2xl:!text-[12px] 3xl:!text-[16px] !text-white !font-normal bg-[#2E4C99] 3xl:h-[40px] 2xl:h-[30px] h-[25px] min-w-[90px] !py-0 !rounded-[50px] after:hidden hover:!bg-[#BE1E2D] hover:!text-white"
+                          : ""
+                      }`}
                     >
                       {item.label}
                     </span>
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
-              
             );
           })}
         </NavigationMenuList>

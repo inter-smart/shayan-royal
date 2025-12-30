@@ -12,9 +12,10 @@ function Contents({ data, isBannerActive }) {
   const isInnerPage = pathname !== "/";
   const isPrivacyPage = ["/privacy-policy", "/terms-conditions,"].includes(pathname);
   const staticHeader = false;
-  
+
   // Check if it's an inventory detail page (has slug after /inventory/)
   const isInventoryDetailPage = pathname.startsWith("/inventory/") && pathname !== "/inventory";
+  const isBlogDetailPage = pathname.startsWith("/blog/") && pathname !== "/blog";
   // const isPrivacyPage =
   //   ["/privacy-policy", "/terms-conditions"].includes(pathname) ||
   //   (pathname.startsWith("/inventory/") && !hasBanner);
@@ -39,14 +40,14 @@ function Contents({ data, isBannerActive }) {
   return (
     <div
       className={`${
-        isPrivacyPage || staticHeader 
-          ? "relative bg-white" 
-          : isInventoryDetailPage 
-            ? (isBannerActive ? "absolute bg-transparent" : "relative bg-transparent")
-            : "absolute bg-transparent"
-      }  ${
-        isScrolled ? "stickyHeader" : ""
-      } w-full  top-0 left-0 z-10 bg-transparent `}
+        isPrivacyPage || staticHeader || isBlogDetailPage
+          ? "relative bg-white"
+          : isInventoryDetailPage
+          ? isBannerActive
+            ? "absolute bg-transparent"
+            : "relative bg-transparent"
+          : "absolute bg-transparent"
+      }  ${isScrolled ? "stickyHeader" : ""} w-full  top-0 left-0 z-10 bg-transparent `}
     >
       <div className="container">
         <div
