@@ -6,7 +6,7 @@ import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuL
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import Link from "next/link";
 
-function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, staticHeader, isScrolled, isBannerActive }) {
+function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, staticHeader, isScrolled, isBannerActive, services }) {
   // Check if it's an inventory detail page (has slug after /inventory/)
   const isInventoryDetailPage = pathname.startsWith("/inventory/") && pathname !== "/inventory";
   const isBlogDetailPage = pathname.startsWith("/blog/") && pathname !== "/blog";
@@ -21,12 +21,7 @@ function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, stati
       label: "Services",
       href: "/service",
       sublabel: "ser",
-      submenus: [
-        { label: "Car Fitment", href: "/service-fitment" },
-        { label: "Maintenance", href: "/service-detail/maintenance" },
-        { label: "Repair Services", href: "/service-detail/repair" },
-        { label: "Custom Fabrication", href: "/fabrication" },
-      ],
+      submenus: services,
     },
     { label: "Blogs", href: "/blog", sublabel: "blog" },
     { label: data?.header_button_text, href: data?.header_button_link, sublabel: "Contact Us" },
@@ -143,7 +138,7 @@ function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, stati
                       {item.submenus.map((submenu) => (
                         <Link
                           key={submenu.label}
-                          href={submenu.href}
+                          href={submenu?.type === "service-detail" ? `/service-detail/${submenu?.href}` : `/service-fitment/${submenu?.href}`}
                           className="block px-5 py-3 text-[13px] font-medium text-gray-700 hover:bg-[#BE1E2D] hover:text-white transition-all duration-200 border-b border-gray-100 last:border-b-0"
                         >
                           {submenu.label}
@@ -197,7 +192,7 @@ function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, stati
                             {item.submenus.map((submenu) => (
                               <li key={submenu.label}>
                                 <Link
-                                  href={submenu.href}
+                                  href={submenu?.type === "service-detail" ? `/service-detail/${submenu?.href}` : `/service-fitment/${submenu?.href}`}
                                   onClick={() => {
                                     setIsOpen(false);
                                     setExpandedMobileMenu(null);
