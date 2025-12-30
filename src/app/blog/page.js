@@ -110,6 +110,7 @@ export default async function Page() {
       <InnerBanner
         title={banner?.title ? banner?.title : "Blogs"}
         image={banner?.image ? `${mediaUrl}${banner?.image}` : "/images/blog_banner.webp"}
+        mobileImage={banner?.mobile_image ? `${mediaUrl}${banner?.mobile_image}` : "/images/about_banner.webp"}
         alt={banner?.title ? banner?.title : "blog-banner"}
       />
       <BreadCrumb

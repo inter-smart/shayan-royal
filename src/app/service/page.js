@@ -12,7 +12,7 @@ async function getMetaData() {
     const result = await response.json();
 
     const meta = result.data;
-    const metaTitle = defaultMeta.services.title
+    const metaTitle = defaultMeta.services.title;
     const metaDescription = defaultMeta.services.description;
     const metaKeywords = defaultMeta.services.keywords;
 
@@ -116,6 +116,7 @@ export default async function Page() {
       <InnerBanner
         title={banner?.title ? banner?.title : "Services"}
         image={banner?.image ? `${mediaUrl}${banner?.image}` : "/images/service_banner.webp"}
+        mobileImage={banner?.mobile_image ? `${mediaUrl}${banner?.mobile_image}` : "/images/about_banner.webp"}
         alt={banner?.title ? banner?.title : "service-banner"}
       />
       <BreadCrumb
