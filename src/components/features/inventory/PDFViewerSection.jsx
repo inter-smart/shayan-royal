@@ -142,8 +142,8 @@ export default function PDFViewer({ fileUrl }) {
   const mainWidth = viewportWidth < 768 ? viewportWidth - 40 : 800;
 
   return (
-    <section className="py-[20px] 3xl:py-[30px] relative z-0">
-      <div className="container">
+    <section className="py-[20px] 3xl:py-[30px] relative z-0 overflow-x-hidden">
+      <div className="container px-4">
         <div className="bg-white overflow-hidden md:max-w-[85%] lg:max-w-[50%] m-auto">
           {/* Header with controls */}
           <div className="bg-[#3C3C3C] text-white p-4 flex items-center justify-between">
@@ -156,12 +156,22 @@ export default function PDFViewer({ fileUrl }) {
                       <span className="bg-[#1E1E1E] p-[2px_6px]">{pageNumber}</span> / <span className="p-[2px_6px]">{numPages}</span>
                     </span>
                     <div className="flex items-center gap-1 shrink-0">
-                      <button onClick={goToPrevPage} disabled={pageNumber <= 1} className="flex items-center justify-center w-5 h-5 md:w-6 md:h-6 rounded bg-white/10 text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/20 transition-all active:scale-95" aria-label="Previous page">
+                      <button
+                        onClick={goToPrevPage}
+                        disabled={pageNumber <= 1}
+                        className="flex items-center justify-center w-5 h-5 md:w-6 md:h-6 rounded bg-white/10 text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/20 transition-all active:scale-95"
+                        aria-label="Previous page"
+                      >
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
                         </svg>
                       </button>
-                      <button onClick={goToNextPage} disabled={pageNumber >= numPages} className="flex items-center justify-center w-5 h-5 md:w-6 md:h-6 rounded bg-white/10 text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/20 transition-all active:scale-95" aria-label="Next page">
+                      <button
+                        onClick={goToNextPage}
+                        disabled={pageNumber >= numPages}
+                        className="flex items-center justify-center w-5 h-5 md:w-6 md:h-6 rounded bg-white/10 text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/20 transition-all active:scale-95"
+                        aria-label="Next page"
+                      >
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
                         </svg>
@@ -199,13 +209,13 @@ export default function PDFViewer({ fileUrl }) {
             </div>
           </div>
 
-          <div className="bg-[#D9D9D9] md:p-[10px]">
+          <div className="bg-[#D9D9D9] p-[10px]">
             {/* Scrollable document area */}
-            <div className="flex-1 bg-[#D9D9D9]">
+            <div className="bg-[#D9D9D9] overflow-hidden">
               <div
                 ref={documentRef}
-                className="flex flex-col items-center p-4 max-h-[70vh] overflow-y-auto scroll-smooth"
-                style={{ scrollbarWidth: "thin" }}
+                className="flex flex-col items-center max-h-[70vh] overflow-y-auto scroll-smooth"
+                style={{ scrollbarWidth: "thin", minHeight: isLoading ? "400px" : "auto" }}
               >
                 {isLoading && (
                   <div className="flex items-center justify-center min-h-[400px] text-gray-500">
@@ -233,7 +243,7 @@ export default function PDFViewer({ fileUrl }) {
                         key={index + 1}
                         ref={(el) => (pageRefs.current[index + 1] = el)}
                         data-page={index + 1}
-                        className="bg-white shadow-lg w-full mb-4 last:mb-0"
+                        className="bg-white shadow-lg w-full mb-[10px] overflow-hidden"
                       >
                         <Page
                           pageNumber={index + 1}
@@ -262,7 +272,7 @@ export default function PDFViewer({ fileUrl }) {
            text-white bg-[#2E4C99] uppercase rounded-[50px] 
          h-[30px] 2xl:h-[35px] 3xl:h-[40px] flex items-center justify-center m-auto 
          lg:m-0 lg:ml-auto px-[10px] max-w-[140px] xl:max-w-[150px] 2xl:max-w-[180px] 
-         3xl:max-w-[210px] hover:bg-[#be1e2d] !mt-[20px] transition-colors active:scale-95"
+         3xl:max-w-[210px] hover:bg-[#be1e2d] mt-[10px] mb-[10px] transition-colors active:scale-95"
           >
             DOWNLOAD SPECS
           </button>
