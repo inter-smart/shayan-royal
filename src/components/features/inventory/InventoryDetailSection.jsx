@@ -153,7 +153,7 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                                             pointer-events-none"
                     >
                       <button
-                        className="navBtn-prev pointer-events-auto bg-white rounded-full shadow 
+                        className="navBtn-prev pointer-events-auto bg-white/40 rounded-full shadow 
                                             w-[20px] md:w-10 md:h-10 h-[20px]
                                                 flex items-center justify-center group hover:bg-[#2E4C99] relative left-[5px] md:left-[10px] cursor-pointer disabled:opacity-[0.5]"
                       >
@@ -162,7 +162,7 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                         </svg>
                       </button>
                       <button
-                        className="navBtn-next pointer-events-auto bg-white rounded-full shadow  w-[20px] md:w-10 md:h-10 h-[20px]
+                        className="navBtn-next pointer-events-auto bg-white/40 rounded-full shadow  w-[20px] md:w-10 md:h-10 h-[20px]
                                             flex items-center justify-center group hover:bg-[#2E4C99] relative right-[5px] md:right-[10px] cursor-pointer disabled:opacity-[0.5]"
                       >
                         <svg viewBox="0 0 7 13" fill="none" className="group-hover:invert-100 w-[7px] md:w-2 md:h-5 h-[8px]">

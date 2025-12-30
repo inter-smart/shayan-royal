@@ -16,10 +16,11 @@ const customParserOptions = {
 
 export default function PartnershipSection({ title, description, image, alt, brandCount }) {
   return (
-    <section className="w-full h-auto xl:pt-[80px] lg:pt-[40px] pt-[20px] lg:pb-[10px] pb-[10px]">
+    <section className="w-full h-auto xl:pt-[80px] lg:pt-[40px] pt-[20px] pb-[10px]">
+
       <div className="container">
-        <div className="relative w-full">
-          <div className="md:w-[50%] w-full md:float-left xl:mb-[20px] mb-[15px] 3xl:mr-[70px] xl:mr-[50px] mr-[30px]">
+        <div className="flex md:flex-row flex-col md:gap-[30px] xl:gap-[50px] 3xl:gap-[70px]">
+          <div className="md:w-[50%] w-full xl:mb-[20px] mb-[15px]">
             <div className="w-full relative rounded-[10px] overflow-hidden">
               <Image
                 src={image ? `${mediaUrl}${image}` : "/images/brand.webp"}
@@ -42,7 +43,7 @@ export default function PartnershipSection({ title, description, image, alt, bra
               </div>
             </div>
           </div>
-          <div>
+          <div className="md:w-[50%] w-full">
             <h2 className="3xl:text-[50px] 2xl:text-[40px] xl:text-[30px] lg:text-[25px] 3xs:text-[20px] text-[18px] 3xl:mb-[30px] 2xl:mb-[20px] 3xs:mb-[15px] mb-[10px] uppercase font-semibold font-barlow">
               {title ? title : "Trusted Brand Partnership"}
             </h2>
