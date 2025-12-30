@@ -114,6 +114,7 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                       effect="fade"
                       fadeEffect={{ crossFade: true }}
                       speed={800}
+                      loop={true}
                       onBeforeInit={(swiper) => {
                         swiper.params.navigation.prevEl = ".navBtn-prev";
                         swiper.params.navigation.nextEl = ".navBtn-next";
