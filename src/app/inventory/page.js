@@ -132,15 +132,16 @@ export default async function Page() {
         }
         alt={banner?.title ? banner?.title : "inventory-banner"}
       />
-      <Suspense fallback={<div className="h-20 w-full animate-pulse bg-gray-100 rounded-md"></div>}>
-        <SimpleSearchBox />
-      </Suspense>
+     
       <BreadCrumb
         items={[
           { label: "HOME", href: "/" },
           { label: "INVENTORY", isCurrent: true },
         ]}
       />
+       <Suspense fallback={<div className="h-20 w-full animate-pulse bg-gray-100 rounded-md"></div>}>
+        <SimpleSearchBox />
+      </Suspense>
       <div className="container">
         <Suspense fallback={<div className="h-20 w-full animate-pulse bg-gray-100 rounded-md"></div>}>
           <AdvancesearchSection />

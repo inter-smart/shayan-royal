@@ -96,9 +96,9 @@ export default function SimpleSearchBox() {
     };
 
     return (
-        <div className="w-full bg-[#031640] py-8 px-4 sm:px-6 lg:px-8 mb-6">
+        <div className="w-full mb-6">
             <div className="container mx-auto">
-                <div ref={wrapperRef} className="relative max-w-3xl mx-auto">
+                <div ref={wrapperRef} className="relative max-w-full md:max-w-xl ml-auto">
                     <div className="relative">
                         <input
                             type="text"
@@ -107,7 +107,7 @@ export default function SimpleSearchBox() {
                             onKeyDown={handleKeyDown}
                             onFocus={() => query.length >= 2 && suggestions.length > 0 && setShowSuggestions(true)}
                             placeholder="Search by car model, brand, or keywords..."
-                            className="w-full h-12 pl-12 pr-4 bg-white border-2 border-transparent rounded-lg focus:outline-none focus:border-[#BE1E2D] focus:ring-0 text-gray-900 placeholder-gray-500 transition-all duration-200"
+                            className="w-full h-12 pl-12 pr-4 bg-white border-1 border-black/30 rounded-lg focus:outline-none focus:border-[#BE1E2D] focus:ring-0 text-gray-900 placeholder-gray-500 transition-all duration-200"
                         />
                         <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" />
                     </div>
