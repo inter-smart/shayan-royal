@@ -116,7 +116,7 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                       effect="fade"
                       fadeEffect={{ crossFade: true }}
                       speed={800}
-                      loop={true}
+                      // loop={true}
                       navigation={{
                         prevEl: mainPrevRef.current,
                         nextEl: mainNextRef.current,
