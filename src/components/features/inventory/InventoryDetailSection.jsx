@@ -10,6 +10,7 @@ import ReserveForm from "@/components/forms/ReserveForm";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
+import "swiper/css/effect-fade";
 import { mediaUrl } from "@/lib/constants";
 import StickyMobileCTA from "@/components/common/StickyMobileCTA";
 
@@ -60,18 +61,24 @@ const SocialLinks = [
 
 export default function InventoryDetailSection({ carDetails, specs, contactData = SocialLinks, price }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [mainSwiper, setMainSwiper] = useState(null);
 
   const thumbsPrevRef = useRef(null);
   const thumbsNextRef = useRef(null);
   const verticalPrevRef = useRef(null);
   const verticalNextRef = useRef(null);
-  const mainPrevRef = useRef(null);
-  const mainNextRef = useRef(null);
+  const [mainPrevEl, setMainPrevEl] = useState(null);
+  const [mainNextEl, setMainNextEl] = useState(null);
   const carImages = carDetails?.images;
 
   useEffect(() => {
-    // Delay update to ensure refs are mounted
-  }, []);
+    if (mainSwiper && mainPrevEl && mainNextEl) {
+      mainSwiper.params.navigation.prevEl = mainPrevEl;
+      mainSwiper.params.navigation.nextEl = mainNextEl;
+      mainSwiper.navigation.init();
+      mainSwiper.navigation.update();
+    }
+  }, [mainSwiper, mainPrevEl, mainNextEl]);
 
   return (
     <>
@@ -116,19 +123,8 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                       effect="fade"
                       fadeEffect={{ crossFade: true }}
                       speed={800}
-                      // loop={true}
-                      navigation={{
-                        prevEl: mainPrevRef.current,
-                        nextEl: mainNextRef.current,
-                      }}
-                      onBeforeInit={(swiper) => {
-                        setTimeout(() => {
-                          swiper.params.navigation.prevEl = mainPrevRef.current;
-                          swiper.params.navigation.nextEl = mainNextRef.current;
-                          swiper.navigation.init();
-                          swiper.navigation.update();
-                        });
-                      }}
+                      loop={true}
+                      onSwiper={setMainSwiper}
                       thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
                       className="border border-[rgba(46,76,153,0.3)] rounded-[10px] w-full h-full"
                     >
@@ -160,7 +156,7 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                                             pointer-events-none"
                     >
                       <button
-                        ref={mainPrevRef}
+                        ref={setMainPrevEl}
                         className="navBtn-prev pointer-events-auto bg-white/40 backdrop-blur-sm rounded-full shadow 
                                             w-[20px] md:w-10 md:h-10 h-[20px]
                                                 flex items-center justify-center group relative left-[5px] md:left-[10px] cursor-pointer disabled:opacity-[0.5]"
@@ -170,7 +166,7 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                         </svg>
                       </button>
                       <button
-                        ref={mainNextRef}
+                        ref={setMainNextEl}
                         className="navBtn-next pointer-events-auto bg-white/40 backdrop-blur-sm rounded-full shadow  w-[20px] md:w-10 md:h-10 h-[20px]
                                             flex items-center justify-center group relative right-[5px] md:right-[10px] cursor-pointer disabled:opacity-[0.5]"
                       >
