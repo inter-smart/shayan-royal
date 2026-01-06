@@ -40,13 +40,14 @@ export default function BlogDetailSection({ blog, recentBlogs, slug }) {
           {/* Left content */}
           <div className="2xl:w-[calc(100%-525px)] xl:w-[calc(100%-350px)] lg:w-[calc(100%-280px)] w-full 2xl:pr-[30px] lg:p-[20px] max-lg:mb-[30px]">
             {/* Blog content */}
-            <div className="typography [&>*]:md:my-[10px] [&>*]:my-[4px] [&>h3]:font-medium [&>h3]:2xl:mb-[30px] [&>h3]:lg:mb-[20px] [&>h3]:mb-[15px] [&>p]:col-span-full [&>p]:grid-cols-1 [&>p]:text-[12px] [&>p]:lg:text-[14px] [&>p]:2xl:text-[18px] [&>p]:3xl:text-[20px] [&>p]:2xl:mb-[25px] [&>img]:w-full [&>img]:h-auto [&>img]:aspect-[1085/530] [&>img]:2xl:mb-[40px] [&>img]:lg:mb-[30px] [&>img]:sm:mb-[20px] [&>img]:mb-[15px]">
+            <div className="typography [&>*]:md:my-[10px] [&>*]:my-[4px] [&>h3]:font-medium [&>h3]:2xl:mb-[30px] [&>h3]:lg:mb-[20px] [&>h3]:mb-[15px] [&>p]:col-span-full [&>p]:grid-cols-1 [&>p]:text-[12px] [&>p]:lg:text-[14px] [&>p]:2xl:text-[18px] [&>p]:3xl:text-[20px] [&>p]:2xl:mb-[25px] [&>img]:w-full [&>img]:h-auto [&>img]:aspect-[1085/530] [&>img]:2xl:mb-[40px] [&>img]:lg:mb-[30px] [&>img]:sm:mb-[20px] [&>img]:mb-[15px] [&>img]:object-cover">
               {/* <Image src={blog?.image ? `${mediaUrl}${blog.image}` : "/images/blog_detail_section.webp"} alt="Image-1" width={1085} height={530} /> */}
               <Image
                 src={blog?.cover_image ? `${mediaUrl}${blog.cover_image}` : "/images/blog_detail_section.webp"}
                 alt="Image-1"
                 width={1085}
                 height={530}
+                className="w-full h-full object-cover"
               />
               <div className="flex items-center 2xs:pl-[20px] sm:pl-[30px] 2xl:pl-[40px] !mt-[-35px] sm:!mt-[-45px] xl:!mt-[-55px] 2xl:!mt-[-65px]">
                 <div className="w-[60px] h-[60px] 2xs:w-[70px] 2xs:h-[70px] sm:w-[85px] sm:h-[85px] 2xl:w-[95px] 2xl:h-[95px] rounded-full bg-[#F3F3F3] flex items-center justify-center">
