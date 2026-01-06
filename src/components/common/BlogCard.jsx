@@ -15,7 +15,7 @@ export default function BlogCard({ item }) {
           src={item.image ? `${mediaUrl}${item.image}` : "/images/blog_1.webp"}
           alt={item.title}
           fill
-          className="transition-transform duration-500 group-hover:scale-110"
+          className="object-cover transition-transform duration-500 group-hover:scale-110"
         />
       </div>
       <div className="2xl:mb-[25px] mb-[15px]">
