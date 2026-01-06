@@ -34,11 +34,11 @@ const items = [
 
 export default function BlogDetailSection({ blog, recentBlogs, slug }) {
   return (
-    <section className="w-full h-auto 2xl:py-[50px_130px] lg:py-[30px_85px] sm:py-[30px_50px] py-[20px_40px] block">
+    <section className="w-full h-auto 2xl:py-[20px_130px] lg:py-[10px_85px] sm:py-[10px_50px] py-[10px_40px] block">
       <div className="container">
         <div className="flex flex-wrap">
           {/* Left content */}
-          <div className="2xl:w-[calc(100%-525px)] xl:w-[calc(100%-350px)] lg:w-[calc(100%-280px)] w-full 2xl:pr-[30px] lg:p-[20px] max-lg:mb-[30px]">
+          <div className="2xl:w-[calc(100%-525px)] xl:w-[calc(100%-350px)] lg:w-[calc(100%-280px)] w-full 2xl:pr-[30px] lg:pr-[20px] max-lg:pb-[20px] max-lg:mb-[30px]">
             {/* Blog content */}
             <div className="typography [&>*]:md:my-[10px] [&>*]:my-[4px] [&>h3]:font-medium [&>h3]:2xl:mb-[30px] [&>h3]:lg:mb-[20px] [&>h3]:mb-[15px] [&>p]:col-span-full [&>p]:grid-cols-1 [&>p]:text-[12px] [&>p]:lg:text-[14px] [&>p]:2xl:text-[18px] [&>p]:3xl:text-[20px] [&>p]:2xl:mb-[25px] [&>img]:w-full [&>img]:h-auto [&>img]:aspect-[1085/530] [&>img]:2xl:mb-[40px] [&>img]:lg:mb-[30px] [&>img]:sm:mb-[20px] [&>img]:mb-[15px] [&>img]:object-cover">
               {/* <Image src={blog?.image ? `${mediaUrl}${blog.image}` : "/images/blog_detail_section.webp"} alt="Image-1" width={1085} height={530} /> */}
