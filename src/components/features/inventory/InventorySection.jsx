@@ -3,9 +3,9 @@
 import Link from "next/link";
 import PaginationNavigator from "@/components/common/PaginationNavigator";
 import ProductCard from "@/components/common/ProductCard";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { mediaUrl } from "@/lib/constants";
-import { useSearchParams } from "next/navigation";
+import { useQueryStates, parseAsString, parseAsInteger } from "nuqs";
 
 // Loading skeleton component
 const ProductCardSkeleton = () => (
@@ -231,44 +231,83 @@ const InventorySectionEmpty = () => (
   </section>
 );
 
+// Module-level cache — dropdown data is fetched once and reused across renders
+let dropdownCache = null;
+const fetchDropdownData = async (url) => {
+  if (dropdownCache) return dropdownCache;
+  const res = await fetch(url);
+  dropdownCache = await res.json();
+  return dropdownCache;
+};
+
+// nuqs parsers — mirror the keys used in AdvancesearchSection, plus page
+const inventoryParsers = {
+  make: parseAsString.withDefault(""),
+  model: parseAsString.withDefault(""),
+  fuel: parseAsString.withDefault(""),
+  gearbox: parseAsString.withDefault(""),
+  yearFrom: parseAsString.withDefault(""),
+  yearTo: parseAsString.withDefault(""),
+  body: parseAsString.withDefault(""),
+  regionalSpec: parseAsString.withDefault(""),
+  steeringSide: parseAsString.withDefault(""),
+  carType: parseAsString.withDefault(""),
+  cylinders: parseAsString.withDefault(""),
+  seats: parseAsString.withDefault(""),
+  page: parseAsInteger.withDefault(1),
+};
+
 export default function InventorySection() {
-  const search = useSearchParams();
-  const searchParams = useMemo(() => {
-    return Object.fromEntries(search.entries());
-  }, [search]);
+  // Single source of truth — URL params via nuqs
+  const [queryParams, setQueryParams] = useQueryStates(inventoryParsers, {
+    shallow: false,
+  });
 
   const [cars, setCars] = useState([]);
   const [paginationState, setPaginationState] = useState({});
-  const [currentPage, setCurrentPage] = useState(Number(searchParams.page) || 1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isPageChanging, setIsPageChanging] = useState(false);
 
-  const buildQueryString = (params) => {
-    const query = new URLSearchParams();
-    Object.entries(params).forEach(([key, value]) => {
-      if (value !== "" && value !== null && value !== undefined) {
-        query.append(key, value);
-      }
-    });
-    return query.toString();
-  };
-
-  const fetchInventory = async (page = 1) => {
+  const fetchInventory = async () => {
     try {
-      const queryString = buildQueryString({ ...searchParams, page, limit: 15 });
+      // Resolve name → ID for make, model, carType (URL stores names; API needs IDs)
+      const dropdown = await fetchDropdownData(`${mediaUrl}/api/drop-down-data`);
+      const makes     = dropdown?.data?.makes     || [];
+      const models    = dropdown?.data?.models    || [];
+      const carTypes  = dropdown?.data?.carTypes  || [];
 
-      if (page === 1 && cars && cars.length === 0) setLoading(true);
+      const makeRecord     = queryParams.make     ? makes.find((m) => m.name === queryParams.make)         : null;
+      const modelRecord    = queryParams.model    ? models.find((m) => m.name === queryParams.model)       : null;
+      const carTypeRecord  = queryParams.carType  ? carTypes.find((c) => c.name === queryParams.carType)   : null;
+
+      // Build API query — map clean URL param names → API param names
+      const apiParams = new URLSearchParams();
+      if (makeRecord)              apiParams.set("make_id",       String(makeRecord.id));
+      if (modelRecord)             apiParams.set("model_id",      String(modelRecord.id));
+      if (queryParams.fuel)        apiParams.set("fueltype",      queryParams.fuel);
+      if (queryParams.gearbox)     apiParams.set("gearbox",       queryParams.gearbox);
+      if (queryParams.yearFrom)    apiParams.set("yearFrom",      queryParams.yearFrom);
+      if (queryParams.yearTo)      apiParams.set("yearTo",        queryParams.yearTo);
+      if (queryParams.body)        apiParams.set("body",          queryParams.body);
+      if (queryParams.regionalSpec)apiParams.set("regional_spec", queryParams.regionalSpec);
+      if (queryParams.steeringSide)apiParams.set("steering_type", queryParams.steeringSide);
+      if (carTypeRecord)           apiParams.set("car_type_id",   String(carTypeRecord.id));
+      if (queryParams.cylinders)   apiParams.set("cylinder",      queryParams.cylinders);
+      if (queryParams.seats)       apiParams.set("seats",         queryParams.seats);
+      apiParams.set("page",  String(queryParams.page));
+      apiParams.set("limit", "15");
+
+      const isFirstLoad = cars.length === 0;
+      if (isFirstLoad) setLoading(true);
       else setIsPageChanging(true);
 
       setError(null);
 
-      const response = await fetch(`${mediaUrl}/api/web/inventories/filtered?${queryString}`);
-
+      const response = await fetch(`${mediaUrl}/api/web/inventories/filtered?${apiParams.toString()}`);
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
       const data = await response.json();
-
       if (data.success) {
         setCars(data.data || []);
         setPaginationState(data.pagination || {});
@@ -278,10 +317,8 @@ export default function InventorySection() {
     } catch (err) {
       console.error("Fetch failed:", err);
       setError(err.message);
-      if (page === 1) {
-        setCars([]);
-        setPaginationState({});
-      }
+      setCars([]);
+      setPaginationState({});
     } finally {
       setLoading(false);
       setIsPageChanging(false);
@@ -289,30 +326,27 @@ export default function InventorySection() {
   };
 
   const handlePageChange = (page) => {
-    if (page === currentPage || isPageChanging) return;
-    setCurrentPage(page);
-    fetchInventory(page);
+    if (page === queryParams.page || isPageChanging) return;
+    setQueryParams({ page });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleRetry = () => {
-    fetchInventory(currentPage);
+    fetchInventory();
   };
 
   useEffect(() => {
-    fetchInventory(currentPage);
-  }, [searchParams]); // re-fetch if filters change
+    fetchInventory();
+  }, [queryParams]); // re-fetch whenever filters or page change in URL
 
   // Loading state
-  if (loading && cars && cars.length === 0) return <InventorySectionLoader />;
+  if (loading && cars.length === 0) return <InventorySectionLoader />;
 
   // Error state
-  if (error && cars && cars.length === 0) return <InventorySectionError onRetry={handleRetry} />;
+  if (error && cars.length === 0) return <InventorySectionError onRetry={handleRetry} />;
 
   // Empty state
-  if (!loading && cars && cars.length === 0) return <InventorySectionEmpty />;
-
-  console.log(cars);
+  if (!loading && cars.length === 0) return <InventorySectionEmpty />;
 
   return (
     <section className="w-full h-auto block 3xl:py-[0px_130px] lg:py-[10px_90px] sm:py-[10px_70px] py-[10px_40px]">
@@ -321,7 +355,7 @@ export default function InventorySection() {
           <div className="fixed top-4 right-4 z-50 bg-white shadow-lg rounded-lg p-3 border border-gray-200 animate-pulse">
             <div className="flex items-center space-x-2">
               <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
-              <span className="text-sm text-gray-600">Loading page {currentPage}...</span>
+              <span className="text-sm text-gray-600">Loading page {queryParams.page}...</span>
             </div>
           </div>
         )}
@@ -342,13 +376,13 @@ export default function InventorySection() {
         </div>
         {paginationState.totalPages > 1 && (
           <PaginationNavigator
-            currentPage={paginationState.currentPage || currentPage}
+            currentPage={paginationState.currentPage || queryParams.page}
             totalPages={paginationState.totalPages || 1}
             onPageChange={handlePageChange}
             maxVisiblePages={7}
           />
         )}
-        {error && cars && cars.length > 0 && (
+        {error && cars.length > 0 && (
           <div className="fixed bottom-4 right-4 z-50 bg-red-50 border border-red-200 rounded-lg p-4 shadow-lg max-w-sm">
             <div className="flex items-start">
               <div className="flex-shrink-0">
@@ -362,7 +396,7 @@ export default function InventorySection() {
               </div>
               <div className="ml-3">
                 <p className="text-sm text-red-800">
-                  Failed to load page {currentPage}: {error}
+                  Failed to load page {queryParams.page}: {error}
                 </p>
                 <button onClick={handleRetry} className="mt-2 text-xs bg-red-100 hover:bg-red-200 text-red-800 px-2 py-1 rounded transition-colors">
                   Retry

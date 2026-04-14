@@ -1,26 +1,26 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useQueryStates, parseAsString } from "nuqs";
 
 import { Button } from "@/components/ui/button";
 import { Form, FormField, FormItem, FormControl, FormMessage } from "@/components/ui/form";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 import { SearchableSelect } from "@/components/ui/searchable-select";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { mediaUrl } from "@/lib/constants";
 
 // Form validation schema
 const formSchema = z.object({
-  make: z.string(), //.nonempty("Select make"),
-  model: z.string(), //.nonempty("Select model"),
-  fuel: z.string(), //.nonempty("Select fuel"),
-  gearbox: z.string(), //.nonempty("Select gearbox"),
-  yearTo: z.string().optional(), // Changed from "year" to "yearTo"
+  make: z.string(),
+  model: z.string(),
+  fuel: z.string(),
+  gearbox: z.string(),
+  yearTo: z.string().optional(),
   body: z.string().optional(),
   regionalSpec: z.string().optional(),
   yearFrom: z.string().optional(),
@@ -30,141 +30,123 @@ const formSchema = z.object({
   seats: z.string().optional(),
 });
 
+// Shared URL param parsers — used by both this component and InventorySection
+export const filterParsers = {
+  make: parseAsString.withDefault(""),
+  model: parseAsString.withDefault(""),
+  fuel: parseAsString.withDefault(""),
+  gearbox: parseAsString.withDefault(""),
+  yearFrom: parseAsString.withDefault(""),
+  yearTo: parseAsString.withDefault(""),
+  body: parseAsString.withDefault(""),
+  regionalSpec: parseAsString.withDefault(""),
+  steeringSide: parseAsString.withDefault(""),
+  carType: parseAsString.withDefault(""),
+  cylinders: parseAsString.withDefault(""),
+  seats: parseAsString.withDefault(""),
+};
+
 export default function CarSearchForm() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [dropdownData, setDropdownData] = useState(null);
   const [makeId, setMakeId] = useState(null);
-
-  // loading / error states for dropdowns
   const [dropdownLoading, setDropdownLoading] = useState(true);
   const [dropdownError, setDropdownError] = useState(null);
 
-  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
 
-  const queryValues = useMemo(() => {
-    const params = Object.fromEntries(searchParams.entries());
-    return {
-      make: params.make_id || "",
-      model: params.model_id || "",
-      fuel: params.fueltype || "",
-      gearbox: params.gearbox || "",
-      yearTo: params.yearTo || "",
-      body: params.body || "",
-      regionalSpec: params.regional_spec || "",
-      yearFrom: params.yearFrom || "",
-      steeringSide: params.steering_type || "",
-      carType: params.car_type_id || "",
-      cylinders: params.cylinder || "",
-      seats: params.seats || "",
-    };
-  }, [searchParams]);
-
-  // Auto-expand advanced search if car type is present in URL
-  const shouldAutoExpand = useMemo(() => {
-    return !!(
-      queryValues.carType ||
-      queryValues.regionalSpec ||
-      queryValues.yearFrom ||
-      queryValues.yearTo ||
-      queryValues.steeringSide ||
-      queryValues.cylinders ||
-      queryValues.seats
-    );
-  }, [queryValues]);
+  // nuqs — single source of truth for filter state in the URL
+  const [queryParams, setQueryParams] = useQueryStates(filterParsers, {
+    shallow: false,
+  });
 
   const form = useForm({
     resolver: zodResolver(formSchema),
-    values: queryValues, // initially from query string
+    values: queryParams, // form stays in sync with URL state
     mode: "onSubmit",
   });
 
+  // Sync makeId (numeric) from URL name so model dropdown filters correctly on load
   useEffect(() => {
-    if (queryValues.make) {
-      setMakeId(queryValues.make);
+    if (queryParams.make && dropdownData?.data?.makes) {
+      const match = dropdownData.data.makes.find((m) => m.name === queryParams.make);
+      setMakeId(match?.id ?? null);
+    } else {
+      setMakeId(null);
     }
-  }, [queryValues.make]);
+  }, [queryParams.make, dropdownData]);
 
-  // Auto-expand advanced search if advanced parameters are present
+  // Auto-expand advanced section if any advanced param is active in URL
   useEffect(() => {
-    if (shouldAutoExpand) {
-      setIsExpanded(true);
-    }
-  }, [shouldAutoExpand]);
-
-  const router = useRouter();
+    const hasAdvanced = !!(
+      queryParams.carType ||
+      queryParams.regionalSpec ||
+      queryParams.yearFrom ||
+      queryParams.yearTo ||
+      queryParams.steeringSide ||
+      queryParams.cylinders ||
+      queryParams.seats
+    );
+    if (hasAdvanced) setIsExpanded(true);
+  }, [queryParams]);
 
   const onSubmit = async (values) => {
     try {
-      // if (!values) {
-      //   console.warn("No form values provided");
-      //   return;
-      // }
-      // when no values do not navigate to nventry page
-
-      // if (Object.values(values).every((value) => value === "")) {
-      //   if (window.location.pathname === "/" || window.location.pathname === "/inventory") {
-      //     return; // Do not navigate if on home page
-      //   }
-      //   await router.push("/inventory");
-      //   return;
-      // }
-
-      const params = {
-        make_id: values.make,
-        model_id: values.model,
-        fueltype: values.fuel,
-        gearbox: values.gearbox,
-        yearTo: values.yearTo, // Changed from "year" to "yearTo"
-        body: values.body,
-        regional_spec: values.regionalSpec,
-        steering_type: values.steeringSide,
-        car_type_id: values.carType,
-        cylinder: values.cylinders,
-        seats: values.seats,
-        yearFrom: values.yearFrom,
+      const newParams = {
+        make: values.make || "",
+        model: values.model || "",
+        fuel: values.fuel || "",
+        gearbox: values.gearbox || "",
+        yearFrom: values.yearFrom || "",
+        yearTo: values.yearTo || "",
+        body: values.body || "",
+        regionalSpec: values.regionalSpec || "",
+        steeringSide: values.steeringSide || "",
+        carType: values.carType || "",
+        cylinders: values.cylinders || "",
+        seats: values.seats || "",
       };
 
-      // Filter out empty or undefined values
-      const filteredParams = Object.fromEntries(Object.entries(params).filter(([_, v]) => v !== "" && v !== undefined));
-
-      console.log("filteredParams", filteredParams);
-
-      const query = new URLSearchParams(filteredParams).toString();
-      console.log("filteredParams", query);
-      // await router.push so we can rely on isSubmitting during navigation
-      await router.push(`/inventory?${query}`);
+      if (pathname === "/inventory") {
+        // Already on inventory — update URL in place, reset to page 1
+        setQueryParams({ ...newParams, page: null });
+      } else {
+        // Navigate to inventory with params in the URL
+        const filteredParams = Object.fromEntries(
+          Object.entries(newParams).filter(([, v]) => v !== "")
+        );
+        const query = new URLSearchParams(filteredParams).toString();
+        router.push(`/inventory${query ? `?${query}` : ""}`);
+      }
     } catch (error) {
       console.error("Error during form submission:", error);
-      // show fallback navigation
-
-      await router.push("/inventory");
+      router.push("/inventory");
     }
   };
 
   const handleClear = () => {
-    form.reset({
-      make: "",
-      model: "",
-      fuel: "",
-      gearbox: "",
-      yearTo: "",
-      body: "",
-      regionalSpec: "",
-      yearFrom: "",
-      steeringSide: "",
-      carType: "",
-      cylinders: "",
-      seats: "",
-    });
+    const empty = {
+      make: null,
+      model: null,
+      fuel: null,
+      gearbox: null,
+      yearFrom: null,
+      yearTo: null,
+      body: null,
+      regionalSpec: null,
+      steeringSide: null,
+      carType: null,
+      cylinders: null,
+      seats: null,
+    };
 
-    // if in home page do not navigate to inventory
-    if (window.location.pathname === "/") {
-      setMakeId(null);
-      return;
-    }
-
+    form.reset(Object.fromEntries(Object.keys(empty).map((k) => [k, ""])));
     setMakeId(null);
-    router.push("/inventory?");
+
+    if (pathname === "/") return; // on home page, just reset form locally
+
+    setQueryParams({ ...empty, page: null });
   };
 
   useEffect(() => {
@@ -174,9 +156,7 @@ export default function CarSearchForm() {
       setDropdownError(null);
       try {
         const response = await fetch(`${mediaUrl}/api/drop-down-data`);
-        if (!response.ok) {
-          throw new Error("Failed to fetch dropdown data");
-        }
+        if (!response.ok) throw new Error("Failed to fetch dropdown data");
         const data = await response.json();
         if (!mounted) return;
         setDropdownData(data);
@@ -185,19 +165,23 @@ export default function CarSearchForm() {
         console.error("Failed to fetch dropdown data:", error);
         setDropdownError(error?.message || "Failed to load dropdowns");
       } finally {
-        if (!mounted) return;
-        setDropdownLoading(false);
+        if (mounted) setDropdownLoading(false);
       }
     };
     fetchMakes();
-    return () => {
-      mounted = false;
-    };
+    return () => { mounted = false; };
   }, []);
 
-  const models = makeId ? dropdownData?.data?.models?.filter((model) => model.make_id == makeId) : [];
+  // makeId holds the numeric ID (for filtering models client-side),
+  // while the URL/form stores the human-readable name
+  const models = makeId ? dropdownData?.data?.models?.filter((m) => m.make_id == makeId) : [];
 
-  // Helper functions to transform data for SearchableSelect
+  // Use name as value for options that go into the URL (make, model, carType)
+  const transformByNameToOptions = (data) => {
+    if (!data) return [];
+    return data.map((item) => ({ label: item.name, value: item.name }));
+  };
+
   const transformToOptions = (data, labelKey = "name", valueKey = "id") => {
     if (!data) return [];
     return data.map((item) => ({
@@ -206,61 +190,39 @@ export default function CarSearchForm() {
     }));
   };
 
-  // Special transform for fuel types and gearboxes (they use name as value)
   const transformFuelTypesToOptions = (data) => {
     if (!data) return [];
-    return data.map((item) => ({
-      label: item.name,
-      value: item.name,
-    }));
+    return data.map((item) => ({ label: item.name, value: item.name }));
   };
 
   const transformGearboxesToOptions = (data) => {
     if (!data) return [];
-    return data.map((item) => ({
-      label: item.name,
-      value: item.name,
-    }));
+    return data.map((item) => ({ label: item.name, value: item.name }));
   };
 
   const transformRegionalSpecsToOptions = (data) => {
     if (!data) return [];
-    return data.map((item) => ({
-      label: item.name,
-      value: item.name,
-    }));
+    return data.map((item) => ({ label: item.name, value: item.name }));
   };
 
   const transformSteeringTypesToOptions = (data) => {
     if (!data) return [];
-    return data.map((item) => ({
-      label: item.name,
-      value: item.name,
-    }));
+    return data.map((item) => ({ label: item.name, value: item.name }));
   };
 
   const transformYearsToOptions = (years) => {
     if (!years) return [];
-    return years.map((year) => ({
-      label: year.toString(),
-      value: year.toString(),
-    }));
+    return years.map((year) => ({ label: year.toString(), value: year.toString() }));
   };
 
   const transformCylindersToOptions = (cylinders) => {
     if (!cylinders) return [];
-    return cylinders.map((cylinder) => ({
-      label: cylinder.count,
-      value: cylinder.count,
-    }));
+    return cylinders.map((c) => ({ label: c.count, value: c.count }));
   };
 
   const transformSeatsToOptions = (seats) => {
     if (!seats) return [];
-    return seats.map((seat) => ({
-      label: seat.count,
-      value: seat.count,
-    }));
+    return seats.map((s) => ({ label: s.count, value: s.count }));
   };
 
   const menuLinkClass =
@@ -272,7 +234,6 @@ export default function CarSearchForm() {
   const itemClass =
     "3xl:text-[14px] 2xl:text-[12px] xl:text-[10px] md:text-[10px] text-[12px]  3xl:py-[10px] 3xl:px-4 px-[7px] hover:bg-[#e4f0fe] focus:bg-[#e4f0fe] focus:text-black cursor-pointer font-normal !uppercase placeholder:!text-black transition-none duration-20";
 
-  // small inline SVG spinner used in buttons / triggers
   const Spinner = ({ className = "inline-block h-4 w-4 mr-2 align-middle" }) => (
     <svg className={`animate-spin ${className}`} viewBox="0 0 24 24">
       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -282,7 +243,6 @@ export default function CarSearchForm() {
 
   return (
     <div className="w-full relative" aria-live="polite">
-      {/* top-level error for dropdowns */}
       {dropdownError ? (
         <div className="mb-3 p-2 text-sm bg-[#ffe6e6] text-[#7a1a1a] rounded">
           <strong>Unable to load filters:</strong> {dropdownError}. You can still search but some options may be missing.
@@ -304,12 +264,13 @@ export default function CarSearchForm() {
                 <FormItem>
                   <FormControl>
                     <SearchableSelect
-                      options={transformToOptions(dropdownData?.data?.makes)}
+                      options={transformByNameToOptions(dropdownData?.data?.makes)}
                       value={field.value}
                       onValueChange={(value) => {
-                        field.onChange(value);
-                        setMakeId(value);
-                        form.setValue("model", ""); // Reset model when make changes
+                        field.onChange(value); // value is now the make name
+                        const match = dropdownData?.data?.makes?.find((m) => m.name === value);
+                        setMakeId(match?.id ?? null);
+                        form.setValue("model", "");
                       }}
                       placeholder="MAKE"
                       searchPlaceholder="Search makes..."
@@ -337,7 +298,7 @@ export default function CarSearchForm() {
                 <FormItem>
                   <FormControl>
                     <SearchableSelect
-                      options={!makeId ? [] : transformToOptions(models)}
+                      options={!makeId ? [] : transformByNameToOptions(models)}
                       value={field.value}
                       onValueChange={field.onChange}
                       placeholder="MODEL"
@@ -415,7 +376,7 @@ export default function CarSearchForm() {
             />
           </div>
 
-          {/* Search Button */}
+          {/* Search + Clear buttons */}
           <div className="w-full sm:w-2/3 md:w-full xl:w-1/5 p-[5px] 2xl:p-[10px]">
             <div className="flex flex-wrap justify-end -m-[5px]">
               <div className="flex-grow p-[5px]">
@@ -488,7 +449,7 @@ export default function CarSearchForm() {
               {isExpanded ? "- LESS OPTIONS" : "+ ADVANCED SEARCH"}
             </AccordionTrigger>
             <div
-              className={`absolute max-sm:hidden sm:bottom-[20px] right-[40px] 2xl:right-[50px] 3xl:right-[70px] 
+              className={`absolute max-sm:hidden sm:bottom-[20px] right-[40px] 2xl:right-[50px] 3xl:right-[70px]
                             lg:max-w-[150px] 2xl:max-w-[200px] 3xl:max-w-[250px]  md:max-w-[100px]
                             max-w-[75px] pointer-events-none  ${isExpanded ? "" : "hidden"}`}
             >
@@ -553,6 +514,7 @@ export default function CarSearchForm() {
                     )}
                   />
                 </div>
+
                 {/* Year To */}
                 <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:p-[10px] p-[5px]">
                   <FormField
@@ -582,7 +544,7 @@ export default function CarSearchForm() {
                   />
                 </div>
 
-                {/* Steering side */}
+                {/* Steering Side */}
                 <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:p-[10px] p-[5px]">
                   <FormField
                     control={form.control}
@@ -611,7 +573,7 @@ export default function CarSearchForm() {
                   />
                 </div>
 
-                {/* Car Type   */}
+                {/* Car Type */}
                 <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:p-[10px] p-[5px]">
                   <FormField
                     control={form.control}
@@ -620,7 +582,7 @@ export default function CarSearchForm() {
                       <FormItem>
                         <FormControl>
                           <SearchableSelect
-                            options={transformToOptions(dropdownData?.data?.carTypes)}
+                            options={transformByNameToOptions(dropdownData?.data?.carTypes)}
                             value={field.value}
                             onValueChange={field.onChange}
                             placeholder="CAR TYPE"
@@ -639,7 +601,8 @@ export default function CarSearchForm() {
                     )}
                   />
                 </div>
-                {/*CYLINDERS  */}
+
+                {/* Cylinders */}
                 <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:p-[10px] p-[5px]">
                   <FormField
                     control={form.control}
@@ -667,7 +630,8 @@ export default function CarSearchForm() {
                     )}
                   />
                 </div>
-                {/*NUMBER OF SEATS  */}
+
+                {/* Seats */}
                 <div className="w-full 3xs:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5 2xl:p-[10px] p-[5px]">
                   <FormField
                     control={form.control}

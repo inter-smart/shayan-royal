@@ -7,7 +7,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import AdvancesearchSection from "@/components/features/home/AdvancesearchSection";
 import CarSearchForm from "./AdvancedSearchLatext";
 
 const slides = [
@@ -62,13 +61,13 @@ export default function BannerSection({ homeBanners }) {
           ? isMobile
             ? [100, -100, 0]
             : isMediumScreen
-            ? [-200, 200, 0]
-            : [-450, 450, 0]
+              ? [-200, 200, 0]
+              : [-450, 450, 0]
           : isMobile
-          ? [80, -100, 0]
-          : isMediumScreen
-          ? [200, -200, 0]
-          : [450, -450, 0],
+            ? [80, -100, 0]
+            : isMediumScreen
+              ? [200, -200, 0]
+              : [450, -450, 0],
       opacity: 0.5,
     }),
     center: {
@@ -82,13 +81,13 @@ export default function BannerSection({ homeBanners }) {
           ? isMobile
             ? [100, -100, 0]
             : isMediumScreen
-            ? [200, -200, 0]
-            : [450, -450, 0]
+              ? [200, -200, 0]
+              : [450, -450, 0]
           : isMobile
-          ? [-80, 100, 0]
-          : isMediumScreen
-          ? [-200, 200, 0]
-          : [-450, 450, 0],
+            ? [-80, 100, 0]
+            : isMediumScreen
+              ? [-200, 200, 0]
+              : [-450, 450, 0],
       opacity: [0],
       transition: { duration: 3.5 },
     }),
