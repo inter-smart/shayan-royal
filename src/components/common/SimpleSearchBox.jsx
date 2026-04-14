@@ -110,7 +110,7 @@ export default function SimpleSearchBox() {
               value={query}
               onChange={handleInputChange}
               onFocus={() => query.length >= 2 && suggestions.length > 0 && setShowSuggestions(true)}
-              placeholder="Search by car model, brand, or keywords..."
+              placeholder="Search by SR code, model, brand, or keywords..."
               className="w-full h-12 pl-12 pr-4 bg-white border-1 border-black/30 rounded-lg focus:outline-none focus:border-[#BE1E2D] focus:ring-0 text-gray-900 placeholder-gray-500 transition-all duration-200"
             />
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5 pointer-events-none" />
@@ -186,9 +186,8 @@ export default function SimpleSearchBox() {
                             <button
                               key={pageNum}
                               onClick={() => handlePageChange(pageNum)}
-                              className={`w-6 h-6 text-xs rounded transition-colors ${
-                                currentPage === pageNum ? "bg-[#BE1E2D] text-white" : "hover:bg-gray-200 text-gray-700"
-                              }`}
+                              className={`w-6 h-6 text-xs rounded transition-colors ${currentPage === pageNum ? "bg-[#BE1E2D] text-white" : "hover:bg-gray-200 text-gray-700"
+                                }`}
                             >
                               {pageNum}
                             </button>
