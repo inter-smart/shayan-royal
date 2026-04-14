@@ -402,7 +402,7 @@ export default function CarSearchForm() {
                   )}
                 </Button>
               </div>
-              <div className={`relative flex-grow p-[5px] ${isExpanded ? "block" : "hidden"}`}>
+              <div className={`relative flex-grow p-[5px] ${isExpanded || Object.values(queryParams).some(Boolean) ? "block" : "hidden"}`}>
                 <Button
                   type="button"
                   onClick={handleClear}
