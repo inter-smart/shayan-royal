@@ -34,7 +34,7 @@ const items = {
 
 export default function FitmentServiceSection({ title, desc, image }) {
   return (
-    <section className="w-full h-auto block 3xl:p-[80px_0_40px] 2xl:p-[60px_0_30px]  md:p-[50px_0_30px] sm:p-[40px_0_30px] p-[20px_0_30px]">
+    <section className="w-full h-auto block 3xl:p-[25px_0_40px] 2xl:p-[25px_0_30px]  md:p-[25px_0_30px] sm:p-[25px_0_30px] p-[20px_0_30px]">
       <div className="container">
         <Heading
           size={"heading2"}

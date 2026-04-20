@@ -16,7 +16,7 @@ const customParserOptions = {
 
 export default function PartnershipSection({ title, description, image, alt, brandCount }) {
   return (
-    <section className="w-full h-auto xl:pt-[80px] lg:pt-[40px] pt-[20px] pb-[10px]">
+    <section className="w-full h-auto xl:pt-[25px] lg:pt-[30px] pt-[20px] pb-[10px]">
 
       <div className="container">
         <div className="flex md:flex-row flex-col md:gap-[30px] xl:gap-[50px] 3xl:gap-[70px]">

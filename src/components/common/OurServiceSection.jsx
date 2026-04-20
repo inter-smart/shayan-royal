@@ -5,7 +5,7 @@ import parse from "html-react-parser";
 
 export default function OurServiceSection({ image, title, description1, description2 }) {
   return (
-    <section className="w-full h-auto block 3xl:py-[80px_135px] 2xl:py-[60px_100px] xl:py-[50px_80px] md:py-[40px_60px] py-[20px_40px]">
+    <section className="w-full h-auto block 3xl:py-[25px_135px] 2xl:py-[25px_100px] xl:py-[25px_80px] md:py-[30px_60px] py-[20px_40px]">
       <div className="container">
         <div className="flex flex-wrap">
           <div className="w-full md:w-[50%]">
