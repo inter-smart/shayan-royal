@@ -56,6 +56,17 @@ export default function ProductCard({ car, variant }) {
               height={200}
               className="w-full h-full object-cover  transition-transform duration-500  group-hover:scale-110"
             />
+            {/* shayan logo */}
+
+            <div className="w-full 3xl:max-w-[175px] max-w-[150px] absolute top-0 left-0 bottom-0 right-0 m-auto h-auto z-10 opacity-[0.4]">
+              <Image
+                src="/images/logo.svg"
+                alt={car?.title}
+                width={350}
+                height={200}
+                className="w-full h-full object-contain  invert brightness-0"
+              />
+            </div>
           </div>
           {/* Title */}
           <div className="py-2">

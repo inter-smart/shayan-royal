@@ -183,7 +183,7 @@ export default function BlogSection() {
   }
 
   return (
-    <section className="w-full h-auto 3xl:p-[75px_0_130px] lg:p-[50px_0_90px] sm:p-[50px_0_70px] p-[40px_0_50px] block">
+    <section className="w-full h-auto 3xl:p-[25px_0_130px] lg:p-[25px_0_90px] sm:p-[30px_0_70px] p-[30px_0_50px] block">
       <div className="container">
         {/* Page changing indicator */}
         {isPageChanging && (
@@ -195,12 +195,21 @@ export default function BlogSection() {
           </div>
         )}
 
-        <div className="3xl:mb-[120px] 2xl:mb-[100px] lg:mb-[80px] sm:mb-[50px] mb-[30px] flex flex-wrap">
+        <div className="3xl:mb-[120px] 2xl:mb-[100px] lg:mb-[80px] sm:mb-[50px] mb-[30px] flex flex-wrap 
+                        2xl:-mx-[17px] 2xl:-my-[25px] 
+                        lg:-mx-[12px] lg:-my-[15px] 
+                        sm:-mx-[7px] sm:-my-[10px] 
+                        -mx-0 -my-[10px]">
+
           {blogs.map((item, index) => (
             <div
               key={item.id || index}
-              className="lg:w-[calc(100%/3)] sm:w-[calc(100%/2)] w-full 2xl:p-[25px_17px] lg:p-[15px_12px] sm:p-[10px_7px] p-[10px_0px]"
-            >
+              className="lg:w-[calc(100%/3)] sm:w-[calc(100%/2)] w-full 
+              2xl:px-[17px] 2xl:py-[25px] 
+              lg:px-[12px] lg:py-[15px] 
+              sm:px-[7px] sm:py-[10px] 
+              px-0 py-[10px]"
+                    >
               <BlogCard item={item} />
             </div>
           ))}

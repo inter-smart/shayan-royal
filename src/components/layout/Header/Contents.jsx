@@ -60,10 +60,10 @@ function Contents({ data, bannerStatus, services }) {
           {/* Logo */}
           <div
             className={`  ${
-              isScrolled ? "w-[110px] lg:w-[130px] 2xl:w-[150px]" : "3xl:w-[260px] 2xl:w-[195px] xl:w-[175px] lg:w-[140px] w-[135px]"
-            } transition-all flex items-center justify-center pb-[5px]`}
+              isScrolled ? "w-[110px] lg:w-[130px] 2xl:w-[150px]" : " 2xl:w-[175px] xl:w-[160px] lg:w-[140px] w-[135px]"
+            } transition-all flex items-center justify-center max-lg:pb-[5px]`}
           >
-            <Link href="/" className="block w-full h-full p-[10px_0]">
+            <Link href="/" className="block w-full h-full max-lg:p-[10px_0]">
               <Image
                 src={data?.header_logo ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${data?.header_logo}` : "/images/logo.svg"}
                 alt="shayan Logo"

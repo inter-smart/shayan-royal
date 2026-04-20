@@ -80,13 +80,13 @@ function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, stati
                   ${
                     isInnerPage
                       ? isScrolled
-                        ? "py-[35px]"
-                        : "3xl:py-[43px] 2xl:py-[35px] py-[30px]"
+                        ? "py-[25px]"
+                        : "3xl:py-[35px] 2xl:py-[35px] py-[30px]"
                       : isScrolled
                       ? "py-[30px]"
-                      : "3xl:py-[43px] 2xl:py-[35px] py-[30px]"
+                      : "3xl:py-[30px] 2xl:py-[30px] py-[30px]"
                   }
-                    ${isScrolled ? "py-[30px]" : "3xl:py-[55px] 2xl:py-[45px] py-[40px]"} 
+                    ${isScrolled ? "py-[25px]" : "3xl:py-[25px] 2xl:py-[25px] py-[25px]"} 
                     ${textColorClass}
                     ${
                       isActive
@@ -108,7 +108,7 @@ function NavMenus({ pathname, isInnerPage, data = { data }, isPrivacyPage, stati
                     <span
                       className={`${menuLinkClass}  ${
                         item.sublabel === "Contact Us"
-                          ? "!text-[9[px] ]xl:!text-[10px] 2xl:!text-[12px] 3xl:!text-[16px] !text-white !font-normal bg-[#2E4C99] 3xl:h-[40px] 2xl:h-[30px] h-[25px] min-w-[90px] !py-0 !rounded-[50px] after:hidden hover:!bg-[#BE1E2D] hover:!text-white"
+                          ? "!text-[9[px] xl:!text-[10px] 2xl:!text-[12px] 3xl:!text-[16px] !text-white !font-normal bg-[#2E4C99] 3xl:h-[40px] 2xl:h-[30px] h-[25px] min-w-[90px] !py-0 !rounded-[50px] after:hidden hover:!bg-[#BE1E2D] hover:!text-white"
                           : ""
                       }`}
                     >
