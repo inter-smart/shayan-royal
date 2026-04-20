@@ -21,7 +21,7 @@ export default function ProductCard({ car, variant }) {
 
   const specs = [car?.regional_spec, toTitleCase(car?.fueltype), toTitleCase(car?.gearbox), car?.year];
 
-  console.log(car)
+  console.log(car);
   return (
     <Link
       href={car?.shayan_code ? `/inventory/srcode=${car?.shayan_code}` : "#"}
@@ -58,14 +58,8 @@ export default function ProductCard({ car, variant }) {
             />
             {/* shayan logo */}
 
-            <div className="w-full 3xl:max-w-[175px] max-w-[150px] absolute top-0 left-0 bottom-0 right-0 m-auto h-auto z-10 opacity-[0.4]">
-              <Image
-                src="/images/logo.svg"
-                alt={car?.title}
-                width={350}
-                height={200}
-                className="w-full h-full object-contain  invert brightness-0"
-              />
+            <div className="w-[65px] 3xl:max-w-[175px] max-w-[150px] absolute top-0 left-0 bottom-0 right-0 m-auto h-auto z-10 opacity-[0.2]">
+              <Image src="/images/logo.svg" alt={car?.title} width={350} height={200} className="w-full h-full object-contain  invert brightness-0" />
             </div>
           </div>
           {/* Title */}

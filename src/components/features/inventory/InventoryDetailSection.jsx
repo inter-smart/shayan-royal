@@ -138,13 +138,22 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                                                     fill
                                                     className="2xl:max-w-[900px] lg:max-w-[650px] max-w-[300px] w-full h-full object-contain m-auto"
                                                 /> */}
-                            <div className="w-full h-full aspect-[16/9]">
+                            <div className="w-full h-full aspect-[16/9] relative">
                               <Image
                                 src={img ? `${mediaUrl}${img}` : "/images/no-image.png"}
                                 alt={`car-${index}`}
                                 fill
                                 className="max-w-full w-full h-full object-cover m-auto"
                               />
+                              <div className="w-[50px] lg:w-full 3xl:max-w-[175px] max-w-[150px] absolute top-0 left-0 bottom-0 right-0 m-auto h-auto z-10 opacity-[0.2]">
+                                <Image
+                                  src="/images/logo.svg"
+                                  alt={"car-logo"}
+                                  width={350}
+                                  height={200}
+                                  className="w-full h-full object-contain  invert brightness-0"
+                                />
+                              </div>
                             </div>
                           </div>
                         </SwiperSlide>
