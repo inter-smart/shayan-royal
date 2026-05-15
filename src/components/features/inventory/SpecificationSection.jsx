@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import parse from "html-react-parser";
 
 const tabs = ["Description", "Specifications", "Interior Features", "Exterior Features", "Security & Environment"];
 
@@ -57,17 +58,28 @@ const detailsData = [
 ];
 
 export default function ResponsiveTabsWithSwiper({ specList = detailsData }) {
-  // Filter out tabs with empty arrays
+  const descriptionData = specList[0];
+  const description = descriptionData?.[0]?.value || "";
+
+  // Filter out "Description" and tabs with empty arrays
   const availableTabs = tabs.filter((tab, index) => {
+    if (tab === "Description") return false;
     const tabData = specList[index];
     return tabData && tabData.length > 0;
   });
 
-  console.log(availableTabs);
-
-  const [activeTab, setActiveTab] = useState(availableTabs[0] || tabs[0]);
+  const [activeTab, setActiveTab] = useState(availableTabs[0] || tabs[1]);
   const [activeIndex, setActiveIndex] = useState(0);
-  console.log(activeTab);
+  const [showFull, setShowFull] = useState(false);
+  const [isTruncated, setIsTruncated] = useState(false);
+  const descriptionRef = useRef(null);
+
+  useEffect(() => {
+    if (descriptionRef.current) {
+      // Check if content height exceeds the limit (e.g., 150px)
+      setIsTruncated(descriptionRef.current.scrollHeight > 150);
+    }
+  }, [description]);
 
   // Helper function to get the original index of a tab
   const getOriginalTabIndex = (tabName) => {
@@ -92,6 +104,44 @@ export default function ResponsiveTabsWithSwiper({ specList = detailsData }) {
   return (
     <section className="w-full px-4 pt-6 pb-3 bg-white overflow-hidden">
       <div className="container mx-auto">
+        {/* Description Section */}
+        {typeof description === "string" && description.trim().length > 0 && (
+          <div className="mb-10 px-2 lg:px-4">
+            <h2 className="text-[18px] sm:text-[22px] xl:text-[26px] 2xl:text-[28px] 3xl:text-[32px] font-semibold text-black mb-4 font-base1">
+              Description
+            </h2>
+            <div className="relative">
+              <div
+                ref={descriptionRef}
+                className={`text-[14px] xl:text-[15px] 2xl:text-[16px] 3xl:text-[22px] text-[#4B4B4B] font-base1 leading-relaxed rich-text-description overflow-hidden transition-all duration-300 ${!showFull && isTruncated ? "max-h-[150px]" : "max-h-full"
+                  }`}
+              >
+                {parse(description)}
+              </div>
+              {!showFull && isTruncated && (
+                <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-white/90 to-transparent pointer-events-none" />
+              )}
+            </div>
+            {isTruncated && (
+              <button
+                onClick={() => setShowFull(!showFull)}
+                className="mt-3 text-[#2E4C99] font-semibold text-[14px] 2xl:text-[16px] 3xl:text-[22px] hover:underline flex items-center gap-1 transition-all"
+              >
+                {showFull ? "Show Less" : "Show Full"}
+                <svg
+                  width="12"
+                  height="8"
+                  viewBox="0 0 12 8"
+                  fill="none"
+                  className={`transition-transform duration-300 ${showFull ? "rotate-180" : ""}`}
+                >
+                  <path d="M1 1L6 6L11 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                </svg>
+              </button>
+            )}
+          </div>
+        )}
+
         {/* Tab Header */}
         <div className="mb-6 relative">
           <Swiper
@@ -111,10 +161,9 @@ export default function ResponsiveTabsWithSwiper({ specList = detailsData }) {
                 <button
                   onClick={() => setActiveTab(tab)}
                   className={`relative text-[13px] sm:text-[16px] xl:text-[18px] 2xl:text-[22px] 3xl:text-[25px] font-base1 w-full pb-2 text-left cursor-pointer transition-all hover:text-[#2E4C99] hover:font-semibold
-                    ${
-                      activeTab === tab
-                        ? "font-semibold text-black after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-1/2 after:bg-[#2E4C99]"
-                        : "text-[#4B4B4B]"
+                    ${activeTab === tab
+                      ? "font-semibold text-black after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-1/2 after:bg-[#2E4C99]"
+                      : "text-[#4B4B4B]"
                     }`}
                 >
                   {tab}
@@ -152,11 +201,10 @@ export default function ResponsiveTabsWithSwiper({ specList = detailsData }) {
 
         {/* Tab Content */}
         <Tabs
-          defaultValue={availableTabs[0] || tabs[0]}
+          defaultValue={availableTabs[0] || tabs[1]}
           value={activeTab}
-          className={`w-full ${
-            specList[getOriginalTabIndex(activeTab)]?.length > 0 ? "bg-[#F5F9FF]" : "bg-transparent"
-          } rounded-[15px] p-[25px_10px] 3xl:p-[45px_20px] overflow-hidden relativebefore:absolute after:content-[''] before:top-0 before:left-0 before:w-[20px] 2xl:before:w-[30px] 
+          className={`w-full ${specList[getOriginalTabIndex(activeTab)]?.length > 0 ? "bg-[#F5F9FF]" : "bg-transparent"
+            } rounded-[15px] p-[25px_10px] 3xl:p-[45px_20px] overflow-hidden relativebefore:absolute after:content-[''] before:top-0 before:left-0 before:w-[20px] 2xl:before:w-[30px] 
           before:h-full before:bg-[#F5F9FF]`}
         >
           {availableTabs.map((tab) => {
@@ -177,11 +225,6 @@ export default function ResponsiveTabsWithSwiper({ specList = detailsData }) {
                       </div>
                     ))}
                   </div>
-                ) : originalIndex === 0 ? (
-                  // Description layout
-                  <p className="text-[14px] text-[#4B4B4B] font-base1 leading-relaxed px-[30px]">
-                    {specList?.[originalIndex]?.[0]?.value || "No description available."}
-                  </p>
                 ) : (
                   // Features grid layout
                   <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-y-4 gap-x-1 lg:gap-x-2 text-[14px] text-[#1F1F1F] font-base1">
