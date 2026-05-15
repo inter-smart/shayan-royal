@@ -11,6 +11,13 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "swiper/css/effect-fade";
+
+// Lightbox imports
+import Lightbox from "yet-another-react-lightbox";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import "yet-another-react-lightbox/styles.css";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
+
 import { mediaUrl } from "@/lib/constants";
 import StickyMobileCTA from "@/components/common/StickyMobileCTA";
 
@@ -71,6 +78,14 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
   const [mainNextEl, setMainNextEl] = useState(null);
   const carImages = carDetails?.images;
 
+  // Lightbox state
+  const [isOpen, setIsOpen] = useState(false);
+  const [photoIndex, setPhotoIndex] = useState(0);
+
+  const slides = carImages?.map((img) => ({
+    src: img ? `${mediaUrl}${img}` : "/images/no-image.png",
+  })) || [];
+
   useEffect(() => {
     if (mainSwiper && mainPrevEl && mainNextEl) {
       mainSwiper.params.navigation.prevEl = mainPrevEl;
@@ -130,14 +145,13 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                     >
                       {carImages?.map((img, index) => (
                         <SwiperSlide key={index}>
-                          {/* <div className="relative w-full 3xl:h-[570px] 2xl:h-[465px] xl:h-[425px] sm:h-[370px] 3xs:h-[230px] h-[200px] bg-white"> */}
-                          <div className="relative w-full h-full bg-white">
-                            {/* <Image
-                                                    src={img}
-                                                    alt={`car-${index}`}
-                                                    fill
-                                                    className="2xl:max-w-[900px] lg:max-w-[650px] max-w-[300px] w-full h-full object-contain m-auto"
-                                                /> */}
+                          <div
+                            className="relative w-full h-full bg-white cursor-zoom-in"
+                            onClick={() => {
+                              setPhotoIndex(index);
+                              setIsOpen(true);
+                            }}
+                          >
                             <div className="w-full h-full aspect-[16/9] relative">
                               <Image
                                 src={img ? `${mediaUrl}${img}` : "/images/no-image.png"}
@@ -367,6 +381,32 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
           </div>
         </div>
       </section>
+      <Lightbox
+        open={isOpen}
+        close={() => setIsOpen(false)}
+        index={photoIndex}
+        slides={slides}
+        plugins={[Thumbnails]}
+        styles={{
+          container: { backgroundColor: "rgba(0, 0, 0, 0.9)" },
+        }}
+        render={{
+          slide: ({ slide }) => (
+            <div className="relative w-full h-full flex items-center justify-center p-4 lg:p-10">
+              <div className="relative w-full h-full max-w-[1100px] max-h-[75vh]">
+                <Image
+                  src={slide.src}
+                  alt="Car Image"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 1100px) 100vw, 1100px"
+                  priority
+                />
+              </div>
+            </div>
+          ),
+        }}
+      />
     </>
   );
 }
