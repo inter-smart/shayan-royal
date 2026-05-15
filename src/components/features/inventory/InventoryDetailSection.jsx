@@ -146,7 +146,7 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                       {carImages?.map((img, index) => (
                         <SwiperSlide key={index}>
                           <div
-                            className="relative w-full h-full bg-white cursor-zoom-in"
+                            className="relative w-full h-full bg-white cursor-pointer"
                             onClick={() => {
                               setPhotoIndex(index);
                               setIsOpen(true);
