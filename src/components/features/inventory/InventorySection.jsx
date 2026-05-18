@@ -335,7 +335,7 @@ export default function InventorySection() {
         </div>
         <div className="w-full h-full 3xl:mb-[140px] 2xl:mb-[110px] lg:mb-[90px] sm:mb-[70px] mb-[40px] flex flex-wrap">
           {cars.map((car, index) => (
-            <div key={car.id || index} className="xl:w-1/3 sm:w-1/2 w-full 3xl:p-[20px_15px] 2xl:p-[15px_12px] lg:p-[12px_10px] p-[8px_5px]">
+            <div key={car.id || index} className="xl:w-1/4 sm:w-1/2 w-full 3xl:p-[20px_15px] 2xl:p-[15px_12px] lg:p-[12px_10px] p-[8px_5px]">
               <ProductCard car={car} variant="inventory" />
             </div>
           ))}
