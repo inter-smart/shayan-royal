@@ -5,7 +5,7 @@ export default function InnerBanner({ title, image, mobileImage, alt = "InnerBan
   return (
     <section
       className="w-full 3xl:h-[650px] 2xl:h-[550px] xl:h-[440px] md:h-[380px] h-[320px] 
-            2xl:pb-[100px] xl:pb-[70px] md:pb-[50px] pb-[30px] block relative z-0
+            3xl:pb-[50px]   pb-[30px] block relative z-0
             before:content-[''] before:absolute before:-z-[1] before:bottom-0 before:left-0 
             before:w-full before:h-1/2 before:bg-gradient-to-b before:from-transparent before:to-black before:opacity-75 
             before:pointer-events-none 
