@@ -401,6 +401,7 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                   className="object-contain"
                   sizes="(max-width: 1100px) 100vw, 1100px"
                   priority
+                  unoptimized={true}
                 />
               </div>
             </div>
