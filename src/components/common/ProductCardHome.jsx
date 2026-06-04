@@ -43,7 +43,7 @@ export default function ProductCardHome({ car, variant }) {
             <Image
               src={car?.logo ? `${mediaUrl}${car?.logo}` : "/images/no-image.jpg"}
               alt={car?.title}
-              width={350}
+              width={350} 
               height={200}
               className="w-full h-full object-cover "
             />
