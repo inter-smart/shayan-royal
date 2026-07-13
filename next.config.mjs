@@ -3,6 +3,7 @@
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "standalone",
   images: {
     formats: ["image/webp", "image/avif"],
     minimumCacheTTL: 31536000, // 1 year
