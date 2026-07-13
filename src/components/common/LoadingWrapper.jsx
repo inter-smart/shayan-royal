@@ -1,27 +1,25 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import GlobalLoader from './GlobalLoader';
 import { useLoading } from '@/contexts/LoadingContext';
 
 export default function LoadingWrapper({ children }) {
-  const [initialLoading, setInitialLoading] = useState(true);
   const [routeLoading, setRouteLoading] = useState(false);
   const pathname = usePathname();
   const { isLoading: contextLoading } = useLoading();
+  const isFirstRender = useRef(true);
 
-  // Handle initial page load
+  // Handle route changes only (skip the initial mount — content is already
+  // server-rendered, so blocking it behind a fake loader only hurts perceived
+  // load speed / Lighthouse Speed Index for no benefit).
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setInitialLoading(false);
-    }, 1500); // Show loader for 1.5 seconds on initial load
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
 
-    return () => clearTimeout(timer);
-  }, []);
-
-  // Handle route changes
-  useEffect(() => {
     setRouteLoading(true);
     const timer = setTimeout(() => {
       setRouteLoading(false);
@@ -31,7 +29,7 @@ export default function LoadingWrapper({ children }) {
   }, [pathname]);
 
   // Show loader if any loading state is true
-  const shouldShowLoader = initialLoading || routeLoading || contextLoading;
+  const shouldShowLoader = routeLoading || contextLoading;
 
   return (
     <>

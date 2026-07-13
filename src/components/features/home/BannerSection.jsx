@@ -167,6 +167,9 @@ export default function BannerSection({ homeBanners }) {
                             alt={slide.title}
                             width={1000}
                             height={500}
+                            priority={index === 0}
+                            fetchPriority={index === 0 ? "high" : "auto"}
+                            sizes="(max-width: 768px) 90vw, (max-width: 1536px) 60vw, 1000px"
                             className="w-full h-[110px] sm:h-[140px] md:h-[180px] lg:h-[220px] xl:h-[280px] 3xl:h-[350px] object-contain"
                           />
                         </motion.div>

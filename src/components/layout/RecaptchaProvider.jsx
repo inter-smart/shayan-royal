@@ -13,8 +13,8 @@ export default function RecaptchaProvider({ children }) {
     <GoogleReCaptchaProvider
       reCaptchaKey={siteKey}
       scriptProps={{
-        async: false,
-        defer: false,
+        async: true,
+        defer: true,
         appendTo: "head",
         nonce: undefined,
       }}
