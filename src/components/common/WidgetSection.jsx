@@ -94,7 +94,7 @@ export default async function WidgetSection() {
           <Image src="/images/chat_icon.png" width="40" height="40" className="w-full h-full object-cover" alt="chat_icon" />
         </div>
       </div> */}
-      <Script id="zoho-init" strategy="afterInteractive">
+      <Script id="zoho-init" strategy="lazyOnload">
         {`window.$zoho = window.$zoho || {};
           $zoho.salesiq = $zoho.salesiq || { ready: function() {} };
         `}
@@ -103,7 +103,7 @@ export default async function WidgetSection() {
       <Script
         id="zoho-salesiq"
         src="https://salesiq.zohopublic.com/widget?wc=siqed953e1b49e39ca20576f0bb91bae38ba97bf7f0fa471ea161411f81335df6e5"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
 
 
