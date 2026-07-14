@@ -16,6 +16,26 @@
   animation: spin-reverse 1s linear infinite;
 }
 
+/* Brief branded splash on first load — solid for ~300ms then fades out.
+   Pure CSS timing (no JS timer) so it never blocks or delays real content. */
+@keyframes initial-loader-out {
+  0%,
+  75% {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.initial-loader {
+  animation: initial-loader-out 400ms ease-out forwards;
+  pointer-events: none;
+}
+
 /* Smooth loading transitions */
 .loading-fade-enter {
   opacity: 0;

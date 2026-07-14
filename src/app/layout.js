@@ -4,6 +4,7 @@ import Footer from "@/components/layout/Footer";
 import { Barlow } from "next/font/google";
 import localFont from "next/font/local";
 import WidgetSection from "@/components/common/WidgetSection";
+import InitialLoadOverlay from "@/components/common/InitialLoadOverlay";
 import { Toaster } from "sonner";
 import { LoadingProvider } from "@/contexts/LoadingContext";
 import LoadingWrapper from "@/components/common/LoadingWrapper";
@@ -33,6 +34,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`font-base1 ${barlow.variable} ${stretchPro.variable}`}>
+        <InitialLoadOverlay />
         <LoadingProvider>
           <LoadingWrapper>
             <Header />
