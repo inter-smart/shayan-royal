@@ -1,23 +1,17 @@
-import dynamic from "next/dynamic";
 import BannerSection from "@/components/features/home/BannerSection";
 import AboutSection from "@/components/features/home/AboutSection";
+import CategorySection from "@/components/features/home/CategorySection";
+import NewarrivalSection from "@/components/features/home/NewarrivalSection";
+import LimitedstockSection from "@/components/features/home/LimitedstockSection";
+import FeaturedSection from "@/components/features/home/FeaturedSection";
+import LogisticsSection from "@/components/features/home/LogisticsSection";
+import WhySection from "@/components/features/home/WhySection";
+import TestimonialSection from "@/components/features/home/TestimonialSection";
 import BlogSection from "@/components/features/home/BlogSection";
+import SocialSection from "@/components/features/home/SocialSection";
+import FaqSection from "@/components/features/home/FaqSection";
 import { fetchFromAPI } from "@/lib/api";
 import { defaultMeta } from "@/lib/constants";
-
-// Below-the-fold sections are code-split out of the main bundle: they still
-// render on the server (ssr defaults to true) so content/SEO is unaffected,
-// but their client JS (Swiper, Framer Motion, etc.) ships as separate chunks
-// instead of inflating the initial hydration bundle — cuts mobile TBT.
-const CategorySection = dynamic(() => import("@/components/features/home/CategorySection"));
-const NewarrivalSection = dynamic(() => import("@/components/features/home/NewarrivalSection"));
-const LimitedstockSection = dynamic(() => import("@/components/features/home/LimitedstockSection"));
-const FeaturedSection = dynamic(() => import("@/components/features/home/FeaturedSection"));
-const LogisticsSection = dynamic(() => import("@/components/features/home/LogisticsSection"));
-const WhySection = dynamic(() => import("@/components/features/home/WhySection"));
-const TestimonialSection = dynamic(() => import("@/components/features/home/TestimonialSection"));
-const SocialSection = dynamic(() => import("@/components/features/home/SocialSection"));
-const FaqSection = dynamic(() => import("@/components/features/home/FaqSection"));
 
 async function getMetaData() {
   try {
