@@ -22,62 +22,91 @@ export default async function sitemap() {
     priority: route === "" ? 1.0 : 0.8,
   }));
 
-  // Dynamic routes
-  let serviceRoutes = [];
-  let blogRoutes = [];
-  let inventoryRoutes = [];
+  // Dynamic routes arrays
+  const serviceRoutes = [];
+  const blogRoutes = [];
+  const inventoryRoutes = [];
 
-  // Fetch Services
+  // 1. Fetch Services dynamically
   try {
     const { data } = await fetchFromAPI("services");
     if (data && Array.isArray(data.services)) {
-      serviceRoutes = data.services.map((service) => ({
-        url: `${baseUrl}/service-detail/${service.slug}`,
-        lastModified: new Date(service.updated_at || new Date()),
-        changeFrequency: "weekly",
-        priority: 0.6,
-      }));
+      data.services.forEach((service) => {
+        if (service.slug) {
+          const typePath = service.type === "service-detail" ? "service-detail" : "service-fitment";
+          serviceRoutes.push({
+            url: `${baseUrl}/${typePath}/${service.slug}`,
+            lastModified: new Date(),
+            changeFrequency: "weekly",
+            priority: 0.7,
+          });
+        }
+      });
     }
   } catch (error) {
     console.error("Error fetching services for sitemap:", error);
   }
 
-  // Fetch Blogs
+  // 2. Fetch Blogs dynamically (handles pagination page-by-page)
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/web/blogs?page=1&limit=100`,
-      { next: { revalidate: 3600 } }
-    );
-    if (response.ok) {
-      const result = await response.json();
-      if (result.success && Array.isArray(result.data)) {
-        blogRoutes = result.data.map((blog) => ({
-          url: `${baseUrl}/blog/${blog.slug}`,
-          lastModified: new Date(blog.updated_at || new Date()),
-          changeFrequency: "weekly",
-          priority: 0.6,
-        }));
+    let currentPage = 1;
+    const limit = 50;
+    let keepFetching = true;
+
+    while (keepFetching && currentPage <= 10) { // Safety cap of 500 blogs
+      const { data, error } = await fetchFromAPI(`blogs?page=${currentPage}&limit=${limit}`);
+      if (!error && Array.isArray(data) && data.length > 0) {
+        data.forEach((blog) => {
+          if (blog.link) {
+            blogRoutes.push({
+              url: `${baseUrl}${blog.link}`,
+              lastModified: blog.date ? new Date(blog.date) : new Date(),
+              changeFrequency: "weekly",
+              priority: 0.6,
+            });
+          }
+        });
+
+        if (data.length < limit) {
+          keepFetching = false;
+        } else {
+          currentPage++;
+        }
+      } else {
+        keepFetching = false;
       }
     }
   } catch (error) {
     console.error("Error fetching blogs for sitemap:", error);
   }
 
-  // Fetch Inventories
+  // 3. Fetch Inventories dynamically (handles pagination page-by-page)
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/web/inventories/filtered?page=1&limit=100`,
-      { next: { revalidate: 3600 } }
-    );
-    if (response.ok) {
-      const result = await response.json();
-      if (result.success && Array.isArray(result.data)) {
-        inventoryRoutes = result.data.map((car) => ({
-          url: `${baseUrl}/inventory/${car.slug}`,
-          lastModified: new Date(car.updated_at || new Date()),
-          changeFrequency: "weekly",
-          priority: 0.7,
-        }));
+    let currentPage = 1;
+    const limit = 50;
+    let keepFetching = true;
+
+    while (keepFetching && currentPage <= 20) { // Safety cap of 1000 cars
+      const { data, error } = await fetchFromAPI(`inventories/filtered?page=${currentPage}&limit=${limit}`);
+      if (!error && Array.isArray(data) && data.length > 0) {
+        data.forEach((car) => {
+          if (car.shayan_code) {
+            inventoryRoutes.push({
+              url: `${baseUrl}/inventory/srcode=${car.shayan_code}`,
+              lastModified: new Date(),
+              changeFrequency: "weekly",
+              priority: 0.8,
+            });
+          }
+        });
+
+        if (data.length < limit) {
+          keepFetching = false;
+        } else {
+          currentPage++;
+        }
+      } else {
+        keepFetching = false;
       }
     }
   } catch (error) {
