@@ -28,10 +28,10 @@ export default function ProductCard({ car, variant }) {
       aria-label={car?.type}
       className={`w-full h-full flex cursor-pointer group ${paddingClass}`}
     >
-      <div className="w-full h-full rounded-[10px] bg-white overflow-hidden 3xl:py-[15px] py-[10px] 3xl:px-[20px] px-[15px] flex flex-wrap shadow-xl mb-3">
+      <div className="w-full h-full rounded-[10px] bg-white overflow-hidden 3xl:py-[15px] py-[10px] 3xl:px-[20px] px-[15px] flex shadow-xl">
         {/* Left Section */}
         <div
-          className={`  
+          className={` 3xl:w-[calc(100%-65px)] w-[calc(100%-45px)]  mr-[10px] 2xl:mr-[20px] 
                     relative rounded-[10px] overflow-hidden  after:absolute 
                     after:top-0 after:right-0 after:content-[''] 
                     after:bg-[linear-gradient(90deg,_rgba(187,192,207,0.00)_0%,_#BBC0CF_100%)] after:w-full after:max-w-[150px] 
@@ -71,11 +71,11 @@ export default function ProductCard({ car, variant }) {
         </div>
 
         {/* Right Section - Specs */}
-        <div className={` w-full mb-2 ${variant === "inventory" ? " pb-0" : " "}`}>
-           <div className={`flex grow-1 h-full gap-2 }`}>
+        <div className={` 3xl:w-[65px] w-[45px] ${variant === "inventory" ? "h-full pb-5" : " "}`}>
+           <div className={`flex flex-col h-full ${variant === "inventory" ? "max-h-full" : "3xl:max-h-[265px] max-h-[200px]"}`}>
             {specs?.map((spec, i) => {
               return (
-                <div key={i} className="3xl:mb-[15px]  flex-grow-1">
+                <div key={i} className="3xl:mb-[15px] mb-[10px] last:mb-0 flex-grow-1">
                   <div
                     className="text-center w-full h-full rounded-[10px] overflow-hidden bg-[#F5F9FF] 3xl:min-h-[55px] min-h-[40px]
                                      flex items-center justify-center flex-col"
