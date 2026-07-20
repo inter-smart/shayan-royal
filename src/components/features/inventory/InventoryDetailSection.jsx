@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Thumbs, EffectFade } from "swiper/modules";
 import { Heading } from "@/components/layout/Heading";
@@ -66,9 +66,21 @@ const SocialLinks = [
   },
 ];
 
+// How many slides around the active one stay mounted/loaded (active ± window size).
+const IMAGE_LOAD_WINDOW = 2;
+const THUMB_LOAD_WINDOW = 6;
+
+function isWithinLoadWindow(index, activeIndex, total, window = IMAGE_LOAD_WINDOW) {
+  if (!total) return false;
+  const diff = Math.abs(index - activeIndex);
+  const circularDiff = Math.min(diff, total - diff);
+  return circularDiff <= window;
+}
+
 export default function InventoryDetailSection({ carDetails, specs, contactData = SocialLinks, price }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [mainSwiper, setMainSwiper] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const thumbsPrevRef = useRef(null);
   const thumbsNextRef = useRef(null);
@@ -76,15 +88,41 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
   const verticalNextRef = useRef(null);
   const [mainPrevEl, setMainPrevEl] = useState(null);
   const [mainNextEl, setMainNextEl] = useState(null);
-  const carImages = carDetails?.images;
+
+  // Dealer uploads sometimes contain the same photo more than once — dedupe while preserving order.
+  const carImages = useMemo(() => {
+    if (!carDetails?.images?.length) return carDetails?.images;
+    return [...new Set(carDetails.images)];
+  }, [carDetails?.images]);
+
+  // Tracks image URLs that failed to load so we can swap in a placeholder instead of a broken-image icon.
+  const [brokenImages, setBrokenImages] = useState(() => new Set());
+  const markImageBroken = (src) => {
+    setBrokenImages((prev) => (prev.has(src) ? prev : new Set(prev).add(src)));
+  };
+  const resolveImageSrc = (img) => {
+    if (!img) return "/images/no-image.png";
+    const url = `${mediaUrl}${img}`;
+    return brokenImages.has(url) ? "/images/no-image.png" : url;
+  };
+
+  // Indices requested ahead of the active window — e.g. by hovering/touching a thumbnail before
+  // it's actually clicked — so the (potentially slow, first-time) image fetch has a head start
+  // instead of only starting once the slider has already jumped to that slide.
+  const [preloadIndices, setPreloadIndices] = useState(() => new Set());
+  const preloadImage = (index) => {
+    if (index == null || index < 0) return;
+    setPreloadIndices((prev) => (prev.has(index) ? prev : new Set(prev).add(index)));
+  };
 
   // Lightbox state
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
 
-  const slides = carImages?.map((img) => ({
-    src: img ? `${mediaUrl}${img}` : "/images/no-image.png",
-  })) || [];
+  const slides =
+    carImages?.map((img) => ({
+      src: resolveImageSrc(img),
+    })) || [];
 
   useEffect(() => {
     if (mainSwiper && mainPrevEl && mainNextEl) {
@@ -140,6 +178,7 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                       speed={800}
                       loop={true}
                       onSwiper={setMainSwiper}
+                      onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
                       thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
                       className="border border-[rgba(46,76,153,0.3)] rounded-[10px] w-full h-full"
                     >
@@ -153,20 +192,27 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                             }}
                           >
                             <div className="w-full h-full aspect-[16/9] relative">
-                              <Image
-                                src={img ? `${mediaUrl}${img}` : "/images/no-image.png"}
-                                alt={`car-${index}`}
-                                fill
-                                className="max-w-full w-full h-full object-cover m-auto"
-                              />
-                              <div className="w-[50px] lg:w-full 3xl:max-w-[175px] max-w-[150px] absolute top-0 left-0 bottom-0 right-0 m-auto h-auto z-10 opacity-[0.2]">
+                              {isWithinLoadWindow(index, activeIndex, carImages.length) || preloadIndices.has(index) ? (
                                 <Image
+                                  src={resolveImageSrc(img)}
+                                  alt={`car-${index}`}
+                                  fill
+                                  sizes="(max-width: 1023px) 100vw, (max-width: 1535px) 70vw, 1200px"
+                                  priority={index === 0}
+                                  onError={() => img && markImageBroken(`${mediaUrl}${img}`)}
+                                  className="max-w-full w-full h-full object-cover m-auto"
+                                />
+                              ) : (
+                                <div className="w-full h-full bg-[#F5F9FF]" />
+                              )}
+                              <div className="w-[50px] lg:w-full 3xl:max-w-[175px] max-w-[150px] absolute top-0 left-0 bottom-0 right-0 m-auto h-auto z-10 opacity-[0.2]">
+                                {/* <Image
                                   src="/images/logo.svg"
                                   alt={"car-logo"}
                                   width={350}
                                   height={200}
                                   className="w-full h-full object-contain  invert brightness-0"
-                                />
+                                /> */}
                               </div>
                             </div>
                           </div>
@@ -180,7 +226,9 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                     >
                       <button
                         ref={setMainPrevEl}
-                        className="navBtn-prev pointer-events-auto bg-white/40 backdrop-blur-sm rounded-full shadow 
+                        onMouseEnter={() => preloadImage((activeIndex - 1 + carImages.length) % carImages.length)}
+                        onTouchStart={() => preloadImage((activeIndex - 1 + carImages.length) % carImages.length)}
+                        className="navBtn-prev pointer-events-auto bg-white/40 backdrop-blur-sm rounded-full shadow
                                             w-[20px] md:w-10 md:h-10 h-[20px]
                                                 flex items-center justify-center group relative left-[5px] md:left-[10px] cursor-pointer disabled:opacity-[0.5]"
                       >
@@ -190,6 +238,8 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                       </button>
                       <button
                         ref={setMainNextEl}
+                        onMouseEnter={() => preloadImage((activeIndex + 1) % carImages.length)}
+                        onTouchStart={() => preloadImage((activeIndex + 1) % carImages.length)}
                         className="navBtn-next pointer-events-auto bg-white/40 backdrop-blur-sm rounded-full shadow  w-[20px] md:w-10 md:h-10 h-[20px]
                                             flex items-center justify-center group relative right-[5px] md:right-[10px] cursor-pointer disabled:opacity-[0.5]"
                       >
@@ -229,16 +279,25 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                       {carImages?.map((img, index) => (
                         <SwiperSlide key={`thumb-${index}`} className="group">
                           <div
+                            onMouseEnter={() => preloadImage(index)}
+                            onTouchStart={() => preloadImage(index)}
                             className="relative w-full h-full cursor-pointer bg-[#F5F9FF] aspect-[4/4]
                                                rounded-[5px]  lg:rounded-[10px] overflow-hidden shadow transition-opacity duration-00 opacity-90 group-[.swiper-slide-thumb-active]:opacity-100"
                           >
-                            <Image
-                              src={img ? `${mediaUrl}${img}` : "/images/no-image.png"}
-                              alt={`thumb-${index}`}
-                              fill
-                              // className="3xl:max-w-[180px] 2xl:max-w-[135px] sm:max-w-[110px] max-w-[80px] m-auto object-contain"
-                              className="max-w-full m-auto object-cover"
-                            />
+                            {isWithinLoadWindow(index, activeIndex, carImages.length, THUMB_LOAD_WINDOW) ? (
+                              <Image
+                                src={resolveImageSrc(img)}
+                                alt={`thumb-${index}`}
+                                fill
+                                sizes="150px"
+                                priority={index < 5}
+                                onError={() => img && markImageBroken(`${mediaUrl}${img}`)}
+                                // className="3xl:max-w-[180px] 2xl:max-w-[135px] sm:max-w-[110px] max-w-[80px] m-auto object-contain"
+                                className="max-w-full m-auto object-cover"
+                              />
+                            ) : (
+                              <div className="w-full h-full bg-[#F5F9FF]" />
+                            )}
                           </div>
                         </SwiperSlide>
                       ))}
@@ -401,7 +460,7 @@ export default function InventoryDetailSection({ carDetails, specs, contactData 
                   className="object-contain"
                   sizes="(max-width: 1100px) 100vw, 1100px"
                   priority
-                  unoptimized={true}
+                  onError={() => markImageBroken(slide.src)}
                 />
               </div>
             </div>
